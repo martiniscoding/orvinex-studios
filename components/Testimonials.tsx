@@ -18,7 +18,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "We hired them for a massive web application. Rohan and his team at Orvinex act like true technical co-founders. Best software company in Kolkata by far.",
+      "We hired them for a massive web application. Rohan and his team at Orvinex act like true technical co-founders. Best software agency we have worked with by far.",
     name: "Sarah J.",
     title: "Founder, FinSaaS",
   },

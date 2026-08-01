@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
+import { structuredData } from "./structured-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,39 +16,41 @@ const sora = Sora({
   variable: "--font-display",
 });
 
+const title =
+  "Orvinex | Custom Software, Mobile & AI Development Agency";
+
 const description =
-  "Orvinex Software Solutions is a leading software company in Kolkata providing custom software development, website design, ERP solutions, and mobile app services.";
+  "Orvinex Software Solutions is a software development agency building custom software, web and mobile applications, and AI products for clients worldwide. Based in India, serving globally.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://orvinex.store"),
   title: {
-    default:
-      "Orvinex | Best Software Company in Kolkata for Custom Digital Solutions",
+    default: title,
     template: "%s | Orvinex",
   },
   description,
   keywords: [
-    "software company in Kolkata",
+    "software development agency",
     "custom software development",
     "mobile app development",
-    "ERP solutions",
+    "AI product development",
     "web application development",
-    "SEO services Kolkata",
+    "SaaS development",
+    "offshore software development",
     "Orvinex",
   ],
   authors: [{ name: "Orvinex Software Solutions" }],
   openGraph: {
     type: "website",
-    locale: "en_IN",
+    locale: "en_US",
     url: "https://orvinex.store",
     siteName: "Orvinex",
-    title:
-      "Orvinex | Best Software Company in Kolkata for Custom Digital Solutions",
+    title,
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orvinex | Best Software Company in Kolkata",
+    title,
     description,
   },
   robots: {
@@ -68,7 +71,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body className="bg-background font-sans text-white">{children}</body>
+      <body className="bg-background font-sans text-white">
+        {/* Escaping `<` prevents a literal `</script>` in any future data
+            field from terminating the tag early. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

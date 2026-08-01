@@ -20,6 +20,13 @@ const NAV_LINKS = [
 /** Sections that actually exist, in the order the scroll-spy should track. */
 const SPY_IDS = ["home", "about", "services"];
 
+/**
+ * Google Calendar appointment schedule. External, so both CTAs open it in a
+ * new tab rather than navigating away from the landing page mid-funnel.
+ */
+const BOOKING_URL =
+  "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1jxrjQuBw6Xh_8vo9LyStM6pg4qNx_qw5-r5ryzQAdXdBh-Bqe35r51IDEgOBSsy_gbGO7e50w";
+
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -117,7 +124,10 @@ const Navbar1 = () => {
 
         {/* Desktop CTA Button */}
         <motion.a
-          href="#contact"
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Schedule a call — opens Google Calendar in a new tab"
           className="hidden items-center gap-2 rounded-full bg-primary-deep px-5 py-2 text-[13.5px] font-semibold text-white shadow-[0_0_24px_-6px_rgba(124,92,255,0.9)] transition-colors hover:bg-primary md:inline-flex"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
@@ -199,7 +209,10 @@ const Navbar1 = () => {
                 className="pt-6"
               >
                 <a
-                  href="#contact"
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Schedule a call — opens Google Calendar in a new tab"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-5 py-3 text-base font-semibold text-white shadow-[0_0_24px_-6px_rgba(124,92,255,0.9)] transition-colors hover:bg-primary"
                   onClick={toggleMenu}
                 >

@@ -3,53 +3,14 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, FileLock2, ShieldCheck } from "lucide-react";
+import { submitLead } from "@/app/actions";
+import {
+  EMPTY_LEAD as EMPTY,
+  validateLead as validate,
+  type LeadErrors as Errors,
+  type LeadFields as Fields,
+} from "@/lib/validate-lead";
 import { Reveal } from "./ui/Reveal";
-
-type Fields = {
-  fullName: string;
-  email: string;
-  phone: string;
-  country: string;
-  details: string;
-};
-
-type Errors = Partial<Record<keyof Fields, string>>;
-
-const EMPTY: Fields = {
-  fullName: "",
-  email: "",
-  phone: "",
-  country: "",
-  details: "",
-};
-
-function validate(values: Fields): Errors {
-  const errors: Errors = {};
-
-  if (!values.fullName.trim()) {
-    errors.fullName = "Please enter your full name.";
-  }
-
-  if (!values.email.trim()) {
-    errors.email = "Please enter your email address.";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim())) {
-    errors.email = "Please enter a valid email address.";
-  }
-
-  if (!values.phone.trim()) {
-    errors.phone = "Please enter your phone number.";
-  } else if (!/^[+()\d\s-]{7,20}$/.test(values.phone.trim())) {
-    errors.phone = "Please enter a valid phone number.";
-  }
-
-  if (!values.details.trim()) {
-    errors.details = "Tell us a little about your project.";
-  } else if (values.details.trim().length < 20) {
-    errors.details = "Please give us at least 20 characters of context.";
-  }
-
-  return errors;
-}
 
 const inputClass =
   "w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3 text-[14.5px] text-white placeholder:text-white/30 outline-none transition-colors duration-200 focus:border-primary/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-primary/25";
@@ -58,26 +19,41 @@ export function ContactCTA() {
   const [values, setValues] = useState<Fields>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  // Hidden from humans by CSS; only bots fill it in.
+  const [honeypot, setHoneypot] = useState("");
 
   const update = (key: keyof Fields) => (value: string) => {
     setValues((prev) => ({ ...prev, [key]: value }));
     setErrors((prev) => ({ ...prev, [key]: undefined }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate(values);
     setErrors(nextErrors);
+    setFormError(null);
 
     if (Object.keys(nextErrors).length > 0) {
       setSubmitted(false);
       return;
     }
 
-    // TODO: wire this up to /api/inquiry (or the CRM webhook) once the backend exists.
-    console.log("Orvinex inquiry:", values);
-    setSubmitted(true);
-    setValues(EMPTY);
+    setPending(true);
+    const result = await submitLead(values, honeypot);
+    setPending(false);
+
+    if (result.ok) {
+      setSubmitted(true);
+      setValues(EMPTY);
+      setHoneypot("");
+      return;
+    }
+
+    setSubmitted(false);
+    if (result.fieldErrors) setErrors(result.fieldErrors);
+    if (result.error) setFormError(result.error);
   };
 
   return (
@@ -104,7 +80,7 @@ export function ContactCTA() {
             Stop delaying your growth.
           </h2>
           <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-muted">
-            Contact the best software development team in Kolkata today.
+            Talk to a software development team trusted by clients worldwide.
             Let&apos;s discuss your project architecture.
           </p>
 
@@ -196,19 +172,45 @@ export function ContactCTA() {
               )}
             </div>
 
+            {/* Honeypot: off-screen and hidden from assistive tech, so a
+                human never sees or tabs into it. */}
+            <div aria-hidden="true" className="absolute -left-[9999px] top-0">
+              <label htmlFor="company-website">Company website</label>
+              <input
+                id="company-website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
+            </div>
+
             <motion.button
               type="submit"
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
+              disabled={pending}
+              whileHover={pending ? undefined : { scale: 1.02, y: -2 }}
+              whileTap={pending ? undefined : { scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 24 }}
-              className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_0_32px_-8px_rgba(124,92,255,0.95)] transition-colors hover:bg-primary hover:shadow-glow-lg"
+              className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_0_32px_-8px_rgba(124,92,255,0.95)] transition-colors hover:bg-primary hover:shadow-glow-lg disabled:opacity-60"
             >
-              Submit Inquiry
-              <ArrowRight
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                strokeWidth={2.2}
-              />
+              {pending ? "Sending…" : "Submit Inquiry"}
+              {!pending && (
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  strokeWidth={2.2}
+                />
+              )}
             </motion.button>
+
+            {formError && (
+              <p
+                className="mt-4 rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-center text-[13.5px] text-red-300"
+                role="alert"
+              >
+                {formError}
+              </p>
+            )}
 
             {submitted && (
               <motion.p
