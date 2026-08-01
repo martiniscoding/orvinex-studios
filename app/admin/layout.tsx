@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 /**
  * Intentionally does no auth checking — see the comment in page.tsx. Gating
  * here would not stop the page from executing, so every route under /admin
- * must call `isAuthenticated()` itself before touching data.
+ * must check the session itself before touching data.
  */
 export default function AdminLayout({
   children,

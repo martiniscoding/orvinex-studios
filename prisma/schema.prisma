@@ -1,0 +1,110 @@
+// Prisma 7 requires an explicit generator output path. The client is written
+// into the source tree and gitignored; `postinstall` regenerates it.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+// Prisma 7 removed connection URLs from the schema. The CLI reads its URL
+// from prisma.config.ts; the runtime client is handed one in lib/prisma.ts.
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Application ──────────────────────────────────────────────────────────
+
+model Lead {
+  id       BigInt  @id @default(autoincrement())
+  fullName String  @map("full_name")
+  email    String
+  phone    String
+  country  String?
+  details  String
+  /// Kept as text rather than a Postgres enum: the column already exists as
+  /// TEXT, and converting it in place needs a USING cast that db push cannot
+  /// express. Values are constrained by LEAD_STATUSES in lib/db.ts.
+  status   String  @default("new")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([createdAt(sort: Desc)], map: "leads_created_at_idx")
+  @@map("leads")
+}
+
+/// Fixed-window rate limiter state. Lives in Postgres rather than process
+/// memory because serverless instances do not share memory — an in-process
+/// counter resets on every cold start and is enforced per-instance.
+
+model RateLimit {
+  key         String   @id
+  count       Int      @default(0)
+  windowStart DateTime @default(now()) @map("window_start") @db.Timestamptz(6)
+
+  @@index([windowStart], map: "rate_limits_window_idx")
+  @@map("rate_limits")
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}

@@ -1,30 +1,20 @@
-import { neon } from "@neondatabase/serverless";
+export const LEAD_STATUSES = ["new", "contacted", "closed"] as const;
+export type LeadStatus = (typeof LEAD_STATUSES)[number];
 
 /**
- * Neon client, resolved lazily.
+ * A lead as handed to client components.
  *
- * Deliberately not a module-level constant: reading DATABASE_URL at import
- * time would make `next build` fail on any machine without the env var set,
- * even though nothing is queried during the build.
+ * Deliberately not Prisma's own `Lead` type: that carries a BigInt id and a
+ * Date, neither of which survives serialisation across the server/client
+ * boundary. `serialiseLead` in app/admin/page.tsx does the conversion.
  */
-export function getSql() {
-  const url = process.env.DATABASE_URL;
-  if (!url) {
-    throw new Error("DATABASE_URL is not set.");
-  }
-  return neon(url);
-}
-
 export type Lead = {
   id: number;
-  full_name: string;
+  fullName: string;
   email: string;
   phone: string;
   country: string | null;
   details: string;
   status: string;
-  created_at: string;
+  createdAt: string;
 };
-
-export const LEAD_STATUSES = ["new", "contacted", "closed"] as const;
-export type LeadStatus = (typeof LEAD_STATUSES)[number];

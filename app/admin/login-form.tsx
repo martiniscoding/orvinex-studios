@@ -3,10 +3,15 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Lock } from "lucide-react";
-import { login } from "./actions";
+
+import { signIn } from "@/lib/auth-client";
+
+const inputClass =
+  "w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3 text-[14.5px] text-white outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-primary/25";
 
 export function LoginForm() {
   const router = useRouter();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
@@ -16,16 +21,19 @@ export function LoginForm() {
     setPending(true);
     setError(null);
 
-    const result = await login(password);
+    const { error: signInError } = await signIn.email({ email, password });
 
-    if (result.ok) {
-      // The cookie is set; re-fetch the server component tree so the gate
-      // in layout.tsx now renders the dashboard.
-      router.refresh();
-    } else {
-      setError(result.error ?? "Login failed.");
+    if (signInError) {
+      // Deliberately vague — never reveal whether the address exists, which
+      // would turn this form into an account enumeration oracle.
+      setError("Those credentials aren't right.");
       setPending(false);
+      return;
     }
+
+    // The session cookie is set; re-render the server tree so the gate in
+    // page.tsx now sees a session and returns the dashboard.
+    router.refresh();
   }
 
   return (
@@ -42,23 +50,40 @@ export function LoginForm() {
           Admin access
         </h1>
         <p className="mt-1.5 text-[13.5px] text-muted">
-          Enter the dashboard password to view inquiries.
+          Sign in to view inquiries.
         </p>
 
         <label
-          htmlFor="password"
+          htmlFor="email"
           className="mb-2 mt-6 block text-[13px] font-medium text-white/80"
+        >
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          required
+          autoFocus
+          autoComplete="username"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={inputClass}
+        />
+
+        <label
+          htmlFor="password"
+          className="mb-2 mt-4 block text-[13px] font-medium text-white/80"
         >
           Password
         </label>
         <input
           id="password"
           type="password"
-          autoFocus
+          required
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3 text-[14.5px] text-white outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-primary/25"
+          className={inputClass}
         />
 
         {error && (
@@ -69,10 +94,10 @@ export function LoginForm() {
 
         <button
           type="submit"
-          disabled={pending || !password}
+          disabled={pending || !email || !password}
           className="mt-6 w-full rounded-full bg-primary-deep px-6 py-3 text-[14.5px] font-semibold text-white transition-colors hover:bg-primary disabled:opacity-40"
         >
-          {pending ? "Checking…" : "Sign in"}
+          {pending ? "Signing in…" : "Sign in"}
         </button>
       </form>
     </main>

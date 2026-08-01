@@ -1,5 +1,8 @@
-import { getSql, type Lead } from "@/lib/db";
-import { isAuthenticated } from "@/lib/auth";
+import { headers } from "next/headers";
+
+import { auth } from "@/lib/auth";
+import { getPrisma } from "@/lib/prisma";
+import type { Lead } from "@/lib/db";
 import { Logo } from "@/components/ui/Logo";
 import { LeadsTable } from "./leads-table";
 import { LoginForm } from "./login-form";
@@ -11,16 +14,20 @@ export default async function AdminPage() {
   // page component to build that children prop — which ran this query and
   // serialised the whole dashboard into the RSC payload of the response.
   // Visually hidden, but present in the raw HTML for anyone who looked.
-  if (!isAuthenticated()) {
+  const session = await auth.api.getSession({ headers: headers() });
+  if (!session) {
     return <LoginForm />;
   }
 
-  const sql = getSql();
-  const leads = (await sql`
-    SELECT id, full_name, email, phone, country, details, status, created_at
-    FROM leads
-    ORDER BY created_at DESC
-  `) as Lead[];
+  // BigInt and Date cannot cross the server/client boundary — narrow to the
+  // serialisable shape before handing rows to <LeadsTable />.
+  const leads: Lead[] = (
+    await getPrisma().lead.findMany({ orderBy: { createdAt: "desc" } })
+  ).map((lead) => ({
+    ...lead,
+    id: Number(lead.id),
+    createdAt: lead.createdAt.toISOString(),
+  }));
 
   const counts = {
     total: leads.length,

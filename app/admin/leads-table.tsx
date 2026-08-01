@@ -63,7 +63,7 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
                     }`}
                     strokeWidth={2.5}
                   />
-                  {lead.full_name}
+                  {lead.fullName}
                 </span>
                 <span className="truncate pl-[22px] text-[13.5px] text-white/75 md:pl-0">
                   {lead.email}
@@ -75,7 +75,7 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
                   {lead.country ?? "—"}
                 </span>
                 <span className="pl-[22px] text-[12.5px] text-muted md:pl-0">
-                  {formatDate(lead.created_at)}
+                  {formatDate(lead.createdAt)}
                 </span>
                 <span
                   className={`ml-[22px] w-fit rounded-full border px-2.5 py-0.5 text-[11px] font-semibold capitalize md:ml-0 ${

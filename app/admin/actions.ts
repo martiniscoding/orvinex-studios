@@ -1,51 +1,38 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
-import {
-  ADMIN_COOKIE,
-  checkPassword,
-  isAuthenticated,
-  sessionToken,
-} from "@/lib/auth";
-import { getSql, LEAD_STATUSES, type LeadStatus } from "@/lib/db";
+import { headers } from "next/headers";
 
-export async function login(
-  password: string
-): Promise<{ ok: boolean; error?: string }> {
-  if (!checkPassword(password)) {
-    // Deliberately vague — no hint about whether the password was close.
-    return { ok: false, error: "Incorrect password." };
-  }
+import { auth } from "@/lib/auth";
+import { getPrisma } from "@/lib/prisma";
+import { LEAD_STATUSES, type LeadStatus } from "@/lib/db";
 
-  cookies().set(ADMIN_COOKIE, sessionToken(), {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/admin",
-    maxAge: 60 * 60 * 12,
-  });
-
-  return { ok: true };
+/** True when the caller holds a valid Better Auth session. */
+async function isAuthenticated() {
+  const session = await auth.api.getSession({ headers: headers() });
+  return Boolean(session);
 }
 
 export async function logout() {
-  cookies().delete({ name: ADMIN_COOKIE, path: "/admin" });
+  await auth.api.signOut({ headers: headers() });
   revalidatePath("/admin");
 }
 
 export async function updateLeadStatus(id: number, status: LeadStatus) {
-  // Every mutating action re-checks auth. The layout gate protects the UI,
-  // but a server action is a public endpoint that can be called directly.
-  if (!isAuthenticated()) {
+  // Every mutating action re-checks auth. The page gate protects the UI, but
+  // a server action is a public endpoint that can be called directly.
+  if (!(await isAuthenticated())) {
     return { ok: false as const, error: "Not authenticated." };
   }
   if (!LEAD_STATUSES.includes(status)) {
     return { ok: false as const, error: "Invalid status." };
   }
 
-  const sql = getSql();
-  await sql`UPDATE leads SET status = ${status} WHERE id = ${id}`;
+  await getPrisma().lead.update({
+    where: { id: BigInt(id) },
+    data: { status },
+  });
+
   revalidatePath("/admin");
   return { ok: true as const };
 }
