@@ -7,6 +7,15 @@ import { getPrisma } from "./prisma";
 export const auth = betterAuth({
   database: prismaAdapter(getPrisma(), { provider: "postgresql" }),
 
+  /**
+   * Origins allowed to call the auth endpoints. Better Auth derives this from
+   * BETTER_AUTH_URL alone, which makes sign-in depend on one env var matching
+   * the browser's origin exactly — apex vs www is enough to break it, and the
+   * failure surfaces as a generic credentials error rather than anything that
+   * points at the cause. Listing both hostnames here removes that coupling.
+   */
+  trustedOrigins: ["https://orvinex.store", "https://www.orvinex.store"],
+
   emailAndPassword: {
     enabled: true,
 
