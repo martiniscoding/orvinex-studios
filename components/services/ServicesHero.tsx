@@ -97,7 +97,8 @@ export function ServicesHero() {
             Services
           </p>
           <h1 className="mt-4 font-display text-[clamp(2.2rem,5.2vw,3.6rem)] font-bold leading-[1.05] tracking-[-0.035em] text-white text-balance">
-            Ten disciplines, one team, and nobody to translate between.
+            Everything at one place, one team, and nobody to translate
+            between.
           </h1>
           <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted">
             Most companies hire one agency to build the product, another to add
