@@ -3,24 +3,25 @@
 import { Reveal } from "./ui/Reveal";
 
 const LOGOS = [
-  "TechNova",
-  "NexusCorp",
-  "Elevate AI",
-  "Global Fin",
-  "Vertex Health",
-  "Quantum ERP",
-  "Lumina SaaS",
+  "JEESociety",
+  "AStarInstitute",
+  "Calendia",
+  "EduGlobal",
+  "Maakamakhya Hardwares",
 ];
 
 export function TrustLogos() {
-  // Rendered twice so the -50% translate loops seamlessly.
-  const track = [...LOGOS, ...LOGOS];
+  // The track travels -50%, so one half must be wider than the viewport or a
+  // gap opens at the seam on large screens. Five names alone fall short of
+  // that on a wide desktop, so the half is itself the list twice over.
+  const half = [...LOGOS, ...LOGOS];
+  const track = [...half, ...half];
 
   return (
     <section className="relative border-y border-white/[0.06] bg-background py-14">
       <Reveal className="mx-auto max-w-6xl px-5">
         <p className="text-center text-[11.5px] font-semibold uppercase tracking-[0.22em] text-muted">
-          Enterprises That Trust Our Architecture
+          Enterprises That Trust Our Services
         </p>
       </Reveal>
 
