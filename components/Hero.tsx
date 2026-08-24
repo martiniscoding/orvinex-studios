@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 import { DustField } from "./ui/DustField";
+import { WorkGallery } from "./ui/WorkGallery";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -27,7 +28,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-background px-5 pb-28 pt-36 sm:pt-40"
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-background px-5 pb-24 pt-32 sm:pt-36"
     >
       {/* ── Fine grid, faded out toward the edges ─────────────────────── */}
       <div
@@ -152,11 +153,12 @@ export function Hero() {
       </div>
 
       {/* ── Content ───────────────────────────────────────────────────── */}
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-14">
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
-        className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center"
+        className="flex w-full flex-col items-start text-left"
       >
         <motion.div variants={item}>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-1.5 text-[12.5px] font-medium text-white/80 backdrop-blur-sm">
@@ -171,15 +173,14 @@ export function Hero() {
 
         <motion.h1
           variants={item}
-          className="mt-7 font-display text-[clamp(2.45rem,7.4vw,5.15rem)] font-bold leading-[1.03] tracking-[-0.035em] text-white"
+          className="mt-7 font-display text-[clamp(2.3rem,5.6vw,3.95rem)] font-bold leading-[1.05] tracking-[-0.035em] text-white"
         >
-          Build digital solutions
-          <br className="hidden sm:block" /> that dominate your market.
+          Build digital solutions that dominate your market.
         </motion.h1>
 
         <motion.p
           variants={item}
-          className="mt-7 max-w-2xl text-balance text-[15.5px] leading-relaxed text-muted sm:text-[17px]"
+          className="mt-6 max-w-xl text-[15.5px] leading-relaxed text-muted sm:text-[16.5px]"
         >
           You don&apos;t need to hire anyone. We work here as your dedicated
           engineering team, providing absolute technical certainty from concept
@@ -188,7 +189,7 @@ export function Hero() {
 
         <motion.div
           variants={item}
-          className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4"
+          className="mt-9 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4"
         >
           <motion.a
             href="#contact"
@@ -219,6 +220,16 @@ export function Hero() {
           </motion.a>
         </motion.div>
       </motion.div>
+
+        {/* ── Recent work, drifting past in two opposed columns ─────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 34 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5, ease: EASE }}
+        >
+          <WorkGallery className="h-[380px] sm:h-[480px] lg:h-[660px]" />
+        </motion.div>
+      </div>
 
       {/* ── Bottom violet bleed, mirroring the top glow ───────────────── */}
       <motion.div

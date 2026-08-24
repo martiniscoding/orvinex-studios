@@ -34,9 +34,22 @@ const config: Config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+        /* Vertical variants for the hero work gallery. Each column renders
+           its set twice, so travelling exactly -50% lands the copy where the
+           original started and the loop is seamless. */
+        "marquee-up": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(-50%)" },
+        },
+        "marquee-down": {
+          from: { transform: "translateY(-50%)" },
+          to: { transform: "translateY(0)" },
+        },
       },
       animation: {
         marquee: "marquee 34s linear infinite",
+        "marquee-up": "marquee-up 46s linear infinite",
+        "marquee-down": "marquee-down 54s linear infinite",
       },
     },
   },
