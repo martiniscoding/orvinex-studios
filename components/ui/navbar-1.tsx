@@ -1,36 +1,39 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Menu, X } from "lucide-react";
+import { BOOKING_URL } from "@/lib/site";
 import { Logo } from "./Logo";
 
 /**
- * `Articles` has no section on this landing page yet — the anchor is inert
- * on purpose (a dead `#articles` hash is a no-op, not a 404).
- * TODO: point at /articles once the insights route ships.
+ * Hrefs are root-relative so they resolve from every route, not just the
+ * landing page — `#about` alone would be a dead hash on /services.
+ *
+ * `Articles` has no section yet; a dead `/#articles` hash is a no-op, not a
+ * 404. TODO: point at /articles once the insights route ships.
  */
 const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Articles", href: "#articles" },
+  { label: "Home", href: "/#home" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "Articles", href: "/#articles" },
 ];
 
 /** Sections that actually exist, in the order the scroll-spy should track. */
 const SPY_IDS = ["home", "about", "services"];
 
-/**
- * Google Calendar appointment schedule. External, so both CTAs open it in a
- * new tab rather than navigating away from the landing page mid-funnel.
- */
-const BOOKING_URL =
-  "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1jxrjQuBw6Xh_8vo9LyStM6pg4qNx_qw5-r5ryzQAdXdBh-Bqe35r51IDEgOBSsy_gbGO7e50w";
-
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("#home");
+  const pathname = usePathname();
+  const [active, setActive] = useState("/#home");
+  // On a standalone route there are no spy sections to observe, so the pill
+  // follows the pathname instead of the scroll position.
+  const onLanding = pathname === "/";
+  const current = onLanding ? active : pathname;
 
   const toggleMenu = () => setIsOpen((v) => !v);
 
@@ -43,6 +46,7 @@ const Navbar1 = () => {
 
   // Lightweight scroll-spy so the purple pill follows the reader.
   useEffect(() => {
+    if (!onLanding) return;
     const sections = SPY_IDS.map((id) => document.getElementById(id)).filter(
       (el): el is HTMLElement => Boolean(el)
     );
@@ -54,14 +58,14 @@ const Navbar1 = () => {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(`#${visible.target.id}`);
+        if (visible) setActive(`/#${visible.target.id}`);
       },
       { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5, 1] }
     );
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [onLanding]);
 
   // Lock body scroll while the mobile overlay is open.
   useEffect(() => {
@@ -85,18 +89,18 @@ const Navbar1 = () => {
             : "bg-white/[0.045]"
         }`}
       >
-        <a
-          href="#home"
+        <Link
+          href="/"
           className="shrink-0 transition-opacity hover:opacity-85"
           aria-label="Orvinex home"
         >
           <Logo markSize={28} />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-0.5 md:flex">
           {NAV_LINKS.map((item) => {
-            const isActive = active === item.href;
+            const isActive = current === item.href;
             return (
               <motion.a
                 key={item.label}
@@ -190,7 +194,7 @@ const Navbar1 = () => {
                   <a
                     href={item.href}
                     className={`text-base font-medium transition-colors ${
-                      active === item.href
+                      current === item.href
                         ? "text-primary"
                         : "text-white/80 hover:text-white"
                     }`}

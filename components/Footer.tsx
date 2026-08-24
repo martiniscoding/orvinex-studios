@@ -8,17 +8,17 @@ const COLUMNS = [
   {
     heading: "Company",
     links: [
-      { label: "About Us", href: "#about" },
-      { label: "Our Services", href: "#services" },
-      { label: "Articles & Insights", href: "#articles" },
+      { label: "About Us", href: "/#about" },
+      { label: "Our Services", href: "/services" },
+      { label: "Articles & Insights", href: "/#articles" },
     ],
   },
   {
     heading: "Expertise",
     links: [
-      { label: "Custom Software", href: "#services" },
-      { label: "SaaS Development", href: "#services" },
-      { label: "Mobile Applications", href: "#services" },
+      { label: "Custom Software", href: "/services#custom-software" },
+      { label: "AI & RAG Assistants", href: "/services#rag-chatbots" },
+      { label: "E-commerce Software", href: "/services#ecommerce-management" },
     ],
   },
 ];
