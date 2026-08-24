@@ -28,7 +28,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-background px-5 pb-24 pt-32 sm:pt-36"
+      className="relative isolate flex min-h-[min(100svh,940px)] items-center overflow-hidden bg-background px-5 pb-24 pt-28 sm:pt-36"
     >
       {/* ── Fine grid, faded out toward the edges ─────────────────────── */}
       <div
@@ -227,7 +227,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: EASE }}
         >
-          <WorkGallery className="h-[380px] sm:h-[480px] lg:h-[660px]" />
+          <WorkGallery className="h-[380px] sm:h-[480px] lg:h-[min(660px,66svh)]" />
         </motion.div>
       </div>
 
