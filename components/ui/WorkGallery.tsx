@@ -1,5 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 
+import aidp from "@/public/aidp.png";
 import astarcoaching from "@/public/astarcoaching.png";
 import calendia from "@/public/calendia.png";
 import jeesociety from "@/public/jeesociety.png";
@@ -11,16 +12,22 @@ type Work = { src: StaticImageData; alt: string };
 const WORK: Work[] = [
   { src: calendia, alt: "Calendia — online booking platform" },
   { src: maakamakhya, alt: "Maa Kamakhya — website" },
+  { src: aidp, alt: "Dexter — AI architecture governance platform" },
   { src: jeesociety, alt: "JEE Society — student platform" },
   { src: syambala, alt: "Syambala — website" },
   { src: astarcoaching, alt: "A-Star Coaching — website" },
 ];
 
 /**
- * Only five projects exist, so both columns must draw on all of them. Running
- * the second in reverse means no two neighbours repeat, and the negative
- * animation-delay below starts it a third of the way through its loop — so
- * the same screenshot never sits level with itself across the gutter.
+ * Too few projects to give each column its own set, so both draw on all of
+ * them — which risks a screenshot sitting level with itself across the gutter.
+ *
+ * The second column is REVERSED, not rotated. A rotation is a cyclic shift, so
+ * both columns keep the same sequence of item heights: the moment any one pair
+ * lines up, every pair does, and the gallery reads as a mirrored grid.
+ * Reversing changes the order the heights accumulate in, so the columns cannot
+ * lock in step and at worst a single pair coincides in passing. The negative
+ * animation-delay below starts the column partway through its loop.
  */
 const COLUMN_A = WORK;
 const COLUMN_B = [...WORK].reverse();
