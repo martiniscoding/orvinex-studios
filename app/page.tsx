@@ -1,3 +1,5 @@
+import { JsonLd } from "@/components/JsonLd";
+import { homeStructuredData } from "./structured-data";
 import { AboutStats } from "@/components/AboutStats";
 import { ContactCTA } from "@/components/ContactCTA";
 import { FloatingActions } from "@/components/FloatingActions";
@@ -12,6 +14,7 @@ import { TrustLogos } from "@/components/TrustLogos";
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={homeStructuredData} />
       <Navbar1 />
       <main>
         <Hero />

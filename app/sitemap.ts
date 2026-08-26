@@ -4,11 +4,8 @@ import { listPublishedPosts } from "@/lib/blog";
 
 const SITE = "https://orvinex.store";
 
-/**
- * Regenerated per request so a post appears in the sitemap as soon as it is
- * published, rather than waiting for the next deploy.
- */
-export const revalidate = 0;
+/** Cached; the post actions revalidate this path when visibility changes. */
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await listPublishedPosts();

@@ -8,6 +8,7 @@ import { ArrowLeft, Eye, PencilLine } from "lucide-react";
 import { Markdown } from "@/components/blog/Markdown";
 import { slugify } from "@/lib/post";
 import { createPost, updatePost, type PostInput } from "./actions";
+import { SeoPanel } from "./seo-panel";
 
 const inputClass =
   "w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3 text-[14.5px] text-white placeholder:text-white/25 outline-none transition-colors focus:border-primary/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-primary/25";
@@ -29,6 +30,7 @@ export function PostEditor({ post }: Props) {
   const [content, setContent] = useState(post?.content ?? "");
   const [status, setStatus] = useState(post?.status ?? "draft");
   const [featured, setFeatured] = useState(post?.featured ?? false);
+  const [keyword, setKeyword] = useState(post?.keyword ?? "");
 
   const [tab, setTab] = useState<"write" | "preview">("write");
   const [error, setError] = useState<string | null>(null);
@@ -56,6 +58,7 @@ export function PostEditor({ post }: Props) {
       content,
       status,
       featured,
+      keyword,
     };
 
     startTransition(async () => {
@@ -184,6 +187,15 @@ export function PostEditor({ post }: Props) {
         </div>
 
         <aside className="space-y-6 lg:pt-[26px]">
+          <SeoPanel
+            title={title}
+            excerpt={excerpt}
+            content={content}
+            slug={effectiveSlug}
+            keyword={keyword}
+            onKeywordChange={setKeyword}
+          />
+
           <div className="rounded-2xl border border-white/[0.09] bg-surface/60 p-5">
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">
               Visibility

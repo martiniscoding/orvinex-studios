@@ -1,8 +1,15 @@
 /**
- * schema.org JSON-LD for the landing page.
+ * schema.org JSON-LD.
  *
- * Emitted as a single `@graph` so every entity (organization, founder, site,
- * page) is one connected object rather than four disconnected islands —
+ * Split in two on purpose. `siteStructuredData` describes entities that are
+ * true on every URL — the organization, its logo, the founder, the site — and
+ * is emitted by the root layout. Page-level nodes live with their page:
+ * `homeStructuredData` here, articles in lib/blog-schema.ts.
+ *
+ * Emitting the landing page's WebPage node site-wide, as this file used to,
+ * meant every blog post also declared a WebPage whose url was the homepage.
+ *
+ * Entities are one connected `@graph` rather than disconnected islands —
  * crawlers resolve the `@id` cross-references into a single knowledge entity.
  *
  * Keep the service list in sync with `components/ServicesGrid.tsx`. Google's
@@ -10,12 +17,12 @@
  * actually visible on the page.
  */
 
-const SITE_URL = "https://orvinex.store";
+export const SITE_URL = "https://orvinex.store";
 
-const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const FOUNDER_ID = `${SITE_URL}/#founder`;
-const LOGO_ID = `${SITE_URL}/#logo`;
-const WEBSITE_ID = `${SITE_URL}/#website`;
+export const LOGO_ID = `${SITE_URL}/#logo`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
 const WEBPAGE_ID = `${SITE_URL}/#webpage`;
 
 const EMAIL = "orvinexsoftwaresolution@gmail.com";
@@ -62,7 +69,7 @@ const SERVICES = [
   },
 ];
 
-export const structuredData = {
+export const siteStructuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -154,6 +161,13 @@ export const structuredData = {
       publisher: { "@id": ORGANIZATION_ID },
       inLanguage: "en",
     },
+  ],
+};
+
+/** The landing page's own node. Emitted by app/page.tsx, nowhere else. */
+export const homeStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
     {
       "@type": "WebPage",
       "@id": WEBPAGE_ID,

@@ -18,6 +18,14 @@ export function Markdown({ children }: { children: string }) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
+          // The page already renders the post title as its h1. A `#` heading
+          // in the body would make a second one, which muddies the document
+          // outline crawlers build, so it is demoted to h2.
+          h1: ({ children }) => (
+            <h2 className="mt-12 font-display text-[24px] font-bold tracking-tight text-white">
+              {children}
+            </h2>
+          ),
           h2: ({ children }) => (
             <h2 className="mt-12 font-display text-[24px] font-bold tracking-tight text-white">
               {children}

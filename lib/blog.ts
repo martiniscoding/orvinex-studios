@@ -30,6 +30,7 @@ const SUMMARY_FIELDS = {
   excerpt: true,
   status: true,
   featured: true,
+  keyword: true,
   publishedAt: true,
   updatedAt: true,
 } as const;
@@ -41,6 +42,7 @@ function toSummary(row: {
   excerpt: string;
   status: string;
   featured: boolean;
+  keyword: string | null;
   publishedAt: Date | null;
   updatedAt: Date;
 }): PostSummary {

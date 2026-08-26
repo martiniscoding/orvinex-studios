@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
-import { structuredData } from "./structured-data";
+import { JsonLd } from "@/components/JsonLd";
+import { siteStructuredData } from "./structured-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -72,14 +73,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
       <body className="bg-background font-sans text-white">
-        {/* Escaping `<` prevents a literal `</script>` in any future data
-            field from terminating the tag early. */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
-          }}
-        />
+        <JsonLd data={siteStructuredData} />
         {children}
       </body>
     </html>

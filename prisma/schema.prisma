@@ -43,6 +43,10 @@ model Post {
   /// Markdown. Rendered with react-markdown, which escapes raw HTML.
   content String
 
+  /// The phrase this post is meant to rank for. Drives the editor's SEO
+  /// checks; never rendered on the page.
+  keyword String?
+
   /// Drafts are invisible to the public site; only "published" is served.
   status String @default("draft")
   /// Pins one post to the top of the index under a "Start here" label.

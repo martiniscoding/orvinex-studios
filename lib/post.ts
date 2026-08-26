@@ -18,6 +18,8 @@ export type PostSummary = {
   excerpt: string;
   status: string;
   featured: boolean;
+  /** Editor-only: the phrase this post targets. Never rendered publicly. */
+  keyword: string | null;
   publishedAt: string | null;
   updatedAt: string;
 };

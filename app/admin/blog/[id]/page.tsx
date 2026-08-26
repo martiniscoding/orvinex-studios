@@ -34,6 +34,7 @@ export default async function EditPostPage({
             content: post.content,
             status: post.status,
             featured: post.featured,
+            keyword: post.keyword ?? "",
           }}
         />
       </div>

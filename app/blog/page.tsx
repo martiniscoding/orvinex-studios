@@ -5,7 +5,9 @@ import { ArrowRight } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Navbar1 } from "@/components/ui/navbar-1";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { JsonLd } from "@/components/JsonLd";
 import { listPublishedPosts } from "@/lib/blog";
+import { blogIndexStructuredData } from "@/lib/blog-schema";
 import { formatPostDate } from "@/lib/post";
 import { BOOKING_URL } from "@/lib/site";
 
@@ -15,7 +17,10 @@ const description =
 export const metadata: Metadata = {
   title: "Blog",
   description,
-  alternates: { canonical: "/blog" },
+  alternates: {
+    canonical: "/blog",
+    types: { "application/rss+xml": "/blog/rss.xml" },
+  },
   openGraph: {
     type: "website",
     url: "https://orvinex.store/blog",
@@ -25,8 +30,8 @@ export const metadata: Metadata = {
   },
 };
 
-/** A published post reaches the index the moment it is saved. */
-export const revalidate = 0;
+/** Cached; publishing calls revalidatePath, so the index updates instantly. */
+export const revalidate = 3600;
 
 function PostRow({
   post,
@@ -70,6 +75,7 @@ export default async function BlogIndexPage() {
 
   return (
     <>
+      <JsonLd data={blogIndexStructuredData(posts)} />
       <Navbar1 />
       <main>
         <section className="relative overflow-hidden pt-32 sm:pt-40">

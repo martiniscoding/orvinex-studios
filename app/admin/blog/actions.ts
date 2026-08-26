@@ -15,6 +15,7 @@ export type PostInput = {
   slug: string;
   status: string;
   featured: boolean;
+  keyword: string;
 };
 
 export type SaveResult =
@@ -50,6 +51,9 @@ function revalidatePost(slug: string) {
   revalidatePath("/blog");
   revalidatePath(`/blog/${slug}`);
   revalidatePath("/admin/blog");
+  // The sitemap lists published posts, so it goes stale on any visibility
+  // change — not only on create and delete.
+  revalidatePath("/sitemap.xml");
 }
 
 export async function createPost(input: PostInput): Promise<SaveResult> {
@@ -71,6 +75,7 @@ export async function createPost(input: PostInput): Promise<SaveResult> {
       content: input.content,
       status: input.status,
       featured: input.featured,
+      keyword: input.keyword.trim() || null,
       // Stamped only when it actually goes live, so drafts stay undated.
       publishedAt: input.status === "published" ? new Date() : null,
     },
@@ -106,6 +111,7 @@ export async function updatePost(
       content: input.content,
       status: input.status,
       featured: input.featured,
+      keyword: input.keyword.trim() || null,
       // Keep the original publication date. Re-stamping it on every edit
       // would shuffle a live post back to the top of the index.
       publishedAt:

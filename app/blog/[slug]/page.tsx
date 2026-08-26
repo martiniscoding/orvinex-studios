@@ -3,14 +3,29 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
+import { JsonLd } from "@/components/JsonLd";
 import { Markdown } from "@/components/blog/Markdown";
 import { Footer } from "@/components/Footer";
 import { Navbar1 } from "@/components/ui/navbar-1";
 import { getPublishedPost, listPublishedPosts } from "@/lib/blog";
+import { postStructuredData } from "@/lib/blog-schema";
 import { formatPostDate, readingTime } from "@/lib/post";
 import { BOOKING_URL } from "@/lib/site";
 
-export const revalidate = 0;
+/**
+ * Statically rendered and held for an hour. Publishing or editing calls
+ * revalidatePath, so a change is live immediately — the window only bounds how
+ * long a stale page could survive if a revalidate call were ever missed.
+ * Serving HTML from cache rather than querying Postgres per request is worth
+ * real Core Web Vitals points, which feed ranking.
+ */
+export const revalidate = 3600;
+
+/** Pre-render the posts that exist at build time; new slugs render on demand. */
+export async function generateStaticParams() {
+  const posts = await listPublishedPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
 type Params = { params: { slug: string } };
 
@@ -29,6 +44,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       title: post.title,
       description: post.excerpt,
       publishedTime: post.publishedAt ?? undefined,
+      modifiedTime: post.updatedAt,
     },
     twitter: {
       card: "summary_large_image",
@@ -50,6 +66,7 @@ export default async function PostPage({ params }: Params) {
 
   return (
     <>
+      <JsonLd data={postStructuredData(post)} />
       <Navbar1 />
       <main>
         <article className="relative overflow-hidden pt-32 sm:pt-40">
