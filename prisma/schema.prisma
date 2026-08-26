@@ -33,6 +33,32 @@ model Lead {
   @@map("leads")
 }
 
+model Post {
+  id      String @id
+  /// URL segment. Unique so /blog/[slug] can look a post up directly.
+  slug    String
+  title   String
+  /// Shown on the index and used as the meta description.
+  excerpt String
+  /// Markdown. Rendered with react-markdown, which escapes raw HTML.
+  content String
+
+  /// Drafts are invisible to the public site; only "published" is served.
+  status String @default("draft")
+  /// Pins one post to the top of the index under a "Start here" label.
+  featured Boolean @default(false)
+
+  /// Set the first time a post is published, then left alone so that editing
+  /// a live post does not reorder the index.
+  publishedAt DateTime? @map("published_at") @db.Timestamptz(6)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([slug])
+  @@index([status, publishedAt(sort: Desc)], map: "posts_status_published_idx")
+  @@map("posts")
+}
+
 /// Fixed-window rate limiter state. Lives in Postgres rather than process
 /// memory because serverless instances do not share memory — an in-process
 /// counter resets on every cold start and is enforced per-instance.
