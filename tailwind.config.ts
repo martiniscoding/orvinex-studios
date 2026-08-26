@@ -35,21 +35,25 @@ const config: Config = {
           to: { transform: "translateX(-50%)" },
         },
         /* Vertical variants for the hero work gallery. Each column renders
-           its set twice, so travelling exactly -50% lands the copy where the
-           original started and the loop is seamless. */
+           its set three times, so travelling exactly one set (-100%/3) lands
+           the next copy where the previous one started and the loop is
+           seamless. Keep this in step with REPEATS in WorkGallery. */
         "marquee-up": {
           from: { transform: "translateY(0)" },
-          to: { transform: "translateY(-50%)" },
+          to: { transform: "translateY(-33.3333%)" },
         },
         "marquee-down": {
-          from: { transform: "translateY(-50%)" },
+          from: { transform: "translateY(-33.3333%)" },
           to: { transform: "translateY(0)" },
         },
       },
       animation: {
         marquee: "marquee 34s linear infinite",
-        "marquee-up": "marquee-up 46s linear infinite",
-        "marquee-down": "marquee-down 54s linear infinite",
+        /* Halved alongside the split of the gallery into two four-item
+           columns, so each screenshot still holds the eye for as long as it
+           did when one column carried the whole set. */
+        "marquee-up": "marquee-up 23s linear infinite",
+        "marquee-down": "marquee-down 27s linear infinite",
       },
     },
   },

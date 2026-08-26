@@ -13,39 +13,53 @@ import { ShippedCount } from "./ShippedCount";
 
 type Work = { src: StaticImageData; alt: string };
 
-const WORK: Work[] = [
-  { src: calendia, alt: "Calendia — online booking platform" },
-  { src: maakamakhya, alt: "Maa Kamakhya — website" },
-  { src: aidp, alt: "Dexter — AI architecture governance platform" },
+/**
+ * The two columns hold disjoint sets, which is what keeps the same screenshot
+ * from ever appearing on both sides of the gutter at once. Drawing both from
+ * one pool cannot promise that however the order is shuffled — the columns
+ * scroll at different speeds, so any shared image eventually lines up with
+ * itself. Splitting the set makes the collision impossible rather than rare.
+ *
+ * Both JEE Society pages sit in the same column for the same reason, one step
+ * up: they are different screenshots, so a shared pool would let the one brand
+ * fill both columns at once.
+ *
+ * Within a column the order alternates tone — the two dark screenshots are the
+ * scarce ones, so each column gets exactly one, and no two pale pages run back
+ * to back, including across the wrap from the last item to the first.
+ */
+const COLUMN_A: Work[] = [
   { src: jeesociety, alt: "JEE Society — student platform" },
-  { src: syambala, alt: "Syambala — website" },
-  { src: astarcoaching, alt: "A-Star Coaching — website" },
+  { src: calendia, alt: "Calendia — online booking platform" },
   { src: careers, alt: "JEE Society Careers — hiring site" },
   { src: panini, alt: "Panini8 — math olympiad practice platform" },
 ];
 
+const COLUMN_B: Work[] = [
+  { src: syambala, alt: "Syambala — website" },
+  { src: aidp, alt: "Dexter — AI architecture governance platform" },
+  { src: maakamakhya, alt: "Maa Kamakhya — website" },
+  { src: astarcoaching, alt: "A-Star Teaching — website" },
+];
+
 /**
- * Too few projects to give each column its own set, so both draw on all of
- * them — which risks a screenshot sitting level with itself across the gutter.
+ * How many times each column repeats its set.
  *
- * The second column is REVERSED, not rotated. A rotation is a cyclic shift, so
- * both columns keep the same sequence of item heights: the moment any one pair
- * lines up, every pair does, and the gallery reads as a mirrored grid.
- * Reversing changes the order the heights accumulate in, so the columns cannot
- * lock in step and at worst a single pair coincides in passing. The negative
- * animation-delay below starts the column partway through its loop.
+ * Three rather than two: a column of four screenshots is about 640px tall at
+ * the desktop layout, which is shorter than the 660px the gallery can open to
+ * on a tall viewport. Two copies would leave the tail of the track visible as
+ * a gap at the end of each cycle; three keeps the window covered throughout.
  */
-const COLUMN_A = WORK;
-const COLUMN_B = [...WORK].reverse();
+const REPEATS = 3;
 
 /**
  * One scrolling column.
  *
- * The set is rendered twice and the track travels exactly -50%, which lands
- * the duplicate where the original began — so the loop has no seam. Spacing
- * lives on each item as padding rather than as a flex `gap`: a gap applies
- * between items but not after the last one, which leaves the two halves
- * unequal and makes the loop jump.
+ * The track travels exactly one set — `-100% / REPEATS` — which lands the next
+ * copy where the previous one began, so the loop has no seam. Spacing lives on
+ * each item as padding rather than as a flex `gap`: a gap applies between items
+ * but not after the last one, which leaves the copies unequal and makes the
+ * loop jump.
  */
 function Column({
   items,
@@ -64,20 +78,22 @@ function Column({
         direction === "up" ? "animate-marquee-up" : "animate-marquee-down"
       } group-hover:[animation-play-state:paused]`}
     >
-      {[...items, ...items].map((work, i) => (
-        <li key={`${work.alt}-${i}`} className="pb-4">
-          <div className="overflow-hidden rounded-xl border border-white/[0.09] bg-surface shadow-[0_18px_50px_-24px_rgba(0,0,0,0.9)]">
-            <Image
-              src={work.src}
-              alt={i < items.length ? work.alt : ""}
-              aria-hidden={i >= items.length}
-              placeholder="blur"
-              sizes="(min-width: 1024px) 22vw, 45vw"
-              className="h-auto w-full"
-            />
-          </div>
-        </li>
-      ))}
+      {Array.from({ length: REPEATS }, () => items)
+        .flat()
+        .map((work, i) => (
+          <li key={`${work.alt}-${i}`} className="pb-4">
+            <div className="overflow-hidden rounded-xl border border-white/[0.09] bg-surface shadow-[0_18px_50px_-24px_rgba(0,0,0,0.9)]">
+              <Image
+                src={work.src}
+                alt={i < items.length ? work.alt : ""}
+                aria-hidden={i >= items.length}
+                placeholder="blur"
+                sizes="(min-width: 1024px) 22vw, 45vw"
+                className="h-auto w-full"
+              />
+            </div>
+          </li>
+        ))}
     </ul>
   );
 }
@@ -97,7 +113,7 @@ export function WorkGallery({ className = "" }: { className?: string }) {
       >
         <div className="grid grid-cols-2 gap-4">
           <Column items={COLUMN_A} direction="up" />
-          <Column items={COLUMN_B} direction="down" delay="-19s" />
+          <Column items={COLUMN_B} direction="down" delay="-9s" />
         </div>
       </div>
 
