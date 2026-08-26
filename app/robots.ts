@@ -9,12 +9,10 @@ import type { MetadataRoute } from "next";
  * Note that `/_next/` is deliberately NOT disallowed. Googlebot needs the JS
  * and CSS bundles to render the page; blocking them is a classic own-goal
  * that makes the rendered result look broken to the crawler.
- *
- * TODO: add `sitemap: "https://orvinex.store/sitemap.xml"` once `app/sitemap.ts`
- * exists. Advertising a sitemap that 404s is worse than advertising none.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
+    sitemap: "https://orvinex.store/sitemap.xml",
     rules: [
       {
         userAgent: "*",

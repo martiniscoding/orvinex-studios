@@ -11,15 +11,12 @@ import { Logo } from "./Logo";
 /**
  * Hrefs are root-relative so they resolve from every route, not just the
  * landing page — `#about` alone would be a dead hash on /services.
- *
- * `Articles` has no section yet; a dead `/#articles` hash is a no-op, not a
- * 404. TODO: point at /articles once the insights route ships.
  */
 const NAV_LINKS = [
   { label: "Home", href: "/#home" },
   { label: "About", href: "/#about" },
   { label: "Services", href: "/services" },
-  { label: "Articles", href: "/#articles" },
+  { label: "Blog", href: "/blog" },
 ];
 
 /** Sections that actually exist, in the order the scroll-spy should track. */

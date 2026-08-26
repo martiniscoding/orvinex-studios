@@ -10,7 +10,7 @@ const COLUMNS = [
     links: [
       { label: "About Us", href: "/#about" },
       { label: "Our Services", href: "/services" },
-      { label: "Articles & Insights", href: "/#articles" },
+      { label: "Blog", href: "/blog" },
     ],
   },
   {

@@ -3,15 +3,10 @@
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
+import { isAuthenticated } from "@/lib/admin";
 import { auth } from "@/lib/auth";
 import { getPrisma } from "@/lib/prisma";
 import { LEAD_STATUSES, type LeadStatus } from "@/lib/db";
-
-/** True when the caller holds a valid Better Auth session. */
-async function isAuthenticated() {
-  const session = await auth.api.getSession({ headers: headers() });
-  return Boolean(session);
-}
 
 export async function logout() {
   await auth.api.signOut({ headers: headers() });
