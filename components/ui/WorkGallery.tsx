@@ -3,6 +3,7 @@ import Image, { type StaticImageData } from "next/image";
 import aidp from "@/public/aidp.png";
 import astarcoaching from "@/public/astarcoaching.png";
 import calendia from "@/public/calendia.png";
+import careers from "@/public/carrer.png";
 import jeesociety from "@/public/jeesociety.png";
 import maakamakhya from "@/public/maakamakhya.png";
 import syambala from "@/public/syambala.png";
@@ -16,6 +17,7 @@ const WORK: Work[] = [
   { src: jeesociety, alt: "JEE Society — student platform" },
   { src: syambala, alt: "Syambala — website" },
   { src: astarcoaching, alt: "A-Star Coaching — website" },
+  { src: careers, alt: "JEE Society Careers — hiring site" },
 ];
 
 /**
