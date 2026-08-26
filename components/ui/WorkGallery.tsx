@@ -6,6 +6,7 @@ import calendia from "@/public/calendia.png";
 import careers from "@/public/carrer.png";
 import jeesociety from "@/public/jeesociety.png";
 import maakamakhya from "@/public/maakamakhya.png";
+import panini from "@/public/panini.png";
 import syambala from "@/public/syambala.png";
 
 type Work = { src: StaticImageData; alt: string };
@@ -18,6 +19,7 @@ const WORK: Work[] = [
   { src: syambala, alt: "Syambala — website" },
   { src: astarcoaching, alt: "A-Star Coaching — website" },
   { src: careers, alt: "JEE Society Careers — hiring site" },
+  { src: panini, alt: "Panini8 — math olympiad practice platform" },
 ];
 
 /**
