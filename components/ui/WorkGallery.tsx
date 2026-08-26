@@ -9,6 +9,8 @@ import maakamakhya from "@/public/maakamakhya.png";
 import panini from "@/public/panini.png";
 import syambala from "@/public/syambala.png";
 
+import { ShippedCount } from "./ShippedCount";
+
 type Work = { src: StaticImageData; alt: string };
 
 const WORK: Work[] = [
@@ -81,19 +83,25 @@ function Column({
 }
 
 /**
- * The hero's proof panel: recent client work, drifting past in two columns
- * running against each other. Pure CSS animation — no JS ships for it.
+ * The hero's proof panel: recent client work drifting past in two columns
+ * running against each other, with the shipped tally anchored at its foot.
+ * The marquee itself is pure CSS — only the counter ships JS.
  */
 export function WorkGallery({ className = "" }: { className?: string }) {
   return (
-    <div
-      className={`group relative overflow-hidden mask-fade-y ${className}`}
-      aria-label="Recent Orvinex client websites"
-    >
-      <div className="grid grid-cols-2 gap-4">
-        <Column items={COLUMN_A} direction="up" />
-        <Column items={COLUMN_B} direction="down" delay="-19s" />
+    <div className={`group relative ${className}`}>
+      {/* The mask lives on the marquee alone so the tally below stays crisp. */}
+      <div
+        className="absolute inset-0 overflow-hidden mask-fade-y"
+        aria-label="Recent Orvinex client websites"
+      >
+        <div className="grid grid-cols-2 gap-4">
+          <Column items={COLUMN_A} direction="up" />
+          <Column items={COLUMN_B} direction="down" delay="-19s" />
+        </div>
       </div>
+
+      <ShippedCount />
     </div>
   );
 }
