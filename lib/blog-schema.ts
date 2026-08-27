@@ -94,3 +94,49 @@ export function postStructuredData(post: PostFull) {
     ],
   };
 }
+
+/** Service page: the Service itself, its FAQ, and the breadcrumb trail. */
+export function servicePageStructuredData(input: {
+  slug: string;
+  name: string;
+  headline: string;
+  description: string;
+  faq: { q: string; a: string }[];
+}) {
+  const url = `${SITE_URL}/services/${input.slug}`;
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: input.name,
+      alternateName: input.headline,
+      description: input.description,
+      url,
+      provider: { "@id": ORGANIZATION_ID },
+      areaServed: "Worldwide",
+      serviceType: input.name,
+    },
+    breadcrumb([
+      { name: "Home", url: SITE_URL },
+      { name: "Services", url: `${SITE_URL}/services` },
+      { name: input.name, url },
+    ]),
+  ];
+
+  // Only emit FAQPage when questions actually appear on the page — marking up
+  // content a visitor cannot see is a structured-data violation.
+  if (input.faq.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: input.faq.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    });
+  }
+
+  return { "@context": "https://schema.org", "@graph": graph };
+}

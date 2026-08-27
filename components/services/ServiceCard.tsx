@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
 import type { Service } from "@/lib/services";
 
 /**
@@ -40,17 +43,18 @@ function Aperture({ arcs }: { arcs: number }) {
 type ServiceCardProps = {
   service: Service;
   arcs: number;
-  /** The catalogue page anchors each card so the hero ledger can jump to it. */
+  /** The catalogue page anchors each card so deep links still resolve. */
   anchored?: boolean;
 };
 
 export function ServiceCard({ service, arcs, anchored }: ServiceCardProps) {
   const Icon = service.icon;
   return (
-    <article
+    <Link
+      href={`/services/${service.slug}`}
       id={anchored ? service.slug : undefined}
       data-card
-      className="group relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0b0b11] bg-gradient-to-b from-white/[0.035] to-transparent to-60% p-6 transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-white/[0.14]"
+      className="group relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0b0b11] bg-gradient-to-b from-white/[0.035] to-transparent to-60% p-6 outline-none transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-white/[0.14] focus-visible:border-primary/50 focus-visible:ring-2 focus-visible:ring-primary/40"
     >
       {/* Cursor light, spilling across whichever cards it passes over. */}
       <div
@@ -115,6 +119,15 @@ export function ServiceCard({ service, arcs, anchored }: ServiceCardProps) {
           </li>
         ))}
       </ul>
-    </article>
+
+      <span className="relative mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-white/45 transition-colors duration-500 group-hover:text-primary">
+        Read more
+        <ArrowUpRight
+          className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          strokeWidth={2.2}
+          aria-hidden="true"
+        />
+      </span>
+    </Link>
   );
 }

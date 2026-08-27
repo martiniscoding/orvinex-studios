@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { BANDS, SERVICES } from "@/lib/services";
@@ -9,7 +10,7 @@ import { Reveal } from "@/components/ui/Reveal";
  *
  * A services page is a directory before it is anything else, so the hero is
  * built as one: every discipline listed once, with its band code and a leader
- * rule out to a jump link. It doubles as the page's navigation — ten cards is
+ * rule out to its own page. It doubles as the page's navigation — ten cards is
  * more than a visitor should have to scroll blindly through to find the one
  * thing they came for.
  */
@@ -45,8 +46,8 @@ function Ledger() {
             <ul className="mt-1.5">
               {entries.map((service) => (
                 <li key={service.slug}>
-                  <a
-                    href={`#${service.slug}`}
+                  <Link
+                    href={`/services/${service.slug}`}
                     className="group flex items-baseline gap-3 rounded-lg py-[7px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/50"
                   >
                     <span className="font-mono text-[11px] tracking-[0.14em] text-white/30 transition-colors group-hover:text-primary/80">
@@ -64,7 +65,7 @@ function Ledger() {
                       className="h-3.5 w-3.5 shrink-0 self-center text-white/20 transition-colors group-hover:text-primary"
                       strokeWidth={2}
                     />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

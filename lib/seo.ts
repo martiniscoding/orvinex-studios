@@ -53,8 +53,11 @@ export function analyzePost(input: {
   content: string;
   slug: string;
   keyword: string;
+  /** Section the page lives under, so the URL check shows the real path. */
+  urlPrefix?: string;
 }): SeoReport {
   const { title, excerpt, content, slug } = input;
+  const urlPrefix = input.urlPrefix ?? "/blog";
   const keyword = norm(input.keyword);
   const body = norm(content);
   const words = content.trim().split(/\s+/).filter(Boolean).length;
@@ -172,7 +175,7 @@ export function analyzePost(input: {
         ? { status: "fail" as const, detail: "No URL yet." }
         : slug.length > 60
           ? { status: "warn" as const, detail: `${slug.length} characters — long URLs get truncated.` }
-          : { status: "pass" as const, detail: `/blog/${slug}` }),
+          : { status: "pass" as const, detail: `${urlPrefix}/${slug}` }),
     },
   ];
 

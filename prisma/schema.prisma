@@ -63,6 +63,36 @@ model Post {
   @@map("posts")
 }
 
+/// Long-form copy for one service page.
+///
+/// Identity — slug, title, icon, band — stays in lib/services.ts, because an
+/// icon is a React component and does not belong in a text column. This table
+/// holds only what the client edits.
+model ServicePage {
+  id String @id
+  /// Matches a slug in lib/services.ts. A row with no matching entry there is
+  /// simply never rendered.
+  slug String
+
+  headline String
+  intro    String
+  /// Markdown, rendered with the same component as blog posts.
+  body     String
+  /// [{ q, a }] — drives both the visible accordion and FAQPage JSON-LD.
+  faq      Json @default("[]")
+
+  /// Overrides for the <title> and meta description. Fall back to the
+  /// headline and intro when blank.
+  metaTitle       String? @map("meta_title")
+  metaDescription String? @map("meta_description")
+  keyword         String?
+
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([slug])
+  @@map("service_pages")
+}
+
 /// Fixed-window rate limiter state. Lives in Postgres rather than process
 /// memory because serverless instances do not share memory — an in-process
 /// counter resets on every cold start and is enforced per-instance.

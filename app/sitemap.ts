@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { listPublishedPosts } from "@/lib/blog";
+import { listServicePages } from "@/lib/service-pages";
 
 const SITE = "https://orvinex.store";
 
@@ -8,7 +9,10 @@ const SITE = "https://orvinex.store";
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await listPublishedPosts();
+  const [posts, services] = await Promise.all([
+    listPublishedPosts(),
+    listServicePages(),
+  ]);
 
   return [
     { url: SITE, changeFrequency: "monthly", priority: 1 },
@@ -19,6 +23,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
       lastModified: posts[0]?.updatedAt,
     },
+    ...services.map((service) => ({
+      url: `${SITE}/services/${service.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      lastModified: service.updatedAt,
+    })),
     // /admin is deliberately absent: it is noindex and disallowed.
     ...posts.map((post) => ({
       url: `${SITE}/blog/${post.slug}`,

@@ -31,12 +31,15 @@ export function SeoPanel(props: {
   slug: string;
   keyword: string;
   onKeywordChange: (value: string) => void;
+  /** Defaults to the blog; service pages pass their own section. */
+  urlPrefix?: string;
 }) {
   const { title, excerpt, content, slug, keyword, onKeywordChange } = props;
+  const urlPrefix = props.urlPrefix ?? "/blog";
 
   const report = useMemo(
-    () => analyzePost({ title, excerpt, content, slug, keyword }),
-    [title, excerpt, content, slug, keyword]
+    () => analyzePost({ title, excerpt, content, slug, keyword, urlPrefix }),
+    [title, excerpt, content, slug, keyword, urlPrefix]
   );
 
   const tone = scoreTone(report.score);
