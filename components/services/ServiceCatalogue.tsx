@@ -7,7 +7,7 @@ export function ServiceCatalogue() {
   return (
     <section
       id="catalogue"
-      className="relative overflow-hidden border-t border-white/[0.06] bg-background py-20 sm:py-28"
+      className="relative overflow-hidden border-t border-ink/[0.06] bg-background py-20 sm:py-28"
     >
       <div
         aria-hidden="true"
@@ -24,14 +24,14 @@ export function ServiceCatalogue() {
                   <span className="font-mono text-[12px] tracking-[0.2em] text-primary">
                     {band.letter}
                   </span>
-                  <h2 className="font-display text-[22px] font-bold tracking-tight text-white">
+                  <h2 className="font-display text-[22px] font-bold tracking-tight text-ink">
                     {band.label}
                   </h2>
                   <span
                     aria-hidden="true"
-                    className="h-px flex-1 bg-gradient-to-r from-white/[0.14] to-transparent"
+                    className="h-px flex-1 bg-gradient-to-r from-ink/[0.14] to-transparent"
                   />
-                  <span className="font-mono text-[11px] tracking-[0.18em] text-white/30">
+                  <span className="font-mono text-[11px] tracking-[0.18em] text-ink/30">
                     {String(entries.length).padStart(2, "0")}
                   </span>
                 </div>

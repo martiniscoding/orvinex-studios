@@ -25,13 +25,13 @@ const COLUMNS = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-background">
+    <footer className="relative overflow-hidden border-t border-ink/[0.06] bg-background">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-40 left-1/2 h-[380px] w-[120vw] max-w-[1200px] -translate-x-1/2 rounded-full blur-[110px]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,92,255,0.2) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.2 * var(--wash))) 0%, transparent 70%)",
         }}
       />
 
@@ -48,7 +48,7 @@ export function Footer() {
 
           {COLUMNS.map((column) => (
             <nav key={column.heading} aria-label={column.heading}>
-              <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
+              <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink">
                 {column.heading}
               </h3>
               <ul className="mt-5 space-y-3">
@@ -56,7 +56,7 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-[14px] text-muted transition-colors duration-200 hover:text-white"
+                      className="text-[14px] text-muted transition-colors duration-200 hover:text-ink"
                     >
                       {link.label}
                     </a>
@@ -67,14 +67,14 @@ export function Footer() {
           ))}
 
           <div>
-            <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink">
               Get in Touch
             </h3>
             <ul className="mt-5 space-y-3">
               <li>
                 <a
                   href="mailto:orvinexsoftwaresolution@gmail.com"
-                  className="group flex items-start gap-2.5 text-[14px] text-muted transition-colors duration-200 hover:text-white"
+                  className="group flex items-start gap-2.5 text-[14px] text-muted transition-colors duration-200 hover:text-ink"
                 >
                   <Mail
                     className="mt-0.5 h-4 w-4 shrink-0 text-primary"
@@ -88,7 +88,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:+918272891238"
-                  className="flex items-center gap-2.5 text-[14px] text-muted transition-colors duration-200 hover:text-white"
+                  className="flex items-center gap-2.5 text-[14px] text-muted transition-colors duration-200 hover:text-ink"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-primary" strokeWidth={1.9} />
                   +91-8272891238
@@ -98,20 +98,20 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/[0.07] pt-7 sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-ink/[0.07] pt-7 sm:flex-row">
           <p className="text-[13px] text-muted">
             &copy; 2026 Orvinex Tech. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a
               href="#"
-              className="text-[13px] text-muted transition-colors duration-200 hover:text-white"
+              className="text-[13px] text-muted transition-colors duration-200 hover:text-ink"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-[13px] text-muted transition-colors duration-200 hover:text-white"
+              className="text-[13px] text-muted transition-colors duration-200 hover:text-ink"
             >
               Terms of Service
             </a>

@@ -78,17 +78,17 @@ export default async function PostPage({ params }: Params) {
           <div className="mx-auto max-w-[42rem] px-5">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-[13.5px] text-muted outline-none transition-colors hover:text-white focus-visible:text-white"
+              className="inline-flex items-center gap-2 text-[13.5px] text-muted outline-none transition-colors hover:text-ink focus-visible:text-ink"
             >
               <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.2} />
               All posts
             </Link>
 
-            <h1 className="mt-7 font-display text-[clamp(1.95rem,4.4vw,2.85rem)] font-bold leading-[1.1] tracking-[-0.035em] text-white text-balance">
+            <h1 className="mt-7 font-display text-[clamp(1.95rem,4.4vw,2.85rem)] font-bold leading-[1.1] tracking-[-0.035em] text-ink text-balance">
               {post.title}
             </h1>
 
-            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[12px] tracking-[0.08em] text-white/35">
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[12px] tracking-[0.08em] text-ink/35">
               <time dateTime={post.publishedAt ?? undefined}>
                 {formatPostDate(post.publishedAt)}
               </time>
@@ -96,15 +96,15 @@ export default async function PostPage({ params }: Params) {
               <span>{readingTime(post.content)} min read</span>
             </div>
 
-            <hr className="mt-8 border-white/[0.08]" />
+            <hr className="mt-8 border-ink/[0.08]" />
 
             <div className="mt-8 pb-4">
               <Markdown>{post.content}</Markdown>
             </div>
 
             {/* Closing CTA — the reader finished, so ask for the meeting. */}
-            <aside className="mt-14 rounded-2xl border border-white/[0.09] bg-surface/70 p-7">
-              <h2 className="font-display text-[19px] font-bold tracking-tight text-white">
+            <aside className="mt-14 rounded-2xl border border-ink/[0.09] bg-surface/70 p-7">
+              <h2 className="font-display text-[19px] font-bold tracking-tight text-ink">
                 Building something like this?
               </h2>
               <p className="mt-2 text-[14.5px] leading-relaxed text-muted">
@@ -115,7 +115,7 @@ export default async function PostPage({ params }: Params) {
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary-deep px-5 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-primary"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary-deep px-5 py-2.5 text-[14px] font-semibold text-ink transition-colors hover:bg-primary"
               >
                 Book a call
                 <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
@@ -124,7 +124,7 @@ export default async function PostPage({ params }: Params) {
 
             {others.length > 0 && (
               <nav className="mb-24 mt-14" aria-label="More posts">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/45">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.28em] text-ink/45">
                   Keep reading
                 </h2>
                 <ul className="mt-5">
@@ -132,9 +132,9 @@ export default async function PostPage({ params }: Params) {
                     <li key={other.id}>
                       <Link
                         href={`/blog/${other.slug}`}
-                        className="group block border-t border-white/[0.08] py-5 outline-none"
+                        className="group block border-t border-ink/[0.08] py-5 outline-none"
                       >
-                        <span className="font-display text-[16.5px] font-semibold tracking-tight text-white transition-colors group-hover:text-primary">
+                        <span className="font-display text-[16.5px] font-semibold tracking-tight text-ink transition-colors group-hover:text-primary">
                           {other.title}
                         </span>
                         <span className="mt-1 block text-[14px] text-muted">

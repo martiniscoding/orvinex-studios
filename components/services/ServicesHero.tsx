@@ -16,12 +16,12 @@ import { Reveal } from "@/components/ui/Reveal";
  */
 function Ledger() {
   return (
-    <div className="rounded-2xl border border-white/[0.07] bg-[#0b0b11]/80 p-6 sm:p-7">
+    <div className="rounded-2xl border border-ink/[0.07] bg-card/80 p-6 sm:p-7">
       <div className="flex items-baseline justify-between">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/45">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-ink/45">
           Index
         </span>
-        <span className="font-mono text-[11px] tracking-[0.18em] text-white/30">
+        <span className="font-mono text-[11px] tracking-[0.18em] text-ink/30">
           {SERVICES.length} services
         </span>
       </div>
@@ -34,12 +34,12 @@ function Ledger() {
               <span className="font-mono text-[11px] tracking-[0.18em] text-primary/80">
                 {band.letter}
               </span>
-              <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/55">
+              <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-ink/55">
                 {band.label}
               </span>
               <span
                 aria-hidden="true"
-                className="h-px flex-1 bg-gradient-to-r from-white/[0.12] to-transparent"
+                className="h-px flex-1 bg-gradient-to-r from-ink/[0.12] to-transparent"
               />
             </div>
 
@@ -50,19 +50,19 @@ function Ledger() {
                     href={`/services/${service.slug}`}
                     className="group flex items-baseline gap-3 rounded-lg py-[7px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/50"
                   >
-                    <span className="font-mono text-[11px] tracking-[0.14em] text-white/30 transition-colors group-hover:text-primary/80">
+                    <span className="font-mono text-[11px] tracking-[0.14em] text-ink/30 transition-colors group-hover:text-primary/80">
                       {service.code}
                     </span>
-                    <span className="shrink-0 text-[14px] text-white/75 transition-colors group-hover:text-white">
+                    <span className="shrink-0 text-[14px] text-ink/75 transition-colors group-hover:text-ink">
                       {service.short}
                     </span>
                     <span
                       aria-hidden="true"
-                      className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-white/[0.18] transition-colors group-hover:border-primary/45"
+                      className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-ink/[0.18] transition-colors group-hover:border-primary/45"
                     />
                     <ArrowUpRight
                       aria-hidden="true"
-                      className="h-3.5 w-3.5 shrink-0 self-center text-white/20 transition-colors group-hover:text-primary"
+                      className="h-3.5 w-3.5 shrink-0 self-center text-ink/20 transition-colors group-hover:text-primary"
                       strokeWidth={2}
                     />
                   </Link>
@@ -88,7 +88,7 @@ export function ServicesHero() {
         className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-[420px] w-[min(90vw,760px)] -translate-x-1/2 rounded-full blur-[120px]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,92,255,0.22) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.22 * var(--wash))) 0%, transparent 70%)",
         }}
       />
 
@@ -97,7 +97,7 @@ export function ServicesHero() {
           <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-primary">
             Services
           </p>
-          <h1 className="mt-4 font-display text-[clamp(2.2rem,5.2vw,3.6rem)] font-bold leading-[1.05] tracking-[-0.035em] text-white text-balance">
+          <h1 className="mt-4 font-display text-[clamp(2.2rem,5.2vw,3.6rem)] font-bold leading-[1.05] tracking-[-0.035em] text-ink text-balance">
             Everything at one place, one team, and nobody to translate
             between.
           </h1>
@@ -113,14 +113,14 @@ export function ServicesHero() {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-primary-deep px-6 py-3 text-[14.5px] font-semibold text-white shadow-[0_0_24px_-6px_rgba(124,92,255,0.9)] outline-none transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="inline-flex items-center gap-2 rounded-full bg-primary-deep px-6 py-3 text-[14.5px] font-semibold text-ink shadow-glow-btn outline-none transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Schedule a call
               <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
             </a>
             <a
               href="#catalogue"
-              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] px-6 py-3 text-[14.5px] font-medium text-white/80 outline-none transition-colors hover:border-white/25 hover:text-white focus-visible:ring-2 focus-visible:ring-primary/50"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/[0.12] px-6 py-3 text-[14.5px] font-medium text-ink/80 outline-none transition-colors hover:border-ink/25 hover:text-ink focus-visible:ring-2 focus-visible:ring-primary/50"
             >
               Read the catalogue
             </a>

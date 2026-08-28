@@ -54,13 +54,13 @@ function initials(name: string) {
 
 export function Testimonials() {
   return (
-    <section className="relative overflow-hidden border-t border-white/[0.06] bg-background py-24 sm:py-32">
+    <section className="relative overflow-hidden border-t border-ink/[0.06] bg-background py-24 sm:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-40 top-40 -z-10 h-[420px] w-[560px] rounded-full blur-[120px]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(139,92,246,0.16) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.16 * var(--wash))) 0%, transparent 70%)",
         }}
       />
 
@@ -78,7 +78,7 @@ export function Testimonials() {
               />
             ))}
           </div>
-          <h2 className="mt-5 font-display text-[clamp(1.95rem,4.4vw,3.05rem)] font-bold leading-[1.1] tracking-[-0.03em] text-white">
+          <h2 className="mt-5 font-display text-[clamp(1.95rem,4.4vw,3.05rem)] font-bold leading-[1.1] tracking-[-0.03em] text-ink">
             4.8/5 Average Rating
           </h2>
           <p className="mt-4 text-[15.5px] text-muted">
@@ -89,7 +89,7 @@ export function Testimonials() {
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {TESTIMONIALS.map((testimonial) => (
             <RevealItem key={testimonial.name} className="h-full">
-              <figure className="flex h-full flex-col rounded-2xl border border-white/[0.08] bg-surface/70 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:bg-surface">
+              <figure className="flex h-full flex-col rounded-2xl border border-ink/[0.08] bg-surface/70 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:bg-surface">
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, s) => (
                     <Star
@@ -101,16 +101,16 @@ export function Testimonials() {
                   ))}
                 </div>
 
-                <blockquote className="mt-4 flex-1 text-[14.5px] leading-relaxed text-white/85">
+                <blockquote className="mt-4 flex-1 text-[14.5px] leading-relaxed text-ink/85">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/[0.07] pt-5">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#6d4aff] text-[13px] font-semibold text-white">
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-ink/[0.07] pt-5">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#6d4aff] text-[13px] font-semibold text-ink">
                     {initials(testimonial.name)}
                   </span>
                   <span className="leading-tight">
-                    <span className="block text-[14px] font-semibold text-white">
+                    <span className="block text-[14px] font-semibold text-ink">
                       {testimonial.name}
                     </span>
                     <span className="block text-[12.5px] text-muted">

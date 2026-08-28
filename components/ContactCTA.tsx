@@ -13,7 +13,7 @@ import {
 import { Reveal } from "./ui/Reveal";
 
 const inputClass =
-  "w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3 text-[14.5px] text-white placeholder:text-white/30 outline-none transition-colors duration-200 focus:border-primary/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-primary/25";
+  "w-full rounded-xl border border-ink/[0.09] bg-ink/[0.03] px-4 py-3 text-[14.5px] text-ink placeholder:text-ink/30 outline-none transition-colors duration-200 focus:border-primary/60 focus:bg-ink/[0.05] focus:ring-2 focus:ring-primary/25";
 
 export function ContactCTA() {
   const [values, setValues] = useState<Fields>(EMPTY);
@@ -59,7 +59,7 @@ export function ContactCTA() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-t border-white/[0.06] bg-background py-24 sm:py-32"
+      className="relative overflow-hidden border-t border-ink/[0.06] bg-background py-24 sm:py-32"
     >
       <div
         aria-hidden="true"
@@ -70,13 +70,13 @@ export function ContactCTA() {
         className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[420px] w-[110vw] max-w-[1200px] -translate-x-1/2 rounded-full blur-[110px]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,92,255,0.28) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.28 * var(--wash))) 0%, transparent 70%)",
         }}
       />
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
         <Reveal>
-          <h2 className="font-display text-[clamp(2.1rem,5vw,3.4rem)] font-bold leading-[1.06] tracking-[-0.035em] text-white">
+          <h2 className="font-display text-[clamp(2.1rem,5vw,3.4rem)] font-bold leading-[1.06] tracking-[-0.035em] text-ink">
             Stop delaying your growth.
           </h2>
           <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-muted">
@@ -85,15 +85,15 @@ export function ContactCTA() {
           </p>
 
           <div className="mt-9 flex flex-col gap-3">
-            <div className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-surface/60 px-4 py-3">
+            <div className="flex items-center gap-3 rounded-xl border border-ink/[0.08] bg-surface/60 px-4 py-3">
               <ShieldCheck className="h-[18px] w-[18px] shrink-0 text-primary" strokeWidth={2} />
-              <span className="text-[14px] font-medium text-white/85">
+              <span className="text-[14px] font-medium text-ink/85">
                 100% Confidential
               </span>
             </div>
-            <div className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-surface/60 px-4 py-3">
+            <div className="flex items-center gap-3 rounded-xl border border-ink/[0.08] bg-surface/60 px-4 py-3">
               <FileLock2 className="h-[18px] w-[18px] shrink-0 text-primary" strokeWidth={2} />
-              <span className="text-[14px] font-medium text-white/85">
+              <span className="text-[14px] font-medium text-ink/85">
                 NDA signed upon request.
               </span>
             </div>
@@ -104,7 +104,7 @@ export function ContactCTA() {
           <form
             noValidate
             onSubmit={handleSubmit}
-            className="rounded-3xl border border-white/[0.09] bg-surface/80 p-6 backdrop-blur-sm sm:p-8"
+            className="rounded-3xl border border-ink/[0.09] bg-surface/80 p-6 backdrop-blur-sm sm:p-8"
           >
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <Field
@@ -149,7 +149,7 @@ export function ContactCTA() {
             <div className="mt-5">
               <label
                 htmlFor="details"
-                className="mb-2 block text-[13px] font-medium text-white/80"
+                className="mb-2 block text-[13px] font-medium text-ink/80"
               >
                 Project Details <span className="text-primary">*</span>
               </label>
@@ -192,7 +192,7 @@ export function ContactCTA() {
               whileHover={pending ? undefined : { scale: 1.02, y: -2 }}
               whileTap={pending ? undefined : { scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 24 }}
-              className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_0_32px_-8px_rgba(124,92,255,0.95)] transition-colors hover:bg-primary hover:shadow-glow-lg disabled:opacity-60"
+              className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-7 py-3.5 text-[15px] font-semibold text-ink shadow-glow-btn-lg transition-colors hover:bg-primary hover:shadow-glow-lg disabled:opacity-60"
             >
               {pending ? "Sending…" : "Submit Inquiry"}
               {!pending && (
@@ -216,7 +216,7 @@ export function ContactCTA() {
               <motion.p
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-center text-[13.5px] text-white/90"
+                className="mt-4 rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-center text-[13.5px] text-ink/90"
                 role="status"
               >
                 Thanks — your inquiry is logged. We&apos;ll be in touch shortly.
@@ -252,7 +252,7 @@ function Field({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-[13px] font-medium text-white/80"
+        className="mb-2 block text-[13px] font-medium text-ink/80"
       >
         {label} {required && <span className="text-primary">*</span>}
       </label>

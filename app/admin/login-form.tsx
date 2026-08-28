@@ -7,7 +7,7 @@ import { Lock } from "lucide-react";
 import { signIn } from "@/lib/auth-client";
 
 const inputClass =
-  "w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3 text-[14.5px] text-white outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-primary/25";
+  "w-full rounded-xl border border-ink/[0.09] bg-ink/[0.03] px-4 py-3 text-[14.5px] text-ink outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-primary/25";
 
 export function LoginForm() {
   const router = useRouter();
@@ -40,13 +40,13 @@ export function LoginForm() {
     <main className="grid min-h-screen place-items-center bg-background px-5">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm rounded-3xl border border-white/[0.09] bg-surface/80 p-7"
+        className="w-full max-w-sm rounded-3xl border border-ink/[0.09] bg-surface/80 p-7"
       >
         <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-deep">
-          <Lock className="h-5 w-5 text-white" strokeWidth={2} />
+          <Lock className="h-5 w-5 text-ink" strokeWidth={2} />
         </span>
 
-        <h1 className="mt-5 font-display text-[22px] font-bold tracking-tight text-white">
+        <h1 className="mt-5 font-display text-[22px] font-bold tracking-tight text-ink">
           Admin access
         </h1>
         <p className="mt-1.5 text-[13.5px] text-muted">
@@ -55,7 +55,7 @@ export function LoginForm() {
 
         <label
           htmlFor="email"
-          className="mb-2 mt-6 block text-[13px] font-medium text-white/80"
+          className="mb-2 mt-6 block text-[13px] font-medium text-ink/80"
         >
           Email
         </label>
@@ -72,7 +72,7 @@ export function LoginForm() {
 
         <label
           htmlFor="password"
-          className="mb-2 mt-4 block text-[13px] font-medium text-white/80"
+          className="mb-2 mt-4 block text-[13px] font-medium text-ink/80"
         >
           Password
         </label>
@@ -95,7 +95,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={pending || !email || !password}
-          className="mt-6 w-full rounded-full bg-primary-deep px-6 py-3 text-[14.5px] font-semibold text-white transition-colors hover:bg-primary disabled:opacity-40"
+          className="mt-6 w-full rounded-full bg-primary-deep px-6 py-3 text-[14.5px] font-semibold text-ink transition-colors hover:bg-primary disabled:opacity-40"
         >
           {pending ? "Signing in…" : "Sign in"}
         </button>

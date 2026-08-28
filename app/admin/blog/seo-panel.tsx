@@ -45,9 +45,9 @@ export function SeoPanel(props: {
   const tone = scoreTone(report.score);
 
   return (
-    <div className="rounded-2xl border border-white/[0.09] bg-surface/60 p-5">
+    <div className="rounded-2xl border border-ink/[0.09] bg-surface/60 p-5">
       <div className="flex items-baseline justify-between">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/45">
           SEO
         </span>
         <span className={`font-display text-[15px] font-bold ${tone.className}`}>
@@ -58,7 +58,7 @@ export function SeoPanel(props: {
         </span>
       </div>
 
-      <label htmlFor="keyword" className="mb-2 mt-4 block text-[12.5px] text-white/70">
+      <label htmlFor="keyword" className="mb-2 mt-4 block text-[12.5px] text-ink/70">
         Focus keyword
       </label>
       <input
@@ -66,15 +66,15 @@ export function SeoPanel(props: {
         value={keyword}
         onChange={(e) => onKeywordChange(e.target.value)}
         placeholder="mvp development agency"
-        className="w-full rounded-lg border border-white/[0.09] bg-white/[0.03] px-3 py-2 text-[13.5px] text-white placeholder:text-white/25 outline-none transition-colors focus:border-primary/60"
+        className="w-full rounded-lg border border-ink/[0.09] bg-ink/[0.03] px-3 py-2 text-[13.5px] text-ink placeholder:text-ink/25 outline-none transition-colors focus:border-primary/60"
       />
       {!keyword.trim() && (
-        <p className="mt-2 text-[12px] leading-relaxed text-white/35">
+        <p className="mt-2 text-[12px] leading-relaxed text-ink/35">
           Set the phrase this post should rank for to unlock the keyword checks.
         </p>
       )}
 
-      <ul className="mt-5 space-y-3 border-t border-white/[0.08] pt-4">
+      <ul className="mt-5 space-y-3 border-t border-ink/[0.08] pt-4">
         {report.checks.map((check) => {
           const { Icon, className } = ICONS[check.status];
           return (
@@ -85,10 +85,10 @@ export function SeoPanel(props: {
                 aria-hidden="true"
               />
               <span className="min-w-0">
-                <span className="block text-[13px] font-medium text-white/85">
+                <span className="block text-[13px] font-medium text-ink/85">
                   {check.label}
                 </span>
-                <span className="block text-[12px] leading-snug text-white/40">
+                <span className="block text-[12px] leading-snug text-ink/40">
                   {check.detail}
                 </span>
               </span>
@@ -97,7 +97,7 @@ export function SeoPanel(props: {
         })}
       </ul>
 
-      <p className="mt-4 border-t border-white/[0.08] pt-3 text-[11.5px] leading-relaxed text-white/30">
+      <p className="mt-4 border-t border-ink/[0.08] pt-3 text-[11.5px] leading-relaxed text-ink/30">
         These are hygiene checks. Clearing them keeps a post from being held
         back by mechanics — it does not make it worth reading, which is what
         actually ranks.

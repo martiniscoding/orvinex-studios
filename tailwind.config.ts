@@ -8,26 +8,37 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0f",
-        surface: "#111118",
+        // Every colour resolves through a CSS variable declared in
+        // globals.css, so the same utility is correct in both themes.
+        background: "rgb(var(--bg) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        card: "rgb(var(--card) / <alpha-value>)",
+        /** Foreground. Replaces the hardcoded `white` the dark theme used. */
+        ink: "rgb(var(--fg) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
         primary: {
-          DEFAULT: "#7c5cff",
-          deep: "#6d4aff",
+          DEFAULT: "rgb(var(--primary) / <alpha-value>)",
+          deep: "rgb(var(--primary-deep) / <alpha-value>)",
         },
-        glow: "#8b5cf6",
-        muted: "#a1a1aa",
-        hairline: "rgba(255,255,255,0.08)",
+        glow: "rgb(var(--primary) / <alpha-value>)",
+        hairline: "rgb(var(--fg) / 0.08)",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "var(--font-inter)", "sans-serif"],
       },
       borderColor: {
-        DEFAULT: "rgba(255,255,255,0.08)",
+        DEFAULT: "rgb(var(--fg) / 0.08)",
       },
       boxShadow: {
-        glow: "0 0 40px -8px rgba(124,92,255,0.55)",
-        "glow-lg": "0 10px 60px -10px rgba(124,92,255,0.7)",
+        glow: "0 0 40px -8px rgb(var(--primary) / calc(0.55 * var(--wash)))",
+        "glow-lg": "0 10px 60px -10px rgb(var(--primary) / calc(0.7 * var(--wash)))",
+        /** The lift under a violet button. */
+        "glow-btn": "0 0 24px -6px rgb(var(--primary) / calc(0.9 * var(--wash)))",
+        "glow-btn-lg": "0 0 32px -8px rgb(var(--primary) / calc(0.95 * var(--wash)))",
+        "glow-pill": "0 0 22px -4px rgb(var(--primary) / calc(0.9 * var(--wash)))",
+        /** Cards on a light ground need a real shadow, not a glow. */
+        card: "0 1px 2px rgb(var(--fg) / 0.04), 0 10px 30px -14px rgb(var(--fg) / 0.14)",
       },
       keyframes: {
         marquee: {

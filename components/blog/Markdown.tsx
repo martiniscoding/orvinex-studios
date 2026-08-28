@@ -14,7 +14,7 @@ import remarkGfm from "remark-gfm";
  */
 export function Markdown({ children }: { children: string }) {
   return (
-    <div className="text-[16px] leading-[1.75] text-white/75">
+    <div className="text-[16px] leading-[1.75] text-ink/75">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -22,17 +22,17 @@ export function Markdown({ children }: { children: string }) {
           // in the body would make a second one, which muddies the document
           // outline crawlers build, so it is demoted to h2.
           h1: ({ children }) => (
-            <h2 className="mt-12 font-display text-[24px] font-bold tracking-tight text-white">
+            <h2 className="mt-12 font-display text-[24px] font-bold tracking-tight text-ink">
               {children}
             </h2>
           ),
           h2: ({ children }) => (
-            <h2 className="mt-12 font-display text-[24px] font-bold tracking-tight text-white">
+            <h2 className="mt-12 font-display text-[24px] font-bold tracking-tight text-ink">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="mt-9 font-display text-[19px] font-semibold tracking-tight text-white">
+            <h3 className="mt-9 font-display text-[19px] font-semibold tracking-tight text-ink">
               {children}
             </h3>
           ),
@@ -54,12 +54,12 @@ export function Markdown({ children }: { children: string }) {
             </ul>
           ),
           ol: ({ children }) => (
-            <ol className="mt-5 list-decimal space-y-2 pl-5 marker:text-white/40">
+            <ol className="mt-5 list-decimal space-y-2 pl-5 marker:text-ink/40">
               {children}
             </ol>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="mt-6 border-l-2 border-primary/50 pl-5 text-white/60">
+            <blockquote className="mt-6 border-l-2 border-primary/50 pl-5 text-ink/60">
               {children}
             </blockquote>
           ),
@@ -69,29 +69,29 @@ export function Markdown({ children }: { children: string }) {
             const fenced = Boolean(className);
             if (fenced) {
               return (
-                <code className="block font-mono text-[13.5px] leading-relaxed text-white/85">
+                <code className="block font-mono text-[13.5px] leading-relaxed text-ink/85">
                   {children}
                 </code>
               );
             }
             return (
-              <code className="rounded bg-white/[0.08] px-1.5 py-0.5 font-mono text-[13.5px] text-white/90">
+              <code className="rounded bg-ink/[0.08] px-1.5 py-0.5 font-mono text-[13.5px] text-ink/90">
                 {children}
               </code>
             );
           },
           pre: ({ children }) => (
-            <pre className="mt-6 overflow-x-auto rounded-xl border border-white/[0.08] bg-[#0b0b11] p-4">
+            <pre className="mt-6 overflow-x-auto rounded-xl border border-ink/[0.1] bg-surface p-4">
               {children}
             </pre>
           ),
-          hr: () => <hr className="mt-10 border-white/[0.08]" />,
+          hr: () => <hr className="mt-10 border-ink/[0.08]" />,
           img: ({ src, alt }) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={typeof src === "string" ? src : ""}
               alt={alt ?? ""}
-              className="mt-6 w-full rounded-xl border border-white/[0.08]"
+              className="mt-6 w-full rounded-xl border border-ink/[0.08]"
             />
           ),
           table: ({ children }) => (
@@ -102,12 +102,12 @@ export function Markdown({ children }: { children: string }) {
             </div>
           ),
           th: ({ children }) => (
-            <th className="border-b border-white/[0.12] px-3 py-2 text-left font-semibold text-white">
+            <th className="border-b border-ink/[0.12] px-3 py-2 text-left font-semibold text-ink">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="border-b border-white/[0.06] px-3 py-2 align-top">
+            <td className="border-b border-ink/[0.06] px-3 py-2 align-top">
               {children}
             </td>
           ),

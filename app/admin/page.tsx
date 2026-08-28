@@ -41,7 +41,7 @@ export default async function AdminPage() {
         <AdminHeader current="leads" />
 
         <div className="mt-8">
-          <h1 className="font-display text-[26px] font-bold tracking-tight text-white">
+          <h1 className="font-display text-[26px] font-bold tracking-tight text-ink">
             Inquiries
           </h1>
           <p className="mt-1 text-[14px] text-muted">
@@ -60,12 +60,12 @@ export default async function AdminPage() {
           ).map(([label, value]) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/[0.08] bg-surface/60 px-4 py-3.5"
+              className="rounded-2xl border border-ink/[0.08] bg-surface/60 px-4 py-3.5"
             >
               <p className="text-[11px] font-semibold uppercase tracking-wider text-muted">
                 {label}
               </p>
-              <p className="mt-1 font-display text-[24px] font-bold text-white">
+              <p className="mt-1 font-display text-[24px] font-bold text-ink">
                 {value}
               </p>
             </div>

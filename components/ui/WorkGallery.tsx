@@ -82,7 +82,7 @@ function Column({
         .flat()
         .map((work, i) => (
           <li key={`${work.alt}-${i}`} className="pb-4">
-            <div className="overflow-hidden rounded-xl border border-white/[0.09] bg-surface shadow-[0_18px_50px_-24px_rgba(0,0,0,0.9)]">
+            <div className="overflow-hidden rounded-xl border border-ink/[0.12] bg-card shadow-card">
               <Image
                 src={work.src}
                 alt={i < items.length ? work.alt : ""}

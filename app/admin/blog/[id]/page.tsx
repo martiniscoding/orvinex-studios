@@ -22,7 +22,7 @@ export default async function EditPostPage({
     <main className="min-h-screen bg-background px-5 py-10">
       <div className="mx-auto max-w-5xl">
         <AdminHeader current="blog" />
-        <h1 className="mb-8 mt-8 font-display text-[26px] font-bold tracking-tight text-white">
+        <h1 className="mb-8 mt-8 font-display text-[26px] font-bold tracking-tight text-ink">
           Edit post
         </h1>
         <PostEditor

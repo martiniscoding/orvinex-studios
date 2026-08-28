@@ -29,11 +29,11 @@ export function Logo({
         width={markSize}
         height={markSize}
         priority
-        className="shrink-0 select-none drop-shadow-[0_0_10px_rgba(124,92,255,0.5)]"
+        className="shrink-0 select-none drop-shadow-glow"
         style={{ width: markSize, height: markSize }}
       />
       {showWordmark && (
-        <span className="font-display text-[19px] font-bold tracking-tight text-white">
+        <span className="font-display text-[19px] font-bold tracking-tight text-ink">
           Orvinex
         </span>
       )}

@@ -11,9 +11,9 @@ import { SeoPanel } from "../blog/seo-panel";
 import { updateServicePage, type ServicePageInput } from "./actions";
 
 const inputClass =
-  "w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3 text-[14.5px] text-white placeholder:text-white/25 outline-none transition-colors focus:border-primary/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-primary/25";
+  "w-full rounded-xl border border-ink/[0.09] bg-ink/[0.03] px-4 py-3 text-[14.5px] text-ink placeholder:text-ink/25 outline-none transition-colors focus:border-primary/60 focus:bg-ink/[0.05] focus:ring-2 focus:ring-primary/25";
 
-const labelClass = "mb-2 block text-[13px] font-medium text-white/80";
+const labelClass = "mb-2 block text-[13px] font-medium text-ink/80";
 
 export function ServiceEditor({
   slug,
@@ -74,7 +74,7 @@ export function ServiceEditor({
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Link
           href="/admin/services"
-          className="inline-flex items-center gap-2 text-[13.5px] text-muted transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 text-[13.5px] text-muted transition-colors hover:text-ink"
         >
           <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.2} />
           All services
@@ -95,14 +95,14 @@ export function ServiceEditor({
             href={`/services/${slug}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13.5px] text-muted transition-colors hover:text-white"
+            className="text-[13.5px] text-muted transition-colors hover:text-ink"
           >
             View page
           </a>
           <button
             type="submit"
             disabled={pending}
-            className="rounded-full bg-primary-deep px-6 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-primary disabled:opacity-40"
+            className="rounded-full bg-primary-deep px-6 py-2.5 text-[14px] font-semibold text-ink transition-colors hover:bg-primary disabled:opacity-40"
           >
             {pending ? "Saving…" : "Save"}
           </button>
@@ -113,7 +113,7 @@ export function ServiceEditor({
         <div>
           <label htmlFor="headline" className={labelClass}>
             Headline
-            <span className="ml-2 font-normal text-white/35">
+            <span className="ml-2 font-normal text-ink/35">
               the big line at the top of the page
             </span>
           </label>
@@ -136,8 +136,8 @@ export function ServiceEditor({
           />
 
           <div className="mb-2 mt-6 flex items-center justify-between">
-            <span className="text-[13px] font-medium text-white/80">Body</span>
-            <div className="flex gap-1 rounded-full border border-white/[0.09] p-0.5">
+            <span className="text-[13px] font-medium text-ink/80">Body</span>
+            <div className="flex gap-1 rounded-full border border-ink/[0.09] p-0.5">
               {(["write", "preview"] as const).map((mode) => {
                 const Icon = mode === "write" ? PencilLine : Eye;
                 return (
@@ -147,8 +147,8 @@ export function ServiceEditor({
                     onClick={() => setTab(mode)}
                     className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12.5px] font-medium capitalize transition-colors ${
                       tab === mode
-                        ? "bg-primary-deep text-white"
-                        : "text-white/60 hover:text-white"
+                        ? "bg-primary-deep text-ink"
+                        : "text-ink/60 hover:text-ink"
                     }`}
                   >
                     <Icon className="h-3.5 w-3.5" strokeWidth={2} />
@@ -168,11 +168,11 @@ export function ServiceEditor({
               className={`${inputClass} resize-y font-mono text-[13.5px] leading-relaxed`}
             />
           ) : (
-            <div className="min-h-[460px] rounded-xl border border-white/[0.09] bg-white/[0.02] px-5 py-4">
+            <div className="min-h-[460px] rounded-xl border border-ink/[0.09] bg-ink/[0.02] px-5 py-4">
               {body.trim() ? (
                 <Markdown>{body}</Markdown>
               ) : (
-                <p className="text-[14px] text-white/35">Nothing to preview.</p>
+                <p className="text-[14px] text-ink/35">Nothing to preview.</p>
               )}
             </div>
           )}
@@ -181,10 +181,10 @@ export function ServiceEditor({
           <div className="mt-10">
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-[13px] font-medium text-white/80">
+                <span className="text-[13px] font-medium text-ink/80">
                   Common questions
                 </span>
-                <p className="mt-1 text-[12.5px] text-white/35">
+                <p className="mt-1 text-[12.5px] text-ink/35">
                   Shown on the page and marked up as FAQ structured data, which
                   can win extra space in search results.
                 </p>
@@ -192,7 +192,7 @@ export function ServiceEditor({
               <button
                 type="button"
                 onClick={() => setFaq((prev) => [...prev, { q: "", a: "" }])}
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/10 px-3.5 py-1.5 text-[13px] text-white/70 transition-colors hover:text-white"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-ink/10 px-3.5 py-1.5 text-[13px] text-ink/70 transition-colors hover:text-ink"
               >
                 <Plus className="h-3.5 w-3.5" strokeWidth={2.4} />
                 Add
@@ -201,14 +201,14 @@ export function ServiceEditor({
 
             <div className="mt-4 space-y-4">
               {faq.length === 0 && (
-                <p className="rounded-xl border border-white/[0.08] px-4 py-5 text-center text-[13.5px] text-white/35">
+                <p className="rounded-xl border border-ink/[0.08] px-4 py-5 text-center text-[13.5px] text-ink/35">
                   No questions yet.
                 </p>
               )}
               {faq.map((item, index) => (
                 <div
                   key={index}
-                  className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4"
+                  className="rounded-xl border border-ink/[0.08] bg-ink/[0.02] p-4"
                 >
                   <div className="flex items-start gap-3">
                     <input
@@ -223,7 +223,7 @@ export function ServiceEditor({
                         setFaq((prev) => prev.filter((_, i) => i !== index))
                       }
                       aria-label="Remove question"
-                      className="mt-1 shrink-0 rounded-full border border-white/10 p-2 text-white/40 transition-colors hover:border-red-500/40 hover:text-red-400"
+                      className="mt-1 shrink-0 rounded-full border border-ink/10 p-2 text-ink/40 transition-colors hover:border-red-500/40 hover:text-red-400"
                     >
                       <Trash2 className="h-3.5 w-3.5" strokeWidth={2} />
                     </button>
@@ -252,16 +252,16 @@ export function ServiceEditor({
             urlPrefix="/services"
           />
 
-          <div className="rounded-2xl border border-white/[0.09] bg-surface/60 p-5">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">
+          <div className="rounded-2xl border border-ink/[0.09] bg-surface/60 p-5">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/45">
               Search listing
             </span>
-            <p className="mt-2 text-[12px] leading-relaxed text-white/35">
+            <p className="mt-2 text-[12px] leading-relaxed text-ink/35">
               How this page appears in results. Leave blank to fall back to the
               headline and intro.
             </p>
 
-            <label htmlFor="metaTitle" className="mb-2 mt-4 block text-[12.5px] text-white/70">
+            <label htmlFor="metaTitle" className="mb-2 mt-4 block text-[12.5px] text-ink/70">
               Title
             </label>
             <input
@@ -269,10 +269,10 @@ export function ServiceEditor({
               value={metaTitle}
               onChange={(e) => setMetaTitle(e.target.value)}
               placeholder={`${title} | Orvinex`}
-              className="w-full rounded-lg border border-white/[0.09] bg-white/[0.03] px-3 py-2 text-[13px] text-white placeholder:text-white/25 outline-none focus:border-primary/60"
+              className="w-full rounded-lg border border-ink/[0.09] bg-ink/[0.03] px-3 py-2 text-[13px] text-ink placeholder:text-ink/25 outline-none focus:border-primary/60"
             />
 
-            <label htmlFor="metaDescription" className="mb-2 mt-4 block text-[12.5px] text-white/70">
+            <label htmlFor="metaDescription" className="mb-2 mt-4 block text-[12.5px] text-ink/70">
               Description
             </label>
             <textarea
@@ -280,7 +280,7 @@ export function ServiceEditor({
               value={metaDescription}
               onChange={(e) => setMetaDescription(e.target.value)}
               rows={4}
-              className="w-full resize-y rounded-lg border border-white/[0.09] bg-white/[0.03] px-3 py-2 text-[13px] text-white placeholder:text-white/25 outline-none focus:border-primary/60"
+              className="w-full resize-y rounded-lg border border-ink/[0.09] bg-ink/[0.03] px-3 py-2 text-[13px] text-ink placeholder:text-ink/25 outline-none focus:border-primary/60"
             />
           </div>
         </aside>

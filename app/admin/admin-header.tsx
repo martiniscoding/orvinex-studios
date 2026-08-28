@@ -28,8 +28,8 @@ export function AdminHeader({
               aria-current={current === tab.id ? "page" : undefined}
               className={`rounded-full px-3.5 py-1.5 text-[13.5px] font-medium transition-colors ${
                 current === tab.id
-                  ? "bg-primary-deep text-white"
-                  : "text-white/60 hover:bg-white/[0.06] hover:text-white"
+                  ? "bg-primary-deep text-ink"
+                  : "text-ink/60 hover:bg-ink/[0.06] hover:text-ink"
               }`}
             >
               {tab.label}
@@ -41,7 +41,7 @@ export function AdminHeader({
       <form action={logout}>
         <button
           type="submit"
-          className="rounded-full border border-white/10 px-4 py-2 text-[13px] font-medium text-white/75 transition-colors hover:bg-white/[0.06] hover:text-white"
+          className="rounded-full border border-ink/10 px-4 py-2 text-[13px] font-medium text-ink/75 transition-colors hover:bg-ink/[0.06] hover:text-ink"
         >
           Sign out
         </button>
