@@ -28,7 +28,7 @@ export default async function EditServicePage({
           <p className="font-mono text-[12px] tracking-[0.2em] text-primary">
             {service.code}
           </p>
-          <h1 className="mt-2 font-display text-[26px] font-bold tracking-tight text-ink">
+          <h1 className="mt-2 font-display text-[26px] font-bold tracking-tight text-white">
             {service.title}
           </h1>
         </div>

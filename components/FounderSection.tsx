@@ -13,7 +13,7 @@ export function FounderSection() {
         className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.16 * var(--wash))) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,92,255,0.16) 0%, transparent 70%)",
         }}
       />
 
@@ -23,7 +23,7 @@ export function FounderSection() {
           <div className="relative mx-auto w-full max-w-[420px]">
             <div className="absolute -inset-3 -z-10 rounded-[32px] bg-gradient-to-br from-primary/30 via-primary/5 to-transparent blur-2xl" />
 
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[26px] border border-ink/10 bg-surface">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[26px] border border-white/10 bg-surface">
               <Image
                 src="/founder.png"
                 alt="Rohan Kumar Singh, Founder of Orvinex"
@@ -46,13 +46,13 @@ export function FounderSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-2xl border border-ink/10 bg-surface/90 px-4 py-3 backdrop-blur-xl"
+              className="absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-2xl border border-white/10 bg-[#0d0d15]/90 px-4 py-3 backdrop-blur-xl"
             >
               <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary-deep">
-                <GraduationCap className="h-[18px] w-[18px] text-ink" strokeWidth={2} />
+                <GraduationCap className="h-[18px] w-[18px] text-white" strokeWidth={2} />
               </span>
               <span className="leading-tight">
-                <span className="block text-[13px] font-semibold text-ink">
+                <span className="block text-[13px] font-semibold text-white">
                   IIT Madras
                 </span>
                 <span className="block text-[11.5px] text-muted">
@@ -72,7 +72,7 @@ export function FounderSection() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3rem)] font-bold leading-[1.08] tracking-[-0.03em] text-ink">
+            <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3rem)] font-bold leading-[1.08] tracking-[-0.03em] text-white">
               Rohan Kumar Singh
             </h2>
             <p className="mt-3 text-[15px] font-medium text-primary/90">
@@ -89,13 +89,13 @@ export function FounderSection() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <figure className="relative mt-8 max-w-xl rounded-2xl border border-ink/[0.08] bg-surface/70 p-6 sm:p-7">
+            <figure className="relative mt-8 max-w-xl rounded-2xl border border-white/[0.08] bg-surface/70 p-6 sm:p-7">
               <Quote
                 className="absolute -top-3 left-6 h-7 w-7 rotate-180 text-primary"
                 fill="currentColor"
                 strokeWidth={0}
               />
-              <blockquote className="text-[15px] leading-relaxed text-ink/85">
+              <blockquote className="text-[15px] leading-relaxed text-white/85">
                 &ldquo;We established Orvinex with a singular goal: to eliminate
                 the friction of building software. You don&apos;t need to hire
                 freelancers or manage complex technical teams. We work here as

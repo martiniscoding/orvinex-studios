@@ -24,8 +24,8 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
 
   if (leads.length === 0) {
     return (
-      <div className="rounded-2xl border border-ink/[0.08] bg-surface/60 px-6 py-16 text-center">
-        <p className="text-[15px] font-medium text-ink/80">No inquiries yet</p>
+      <div className="rounded-2xl border border-white/[0.08] bg-surface/60 px-6 py-16 text-center">
+        <p className="text-[15px] font-medium text-white/80">No inquiries yet</p>
         <p className="mt-1.5 text-[13.5px] text-muted">
           Submissions from the contact form will appear here.
         </p>
@@ -34,9 +34,9 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-ink/[0.08] bg-surface/60">
+    <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-surface/60">
       {/* Header row is desktop-only; each card is self-describing on mobile. */}
-      <div className="hidden grid-cols-[1.4fr_1.8fr_1.2fr_0.9fr_1fr_auto] gap-4 border-b border-ink/[0.08] px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-muted md:grid">
+      <div className="hidden grid-cols-[1.4fr_1.8fr_1.2fr_0.9fr_1fr_auto] gap-4 border-b border-white/[0.08] px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-muted md:grid">
         <span>Name</span>
         <span>Email</span>
         <span>Phone</span>
@@ -45,7 +45,7 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
         <span className="w-24">Status</span>
       </div>
 
-      <ul className="divide-y divide-ink/[0.06]">
+      <ul className="divide-y divide-white/[0.06]">
         {leads.map((lead) => {
           const isOpen = expanded === lead.id;
           return (
@@ -54,9 +54,9 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
                 type="button"
                 onClick={() => setExpanded(isOpen ? null : lead.id)}
                 aria-expanded={isOpen}
-                className="grid w-full grid-cols-1 gap-1.5 px-5 py-4 text-left transition-colors hover:bg-ink/[0.025] md:grid-cols-[1.4fr_1.8fr_1.2fr_0.9fr_1fr_auto] md:items-center md:gap-4"
+                className="grid w-full grid-cols-1 gap-1.5 px-5 py-4 text-left transition-colors hover:bg-white/[0.025] md:grid-cols-[1.4fr_1.8fr_1.2fr_0.9fr_1fr_auto] md:items-center md:gap-4"
               >
-                <span className="flex items-center gap-2 text-[14px] font-semibold text-ink">
+                <span className="flex items-center gap-2 text-[14px] font-semibold text-white">
                   <ChevronDown
                     className={`h-3.5 w-3.5 shrink-0 text-muted transition-transform ${
                       isOpen ? "rotate-180" : ""
@@ -65,10 +65,10 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
                   />
                   {lead.fullName}
                 </span>
-                <span className="truncate pl-[22px] text-[13.5px] text-ink/75 md:pl-0">
+                <span className="truncate pl-[22px] text-[13.5px] text-white/75 md:pl-0">
                   {lead.email}
                 </span>
-                <span className="pl-[22px] text-[13.5px] text-ink/75 md:pl-0">
+                <span className="pl-[22px] text-[13.5px] text-white/75 md:pl-0">
                   {lead.phone}
                 </span>
                 <span className="pl-[22px] text-[13.5px] text-muted md:pl-0">
@@ -87,11 +87,11 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
               </button>
 
               {isOpen && (
-                <div className="border-t border-ink/[0.06] bg-black/20 px-5 py-4">
+                <div className="border-t border-white/[0.06] bg-black/20 px-5 py-4">
                   <p className="text-[11px] font-semibold uppercase tracking-wider text-muted">
                     Project details
                   </p>
-                  <p className="mt-2 whitespace-pre-wrap text-[14px] leading-relaxed text-ink/85">
+                  <p className="mt-2 whitespace-pre-wrap text-[14px] leading-relaxed text-white/85">
                     {lead.details}
                   </p>
 
@@ -112,7 +112,7 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
                         className={`rounded-full border px-3 py-1 text-[12px] font-medium capitalize transition-colors disabled:opacity-35 ${
                           lead.status === status
                             ? STATUS_STYLES[status]
-                            : "border-ink/10 text-ink/70 hover:bg-ink/[0.06] hover:text-ink"
+                            : "border-white/10 text-white/70 hover:bg-white/[0.06] hover:text-white"
                         }`}
                       >
                         {status}
@@ -121,7 +121,7 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
 
                     <a
                       href={`mailto:${lead.email}`}
-                      className="ml-auto rounded-full bg-primary-deep px-4 py-1.5 text-[12.5px] font-semibold text-ink transition-colors hover:bg-primary"
+                      className="ml-auto rounded-full bg-primary-deep px-4 py-1.5 text-[12.5px] font-semibold text-white transition-colors hover:bg-primary"
                     >
                       Reply by email
                     </a>

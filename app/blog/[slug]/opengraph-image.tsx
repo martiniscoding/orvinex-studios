@@ -38,7 +38,7 @@ export default async function Image({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#fbfbfd",
+          background: "#0a0a0f",
           padding: "72px",
           position: "relative",
         }}
@@ -51,10 +51,7 @@ export default async function Image({
             width: 900,
             height: 620,
             background:
-              // Literal colours, not CSS variables: this renders through
-              // satori rather than a browser, and satori resolves no
-              // custom properties — an unparseable colour throws.
-              "radial-gradient(ellipse at center, rgba(124,92,255,0.16) 0%, rgba(124,92,255,0) 70%)",
+              "radial-gradient(ellipse at center, rgba(124,92,255,0.55) 0%, rgba(124,92,255,0) 70%)",
             display: "flex",
           }}
         />
@@ -65,11 +62,11 @@ export default async function Image({
               width: 40,
               height: 40,
               borderRadius: 999,
-              border: "4px solid #6d4aff",
+              border: "4px solid #7c5cff",
               display: "flex",
             }}
           />
-          <div style={{ color: "#12121a", fontSize: 30, fontWeight: 700 }}>
+          <div style={{ color: "#ffffff", fontSize: 30, fontWeight: 700 }}>
             Orvinex
           </div>
         </div>
@@ -78,7 +75,7 @@ export default async function Image({
           style={{
             display: "flex",
             flexDirection: "column",
-            color: "#12121a",
+            color: "#ffffff",
             fontSize: title.length > 70 ? 58 : 70,
             fontWeight: 700,
             lineHeight: 1.12,
@@ -88,7 +85,7 @@ export default async function Image({
           {title}
         </div>
 
-        <div style={{ display: "flex", color: "#5a5a6b", fontSize: 26 }}>
+        <div style={{ display: "flex", color: "#a1a1aa", fontSize: 26 }}>
           {meta}
         </div>
       </div>

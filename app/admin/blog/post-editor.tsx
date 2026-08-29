@@ -11,9 +11,9 @@ import { createPost, updatePost, type PostInput } from "./actions";
 import { SeoPanel } from "./seo-panel";
 
 const inputClass =
-  "w-full rounded-xl border border-ink/[0.09] bg-ink/[0.03] px-4 py-3 text-[14.5px] text-ink placeholder:text-ink/25 outline-none transition-colors focus:border-primary/60 focus:bg-ink/[0.05] focus:ring-2 focus:ring-primary/25";
+  "w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3 text-[14.5px] text-white placeholder:text-white/25 outline-none transition-colors focus:border-primary/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-primary/25";
 
-const labelClass = "mb-2 block text-[13px] font-medium text-ink/80";
+const labelClass = "mb-2 block text-[13px] font-medium text-white/80";
 
 type Props = {
   /** Absent when writing a new post. */
@@ -85,7 +85,7 @@ export function PostEditor({ post }: Props) {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Link
           href="/admin/blog"
-          className="inline-flex items-center gap-2 text-[13.5px] text-muted transition-colors hover:text-ink"
+          className="inline-flex items-center gap-2 text-[13.5px] text-muted transition-colors hover:text-white"
         >
           <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.2} />
           All posts
@@ -105,7 +105,7 @@ export function PostEditor({ post }: Props) {
           <button
             type="submit"
             disabled={pending}
-            className="rounded-full bg-primary-deep px-6 py-2.5 text-[14px] font-semibold text-ink transition-colors hover:bg-primary disabled:opacity-40"
+            className="rounded-full bg-primary-deep px-6 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-primary disabled:opacity-40"
           >
             {pending ? "Saving…" : "Save"}
           </button>
@@ -125,9 +125,9 @@ export function PostEditor({ post }: Props) {
             className={inputClass}
           />
 
-          <label htmlFor="excerpt" className="mb-2 mt-6 block text-[13px] font-medium text-ink/80">
+          <label htmlFor="excerpt" className="mb-2 mt-6 block text-[13px] font-medium text-white/80">
             Excerpt
-            <span className="ml-2 font-normal text-ink/35">
+            <span className="ml-2 font-normal text-white/35">
               shown on the index and in search results
             </span>
           </label>
@@ -141,8 +141,8 @@ export function PostEditor({ post }: Props) {
           />
 
           <div className="mb-2 mt-6 flex items-center justify-between">
-            <span className="text-[13px] font-medium text-ink/80">Content</span>
-            <div className="flex gap-1 rounded-full border border-ink/[0.09] p-0.5">
+            <span className="text-[13px] font-medium text-white/80">Content</span>
+            <div className="flex gap-1 rounded-full border border-white/[0.09] p-0.5">
               {(["write", "preview"] as const).map((mode) => {
                 const Icon = mode === "write" ? PencilLine : Eye;
                 return (
@@ -152,8 +152,8 @@ export function PostEditor({ post }: Props) {
                     onClick={() => setTab(mode)}
                     className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12.5px] font-medium capitalize transition-colors ${
                       tab === mode
-                        ? "bg-primary-deep text-ink"
-                        : "text-ink/60 hover:text-ink"
+                        ? "bg-primary-deep text-white"
+                        : "text-white/60 hover:text-white"
                     }`}
                   >
                     <Icon className="h-3.5 w-3.5" strokeWidth={2} />
@@ -174,11 +174,11 @@ export function PostEditor({ post }: Props) {
               className={`${inputClass} resize-y font-mono text-[13.5px] leading-relaxed`}
             />
           ) : (
-            <div className="min-h-[420px] rounded-xl border border-ink/[0.09] bg-ink/[0.02] px-5 py-4">
+            <div className="min-h-[420px] rounded-xl border border-white/[0.09] bg-white/[0.02] px-5 py-4">
               {content.trim() ? (
                 <Markdown>{content}</Markdown>
               ) : (
-                <p className="text-[14px] text-ink/35">
+                <p className="text-[14px] text-white/35">
                   Nothing to preview yet.
                 </p>
               )}
@@ -196,8 +196,8 @@ export function PostEditor({ post }: Props) {
             onKeywordChange={setKeyword}
           />
 
-          <div className="rounded-2xl border border-ink/[0.09] bg-surface/60 p-5">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/45">
+          <div className="rounded-2xl border border-white/[0.09] bg-surface/60 p-5">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">
               Visibility
             </span>
 
@@ -205,7 +205,7 @@ export function PostEditor({ post }: Props) {
               {(["draft", "published"] as const).map((value) => (
                 <label
                   key={value}
-                  className="flex cursor-pointer items-center gap-2.5 text-[14px] text-ink/80"
+                  className="flex cursor-pointer items-center gap-2.5 text-[14px] text-white/80"
                 >
                   <input
                     type="radio"
@@ -220,7 +220,7 @@ export function PostEditor({ post }: Props) {
               ))}
             </div>
 
-            <label className="mt-5 flex cursor-pointer items-start gap-2.5 border-t border-ink/[0.08] pt-4 text-[14px] text-ink/80">
+            <label className="mt-5 flex cursor-pointer items-start gap-2.5 border-t border-white/[0.08] pt-4 text-[14px] text-white/80">
               <input
                 type="checkbox"
                 checked={featured}
@@ -229,15 +229,15 @@ export function PostEditor({ post }: Props) {
               />
               <span>
                 Start here
-                <span className="mt-0.5 block text-[12.5px] text-ink/40">
+                <span className="mt-0.5 block text-[12.5px] text-white/40">
                   Pins this post to the top. Only one at a time.
                 </span>
               </span>
             </label>
           </div>
 
-          <div className="rounded-2xl border border-ink/[0.09] bg-surface/60 p-5">
-            <label htmlFor="slug" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/45">
+          <div className="rounded-2xl border border-white/[0.09] bg-surface/60 p-5">
+            <label htmlFor="slug" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">
               URL
             </label>
             <input
@@ -249,7 +249,7 @@ export function PostEditor({ post }: Props) {
               }}
               className={`${inputClass} mt-3 font-mono text-[13px]`}
             />
-            <p className="mt-2 break-all text-[12px] text-ink/35">
+            <p className="mt-2 break-all text-[12px] text-white/35">
               /blog/{effectiveSlug || "…"}
             </p>
           </div>

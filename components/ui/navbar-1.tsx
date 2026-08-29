@@ -14,7 +14,7 @@ import { Logo } from "./Logo";
  */
 const NAV_LINKS = [
   { label: "Home", href: "/#home" },
-  { label: "Trust", href: "/#about" },
+  { label: "About", href: "/#about" },
   { label: "Services", href: "/services" },
   { label: "Blog", href: "/blog" },
 ];
@@ -80,10 +80,10 @@ const Navbar1 = () => {
       className="fixed inset-x-0 top-0 z-50 flex w-full justify-center px-4 py-5"
     >
       <div
-        className={`relative z-10 flex w-full max-w-3xl items-center justify-between rounded-full border border-ink/10 px-4 py-2.5 backdrop-blur-xl transition-colors duration-300 ${
+        className={`relative z-10 flex w-full max-w-3xl items-center justify-between rounded-full border border-white/10 px-4 py-2.5 backdrop-blur-xl transition-colors duration-300 ${
           scrolled
-            ? "bg-surface/85 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.9)]"
-            : "bg-ink/[0.045]"
+            ? "bg-[#0d0d15]/85 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.9)]"
+            : "bg-white/[0.045]"
         }`}
       >
         <Link
@@ -106,14 +106,14 @@ const Navbar1 = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 26 }}
                 className={`relative rounded-full px-3.5 py-1.5 text-[13.5px] font-medium transition-colors duration-200 ${
                   isActive
-                    ? "text-ink"
-                    : "text-ink/70 hover:bg-ink/[0.06] hover:text-ink"
+                    ? "text-white"
+                    : "text-white/70 hover:bg-white/[0.06] hover:text-white"
                 }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-primary-deep shadow-glow-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-primary-deep shadow-[0_0_22px_-4px_rgba(124,92,255,0.9)]"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}
@@ -129,7 +129,7 @@ const Navbar1 = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Schedule a call — opens Google Calendar in a new tab"
-          className="hidden items-center gap-2 rounded-full bg-primary-deep px-5 py-2 text-[13.5px] font-semibold text-ink shadow-glow-btn transition-colors hover:bg-primary md:inline-flex"
+          className="hidden items-center gap-2 rounded-full bg-primary-deep px-5 py-2 text-[13.5px] font-semibold text-white shadow-[0_0_24px_-6px_rgba(124,92,255,0.9)] transition-colors hover:bg-primary md:inline-flex"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
           transition={{ type: "spring", stiffness: 400, damping: 24 }}
@@ -141,7 +141,7 @@ const Navbar1 = () => {
         {/* Mobile Menu Button */}
         <motion.button
           type="button"
-          className="flex items-center text-ink md:hidden"
+          className="flex items-center text-white md:hidden"
           onClick={toggleMenu}
           whileTap={{ scale: 0.9 }}
           aria-label="Open menu"
@@ -168,7 +168,7 @@ const Navbar1 = () => {
 
             <motion.button
               type="button"
-              className="absolute right-6 top-6 p-2 text-ink"
+              className="absolute right-6 top-6 p-2 text-white"
               onClick={toggleMenu}
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0 }}
@@ -193,7 +193,7 @@ const Navbar1 = () => {
                     className={`text-base font-medium transition-colors ${
                       current === item.href
                         ? "text-primary"
-                        : "text-ink/80 hover:text-ink"
+                        : "text-white/80 hover:text-white"
                     }`}
                     onClick={toggleMenu}
                   >
@@ -214,7 +214,7 @@ const Navbar1 = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Schedule a call — opens Google Calendar in a new tab"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-5 py-3 text-base font-semibold text-ink shadow-glow-btn transition-colors hover:bg-primary"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-5 py-3 text-base font-semibold text-white shadow-[0_0_24px_-6px_rgba(124,92,255,0.9)] transition-colors hover:bg-primary"
                   onClick={toggleMenu}
                 >
                   Schedule Call

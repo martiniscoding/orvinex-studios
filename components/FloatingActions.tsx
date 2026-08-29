@@ -45,7 +45,7 @@ export function FloatingActions() {
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 24 }}
-            className="flex items-center gap-2.5 rounded-full border border-ink/10 bg-surface/90 py-3 pl-3.5 pr-4 text-[13.5px] font-semibold text-ink shadow-[0_10px_35px_-12px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-colors hover:border-[#25D366]/50"
+            className="flex items-center gap-2.5 rounded-full border border-white/10 bg-[#0d0d15]/90 py-3 pl-3.5 pr-4 text-[13.5px] font-semibold text-white shadow-[0_10px_35px_-12px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-colors hover:border-[#25D366]/50"
           >
             <WhatsAppIcon className="h-5 w-5 text-[#25D366]" />
             Chat on WhatsApp
@@ -56,7 +56,7 @@ export function FloatingActions() {
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 24 }}
-            className="group flex items-center gap-2 rounded-full bg-primary-deep py-3 pl-5 pr-4 text-[13.5px] font-semibold text-ink shadow-glow-btn-lg transition-colors hover:bg-primary"
+            className="group flex items-center gap-2 rounded-full bg-primary-deep py-3 pl-5 pr-4 text-[13.5px] font-semibold text-white shadow-[0_0_28px_-8px_rgba(124,92,255,0.95)] transition-colors hover:bg-primary"
           >
             Start a Project
             <ArrowRight

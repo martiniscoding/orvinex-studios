@@ -23,7 +23,7 @@ export default async function AdminBlogPage() {
 
         <div className="mt-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="font-display text-[26px] font-bold tracking-tight text-ink">
+            <h1 className="font-display text-[26px] font-bold tracking-tight text-white">
               Posts
             </h1>
             <p className="mt-1 text-[14px] text-muted">
@@ -34,7 +34,7 @@ export default async function AdminBlogPage() {
 
           <Link
             href="/admin/blog/new"
-            className="inline-flex items-center gap-2 rounded-full bg-primary-deep px-5 py-2.5 text-[14px] font-semibold text-ink transition-colors hover:bg-primary"
+            className="inline-flex items-center gap-2 rounded-full bg-primary-deep px-5 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-primary"
           >
             <Plus className="h-4 w-4" strokeWidth={2.4} />
             New post

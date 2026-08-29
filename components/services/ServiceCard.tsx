@@ -54,7 +54,7 @@ export function ServiceCard({ service, arcs, anchored }: ServiceCardProps) {
       href={`/services/${service.slug}`}
       id={anchored ? service.slug : undefined}
       data-card
-      className="group relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-ink/[0.1] bg-card bg-gradient-to-b from-ink/[0.02] to-transparent to-60% p-6 shadow-card outline-none transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-glow focus-visible:border-primary/50 focus-visible:ring-2 focus-visible:ring-primary/40"
+      className="group relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0b0b11] bg-gradient-to-b from-white/[0.035] to-transparent to-60% p-6 outline-none transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-white/[0.14] focus-visible:border-primary/50 focus-visible:ring-2 focus-visible:ring-primary/40"
     >
       {/* Cursor light, spilling across whichever cards it passes over. */}
       <div
@@ -63,7 +63,7 @@ export function ServiceCard({ service, arcs, anchored }: ServiceCardProps) {
         style={{
           opacity: "var(--active, 0)",
           background:
-            "radial-gradient(340px circle at var(--x) var(--y), rgb(var(--primary) / calc(0.16 * var(--wash))), transparent 72%)",
+            "radial-gradient(340px circle at var(--x) var(--y), rgba(124,92,255,0.16), transparent 72%)",
         }}
       />
 
@@ -74,7 +74,7 @@ export function ServiceCard({ service, arcs, anchored }: ServiceCardProps) {
         style={{
           opacity: "var(--active, 0)",
           background:
-            "radial-gradient(280px circle at var(--x) var(--y), rgb(var(--primary) / calc(0.85 * var(--wash))), transparent 68%)",
+            "radial-gradient(280px circle at var(--x) var(--y), rgba(167,139,250,0.85), transparent 68%)",
           WebkitMask:
             "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",
@@ -86,23 +86,23 @@ export function ServiceCard({ service, arcs, anchored }: ServiceCardProps) {
       {/* Hairline catching the light along the top edge. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-ink/20 to-transparent"
+        className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
       />
 
       <div className="relative flex items-start justify-between gap-4">
         <span className="relative grid h-16 w-16 shrink-0 place-items-center">
           <Aperture arcs={arcs} />
           <Icon
-            className="relative h-[19px] w-[19px] text-ink/80 transition-colors duration-500 group-hover:text-ink"
+            className="relative h-[19px] w-[19px] text-white/80 transition-colors duration-500 group-hover:text-white"
             strokeWidth={1.9}
           />
         </span>
-        <span className="mt-1 font-mono text-[10.5px] tracking-[0.18em] text-ink/25 transition-colors duration-500 group-hover:text-primary/70">
+        <span className="mt-1 font-mono text-[10.5px] tracking-[0.18em] text-white/25 transition-colors duration-500 group-hover:text-primary/70">
           {service.code}
         </span>
       </div>
 
-      <h3 className="relative mt-6 font-display text-[17px] font-semibold leading-snug tracking-tight text-ink">
+      <h3 className="relative mt-6 font-display text-[17px] font-semibold leading-snug tracking-tight text-white">
         {service.title}
       </h3>
       <p className="relative mt-3 text-[14px] leading-relaxed text-muted">
@@ -113,14 +113,14 @@ export function ServiceCard({ service, arcs, anchored }: ServiceCardProps) {
         {service.stack.map((entry) => (
           <li
             key={entry}
-            className="rounded-full border border-ink/[0.08] bg-ink/[0.03] px-2.5 py-1 text-[11px] font-medium tracking-wide text-ink/50 transition-colors duration-500 group-hover:border-primary/25 group-hover:text-ink/75"
+            className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-[11px] font-medium tracking-wide text-white/50 transition-colors duration-500 group-hover:border-primary/25 group-hover:text-white/75"
           >
             {entry}
           </li>
         ))}
       </ul>
 
-      <span className="relative mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-ink/45 transition-colors duration-500 group-hover:text-primary">
+      <span className="relative mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-white/45 transition-colors duration-500 group-hover:text-primary">
         Read more
         <ArrowUpRight
           className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

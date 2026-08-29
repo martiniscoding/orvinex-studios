@@ -26,7 +26,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
 
   if (posts.length === 0) {
     return (
-      <p className="rounded-2xl border border-ink/[0.08] bg-surface/50 px-6 py-10 text-center text-[14.5px] text-muted">
+      <p className="rounded-2xl border border-white/[0.08] bg-surface/50 px-6 py-10 text-center text-[14.5px] text-muted">
         No posts yet. Write the first one.
       </p>
     );
@@ -40,17 +40,17 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
         </p>
       )}
 
-      <ul className="rounded-2xl border border-ink/[0.08] bg-surface/50">
+      <ul className="rounded-2xl border border-white/[0.08] bg-surface/50">
         {posts.map((post) => (
           <li
             key={post.id}
-            className="flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-ink/[0.06] px-5 py-4 last:border-b-0"
+            className="flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-white/[0.06] px-5 py-4 last:border-b-0"
           >
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <Link
                   href={`/admin/blog/${post.id}`}
-                  className="truncate font-display text-[15.5px] font-semibold tracking-tight text-ink transition-colors hover:text-primary"
+                  className="truncate font-display text-[15.5px] font-semibold tracking-tight text-white transition-colors hover:text-primary"
                 >
                   {post.title}
                 </Link>
@@ -60,7 +60,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
                   </span>
                 )}
               </div>
-              <p className="mt-1 truncate font-mono text-[12px] text-ink/30">
+              <p className="mt-1 truncate font-mono text-[12px] text-white/30">
                 /blog/{post.slug} · {formatPostDate(post.publishedAt)}
               </p>
             </div>
@@ -75,7 +75,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
               className={`rounded-full border p-2 transition-colors disabled:opacity-40 ${
                 post.featured
                   ? "border-primary/40 text-primary"
-                  : "border-ink/10 text-ink/40 hover:text-ink"
+                  : "border-white/10 text-white/40 hover:text-white"
               }`}
             >
               <Star
@@ -89,7 +89,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
               value={post.status}
               disabled={pending}
               onChange={(e) => run(() => setPostStatus(post.id, e.target.value))}
-              className="rounded-full border border-ink/10 bg-ink/[0.04] px-3 py-1.5 text-[13px] text-ink outline-none focus:border-primary/60 disabled:opacity-40"
+              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[13px] text-white outline-none focus:border-primary/60 disabled:opacity-40"
             >
               <option value="draft">Draft</option>
               <option value="published">Published</option>
@@ -101,7 +101,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="View post"
-                className="rounded-full border border-ink/10 p-2 text-ink/40 transition-colors hover:text-ink"
+                className="rounded-full border border-white/10 p-2 text-white/40 transition-colors hover:text-white"
               >
                 <ExternalLink className="h-3.5 w-3.5" strokeWidth={2} />
               </a>
@@ -116,14 +116,14 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
                     setConfirming(null);
                     run(() => deletePost(post.id));
                   }}
-                  className="rounded-full bg-red-500/90 px-3 py-1.5 text-[12.5px] font-semibold text-ink disabled:opacity-40"
+                  className="rounded-full bg-red-500/90 px-3 py-1.5 text-[12.5px] font-semibold text-white disabled:opacity-40"
                 >
                   Delete
                 </button>
                 <button
                   type="button"
                   onClick={() => setConfirming(null)}
-                  className="text-[12.5px] text-ink/50 hover:text-ink"
+                  className="text-[12.5px] text-white/50 hover:text-white"
                 >
                   Cancel
                 </button>
@@ -133,7 +133,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
                 type="button"
                 onClick={() => setConfirming(post.id)}
                 aria-label="Delete post"
-                className="rounded-full border border-ink/10 p-2 text-ink/40 transition-colors hover:border-red-500/40 hover:text-red-400"
+                className="rounded-full border border-white/10 p-2 text-white/40 transition-colors hover:border-red-500/40 hover:text-red-400"
               >
                 <Trash2 className="h-3.5 w-3.5" strokeWidth={2} />
               </button>

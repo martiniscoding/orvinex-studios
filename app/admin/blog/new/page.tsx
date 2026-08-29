@@ -13,7 +13,7 @@ export default async function NewPostPage() {
     <main className="min-h-screen bg-background px-5 py-10">
       <div className="mx-auto max-w-5xl">
         <AdminHeader current="blog" />
-        <h1 className="mb-8 mt-8 font-display text-[26px] font-bold tracking-tight text-ink">
+        <h1 className="mb-8 mt-8 font-display text-[26px] font-bold tracking-tight text-white">
           New post
         </h1>
         <PostEditor />

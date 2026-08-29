@@ -61,8 +61,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbfbfd",
-  colorScheme: "light",
+  themeColor: "#0a0a0f",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -72,7 +72,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body className="bg-background font-sans text-ink">
+      <body className="bg-background font-sans text-white">
         <JsonLd data={siteStructuredData} />
         {children}
       </body>

@@ -29,13 +29,13 @@ const STEPS = [
 
 export function ProcessStrip() {
   return (
-    <section className="relative border-t border-ink/[0.06] bg-background py-20 sm:py-28">
+    <section className="relative border-t border-white/[0.06] bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal className="max-w-2xl">
           <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-primary">
             How we work
           </p>
-          <h2 className="mt-4 font-display text-[clamp(1.7rem,3.4vw,2.4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-ink">
+          <h2 className="mt-4 font-display text-[clamp(1.7rem,3.4vw,2.4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-white">
             The same four steps, whichever service you start with.
           </h2>
         </Reveal>
@@ -51,7 +51,7 @@ export function ProcessStrip() {
                 <span className="font-mono text-[11px] tracking-[0.2em] text-primary/70">
                   {step.n}
                 </span>
-                <h3 className="mt-3 font-display text-[17px] font-semibold tracking-tight text-ink">
+                <h3 className="mt-3 font-display text-[17px] font-semibold tracking-tight text-white">
                   {step.title}
                 </h3>
                 <p className="mt-2.5 text-[14px] leading-relaxed text-muted">

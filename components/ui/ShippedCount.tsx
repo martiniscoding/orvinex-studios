@@ -56,14 +56,14 @@ export function ShippedCount({
       /* Overlay only — hover still reaches the gallery to pause it. */
       className="pointer-events-none absolute inset-x-0 bottom-0 z-10"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-ink/[0.12] bg-card/85 px-6 py-5 shadow-card backdrop-blur-xl sm:px-8 sm:py-6">
+      <div className="relative overflow-hidden rounded-2xl border border-white/[0.1] bg-background/70 px-6 py-5 backdrop-blur-xl sm:px-8 sm:py-6">
         {/* Violet bloom behind the numeral, echoing the hero glows */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -left-6 top-1/2 h-32 w-44 -translate-y-1/2 rounded-full blur-[38px]"
           style={{
             background:
-              "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.42 * var(--wash))) 0%, transparent 70%)",
+              "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,92,255,0.42) 0%, transparent 70%)",
           }}
         />
 
@@ -73,7 +73,7 @@ export function ShippedCount({
           className="pointer-events-none absolute inset-x-6 top-0 h-px"
           style={{
             background:
-              "linear-gradient(to right, transparent, rgb(var(--fg) / 0.24), transparent)",
+              "linear-gradient(to right, transparent, rgba(255,255,255,0.28), transparent)",
           }}
         />
 
@@ -83,7 +83,7 @@ export function ShippedCount({
         >
           <span
             aria-hidden="true"
-            className="flex items-start font-display text-[clamp(2.4rem,6.5vw,3.6rem)] font-bold leading-none tracking-[-0.055em] text-ink tabular-nums"
+            className="flex items-start font-display text-[clamp(2.4rem,6.5vw,3.6rem)] font-bold leading-none tracking-[-0.055em] text-white tabular-nums"
           >
             <motion.span>{shown}</motion.span>
             <span className="ml-0.5 mt-[0.1em] text-[0.4em] leading-none text-primary">
@@ -93,12 +93,12 @@ export function ShippedCount({
 
           <span
             aria-hidden="true"
-            className="h-9 w-px bg-gradient-to-b from-transparent via-ink/20 to-transparent sm:h-11"
+            className="h-9 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent sm:h-11"
           />
 
           <span
             aria-hidden="true"
-            className="text-[10px] font-semibold uppercase leading-[1.7] tracking-[0.26em] text-ink/55 sm:text-[10.5px]"
+            className="text-[10px] font-semibold uppercase leading-[1.7] tracking-[0.26em] text-white/55 sm:text-[10.5px]"
           >
             Products
             <br />

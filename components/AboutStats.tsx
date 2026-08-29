@@ -35,14 +35,14 @@ export function AboutStats() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden border-t border-ink/[0.06] bg-background py-24 sm:py-32"
+      className="relative overflow-hidden border-t border-white/[0.06] bg-background py-24 sm:py-32"
     >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-40 top-24 -z-10 h-[420px] w-[560px] rounded-full blur-[120px]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.18 * var(--wash))) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,92,255,0.18) 0%, transparent 70%)",
         }}
       />
 
@@ -52,7 +52,7 @@ export function AboutStats() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-primary">
               Established in 2022
             </p>
-            <h2 className="mt-4 font-display text-[clamp(1.95rem,4.4vw,3.05rem)] font-bold leading-[1.08] tracking-[-0.03em] text-ink">
+            <h2 className="mt-4 font-display text-[clamp(1.95rem,4.4vw,3.05rem)] font-bold leading-[1.08] tracking-[-0.03em] text-white">
               Engineering the future of enterprise software.
             </h2>
           </Reveal>
@@ -68,11 +68,11 @@ export function AboutStats() {
         </div>
 
         {/* ── Stats ──────────────────────────────────────────────────── */}
-        <RevealGroup className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink/[0.08] bg-ink/[0.06] lg:grid-cols-4">
+        <RevealGroup className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.06] lg:grid-cols-4">
           {STATS.map((stat) => (
             <RevealItem key={stat.label}>
               <div className="h-full bg-background px-6 py-8 text-center transition-colors duration-300 hover:bg-surface">
-                <p className="font-display text-[clamp(1.9rem,4vw,2.6rem)] font-bold tracking-tight text-ink">
+                <p className="font-display text-[clamp(1.9rem,4vw,2.6rem)] font-bold tracking-tight text-white">
                   {stat.value}
                 </p>
                 <p className="mt-2 text-[13px] leading-snug text-muted">
@@ -89,11 +89,11 @@ export function AboutStats() {
             const Icon = standard.icon;
             return (
               <RevealItem key={standard.title} className="h-full">
-                <article className="group h-full rounded-2xl border border-ink/[0.08] bg-surface/70 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-ink/10 bg-ink/[0.04] text-primary transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-primary/15">
+                <article className="group h-full rounded-2xl border border-white/[0.08] bg-surface/70 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-primary transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-primary/15">
                     <Icon className="h-5 w-5" strokeWidth={1.8} />
                   </span>
-                  <h3 className="mt-5 font-display text-[17px] font-semibold tracking-tight text-ink">
+                  <h3 className="mt-5 font-display text-[17px] font-semibold tracking-tight text-white">
                     {standard.title}
                   </h3>
                   <p className="mt-3 text-[14px] leading-relaxed text-muted">
@@ -106,7 +106,7 @@ export function AboutStats() {
         </RevealGroup>
 
         <Reveal delay={0.1}>
-          <p className="mx-auto mt-16 max-w-3xl text-center font-display text-[clamp(1.3rem,3vw,2rem)] font-semibold leading-snug tracking-tight text-ink/90">
+          <p className="mx-auto mt-16 max-w-3xl text-center font-display text-[clamp(1.3rem,3vw,2rem)] font-semibold leading-snug tracking-tight text-white/90">
             &ldquo;We build the technology so you can build the business.&rdquo;
           </p>
         </Reveal>

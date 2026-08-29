@@ -86,14 +86,14 @@ export default async function ServiceDetailPage({ params }: Params) {
             className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-[380px] w-[min(90vw,720px)] -translate-x-1/2 rounded-full blur-[120px]"
             style={{
               background:
-                "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.2 * var(--wash))) 0%, transparent 70%)",
+                "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,92,255,0.2) 0%, transparent 70%)",
             }}
           />
 
           <Reveal className="mx-auto max-w-[46rem] px-5">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-[13.5px] text-muted outline-none transition-colors hover:text-ink focus-visible:text-ink"
+              className="inline-flex items-center gap-2 text-[13.5px] text-muted outline-none transition-colors hover:text-white focus-visible:text-white"
             >
               <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.2} />
               All services
@@ -103,12 +103,12 @@ export default async function ServiceDetailPage({ params }: Params) {
               <span className="font-mono text-[12px] tracking-[0.2em] text-primary">
                 {service.code}
               </span>
-              <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-ink/45">
+              <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/45">
                 {band?.label}
               </span>
             </div>
 
-            <h1 className="mt-4 font-display text-[clamp(2.1rem,4.8vw,3.1rem)] font-bold leading-[1.07] tracking-[-0.035em] text-ink text-balance">
+            <h1 className="mt-4 font-display text-[clamp(2.1rem,4.8vw,3.1rem)] font-bold leading-[1.07] tracking-[-0.035em] text-white text-balance">
               {page.headline}
             </h1>
 
@@ -120,7 +120,7 @@ export default async function ServiceDetailPage({ params }: Params) {
               {service.stack.map((entry) => (
                 <li
                   key={entry}
-                  className="rounded-full border border-ink/[0.09] bg-ink/[0.03] px-3 py-1 text-[12px] font-medium tracking-wide text-ink/60"
+                  className="rounded-full border border-white/[0.09] bg-white/[0.03] px-3 py-1 text-[12px] font-medium tracking-wide text-white/60"
                 >
                   {entry}
                 </li>
@@ -131,7 +131,7 @@ export default async function ServiceDetailPage({ params }: Params) {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-9 inline-flex items-center gap-2 rounded-full bg-primary-deep px-6 py-3 text-[14.5px] font-semibold text-ink shadow-glow-btn outline-none transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-primary/60"
+              className="mt-9 inline-flex items-center gap-2 rounded-full bg-primary-deep px-6 py-3 text-[14.5px] font-semibold text-white shadow-[0_0_24px_-6px_rgba(124,92,255,0.9)] outline-none transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-primary/60"
             >
               Discuss your project
               <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
@@ -140,7 +140,7 @@ export default async function ServiceDetailPage({ params }: Params) {
         </section>
 
         <section className="mx-auto max-w-[46rem] px-5 pt-14">
-          <hr className="border-ink/[0.08]" />
+          <hr className="border-white/[0.08]" />
           <div className="mt-8">
             <Markdown>{page.body}</Markdown>
           </div>
@@ -148,16 +148,16 @@ export default async function ServiceDetailPage({ params }: Params) {
 
         {page.faq.length > 0 && (
           <section className="mx-auto max-w-[46rem] px-5 pt-16">
-            <h2 className="font-display text-[24px] font-bold tracking-tight text-ink">
+            <h2 className="font-display text-[24px] font-bold tracking-tight text-white">
               Common questions
             </h2>
-            <div className="mt-6 divide-y divide-ink/[0.08] border-y border-ink/[0.08]">
+            <div className="mt-6 divide-y divide-white/[0.08] border-y border-white/[0.08]">
               {page.faq.map((item) => (
                 // <details> keeps the answer in the DOM when collapsed, so the
                 // text is crawlable and the FAQPage markup describes content
                 // that is genuinely on the page.
                 <details key={item.q} className="group py-5">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[16px] font-semibold text-ink marker:hidden">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[16px] font-semibold text-white marker:hidden">
                     {item.q}
                     <span
                       aria-hidden="true"
@@ -177,7 +177,7 @@ export default async function ServiceDetailPage({ params }: Params) {
 
         {siblings.length > 0 && (
           <section className="mx-auto max-w-[46rem] px-5 pb-4 pt-16">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.28em] text-ink/45">
+            <h2 className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/45">
               Also in {band?.label}
             </h2>
             <ul className="mt-5">
@@ -185,12 +185,12 @@ export default async function ServiceDetailPage({ params }: Params) {
                 <li key={other.slug}>
                   <Link
                     href={`/services/${other.slug}`}
-                    className="group flex items-baseline gap-3 border-t border-ink/[0.08] py-4 outline-none"
+                    className="group flex items-baseline gap-3 border-t border-white/[0.08] py-4 outline-none"
                   >
-                    <span className="font-mono text-[11px] tracking-[0.14em] text-ink/30">
+                    <span className="font-mono text-[11px] tracking-[0.14em] text-white/30">
                       {other.code}
                     </span>
-                    <span className="font-display text-[16px] font-semibold tracking-tight text-ink transition-colors group-hover:text-primary">
+                    <span className="font-display text-[16px] font-semibold tracking-tight text-white transition-colors group-hover:text-primary">
                       {other.title}
                     </span>
                   </Link>

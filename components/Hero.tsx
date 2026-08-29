@@ -48,7 +48,7 @@ export function Hero() {
         className="pointer-events-none absolute -top-[38vh] left-1/2 -z-20 h-[85vh] w-[130vw] max-w-[1500px] -translate-x-1/2 rounded-full blur-[90px] sm:-top-[42vh]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.55 * var(--wash))) 0%, rgb(var(--primary) / calc(0.32 * var(--wash))) 32%, rgb(var(--primary) / calc(0.12 * var(--wash))) 55%, transparent 72%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(139,92,246,0.55) 0%, rgba(124,92,255,0.32) 32%, rgba(109,74,255,0.12) 55%, transparent 72%)",
         }}
       />
 
@@ -60,7 +60,7 @@ export function Hero() {
         className="pointer-events-none absolute -top-[22vh] left-1/2 -z-20 h-[45vh] w-[70vw] max-w-[820px] -translate-x-1/2 rounded-full blur-[80px]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.5 * var(--wash))) 0%, rgb(var(--primary) / calc(0.22 * var(--wash))) 45%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(167,139,250,0.5) 0%, rgba(124,92,255,0.22) 45%, transparent 70%)",
         }}
       />
 
@@ -147,7 +147,7 @@ export function Hero() {
           className="absolute left-1/2 top-[16%] h-24 w-[38vw] max-w-[460px] -translate-x-1/2 rounded-full blur-[52px]"
           style={{
             background:
-              "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / 0.42) 0%, rgb(var(--primary) / 0.22) 40%, transparent 72%)",
+              "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.55) 0%, rgba(167,139,250,0.35) 40%, transparent 72%)",
           }}
         />
       </div>
@@ -161,7 +161,7 @@ export function Hero() {
         className="flex w-full flex-col items-start text-left"
       >
         <motion.div variants={item}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-ink/[0.05] px-4 py-1.5 text-[12.5px] font-medium text-ink/80 backdrop-blur-sm">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-1.5 text-[12.5px] font-medium text-white/80 backdrop-blur-sm">
             <Sparkles
               className="h-3.5 w-3.5 text-primary"
               strokeWidth={2}
@@ -173,7 +173,7 @@ export function Hero() {
 
         <motion.h1
           variants={item}
-          className="mt-7 font-display text-[clamp(2.3rem,5.6vw,3.95rem)] font-bold leading-[1.05] tracking-[-0.035em] text-ink"
+          className="mt-7 font-display text-[clamp(2.3rem,5.6vw,3.95rem)] font-bold leading-[1.05] tracking-[-0.035em] text-white"
         >
           Build digital solutions that dominate your market.
         </motion.h1>
@@ -196,7 +196,7 @@ export function Hero() {
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 24 }}
-            className="group flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-7 py-3.5 text-[15px] font-semibold text-ink shadow-glow-btn-lg transition-colors hover:bg-primary hover:shadow-glow-lg sm:w-auto"
+            className="group flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_0_32px_-8px_rgba(124,92,255,0.95)] transition-colors hover:bg-primary hover:shadow-glow-lg sm:w-auto"
           >
             Start Your Project
             <ArrowRight
@@ -210,7 +210,7 @@ export function Hero() {
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 24 }}
-            className="group flex w-full items-center justify-center gap-2 rounded-full border border-ink/25 bg-ink/[0.02] px-7 py-3.5 text-[15px] font-semibold text-ink backdrop-blur-sm transition-colors hover:border-ink/45 hover:bg-ink/[0.07] sm:w-auto"
+            className="group flex w-full items-center justify-center gap-2 rounded-full border border-white/25 bg-white/[0.02] px-7 py-3.5 text-[15px] font-semibold text-white backdrop-blur-sm transition-colors hover:border-white/45 hover:bg-white/[0.07] sm:w-auto"
           >
             Explore Services
             <ArrowRight
@@ -239,7 +239,7 @@ export function Hero() {
         className="pointer-events-none absolute -bottom-[30vh] left-1/2 -z-20 h-[55vh] w-[120vw] max-w-[1400px] -translate-x-1/2 rounded-full blur-[90px]"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgb(var(--primary) / calc(0.42 * var(--wash))) 0%, rgb(var(--primary) / calc(0.18 * var(--wash))) 45%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,92,255,0.42) 0%, rgba(109,74,255,0.18) 45%, transparent 70%)",
         }}
       />
 

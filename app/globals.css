@@ -3,56 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  /**
-   * Theme tokens as raw RGB channels rather than hex, so Tailwind's opacity
-   * modifiers work against them: `text-ink/70` compiles to
-   * `rgb(var(--fg) / 0.7)`.
-   *
-   * The pay-off is that one class is correct in both themes. `border-ink/[0.08]`
-   * is a near-black hairline on the light site and a white one inside
-   * `.theme-dark`, with no per-component branching.
-   *
-   * Light is the default because the public site is light. The admin panel
-   * wraps itself in `.theme-dark` and keeps the original dark values.
-   */
   :root {
-    color-scheme: light;
-
-    --bg: 251 251 253;
-    --surface: 243 243 248;
-    --card: 255 255 255;
-    --fg: 18 18 26;
-    --muted: 90 90 107;
-    /* #6d4aff, not the brand's #7c5cff: the lighter violet lands at 4.35:1 on
-       white, just under AA for body text. This one clears it at 5.1:1 and is
-       the same hue. */
-    --primary: 109 74 255;
-    /* Button fill, identical in both themes — white text sits on it either way. */
-    --primary-deep: 109 74 255;
-    --on-primary: 255 255 255;
-
-    /* Atmosphere. A glow reads as light on a dark ground and as a stain on a
-       light one, so the light theme runs these far weaker. */
-    --grid-line: 18 18 26;
-    --grid-alpha: 0.055;
-    --wash: 0.3;
-  }
-
-  .theme-dark {
     color-scheme: dark;
-
-    --bg: 10 10 15;
-    --surface: 17 17 24;
-    --card: 11 11 17;
-    --fg: 255 255 255;
-    --muted: 161 161 170;
-    --primary: 124 92 255;
-    --primary-deep: 109 74 255;
-    --on-primary: 255 255 255;
-
-    --grid-line: 255 255 255;
-    --grid-alpha: 0.045;
-    --wash: 1;
   }
 
   html {
@@ -60,29 +12,29 @@
   }
 
   body {
-    @apply bg-background text-ink antialiased;
+    @apply bg-background text-white antialiased;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: rgb(var(--primary) / 0.28);
-    color: rgb(var(--fg));
+    background: rgba(124, 92, 255, 0.35);
+    color: #fff;
   }
 
   ::-webkit-scrollbar {
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: rgb(var(--bg));
+    background: #0a0a0f;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgb(var(--primary) / 0.35);
+    background: rgba(124, 92, 255, 0.35);
     border-radius: 999px;
-    border: 3px solid rgb(var(--bg));
+    border: 3px solid #0a0a0f;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgb(var(--primary) / 0.6);
+    background: rgba(124, 92, 255, 0.6);
   }
 }
 
@@ -91,28 +43,20 @@
   .bg-grid {
     background-image: linear-gradient(
         to right,
-        rgb(var(--grid-line) / var(--grid-alpha)) 1px,
+        rgba(255, 255, 255, 0.045) 1px,
         transparent 1px
       ),
-      linear-gradient(
-        to bottom,
-        rgb(var(--grid-line) / var(--grid-alpha)) 1px,
-        transparent 1px
-      );
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 
   .bg-grid-sm {
     background-image: linear-gradient(
         to right,
-        rgb(var(--grid-line) / calc(var(--grid-alpha) * 0.8)) 1px,
+        rgba(255, 255, 255, 0.035) 1px,
         transparent 1px
       ),
-      linear-gradient(
-        to bottom,
-        rgb(var(--grid-line) / calc(var(--grid-alpha) * 0.8)) 1px,
-        transparent 1px
-      );
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
