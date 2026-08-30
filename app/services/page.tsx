@@ -7,6 +7,7 @@ import { ProcessStrip } from "@/components/services/ProcessStrip";
 import { ServiceCatalogue } from "@/components/services/ServiceCatalogue";
 import { ServicesHero } from "@/components/services/ServicesHero";
 import { Navbar1 } from "@/components/ui/navbar-1";
+import { listCatalogue } from "@/lib/service-catalogue";
 
 const description =
   "Custom software, web and mobile applications, e-commerce management systems, RAG chatbots, personalised AI tools, marketplace research, SEO and growth marketing — the full Orvinex catalogue, delivered by one team.";
@@ -29,13 +30,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ServicesPage() {
+export const revalidate = 3600;
+
+export default async function ServicesPage() {
+  const services = await listCatalogue();
+
   return (
     <>
       <Navbar1 />
       <main>
-        <ServicesHero />
-        <ServiceCatalogue />
+        <ServicesHero services={services} />
+        <ServiceCatalogue services={services} />
         <ProcessStrip />
         <ContactCTA />
       </main>

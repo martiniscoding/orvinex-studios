@@ -14,6 +14,17 @@ import {
 
 export type BandId = "build" | "intelligence" | "grow";
 
+/**
+ * NOTE: the live catalogue now lives in the `service_pages` table and is read
+ * through lib/service-catalogue.ts, so services can be added from the admin
+ * panel without a deploy.
+ *
+ * What remains here is the band definitions — three of them, carrying design
+ * decisions like the aperture arc count and column layout, so adding a fourth
+ * is a design change rather than content entry — plus the SERVICES array,
+ * which is kept only as the seed used to populate an empty database.
+ */
+
 export type Service = {
   /** Band letter + position, e.g. "B·02". Encodes where the service sits in
    *  the catalogue, so the ledger and the cards can be cross-referenced. */

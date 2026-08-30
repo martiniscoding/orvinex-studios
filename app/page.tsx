@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/JsonLd";
+import { listCatalogue } from "@/lib/service-catalogue";
 import { homeStructuredData } from "./structured-data";
 import { AboutStats } from "@/components/AboutStats";
 import { ContactCTA } from "@/components/ContactCTA";
@@ -17,11 +18,14 @@ import { listPublishedTestimonials } from "@/lib/testimonials";
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const testimonials = await listPublishedTestimonials();
+  const [testimonials, services] = await Promise.all([
+    listPublishedTestimonials(),
+    listCatalogue(),
+  ]);
 
   return (
     <>
-      <JsonLd data={homeStructuredData} />
+      <JsonLd data={homeStructuredData(services)} />
       <Navbar1 />
       <main>
         <Hero />

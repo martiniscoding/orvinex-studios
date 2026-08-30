@@ -10,29 +10,27 @@ import { JsonLd } from "@/components/JsonLd";
 import { Navbar1 } from "@/components/ui/navbar-1";
 import { Reveal } from "@/components/ui/Reveal";
 import { servicePageStructuredData } from "@/lib/blog-schema";
-import { getServicePage, listServicePages } from "@/lib/service-pages";
-import { BANDS, SERVICES } from "@/lib/services";
+import {
+  getCatalogueService,
+  listCatalogue,
+} from "@/lib/service-catalogue";
+import { BANDS } from "@/lib/services";
 import { BOOKING_URL } from "@/lib/site";
 
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const pages = await listServicePages();
-  return pages.map((page) => ({ slug: page.slug }));
+  const services = await listCatalogue();
+  return services.map((service) => ({ slug: service.slug }));
 }
 
 type Params = { params: { slug: string } };
 
-function catalogueEntry(slug: string) {
-  return SERVICES.find((service) => service.slug === slug);
-}
-
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const page = await getServicePage(params.slug);
-  const service = catalogueEntry(params.slug);
-  if (!page || !service) return { title: "Not found", robots: { index: false } };
+  const page = await getCatalogueService(params.slug);
+  if (!page) return { title: "Not found", robots: { index: false } };
 
-  const title = page.metaTitle?.trim() || `${service.title} | Orvinex`;
+  const title = page.metaTitle?.trim() || `${page.title} | Orvinex`;
   const description = page.metaDescription?.trim() || page.intro;
 
   return {
@@ -53,13 +51,12 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function ServiceDetailPage({ params }: Params) {
-  const page = await getServicePage(params.slug);
-  const service = catalogueEntry(params.slug);
-  if (!page || !service) notFound();
+  const page = await getCatalogueService(params.slug);
+  if (!page) notFound();
 
-  const band = BANDS.find((b) => b.id === service.band);
-  const siblings = SERVICES.filter(
-    (other) => other.band === service.band && other.slug !== service.slug
+  const band = BANDS.find((b) => b.id === page.band);
+  const siblings = (await listCatalogue()).filter(
+    (other) => other.band === page.band && other.slug !== page.slug
   );
 
   return (
@@ -67,7 +64,7 @@ export default async function ServiceDetailPage({ params }: Params) {
       <JsonLd
         data={servicePageStructuredData({
           slug: page.slug,
-          name: service.title,
+          name: page.title,
           headline: page.headline,
           description: page.metaDescription?.trim() || page.intro,
           faq: page.faq,
@@ -101,7 +98,7 @@ export default async function ServiceDetailPage({ params }: Params) {
 
             <div className="mt-7 flex items-center gap-3">
               <span className="font-mono text-[12px] tracking-[0.2em] text-primary">
-                {service.code}
+                {page.code}
               </span>
               <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/45">
                 {band?.label}
@@ -117,7 +114,7 @@ export default async function ServiceDetailPage({ params }: Params) {
             </p>
 
             <ul className="mt-7 flex flex-wrap gap-1.5">
-              {service.stack.map((entry) => (
+              {page.stack.map((entry) => (
                 <li
                   key={entry}
                   className="rounded-full border border-white/[0.09] bg-white/[0.03] px-3 py-1 text-[12px] font-medium tracking-wide text-white/60"

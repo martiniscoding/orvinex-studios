@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { BANDS, SERVICES } from "@/lib/services";
+import { listCatalogue } from "@/lib/service-catalogue";
+import { BANDS } from "@/lib/services";
 import { LightBoard } from "./services/LightBoard";
 import { ServiceCard } from "./services/ServiceCard";
 import { Reveal, RevealGroup, RevealItem } from "./ui/Reveal";
@@ -27,7 +28,10 @@ function BandLabel({ children }: { children: string }) {
   );
 }
 
-export function ServicesGrid() {
+export async function ServicesGrid() {
+  const services = await listCatalogue();
+  const featured = services.filter((service) => service.featured);
+
   return (
     <section
       id="services"
@@ -61,13 +65,13 @@ export function ServicesGrid() {
                 <BandLabel>{band.label}</BandLabel>
               </Reveal>
               <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {SERVICES.filter(
-                  (service) => service.band === band.id && service.featured
-                ).map((service) => (
-                  <RevealItem key={service.slug} className="h-full">
-                    <ServiceCard service={service} arcs={band.arcs} />
-                  </RevealItem>
-                ))}
+                {featured
+                  .filter((service) => service.band === band.id)
+                  .map((service) => (
+                    <RevealItem key={service.slug} className="h-full">
+                      <ServiceCard service={service} arcs={band.arcs} />
+                    </RevealItem>
+                  ))}
               </RevealGroup>
             </div>
           ))}
@@ -78,7 +82,7 @@ export function ServicesGrid() {
             href="/services"
             className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] px-6 py-3 text-[14.5px] font-medium text-white/80 outline-none transition-colors hover:border-primary/40 hover:text-white focus-visible:ring-2 focus-visible:ring-primary/50"
           >
-            All {SERVICES.length} services, including our AI work
+            All {services.length} services, including our AI work
             <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
           </Link>
         </Reveal>

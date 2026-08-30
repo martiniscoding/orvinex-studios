@@ -1,9 +1,14 @@
-import { BANDS, SERVICES } from "@/lib/services";
+import type { CatalogueService } from "@/lib/service-catalogue";
+import { BANDS } from "@/lib/services";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { LightBoard } from "./LightBoard";
 import { ServiceCard } from "./ServiceCard";
 
-export function ServiceCatalogue() {
+export function ServiceCatalogue({
+  services,
+}: {
+  services: CatalogueService[];
+}) {
   return (
     <section
       id="catalogue"
@@ -16,7 +21,7 @@ export function ServiceCatalogue() {
 
       <LightBoard className="mx-auto max-w-6xl px-5">
         {BANDS.map((band, index) => {
-          const entries = SERVICES.filter((s) => s.band === band.id);
+          const entries = services.filter((s) => s.band === band.id);
           return (
             <div key={band.id} className={index === 0 ? "" : "mt-20"}>
               <Reveal>

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-import type { Service } from "@/lib/services";
+import { iconFor } from "@/lib/service-icons";
+import type { CatalogueService } from "@/lib/service-catalogue";
 
 /**
  * A fragment of the Orvinex mark — concentric arcs winding toward a hollow
@@ -41,14 +42,14 @@ function Aperture({ arcs }: { arcs: number }) {
 }
 
 type ServiceCardProps = {
-  service: Service;
+  service: CatalogueService;
   arcs: number;
   /** The catalogue page anchors each card so deep links still resolve. */
   anchored?: boolean;
 };
 
 export function ServiceCard({ service, arcs, anchored }: ServiceCardProps) {
-  const Icon = service.icon;
+  const Icon = iconFor(service.icon);
   return (
     <Link
       href={`/services/${service.slug}`}

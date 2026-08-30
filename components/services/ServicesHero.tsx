@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-import { BANDS, SERVICES } from "@/lib/services";
+import type { CatalogueService } from "@/lib/service-catalogue";
+import { BANDS } from "@/lib/services";
 import { BOOKING_URL } from "@/lib/site";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -14,7 +15,7 @@ import { Reveal } from "@/components/ui/Reveal";
  * more than a visitor should have to scroll blindly through to find the one
  * thing they came for.
  */
-function Ledger() {
+function Ledger({ services }: { services: CatalogueService[] }) {
   return (
     <div className="rounded-2xl border border-white/[0.07] bg-[#0b0b11]/80 p-6 sm:p-7">
       <div className="flex items-baseline justify-between">
@@ -22,12 +23,12 @@ function Ledger() {
           Index
         </span>
         <span className="font-mono text-[11px] tracking-[0.18em] text-white/30">
-          {SERVICES.length} services
+          {services.length} services
         </span>
       </div>
 
       {BANDS.map((band) => {
-        const entries = SERVICES.filter((s) => s.band === band.id);
+        const entries = services.filter((s) => s.band === band.id);
         return (
           <div key={band.id} className="mt-7 first:mt-6">
             <div className="flex items-center gap-3">
@@ -76,7 +77,11 @@ function Ledger() {
   );
 }
 
-export function ServicesHero() {
+export function ServicesHero({
+  services,
+}: {
+  services: CatalogueService[];
+}) {
   return (
     <section className="relative overflow-hidden pt-32 sm:pt-40">
       <div
@@ -128,7 +133,7 @@ export function ServicesHero() {
         </Reveal>
 
         <Reveal delay={0.12}>
-          <Ledger />
+          <Ledger services={services} />
         </Reveal>
       </div>
     </section>

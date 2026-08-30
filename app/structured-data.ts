@@ -31,44 +31,6 @@ const TELEPHONE = "+91-8272891238";
 /** `areaServed` accepts plain text; "Worldwide" is the conventional value. */
 const AREA_SERVED = "Worldwide";
 
-const SERVICES = [
-  {
-    name: "Mobile App Development",
-    description:
-      "Native and cross-platform iOS and Android applications, from product definition through store release.",
-  },
-  {
-    name: "Custom Software Development",
-    description:
-      "Bespoke business software and internal platforms built around an organisation's own workflows.",
-  },
-  {
-    name: "Web Application Development",
-    description:
-      "Production web applications and SaaS platforms, including architecture, build, and ongoing engineering.",
-  },
-  {
-    name: "AI Product Development",
-    description:
-      "AI-powered products and integrations, including LLM-backed features, automation, and intelligent workflows.",
-  },
-  {
-    name: "SEO Services",
-    description:
-      "Technical and on-page search engine optimisation for measurable organic growth.",
-  },
-  {
-    name: "Digital Marketing",
-    description:
-      "Full-funnel digital marketing campaigns across search, social, and paid channels.",
-  },
-  {
-    name: "Growth Marketing",
-    description:
-      "Data-driven growth experimentation, conversion optimisation, and retention strategy.",
-  },
-];
-
 export const siteStructuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -112,20 +74,6 @@ export const siteStructuredData = {
           availableLanguage: ["English"],
         },
       ],
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Software Development Services",
-        itemListElement: SERVICES.map((service) => ({
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: service.name,
-            description: service.description,
-            provider: { "@id": ORGANIZATION_ID },
-            areaServed: AREA_SERVED,
-          },
-        })),
-      },
       // TODO: add `sameAs: [...]` once the LinkedIn / X / Instagram profiles
       // exist — that is how Google confirms this is one entity across the web.
       // The Footer social links are still `href="#"` placeholders.
@@ -164,10 +112,41 @@ export const siteStructuredData = {
   ],
 };
 
-/** The landing page's own node. Emitted by app/page.tsx, nowhere else. */
-export const homeStructuredData = {
+/**
+ * The landing page's own nodes.
+ *
+ * The offer catalogue is built from the live services rather than a second
+ * hardcoded list: it used to sit in the site-wide graph, which meant adding a
+ * service in the admin panel silently left the markup describing the old set.
+ *
+ * Emitting a second node with the ORGANIZATION_ID is deliberate — consumers
+ * merge nodes sharing an @id within a document, so this adds the catalogue to
+ * the organization the layout already declared rather than creating a rival.
+ */
+export function homeStructuredData(
+  services: { title: string; description: string }[]
+) {
+  return {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Software Development Services",
+        itemListElement: services.map((service) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: service.title,
+            description: service.description,
+            provider: { "@id": ORGANIZATION_ID },
+            areaServed: AREA_SERVED,
+          },
+        })),
+      },
+    },
     {
       "@type": "WebPage",
       "@id": WEBPAGE_ID,
@@ -179,4 +158,5 @@ export const homeStructuredData = {
       inLanguage: "en",
     },
   ],
-};
+  };
+}

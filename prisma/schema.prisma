@@ -74,6 +74,23 @@ model ServicePage {
   /// simply never rendered.
   slug String
 
+  /// Catalogue fields. These used to live in lib/services.ts; they moved here
+  /// so services can be added from the admin panel without a deploy.
+  title    String @default("")
+  /// Short form for the hero ledger, where the full title would wrap.
+  short    String @default("")
+  /// The paragraph on the card in the grid, distinct from the page intro.
+  cardText String @default("") @map("card_text")
+  stack    String[] @default([])
+  band     String @default("build")
+  /// Key into SERVICE_ICONS. A component cannot be stored, so the name is.
+  icon     String @default("Code2")
+  /// Shown in the teaser grid on the landing page.
+  featured Boolean @default(false)
+  /// Order within the band. The B·01 style code is derived from it, so
+  /// reordering renumbers rather than leaving gaps.
+  position Int @default(0)
+
   headline String
   intro    String
   /// Markdown, rendered with the same component as blog posts.

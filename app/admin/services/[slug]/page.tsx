@@ -2,8 +2,7 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { auth } from "@/lib/auth";
-import { getServicePage } from "@/lib/service-pages";
-import { SERVICES } from "@/lib/services";
+import { getCatalogueService } from "@/lib/service-catalogue";
 import { LoginForm } from "../../login-form";
 import { AdminHeader } from "../../admin-header";
 import { ServiceEditor } from "../service-editor";
@@ -16,9 +15,8 @@ export default async function EditServicePage({
   const session = await auth.api.getSession({ headers: headers() });
   if (!session) return <LoginForm />;
 
-  const page = await getServicePage(params.slug);
-  const service = SERVICES.find((s) => s.slug === params.slug);
-  if (!page || !service) notFound();
+  const service = await getCatalogueService(params.slug);
+  if (!service) notFound();
 
   return (
     <main className="min-h-screen bg-background px-5 py-10">
@@ -33,16 +31,22 @@ export default async function EditServicePage({
           </h1>
         </div>
         <ServiceEditor
-          slug={page.slug}
-          title={service.title}
+          slug={service.slug}
           initial={{
-            headline: page.headline,
-            intro: page.intro,
-            body: page.body,
-            faq: page.faq,
-            metaTitle: page.metaTitle ?? "",
-            metaDescription: page.metaDescription ?? "",
-            keyword: page.keyword ?? "",
+            title: service.title,
+            short: service.short,
+            cardText: service.description,
+            stack: service.stack,
+            band: service.band,
+            icon: service.icon,
+            featured: service.featured,
+            headline: service.headline,
+            intro: service.intro,
+            body: service.body,
+            faq: service.faq,
+            metaTitle: service.metaTitle ?? "",
+            metaDescription: service.metaDescription ?? "",
+            keyword: service.keyword ?? "",
           }}
         />
       </div>
