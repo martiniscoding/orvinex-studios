@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import { Logo } from "./ui/Logo";
 import { Reveal } from "./ui/Reveal";
@@ -103,12 +104,12 @@ export function Footer() {
             &copy; 2026 Orvinex Tech. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a
-              href="#"
+            <Link
+              href="/privacy"
               className="text-[13px] text-muted transition-colors duration-200 hover:text-white"
             >
               Privacy Policy
-            </a>
+            </Link>
             <a
               href="#"
               className="text-[13px] text-muted transition-colors duration-200 hover:text-white"

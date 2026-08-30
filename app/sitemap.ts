@@ -28,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    { url: `${SITE}/privacy`, changeFrequency: "yearly", priority: 0.3 },
     // /admin is deliberately absent: it is noindex and disallowed.
     ...posts.map((post) => ({
       url: `${SITE}/articles/${post.slug}`,
