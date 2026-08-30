@@ -49,7 +49,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <Link
-                  href={`/admin/blog/${post.id}`}
+                  href={`/admin/articles/${post.id}`}
                   className="truncate font-display text-[15.5px] font-semibold tracking-tight text-white transition-colors hover:text-primary"
                 >
                   {post.title}
@@ -61,7 +61,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
                 )}
               </div>
               <p className="mt-1 truncate font-mono text-[12px] text-white/30">
-                /blog/{post.slug} · {formatPostDate(post.publishedAt)}
+                /articles/{post.slug} · {formatPostDate(post.publishedAt)}
               </p>
             </div>
 
@@ -97,7 +97,7 @@ export function PostsTable({ posts }: { posts: PostSummary[] }) {
 
             {post.status === "published" && (
               <a
-                href={`/blog/${post.slug}`}
+                href={`/articles/${post.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="View post"

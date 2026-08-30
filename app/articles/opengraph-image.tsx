@@ -6,7 +6,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * Social card for the blog index. Without one, sharing /blog produced a link
+ * Social card for the article index. Without one, sharing /articles produced a link
  * with no image at all, which measurably costs click-through.
  *
  * Colours are literal: this renders through satori, not a browser, and satori
@@ -70,7 +70,7 @@ export default function Image() {
         </div>
 
         <div style={{ display: "flex", color: "#a1a1aa", fontSize: 26 }}>
-          orvinex.store/blog
+          orvinex.store/articles
         </div>
       </div>
     ),

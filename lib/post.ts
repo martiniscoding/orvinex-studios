@@ -1,7 +1,7 @@
 /**
  * Post types and pure helpers, safe on both sides of the boundary.
  *
- * lib/blog.ts holds the database queries and is marked server-only, so a
+ * lib/articles.ts holds the database queries and is marked server-only, so a
  * client component cannot import from it — importing anything from that module
  * drags Prisma into the browser bundle and Next refuses to build. Everything
  * here touches nothing but its arguments.

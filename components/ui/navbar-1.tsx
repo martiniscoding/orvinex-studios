@@ -16,7 +16,7 @@ const NAV_LINKS = [
   { label: "Home", href: "/#home" },
   { label: "About", href: "/#about" },
   { label: "Services", href: "/services" },
-  { label: "Blog", href: "/blog" },
+  { label: "Articles", href: "/articles" },
 ];
 
 /** Sections that actually exist, in the order the scroll-spy should track. */

@@ -1,4 +1,4 @@
-import { listPublishedPosts } from "@/lib/blog";
+import { listPublishedPosts } from "@/lib/articles";
 import { SITE_URL } from "@/app/structured-data";
 
 export const revalidate = 3600;
@@ -24,7 +24,7 @@ export async function GET() {
 
   const items = posts
     .map((post) => {
-      const url = `${SITE_URL}/blog/${post.slug}`;
+      const url = `${SITE_URL}/articles/${post.slug}`;
       const date = new Date(post.publishedAt ?? post.updatedAt).toUTCString();
       return `    <item>
       <title>${escapeXml(post.title)}</title>
@@ -40,10 +40,10 @@ export async function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Orvinex Blog</title>
-    <link>${SITE_URL}/blog</link>
+    <link>${SITE_URL}/articles</link>
     <description>Practical writing on custom software, AI products and growth from the Orvinex engineering team.</description>
     <language>en</language>
-    <atom:link href="${SITE_URL}/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="${SITE_URL}/articles/rss.xml" rel="self" type="application/rss+xml" />
 ${items}
   </channel>
 </rss>`;

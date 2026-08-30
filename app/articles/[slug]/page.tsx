@@ -4,11 +4,11 @@ import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
 import { JsonLd } from "@/components/JsonLd";
-import { Markdown } from "@/components/blog/Markdown";
+import { Markdown } from "@/components/articles/Markdown";
 import { Footer } from "@/components/Footer";
 import { Navbar1 } from "@/components/ui/navbar-1";
-import { getPublishedPost, listPublishedPosts } from "@/lib/blog";
-import { postStructuredData } from "@/lib/blog-schema";
+import { getPublishedPost, listPublishedPosts } from "@/lib/articles";
+import { postStructuredData } from "@/lib/article-schema";
 import { formatPostDate, readingTime } from "@/lib/post";
 import { BOOKING_URL } from "@/lib/site";
 
@@ -36,10 +36,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: `/articles/${post.slug}` },
     openGraph: {
       type: "article",
-      url: `https://orvinex.store/blog/${post.slug}`,
+      url: `https://orvinex.store/articles/${post.slug}`,
       siteName: "Orvinex",
       title: post.title,
       description: post.excerpt,
@@ -93,7 +93,7 @@ export default async function PostPage({ params }: Params) {
                 </li>
                 <li>
                   <Link
-                    href="/blog"
+                    href="/articles"
                     className="outline-none transition-colors hover:text-white focus-visible:text-white"
                   >
                     Blog
@@ -155,7 +155,7 @@ export default async function PostPage({ params }: Params) {
                   {others.map((other) => (
                     <li key={other.id}>
                       <Link
-                        href={`/blog/${other.slug}`}
+                        href={`/articles/${other.slug}`}
                         className="group block border-t border-white/[0.08] py-5 outline-none"
                       >
                         <span className="font-display text-[16.5px] font-semibold tracking-tight text-white transition-colors group-hover:text-primary">

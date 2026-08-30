@@ -57,7 +57,7 @@ export function analyzePost(input: {
   urlPrefix?: string;
 }): SeoReport {
   const { title, excerpt, content, slug } = input;
-  const urlPrefix = input.urlPrefix ?? "/blog";
+  const urlPrefix = input.urlPrefix ?? "/articles";
   const keyword = norm(input.keyword);
   const body = norm(content);
   const words = content.trim().split(/\s+/).filter(Boolean).length;

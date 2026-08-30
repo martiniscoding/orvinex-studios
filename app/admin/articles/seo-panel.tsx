@@ -35,7 +35,7 @@ export function SeoPanel(props: {
   urlPrefix?: string;
 }) {
   const { title, excerpt, content, slug, keyword, onKeywordChange } = props;
-  const urlPrefix = props.urlPrefix ?? "/blog";
+  const urlPrefix = props.urlPrefix ?? "/articles";
 
   const report = useMemo(
     () => analyzePost({ title, excerpt, content, slug, keyword, urlPrefix }),

@@ -5,7 +5,7 @@ import { logout } from "./actions";
 
 const TABS = [
   { id: "leads", label: "Inquiries", href: "/admin" },
-  { id: "blog", label: "Posts", href: "/admin/blog" },
+  { id: "articles", label: "Articles", href: "/admin/articles" },
   { id: "services", label: "Services", href: "/admin/services" },
   { id: "reviews", label: "Reviews", href: "/admin/testimonials" },
 ] as const;
@@ -14,7 +14,7 @@ const TABS = [
 export function AdminHeader({
   current,
 }: {
-  current: "leads" | "blog" | "services" | "reviews";
+  current: "leads" | "articles" | "services" | "reviews";
 }) {
   return (
     <header className="flex flex-wrap items-center justify-between gap-4">

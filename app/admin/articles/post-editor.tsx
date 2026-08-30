@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Eye, PencilLine } from "lucide-react";
 
-import { Markdown } from "@/components/blog/Markdown";
+import { Markdown } from "@/components/articles/Markdown";
 import { slugify } from "@/lib/post";
 import { createPost, updatePost, type PostInput } from "./actions";
 import { SeoPanel } from "./seo-panel";
@@ -72,7 +72,7 @@ export function PostEditor({ post }: Props) {
       }
       setSaved(true);
       if (!post) {
-        router.replace(`/admin/blog/${result.id}`);
+        router.replace(`/admin/articles/${result.id}`);
       } else {
         setSlug(result.slug);
         router.refresh();
@@ -84,7 +84,7 @@ export function PostEditor({ post }: Props) {
     <form onSubmit={submit} className="pb-24">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Link
-          href="/admin/blog"
+          href="/admin/articles"
           className="inline-flex items-center gap-2 text-[13.5px] text-muted transition-colors hover:text-white"
         >
           <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.2} />
@@ -250,7 +250,7 @@ export function PostEditor({ post }: Props) {
               className={`${inputClass} mt-3 font-mono text-[13px]`}
             />
             <p className="mt-2 break-all text-[12px] text-white/35">
-              /blog/{effectiveSlug || "…"}
+              /articles/{effectiveSlug || "…"}
             </p>
           </div>
         </aside>

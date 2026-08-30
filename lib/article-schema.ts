@@ -15,7 +15,7 @@ import { readingTime, type PostFull, type PostSummary } from "./post";
  * at it keeps one entity instead of creating a second, weaker duplicate.
  */
 
-const BLOG_ID = `${SITE_URL}/blog#blog`;
+const BLOG_ID = `${SITE_URL}/articles#blog`;
 
 function breadcrumb(trail: { name: string; url: string }[]) {
   return {
@@ -37,7 +37,7 @@ export function blogIndexStructuredData(posts: PostSummary[]) {
       {
         "@type": "Blog",
         "@id": BLOG_ID,
-        url: `${SITE_URL}/blog`,
+        url: `${SITE_URL}/articles`,
         name: "Orvinex Blog",
         description:
           "Practical writing on custom software, AI products and growth from the Orvinex engineering team.",
@@ -46,24 +46,24 @@ export function blogIndexStructuredData(posts: PostSummary[]) {
         inLanguage: "en",
         blogPost: posts.map((post) => ({
           "@type": "BlogPosting",
-          "@id": `${SITE_URL}/blog/${post.slug}#article`,
+          "@id": `${SITE_URL}/articles/${post.slug}#article`,
           headline: post.title,
           description: post.excerpt,
-          url: `${SITE_URL}/blog/${post.slug}`,
+          url: `${SITE_URL}/articles/${post.slug}`,
           datePublished: post.publishedAt ?? undefined,
           dateModified: post.updatedAt,
         })),
       },
       breadcrumb([
         { name: "Home", url: SITE_URL },
-        { name: "Blog", url: `${SITE_URL}/blog` },
+        { name: "Blog", url: `${SITE_URL}/articles` },
       ]),
     ],
   };
 }
 
 export function postStructuredData(post: PostFull) {
-  const url = `${SITE_URL}/blog/${post.slug}`;
+  const url = `${SITE_URL}/articles/${post.slug}`;
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -93,7 +93,7 @@ export function postStructuredData(post: PostFull) {
       },
       breadcrumb([
         { name: "Home", url: SITE_URL },
-        { name: "Blog", url: `${SITE_URL}/blog` },
+        { name: "Blog", url: `${SITE_URL}/articles` },
         { name: post.title, url },
       ]),
     ],

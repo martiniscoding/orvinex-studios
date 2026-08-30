@@ -3,13 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-import { Markdown } from "@/components/blog/Markdown";
+import { Markdown } from "@/components/articles/Markdown";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { Navbar1 } from "@/components/ui/navbar-1";
 import { Reveal } from "@/components/ui/Reveal";
-import { servicePageStructuredData } from "@/lib/blog-schema";
+import { servicePageStructuredData } from "@/lib/article-schema";
 import {
   getCatalogueService,
   listCatalogue,

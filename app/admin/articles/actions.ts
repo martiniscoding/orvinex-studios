@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 
 import { isAuthenticated } from "@/lib/admin";
-import { uniqueSlug } from "@/lib/blog";
+import { uniqueSlug } from "@/lib/articles";
 import { POST_STATUSES, type PostStatus } from "@/lib/post";
 import { getPrisma } from "@/lib/prisma";
 
@@ -48,9 +48,9 @@ async function clearOtherFeatured(exceptId: string) {
 
 /** Revalidates every route a post can appear on. */
 function revalidatePost(slug: string) {
-  revalidatePath("/blog");
-  revalidatePath(`/blog/${slug}`);
-  revalidatePath("/admin/blog");
+  revalidatePath("/articles");
+  revalidatePath(`/articles/${slug}`);
+  revalidatePath("/admin/articles");
   // The sitemap lists published posts, so it goes stale on any visibility
   // change — not only on create and delete.
   revalidatePath("/sitemap.xml");
@@ -124,7 +124,7 @@ export async function updatePost(
   if (input.featured) await clearOtherFeatured(id);
   revalidatePost(slug);
   // The slug may have changed, so drop the old URL from the cache too.
-  if (existing.slug !== slug) revalidatePath(`/blog/${existing.slug}`);
+  if (existing.slug !== slug) revalidatePath(`/articles/${existing.slug}`);
   return { ok: true, id, slug };
 }
 

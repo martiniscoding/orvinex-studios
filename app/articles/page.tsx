@@ -6,8 +6,8 @@ import { Footer } from "@/components/Footer";
 import { Navbar1 } from "@/components/ui/navbar-1";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/JsonLd";
-import { listPublishedPosts } from "@/lib/blog";
-import { blogIndexStructuredData } from "@/lib/blog-schema";
+import { listPublishedPosts } from "@/lib/articles";
+import { blogIndexStructuredData } from "@/lib/article-schema";
 import { formatPostDate } from "@/lib/post";
 import { BOOKING_URL } from "@/lib/site";
 
@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   title: "Blog",
   description,
   alternates: {
-    canonical: "/blog",
-    types: { "application/rss+xml": "/blog/rss.xml" },
+    canonical: "/articles",
+    types: { "application/rss+xml": "/articles/rss.xml" },
   },
   openGraph: {
     type: "website",
-    url: "https://orvinex.store/blog",
+    url: "https://orvinex.store/articles",
     siteName: "Orvinex",
     title: "Blog | Orvinex",
     description,
@@ -42,7 +42,7 @@ function PostRow({
 }) {
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/articles/${post.slug}`}
       className="group block border-t border-white/[0.08] py-8 outline-none transition-colors first:border-t-0 focus-visible:bg-white/[0.03]"
     >
       {featured && (

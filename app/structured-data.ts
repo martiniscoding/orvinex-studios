@@ -4,7 +4,7 @@
  * Split in two on purpose. `siteStructuredData` describes entities that are
  * true on every URL — the organization, its logo, the founder, the site — and
  * is emitted by the root layout. Page-level nodes live with their page:
- * `homeStructuredData` here, articles in lib/blog-schema.ts.
+ * `homeStructuredData` here, articles in lib/article-schema.ts.
  *
  * Emitting the landing page's WebPage node site-wide, as this file used to,
  * meant every blog post also declared a WebPage whose url was the homepage.

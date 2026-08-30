@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Eye, PencilLine, Plus, Trash2 } from "lucide-react";
 
-import { Markdown } from "@/components/blog/Markdown";
+import { Markdown } from "@/components/articles/Markdown";
 import type { ServiceFaq } from "@/lib/service-page";
 import { SERVICE_ICON_NAMES, iconFor } from "@/lib/service-icons";
 import { BANDS } from "@/lib/services";
-import { SeoPanel } from "../blog/seo-panel";
+import { SeoPanel } from "../articles/seo-panel";
 import {
   createServicePage,
   updateServicePage,

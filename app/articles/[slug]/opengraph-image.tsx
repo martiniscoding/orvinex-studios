@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-import { getPublishedPost } from "@/lib/blog";
+import { getPublishedPost } from "@/lib/articles";
 import { formatPostDate, readingTime } from "@/lib/post";
 
 export const runtime = "nodejs";
