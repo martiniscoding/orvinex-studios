@@ -11,7 +11,8 @@
     "db:migrate": "prisma migrate deploy",
     "db:studio": "prisma studio",
     "seed:admin": "tsx scripts/seed-admin.ts",
-    "seed:services": "tsx scripts/seed-services.ts"
+    "seed:services": "tsx scripts/seed-services.ts",
+    "seed:testimonials": "tsx scripts/seed-testimonials.ts"
   },
   "dependencies": {
     "@better-auth/prisma-adapter": "^1.6.25",

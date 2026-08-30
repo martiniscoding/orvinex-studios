@@ -7,13 +7,14 @@ const TABS = [
   { id: "leads", label: "Inquiries", href: "/admin" },
   { id: "blog", label: "Posts", href: "/admin/blog" },
   { id: "services", label: "Services", href: "/admin/services" },
+  { id: "reviews", label: "Reviews", href: "/admin/testimonials" },
 ] as const;
 
 /** Shared chrome for every admin screen: brand, section tabs, sign out. */
 export function AdminHeader({
   current,
 }: {
-  current: "leads" | "blog" | "services";
+  current: "leads" | "blog" | "services" | "reviews";
 }) {
   return (
     <header className="flex flex-wrap items-center justify-between gap-4">

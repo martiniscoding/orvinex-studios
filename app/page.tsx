@@ -10,8 +10,15 @@ import { Navbar1 } from "@/components/ui/navbar-1";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { Testimonials } from "@/components/Testimonials";
 import { TrustLogos } from "@/components/TrustLogos";
+import { listPublishedTestimonials } from "@/lib/testimonials";
 
-export default function HomePage() {
+/** Cached; editing a review calls revalidatePath("/"), so the band updates
+ *  instantly without making the landing page dynamic. */
+export const revalidate = 3600;
+
+export default async function HomePage() {
+  const testimonials = await listPublishedTestimonials();
+
   return (
     <>
       <JsonLd data={homeStructuredData} />
@@ -22,7 +29,7 @@ export default function HomePage() {
         <FounderSection />
         <ServicesGrid />
         <AboutStats />
-        <Testimonials />
+        <Testimonials items={testimonials} />
         <ContactCTA />
       </main>
       <Footer />

@@ -93,6 +93,41 @@ model ServicePage {
   @@map("service_pages")
 }
 
+/// One client review, shown on the landing page.
+///
+/// Unlike service pages, nothing about a review lives in code — the whole
+/// thing is written in the admin panel, photo included.
+model Testimonial {
+  id String @id
+
+  /// Who wrote it, and what they do — "Amit C.", "CEO, LogisticsTech".
+  name String
+  role String
+
+  quote String
+
+  /// 1–5. Drives the stars on the card and the average in the heading.
+  rating Int @default(5)
+
+  /// The reviewer's face. Either a data URL (uploaded through the admin
+  /// panel, resized in the browser before it is ever sent) or an absolute
+  /// https URL. Null falls back to initials in a coloured circle, which is
+  /// what every card looked like before photos existed.
+  photo String?
+
+  /// Unpublished reviews stay written but off the site.
+  published Boolean @default(true)
+
+  /// Display order, low to high. Gaps are fine; only the sort matters.
+  position Int @default(0)
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([published, position], map: "testimonials_published_position_idx")
+  @@map("testimonials")
+}
+
 /// Fixed-window rate limiter state. Lives in Postgres rather than process
 /// memory because serverless instances do not share memory — an in-process
 /// counter resets on every cold start and is enforced per-instance.
