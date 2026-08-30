@@ -20,7 +20,7 @@
 export const SITE_URL = "https://orvinex.store";
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
-const FOUNDER_ID = `${SITE_URL}/#founder`;
+export const FOUNDER_ID = `${SITE_URL}/#founder`;
 export const LOGO_ID = `${SITE_URL}/#logo`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 const WEBPAGE_ID = `${SITE_URL}/#webpage`;

@@ -1,4 +1,5 @@
 import {
+  FOUNDER_ID,
   LOGO_ID,
   ORGANIZATION_ID,
   SITE_URL,
@@ -75,7 +76,11 @@ export function postStructuredData(post: PostFull) {
         mainEntityOfPage: url,
         datePublished: post.publishedAt ?? undefined,
         dateModified: post.updatedAt,
-        author: { "@id": ORGANIZATION_ID },
+        // A named person rather than the company: search guidance on article
+        // quality leans on an identifiable author with a history. Points at
+        // the founder node the layout already emits. Add a per-post author
+        // field if anyone else starts writing.
+        author: { "@id": FOUNDER_ID },
         publisher: { "@id": ORGANIZATION_ID },
         isPartOf: { "@id": BLOG_ID },
         image: `${url}/opengraph-image`,

@@ -91,6 +91,8 @@ export function Markdown({ children }: { children: string }) {
             <img
               src={typeof src === "string" ? src : ""}
               alt={alt ?? ""}
+              loading="lazy"
+              decoding="async"
               className="mt-6 w-full rounded-xl border border-white/[0.08]"
             />
           ),

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { JsonLd } from "@/components/JsonLd";
 import { Markdown } from "@/components/blog/Markdown";
@@ -76,13 +76,37 @@ export default async function PostPage({ params }: Params) {
           />
 
           <div className="mx-auto max-w-[42rem] px-5">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-[13.5px] text-muted outline-none transition-colors hover:text-white focus-visible:text-white"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.2} />
-              All posts
-            </Link>
+            {/* Mirrors the BreadcrumbList JSON-LD — markup is supposed to
+                describe something the visitor can actually see. */}
+            <nav aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-2 text-[13px] text-muted">
+                <li>
+                  <Link
+                    href="/"
+                    className="outline-none transition-colors hover:text-white focus-visible:text-white"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-white/25">
+                  /
+                </li>
+                <li>
+                  <Link
+                    href="/blog"
+                    className="outline-none transition-colors hover:text-white focus-visible:text-white"
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-white/25">
+                  /
+                </li>
+                <li aria-current="page" className="truncate text-white/70">
+                  {post.title}
+                </li>
+              </ol>
+            </nav>
 
             <h1 className="mt-7 font-display text-[clamp(1.95rem,4.4vw,2.85rem)] font-bold leading-[1.1] tracking-[-0.035em] text-white text-balance">
               {post.title}
