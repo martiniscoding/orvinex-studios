@@ -1,13 +1,37 @@
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
+
+import { contentSchema, rehypeContentGuards } from "@/lib/markdown-sanitize";
+
+/**
+ * Pulls "800x450" out of a markdown image title:
+ *
+ *     ![A dashboard](/shot.png "1200x630")
+ *
+ * Dimensions are what let the browser reserve space before the file arrives,
+ * which is the difference between a stable page and a CLS penalty. The upload
+ * button writes them automatically; typed by hand they are optional.
+ */
+function parseSize(title?: string) {
+  const match = title?.match(/^\s*(\d{2,5})\s*[x×]\s*(\d{2,5})\s*$/);
+  if (!match) return null;
+  return { width: Number(match[1]), height: Number(match[2]) };
+}
 
 /**
  * Renders post bodies.
  *
- * react-markdown builds React elements rather than an HTML string, and raw
- * HTML in the source is escaped unless rehype-raw is added — which it
- * deliberately is not. That keeps a compromised or careless post from putting
- * script tags on the page.
+ * react-markdown builds React elements rather than an HTML string. Raw HTML is
+ * parsed (rehype-raw) and then filtered against an allowlist
+ * (rehype-sanitize), so an author can embed a video or a table without being
+ * able to introduce <script>, inline styles, or an on* handler.
+ *
+ * rehypeContentGuards runs after sanitising and applies the rules that protect
+ * search rankings rather than security: embeds load lazily inside a
+ * space-reserving wrapper, and a pasted <h1> is demoted so the page keeps one.
  *
  * Element styles are declared here rather than through a typography plugin so
  * the prose matches the site's own scale instead of a generic one.
@@ -17,6 +41,13 @@ export function Markdown({ children }: { children: string }) {
     <div className="text-[16px] leading-[1.75] text-white/75">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        // Order matters: parse the raw HTML, strip anything not allowed, then
+        // apply the ranking guards to what survived.
+        rehypePlugins={[
+          rehypeRaw,
+          [rehypeSanitize, contentSchema],
+          rehypeContentGuards,
+        ]}
         components={{
           // The page already renders the post title as its h1. A `#` heading
           // in the body would make a second one, which muddies the document
@@ -86,16 +117,43 @@ export function Markdown({ children }: { children: string }) {
             </pre>
           ),
           hr: () => <hr className="mt-10 border-white/[0.08]" />,
-          img: ({ src, alt }) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={typeof src === "string" ? src : ""}
-              alt={alt ?? ""}
-              loading="lazy"
-              decoding="async"
-              className="mt-6 w-full rounded-xl border border-white/[0.08]"
-            />
-          ),
+          img: ({ src, alt, title }) => {
+            const url = typeof src === "string" ? src : "";
+            const size = parseSize(typeof title === "string" ? title : undefined);
+            const local = url.startsWith("/");
+
+            // next/image resizes, converts to WebP or AVIF, and emits a
+            // srcset — worth real Core Web Vitals points. It needs intrinsic
+            // dimensions and a host it is configured to serve, so it is used
+            // where both hold and skipped where they do not.
+            if (local && size) {
+              return (
+                <Image
+                  src={url}
+                  alt={alt ?? ""}
+                  width={size.width}
+                  height={size.height}
+                  sizes="(min-width: 768px) 46rem, 100vw"
+                  className="mt-6 h-auto w-full rounded-xl border border-white/[0.08]"
+                />
+              );
+            }
+
+            return (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={url}
+                alt={alt ?? ""}
+                // Even unoptimised, stating the dimensions stops the reflow
+                // when the file lands.
+                width={size?.width}
+                height={size?.height}
+                loading="lazy"
+                decoding="async"
+                className="mt-6 h-auto w-full rounded-xl border border-white/[0.08]"
+              />
+            );
+          },
           table: ({ children }) => (
             <div className="mt-6 overflow-x-auto">
               <table className="w-full border-collapse text-[14.5px]">

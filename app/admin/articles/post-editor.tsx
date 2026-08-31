@@ -165,6 +165,7 @@ export function PostEditor({ post }: Props) {
           </div>
 
           {tab === "write" ? (
+            <>
             <textarea
               id="content"
               value={content}
@@ -173,6 +174,34 @@ export function PostEditor({ post }: Props) {
               placeholder={"## A heading\n\nWrite in Markdown. **Bold**, _italic_, [links](https://orvinex.store), lists, quotes and code fences all work."}
               className={`${inputClass} resize-y font-mono text-[13.5px] leading-relaxed`}
             />
+              <details className="mt-2 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3">
+                <summary className="cursor-pointer text-[12.5px] text-white/50 marker:hidden hover:text-white/80">
+                  Images and video — what you can paste
+                </summary>
+                <div className="mt-3 space-y-2.5 text-[12.5px] leading-relaxed text-white/45">
+                  <p>
+                    <span className="text-white/70">Image:</span>{" "}
+                    <code className="font-mono">![description](/photo.png &quot;1200x630&quot;)</code>
+                    <br />
+                    The size in quotes is optional but worth adding — it lets the
+                    browser reserve space so the page does not jump, and images
+                    under <code className="font-mono">/public</code> get resized
+                    and converted automatically.
+                  </p>
+                  <p>
+                    <span className="text-white/70">Video:</span> paste the embed
+                    code from YouTube, Vimeo or Loom. It is made lazy and given a
+                    fixed 16:9 box so it never shifts the layout.
+                  </p>
+                  <p>
+                    Ordinary HTML — tables, <code className="font-mono">&lt;figure&gt;</code>,{" "}
+                    <code className="font-mono">&lt;details&gt;</code> — works too. Scripts,
+                    inline styles and embeds from anywhere else are removed on
+                    save.
+                  </p>
+                </div>
+              </details>
+            </>
           ) : (
             <div className="min-h-[420px] rounded-xl border border-white/[0.09] bg-white/[0.02] px-5 py-4">
               {content.trim() ? (
