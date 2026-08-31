@@ -17,6 +17,16 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
 
   const filled = Math.round(average);
 
+  // The grid is sized to the number of reviews rather than fixed at three
+  // columns: two cards in a three-column track sit off to one side with a
+  // hole beside them, which reads as something failed to load.
+  const grid =
+    items.length === 1
+      ? "max-w-md"
+      : items.length === 2
+        ? "max-w-3xl md:grid-cols-2"
+        : "md:grid-cols-2 lg:grid-cols-3";
+
   return (
     <section
       id="reviews"
@@ -54,7 +64,9 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
           </p>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup
+          className={`mx-auto mt-14 grid grid-cols-1 gap-5 ${grid}`}
+        >
           {items.map((item) => (
             <RevealItem key={item.id} className="h-full">
               <TestimonialCard item={item} />

@@ -1,54 +1,41 @@
 /**
- * Writes the five reviews the landing page used to hard-code.
+ * Writes the reviews the landing page ships with.
  *
  *   npm run seed:testimonials
  *
- * Runs once and only once: if the table holds anything at all, this exits
- * without touching it. Reviews have no natural key, so a per-row check would
- * resurrect any review the client had deliberately deleted.
+ * Non-destructive by default: if the table holds anything at all this exits
+ * without touching it, because after the first run the admin panel is the
+ * source of truth and a review someone deleted must not come back.
+ *
+ * Pass --force to wipe the table and write these two again.
  */
 import { randomUUID } from "node:crypto";
 import { config } from "dotenv";
 
 config({ path: ".env.local" });
 
+const force = process.argv.includes("--force");
+
 /**
- * Ratings are four fives and a four, which averages to exactly the 4.8/5 the
- * heading claimed while it was hard-coded. The heading now reads the average
- * off these rows, so seeding straight fives would silently raise the site's
- * public claim to 5.0.
+ * Photos are the clients' own logos, lifted from the screenshots in
+ * /public and trimmed to a square badge — see public/reviews.
  */
 const REVIEWS = [
   {
-    name: "Amit C.",
-    role: "CEO, LogisticsTech",
+    name: "Sreyash Gupta",
+    role: "JEE Society",
     quote:
-      "Orvinex delivered our custom ERP 2 weeks ahead of schedule. The code is immaculate and the system handles our 10k daily orders without breaking a sweat.",
+      "Rohan built our student portal end to end. It is the first real tech product my company has shipped, and the students took to it straight away.",
+    rating: 5,
+    photo: "/reviews/jee-society.png",
   },
   {
-    name: "Sarah J.",
-    role: "Founder, FinSaaS",
+    name: "Maa Kamakhya Hardware",
+    role: "Architectural hardware store",
     quote:
-      "We hired them for a massive web application. Rohan and his team at Orvinex act like true technical co-founders. Best software agency we have worked with by far.",
-  },
-  {
-    name: "Rahul M.",
-    role: "Director, EduGrow",
-    quote:
-      "Their mobile app development team is insane. The Flutter app they built for us looks native and performs beautifully.",
-  },
-  {
-    name: "Priya S.",
-    role: "Marketing Head",
-    rating: 4,
-    quote:
-      "Not only did they build our platform, their SEO and digital marketing services skyrocketed our organic traffic by 300% in 4 months.",
-  },
-  {
-    name: "Vikram B.",
-    role: "Operations VP",
-    quote:
-      "If you need custom software development, stop looking. They fixed the spaghetti code our previous agency left and scaled our AWS infrastructure perfectly.",
+      "Orvinex gave us a storefront that is clean and genuinely professional — the UI and UX are exactly what we asked for. They stayed with us long after launch, too, and the support never dropped off.",
+    rating: 5,
+    photo: "/reviews/maa-kamakhya.png",
   },
 ];
 
@@ -57,18 +44,24 @@ async function main() {
   const prisma = getPrisma();
 
   const existing = await prisma.testimonial.count();
-  if (existing > 0) {
+  if (existing > 0 && !force) {
     console.log(
       `${existing} review${existing === 1 ? "" : "s"} already written — nothing to do.`
     );
+    console.log("Use --force to replace them with the shipped set.");
+    await prisma.$disconnect();
     return;
+  }
+
+  if (force) {
+    const { count } = await prisma.testimonial.deleteMany({});
+    console.log(`deleted ${count} existing reviews.`);
   }
 
   await prisma.testimonial.createMany({
     data: REVIEWS.map((review, index) => ({
       id: randomUUID(),
       position: index,
-      rating: 5,
       published: true,
       ...review,
     })),
