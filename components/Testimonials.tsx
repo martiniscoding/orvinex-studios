@@ -1,6 +1,4 @@
-import { Star } from "lucide-react";
-
-import { averageRating, type Testimonial } from "@/lib/testimonial";
+import type { Testimonial } from "@/lib/testimonial";
 import { TestimonialCard } from "./TestimonialCard";
 import { Reveal, RevealGroup, RevealItem } from "./ui/Reveal";
 
@@ -8,14 +6,12 @@ import { Reveal, RevealGroup, RevealItem } from "./ui/Reveal";
  * The reviews band on the landing page.
  *
  * Every word of it is written in the admin panel — see /admin/testimonials.
- * The rating in the heading is averaged from the reviews on display rather
- * than fixed in code, so it cannot quietly contradict the cards beneath it.
+ * The cards carry no star ratings and the section claims no average: a score
+ * a company awards itself reads as decoration, and the quotes are the part
+ * worth reading.
  */
 export function Testimonials({ items }: { items: Testimonial[] }) {
-  const average = averageRating(items);
-  if (items.length === 0 || average === null) return null;
-
-  const filled = Math.round(average);
+  if (items.length === 0) return null;
 
   // The grid is sized to the number of reviews rather than fixed at three
   // columns: two cards in a three-column track sit off to one side with a
@@ -43,25 +39,12 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
 
       <div className="mx-auto max-w-6xl px-5">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <div className="flex items-center justify-center gap-1">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Star
-                key={index}
-                className={`h-5 w-5 ${
-                  index < filled ? "text-primary" : "text-primary/40"
-                }`}
-                fill="currentColor"
-                strokeWidth={0}
-              />
-            ))}
-          </div>
-          <h2 className="mt-5 font-display text-[clamp(1.95rem,4.4vw,3.05rem)] font-bold leading-[1.1] tracking-[-0.03em] text-white">
-            {average.toFixed(1)}/5 Average Rating
-          </h2>
-          <p className="mt-4 text-[15.5px] text-muted">
-            Based on {items.length} client review
-            {items.length === 1 ? "" : "s"}
+          <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-primary">
+            Client Reviews
           </p>
+          <h2 className="mt-4 font-display text-[clamp(1.95rem,4.4vw,3.05rem)] font-bold leading-[1.1] tracking-[-0.03em] text-white">
+            The people we built for.
+          </h2>
         </Reveal>
 
         <RevealGroup

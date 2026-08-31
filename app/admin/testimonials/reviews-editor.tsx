@@ -8,13 +8,12 @@ import {
   Eye,
   EyeOff,
   Plus,
-  Star,
   Trash2,
   Upload,
 } from "lucide-react";
 
 import { TestimonialCard } from "@/components/TestimonialCard";
-import { MAX_RATING, type Testimonial } from "@/lib/testimonial";
+import type { Testimonial } from "@/lib/testimonial";
 import {
   createTestimonial,
   deleteTestimonial,
@@ -37,7 +36,6 @@ const BLANK: TestimonialInput = {
   name: "",
   role: "",
   quote: "",
-  rating: 5,
   photo: "",
   published: true,
 };
@@ -47,7 +45,6 @@ function toInput(item: Testimonial): TestimonialInput {
     name: item.name,
     role: item.role,
     quote: item.quote,
-    rating: item.rating,
     photo: item.photo ?? "",
     published: item.published,
   };
@@ -58,45 +55,8 @@ function same(a: TestimonialInput, b: TestimonialInput) {
     a.name === b.name &&
     a.role === b.role &&
     a.quote === b.quote &&
-    a.rating === b.rating &&
     a.photo === b.photo &&
     a.published === b.published
-  );
-}
-
-/** The five stars, as a control. */
-function RatingPicker({
-  value,
-  onChange,
-}: {
-  value: number;
-  onChange: (rating: number) => void;
-}) {
-  return (
-    <div className="flex items-center gap-1">
-      {Array.from({ length: MAX_RATING }).map((_, index) => {
-        const rating = index + 1;
-        return (
-          <button
-            key={rating}
-            type="button"
-            onClick={() => onChange(rating)}
-            aria-label={`${rating} star${rating === 1 ? "" : "s"}`}
-            aria-pressed={value === rating}
-            className="p-0.5 transition-transform hover:scale-110"
-          >
-            <Star
-              className={`h-5 w-5 ${
-                rating <= value ? "text-primary" : "text-white/20"
-              }`}
-              fill="currentColor"
-              strokeWidth={0}
-            />
-          </button>
-        );
-      })}
-      <span className="ml-2 text-[12.5px] text-white/40">{value} of 5</span>
-    </div>
   );
 }
 
@@ -417,14 +377,6 @@ function ReviewPanel({
           </p>
 
           <div className="mt-5">
-            <span className={labelClass}>Rating</span>
-            <RatingPicker
-              value={draft.rating}
-              onChange={(rating) => set({ rating })}
-            />
-          </div>
-
-          <div className="mt-5">
             <PhotoField
               value={draft.photo}
               name={draft.name}
@@ -442,7 +394,6 @@ function ReviewPanel({
               name: draft.name.trim() || "Their name",
               role: draft.role.trim(),
               quote: draft.quote.trim() || "What they said about the work.",
-              rating: draft.rating,
               photo: draft.photo.trim() || null,
               published: draft.published,
               position: index,

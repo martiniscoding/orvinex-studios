@@ -5,13 +5,12 @@ import { revalidatePath } from "next/cache";
 
 import { isAuthenticated } from "@/lib/admin";
 import { getPrisma } from "@/lib/prisma";
-import { clampRating, normalizePhoto } from "@/lib/testimonial";
+import { normalizePhoto } from "@/lib/testimonial";
 
 export type TestimonialInput = {
   name: string;
   role: string;
   quote: string;
-  rating: number;
   /** Data URL from the browser's picker, an https link, or "" for none. */
   photo: string;
   published: boolean;
@@ -60,7 +59,6 @@ function toData(input: TestimonialInput) {
       name: input.name.trim(),
       role: input.role.trim(),
       quote: input.quote.trim(),
-      rating: clampRating(input.rating),
       photo,
       published: input.published,
     },

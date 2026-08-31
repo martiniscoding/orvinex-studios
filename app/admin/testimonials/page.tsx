@@ -1,7 +1,6 @@
 import { headers } from "next/headers";
 
 import { auth } from "@/lib/auth";
-import { averageRating } from "@/lib/testimonial";
 import { listAllTestimonials } from "@/lib/testimonials";
 import { LoginForm } from "../login-form";
 import { AdminHeader } from "../admin-header";
@@ -14,7 +13,6 @@ export default async function AdminTestimonialsPage() {
 
   const reviews = await listAllTestimonials();
   const live = reviews.filter((review) => review.published);
-  const average = averageRating(live);
 
   return (
     <main className="min-h-screen bg-background px-5 py-10">
@@ -30,7 +28,6 @@ export default async function AdminTestimonialsPage() {
               {live.length} on the site
               {reviews.length > live.length &&
                 ` · ${reviews.length - live.length} hidden`}
-              {average !== null && ` · ${average.toFixed(1)}/5 average`}
             </p>
           </div>
 
@@ -45,9 +42,8 @@ export default async function AdminTestimonialsPage() {
         </div>
 
         <p className="mt-4 max-w-2xl text-[13.5px] leading-relaxed text-white/40">
-          These are the cards on the landing page. The heading above them — the
-          average score and the number of reviews — is worked out from whatever
-          is showing here, so it always matches the cards.
+          These are the cards on the landing page, in the order they appear
+          there. The section disappears entirely while nothing is showing.
         </p>
 
         <div className="mt-6">

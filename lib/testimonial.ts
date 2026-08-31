@@ -5,14 +5,10 @@ export type Testimonial = {
   name: string;
   role: string;
   quote: string;
-  rating: number;
   photo: string | null;
   published: boolean;
   position: number;
 };
-
-export const MIN_RATING = 1;
-export const MAX_RATING = 5;
 
 /**
  * Cap on a stored photo, in characters of data URL.
@@ -27,11 +23,6 @@ export const MAX_PHOTO_CHARS = 512 * 1024;
 
 /** Longest side of an uploaded photo, in pixels, after the browser resizes it. */
 export const PHOTO_SIZE = 256;
-
-export function clampRating(value: number) {
-  if (!Number.isFinite(value)) return MAX_RATING;
-  return Math.min(MAX_RATING, Math.max(MIN_RATING, Math.round(value)));
-}
 
 /**
  * Accepts a browser-uploaded data URL or a link to an image someone hosts
@@ -73,9 +64,3 @@ export function initials(name: string) {
   return (letters || name.trim().slice(0, 1) || "?").slice(0, 2).toUpperCase();
 }
 
-/** Average rating, to one decimal. Null when there is nothing to average. */
-export function averageRating(items: Testimonial[]): number | null {
-  if (items.length === 0) return null;
-  const total = items.reduce((sum, item) => sum + clampRating(item.rating), 0);
-  return Math.round((total / items.length) * 10) / 10;
-}

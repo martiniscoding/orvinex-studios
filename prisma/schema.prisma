@@ -123,7 +123,9 @@ model Testimonial {
 
   quote String
 
-  /// 1–5. Drives the stars on the card and the average in the heading.
+  /// No longer read or written: the cards dropped their star ratings, and a
+  /// company scoring its own reviews read as decoration. Kept rather than
+  /// dropped so the scores already recorded survive if stars ever come back.
   rating Int @default(5)
 
   /// The reviewer's face. Either a data URL (uploaded through the admin

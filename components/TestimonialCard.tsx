@@ -1,6 +1,4 @@
-import { Star } from "lucide-react";
-
-import { clampRating, initials, type Testimonial } from "@/lib/testimonial";
+import { initials, type Testimonial } from "@/lib/testimonial";
 
 /**
  * One review card.
@@ -13,24 +11,9 @@ import { clampRating, initials, type Testimonial } from "@/lib/testimonial";
  * editor alike.
  */
 export function TestimonialCard({ item }: { item: Testimonial }) {
-  const rating = clampRating(item.rating);
-
   return (
     <figure className="flex h-full flex-col rounded-2xl border border-white/[0.08] bg-surface/70 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:bg-surface">
-      <div className="flex gap-0.5" aria-label={`${rating} out of 5`}>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Star
-            key={index}
-            className={`h-3.5 w-3.5 ${
-              index < rating ? "text-primary" : "text-white/15"
-            }`}
-            fill="currentColor"
-            strokeWidth={0}
-          />
-        ))}
-      </div>
-
-      <blockquote className="mt-4 flex-1 text-[14.5px] leading-relaxed text-white/85">
+      <blockquote className="flex-1 text-[14.5px] leading-relaxed text-white/85">
         &ldquo;{item.quote}&rdquo;
       </blockquote>
 

@@ -26,7 +26,6 @@ const REVIEWS = [
     role: "JEE Society",
     quote:
       "Rohan built our student portal end to end. It is the first real tech product my company has shipped, and the students took to it straight away.",
-    rating: 5,
     photo: "/reviews/jee-society.png",
   },
   {
@@ -34,7 +33,6 @@ const REVIEWS = [
     role: "Coaching institute",
     quote:
       "Orvinex built us a portal that runs the whole institute — students join live classes, teachers take them, and assignments go out and come back in the same place. A complete ecosystem, and everyone here loves working in it.",
-    rating: 5,
     photo: "/reviews/a-star-teaching.png",
   },
   {
@@ -42,7 +40,6 @@ const REVIEWS = [
     role: "Architectural hardware store",
     quote:
       "Orvinex gave us a storefront that is clean and genuinely professional — the UI and UX are exactly what we asked for. They stayed with us long after launch, too, and the support never dropped off.",
-    rating: 5,
     photo: "/reviews/maa-kamakhya.png",
   },
 ];

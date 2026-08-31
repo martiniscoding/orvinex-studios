@@ -8,7 +8,6 @@ const FIELDS = {
   name: true,
   role: true,
   quote: true,
-  rating: true,
   photo: true,
   published: true,
   position: true,
