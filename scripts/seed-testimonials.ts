@@ -30,6 +30,14 @@ const REVIEWS = [
     photo: "/reviews/jee-society.png",
   },
   {
+    name: "A Star Teaching",
+    role: "Coaching institute",
+    quote:
+      "Orvinex built us a portal that runs the whole institute — students join live classes, teachers take them, and assignments go out and come back in the same place. A complete ecosystem, and everyone here loves working in it.",
+    rating: 5,
+    photo: "/reviews/a-star-teaching.png",
+  },
+  {
     name: "Maa Kamakhya Hardware",
     role: "Architectural hardware store",
     quote:
