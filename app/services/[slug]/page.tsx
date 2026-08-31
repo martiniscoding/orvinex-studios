@@ -45,6 +45,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       siteName: "Orvinex",
       title,
       description,
+      images: ["/opengraph-image"],
     },
     twitter: { card: "summary_large_image", title, description },
   };

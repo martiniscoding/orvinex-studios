@@ -9,24 +9,27 @@ import { ServicesHero } from "@/components/services/ServicesHero";
 import { Navbar1 } from "@/components/ui/navbar-1";
 import { listCatalogue } from "@/lib/service-catalogue";
 
+// Kept under 158 characters: past that Google truncates the snippet mid-word.
 const description =
-  "Custom software, web and mobile applications, e-commerce management systems, RAG chatbots, personalised AI tools, marketplace research, SEO and growth marketing — the full Orvinex catalogue, delivered by one team.";
+  "Custom software, web and mobile apps, e-commerce systems, RAG chatbots, AI tools, marketplace research, SEO and growth — one team, one roadmap.";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Software, AI and Growth Services",
   description,
   alternates: { canonical: "/services" },
   openGraph: {
     type: "website",
     url: "https://orvinex.store/services",
     siteName: "Orvinex",
-    title: "Services | Orvinex",
+    title: "Software, AI and Growth Services | Orvinex",
     description,
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Services | Orvinex",
+    title: "Software, AI and Growth Services | Orvinex",
     description,
+    images: ["/opengraph-image"],
   },
 };
 

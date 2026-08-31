@@ -15,7 +15,9 @@ const description =
   "Practical writing on custom software, AI products and growth — from the team doing the building, not the marketing department.";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  // Not just "Articles": a title has roughly sixty characters of search
+  // result to work with, and the brand alone earns none of them.
+  title: "Articles on Software, AI and Growth",
   description,
   alternates: {
     canonical: "/articles",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://orvinex.store/articles",
     siteName: "Orvinex",
-    title: "Blog | Orvinex",
+    title: "Articles on Software, AI and Growth | Orvinex",
     description,
   },
 };

@@ -25,7 +25,7 @@ export const SERVICE_CONTENT: ServiceContent[] = [
     keyword: "custom software development",
     metaTitle: "Custom Software Development Company | Orvinex",
     metaDescription:
-      "We build custom software around how your business already works — ERP, internal tools, integrations and automation, delivered by a senior team in two-week cycles.",
+      "Custom software built around how your business already works — ERP, internal tools, integrations and automation, delivered in two-week cycles.",
     headline: "Software built around your business, not the other way round",
     intro:
       "Off-the-shelf tools make you adapt to their assumptions. Custom software adapts to yours — and pays for itself the moment it removes the manual work your team has quietly absorbed for years.",
@@ -80,7 +80,7 @@ Most custom builds arrive with a front end attached — see [web application dev
     keyword: "web application development",
     metaTitle: "Web Application Development Services | Orvinex",
     metaDescription:
-      "SaaS products, dashboards and customer portals built on modern stacks — documented, load-tested before launch, and handed over as code your future engineers will thank you for.",
+      "SaaS products, dashboards and customer portals on modern stacks — documented, load-tested before launch, handed over as code you own.",
     headline: "Web applications that hold up when they get busy",
     intro:
       "Most web apps are fine at ten users and painful at ten thousand. We build for the second number from the start, without over-engineering the first.",
@@ -175,7 +175,7 @@ Apps almost always need a back end and an admin surface — that is [web applica
     keyword: "ecommerce management software",
     metaTitle: "E-commerce Management Software Development | Orvinex",
     metaDescription:
-      "One place to run the storefront: stock accurate across every channel, orders that reconcile themselves, and catalogue updates that take minutes rather than an afternoon.",
+      "One place to run the storefront: stock accurate across channels, orders that reconcile themselves, catalogue updates in minutes not hours.",
     headline: "One place to run the storefront",
     intro:
       "Selling on three channels usually means three inventories, three price lists and one person reconciling them by hand at the end of the week. That person is your bottleneck, and it is a software problem.",
@@ -324,7 +324,7 @@ If the task is answering questions from your documentation, [AI chatbots and RAG
     keyword: "marketplace research services",
     metaTitle: "Marketplace & Product Research Services | Orvinex",
     metaDescription:
-      "Demand sizing, competitor teardowns and live pricing data from the marketplaces you plan to enter — returned as a decision document, including the case for not building.",
+      "Demand sizing, competitor teardowns and live pricing from the marketplaces you plan to enter — returned as a decision document.",
     headline: "The numbers before the commitment",
     intro:
       "Most product decisions are made on an anecdote and a strong feeling. A few weeks of research costs a fraction of a build, and it occasionally saves you the entire build.",
@@ -368,7 +368,7 @@ If the research says build, [custom software development](/services/custom-softw
     keyword: "seo services",
     metaTitle: "SEO Services & Technical Optimisation | Orvinex",
     metaDescription:
-      "Technical foundations fixed first, content mapped to real search intent, authority earned through links worth having — rankings that compound rather than spike.",
+      "Technical foundations fixed first, content mapped to real search intent, authority earned through links worth having. Rankings that compound.",
     headline: "Rankings that compound instead of spike",
     intro:
       "SEO done badly is a monthly invoice for blog posts nobody reads. Done properly it is the only acquisition channel that keeps working after you stop paying for it.",
@@ -397,7 +397,7 @@ Rankings for the queries that matter, organic traffic that converts, and the ind
 
 ## Where this connects
 
-Technical SEO is largely an engineering job, which is why it sits next to [web application development](/services/web-applications) here rather than in a separate agency. For paid channels run against the same funnel, see [digital marketing](/services/digital-marketing). We write about this work on [the blog](/blog).`,
+Technical SEO is largely an engineering job, which is why it sits next to [web application development](/services/web-applications) here rather than in a separate agency. For paid channels run against the same funnel, see [digital marketing](/services/digital-marketing). We write about this work on [our articles](/articles).`,
     faq: [
       {
         q: "How long before we see results?",
@@ -469,7 +469,7 @@ Paid gets more efficient when organic is working — see [SEO optimisation](/ser
     keyword: "growth marketing services",
     metaTitle: "Growth Marketing & Experimentation | Orvinex",
     metaDescription:
-      "Experiment-led growth for teams past product-market fit — instrumented funnels, disciplined testing across acquisition, activation and retention, budget only behind what has proven it returns.",
+      "Experiment-led growth for teams past product-market fit: instrumented funnels, disciplined testing, budget only behind what has proven it returns.",
     headline: "Growth that follows the evidence",
     intro:
       "Growth marketing is not a louder version of marketing. It is a method: instrument the funnel, form a hypothesis, test it properly, and put budget only behind what has already proven it returns.",

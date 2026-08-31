@@ -21,7 +21,7 @@ const title =
   "Orvinex | Custom Software, Mobile & AI Development Agency";
 
 const description =
-  "Orvinex Software Solutions is a software development agency building custom software, web and mobile applications, and AI products for clients worldwide. Based in India, serving globally.";
+  "Orvinex builds custom software, web and mobile apps, and AI products for companies worldwide. One senior team from first line of code to launch.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://orvinex.store"),
@@ -48,6 +48,7 @@ export const metadata: Metadata = {
     siteName: "Orvinex",
     title,
     description,
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",

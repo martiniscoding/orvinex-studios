@@ -24,7 +24,7 @@ const description =
   "How Orvinex collects, uses and protects personal information. No analytics, no tracking cookies, no advertising pixels.";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy — What We Collect and Why",
   description,
   alternates: { canonical: "/privacy" },
   openGraph: {
@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     siteName: "Orvinex",
     title: "Privacy Policy | Orvinex",
     description,
+    images: ["/opengraph-image"],
   },
 };
 

@@ -110,12 +110,9 @@ export function Footer() {
             >
               Privacy Policy
             </Link>
-            <a
-              href="#"
-              className="text-[13px] text-muted transition-colors duration-200 hover:text-white"
-            >
-              Terms of Service
-            </a>
+            {/* Terms of Service is not written yet. A link to "#" is a dead
+                end for a reader and a broken link to a crawler, so it stays
+                out until there is a page behind it. */}
           </div>
         </div>
       </Reveal>

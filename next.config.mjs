@@ -14,6 +14,21 @@ const nextConfig = {
    */
   async redirects() {
     return [
+      /**
+       * www serves the whole site as a second copy of itself.
+       *
+       * Canonical tags already point at the apex, which lets Google
+       * consolidate, but a redirect removes the ambiguity outright: one
+       * address, one set of links, no equity split while a crawler decides.
+       * The apex is chosen because every canonical, the sitemap and the RSS
+       * feed already name it.
+       */
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.orvinex.store" }],
+        destination: "https://orvinex.store/:path*",
+        permanent: true,
+      },
       { source: "/blog", destination: "/articles", permanent: true },
       { source: "/blog/rss.xml", destination: "/articles/rss.xml", permanent: true },
       { source: "/blog/:slug", destination: "/articles/:slug", permanent: true },

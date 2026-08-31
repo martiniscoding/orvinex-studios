@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { listCatalogue } from "@/lib/service-catalogue";
 import { homeStructuredData } from "./structured-data";
@@ -15,6 +16,15 @@ import { listPublishedTestimonials } from "@/lib/testimonials";
 
 /** Cached; editing a review calls revalidatePath("/"), so the band updates
  *  instantly without making the landing page dynamic. */
+/**
+ * The landing page needs its own canonical. Everything else declares one; the
+ * root inherited the layout's metadata, which sets none, so the most important
+ * URL on the site was the only one not stating its preferred address.
+ */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export const revalidate = 3600;
 
 export default async function HomePage() {
