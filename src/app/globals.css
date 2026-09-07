@@ -22,6 +22,8 @@
      (ink on coral 5.4:1, on sun 9.6:1, on mint 7.0:1, on sky 4.7:1). */
   --color-coral: #ff6b4a;
   --color-coral-deep: #e14e2e;
+  /* Deep enough to stay legible on the yellow marker (4.01:1). */
+  --color-coral-ink: #b8371a;
   --color-sun: #ffc53d;
   --color-sun-deep: #e9a013;
   --color-mint: #2fc79a;
@@ -130,6 +132,41 @@ body {
     radial-gradient(60rem 40rem at 12% -8%, color-mix(in srgb, var(--color-sun) 30%, transparent), transparent 65%),
     radial-gradient(55rem 38rem at 92% 6%, color-mix(in srgb, var(--color-coral) 20%, transparent), transparent 62%),
     radial-gradient(50rem 40rem at 80% 98%, color-mix(in srgb, var(--color-mint) 18%, transparent), transparent 60%);
+}
+
+/* The hero highlight. One band per phrase, cloned across line breaks, swept
+   in left to right after the headline has already landed. Text colours on the
+   hero are chosen to clear 3:1 against the marker, which rules out the lighter
+   faint and coral. */
+@utility hero-mark {
+  background-image: linear-gradient(
+    104deg,
+    transparent 0.2%,
+    color-mix(in srgb, var(--color-sun) 80%, transparent) 2.2%,
+    color-mix(in srgb, var(--color-sun) 80%, transparent) 97.5%,
+    transparent 99.8%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 78%;
+  background-size: 100% 56%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 0.1em;
+  margin: 0 -0.05em;
+}
+
+@keyframes mark-sweep {
+  from {
+    background-size: 0% 56%;
+  }
+  to {
+    background-size: 100% 56%;
+  }
+}
+
+/* Without data-motion the bands are simply already there. */
+[data-motion] .hero-mark {
+  animation: mark-sweep 0.62s cubic-bezier(0.32, 0.72, 0.35, 1) both;
 }
 
 [id] {

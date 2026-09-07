@@ -90,8 +90,9 @@ the signature is original SVG in `src/components/art/` and
 `src/components/Icons.tsx`. The page ships zero raster images, which is why
 there is no `next/image` anywhere.
 
-**Motion.** The hero sequence is CSS, so it never waits on the deferred GSAP
-chunk — gating the LCP headline on it costs about 0.4s. Everything else is
+**Motion.** The hero sequence is CSS — the headline rises in, then a yellow
+marker sweeps across it phrase by phrase, one band per phrase and cloned across
+line breaks. It is CSS rather than GSAP so it never waits on the deferred chunk — gating the LCP headline on it costs about 0.4s. Everything else is
 `MotionLayer`: the key caps popping in and the polaroids landing, both
 triggered once, both inside a single `gsap.matchMedia` so
 `prefers-reduced-motion` reverts the lot in one call.

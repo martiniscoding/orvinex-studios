@@ -3,11 +3,18 @@ import { Pill } from "@/components/ui/Bits";
 import { ArrowIcon, CallIcon, WorkIcon } from "@/components/Icons";
 import { frameArt } from "@/components/art/Frames";
 
+/* On the marker, faint (2.44:1) and coral-deep (2.71:1) both fall under the
+   3:1 needed for large text, so the dim tone steps up to muted and the accent
+   to the deeper coral. */
 const headlineTone: Record<string, string> = {
   ink: "text-ink",
-  dim: "text-faint",
-  accent: "text-coral-deep",
+  dim: "text-muted",
+  accent: "text-coral-ink",
 };
+
+/* The headline lands first, then the marker goes over it. */
+const SWEEP_START = 1.05;
+const SWEEP_STEP = 0.16;
 
 export default function Hero() {
   return (
@@ -20,8 +27,12 @@ export default function Hero() {
         data-hero-head
         className="hero-type mt-7 max-w-[15ch] text-[clamp(2.5rem,6.2vw,4.75rem)]"
       >
-        {hero.headline.map((part) => (
-          <span key={part.text} className={headlineTone[part.tone]}>
+        {hero.headline.map((part, i) => (
+          <span
+            key={part.text}
+            className={`hero-mark ${headlineTone[part.tone]}`}
+            style={{ animationDelay: `${SWEEP_START + i * SWEEP_STEP}s` }}
+          >
             {part.text}{" "}
           </span>
         ))}
