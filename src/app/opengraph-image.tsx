@@ -8,9 +8,10 @@ export const contentType = "image/png";
 
 export default async function Image() {
   // Fraunces, instanced to wght 900 and subset to this string only (9KB).
-  const fraunces = await readFile(
-    path.join(process.cwd(), "src/fonts/Fraunces-OG.ttf"),
-  );
+  const [fraunces, archivo] = await Promise.all([
+    readFile(path.join(process.cwd(), "src/fonts/Fraunces-OG.ttf")),
+    readFile(path.join(process.cwd(), "src/fonts/Archivo-OG.ttf")),
+  ]);
 
   return new ImageResponse(
     (
@@ -22,7 +23,8 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           backgroundColor: "#DDE0DC",
-          padding: "72px 80px",
+          padding: "72px 80px 72px 184px",
+          fontFamily: "Archivo",
           position: "relative",
         }}
       >
@@ -39,12 +41,12 @@ export default async function Image() {
         <div
           style={{
             position: "absolute",
-            left: 136,
-            top: 300,
-            width: 17,
-            height: 30,
+            left: 134,
+            top: 128,
+            width: 21,
+            height: 21,
             backgroundColor: "#B07D1E",
-            clipPath: "polygon(50% 0%, 100% 32%, 50% 100%, 0% 32%)",
+            transform: "rotate(45deg)",
           }}
         />
 
@@ -73,7 +75,10 @@ export default async function Image() {
     ),
     {
       ...size,
-      fonts: [{ name: "Fraunces", data: fraunces, weight: 900, style: "normal" }],
+      fonts: [
+        { name: "Fraunces", data: fraunces, weight: 900 as const, style: "normal" as const },
+        { name: "Archivo", data: archivo, weight: 500 as const, style: "normal" as const },
+      ],
     },
   );
 }
