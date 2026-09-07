@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { FounderSection } from "@/components/FounderSection";
 import { Hero } from "@/components/Hero";
 import { Navbar1 } from "@/components/ui/navbar-1";
+import { ScrollThread } from "@/components/ui/ScrollThread";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { Testimonials } from "@/components/Testimonials";
 import { TrustLogos } from "@/components/TrustLogos";
@@ -39,12 +40,18 @@ export default async function HomePage() {
       <Navbar1 />
       <main>
         <Hero />
-        <TrustLogos />
-        <FounderSection />
-        <ServicesGrid />
-        <AboutStats />
-        <Testimonials items={testimonials} />
-        <ContactCTA />
+
+        {/* The thread runs from here down. It is measured against this
+            wrapper, so it starts below the hero rather than behind it. */}
+        <div className="relative">
+          <ScrollThread />
+          <TrustLogos />
+          <FounderSection />
+          <ServicesGrid />
+          <AboutStats />
+          <Testimonials items={testimonials} />
+          <ContactCTA />
+        </div>
       </main>
       <Footer />
       <FloatingActions />

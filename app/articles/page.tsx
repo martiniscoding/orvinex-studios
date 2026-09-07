@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Footer } from "@/components/Footer";
 import { Navbar1 } from "@/components/ui/navbar-1";
+import { ScrollThread } from "@/components/ui/ScrollThread";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { listPublishedPosts } from "@/lib/articles";
@@ -116,6 +117,8 @@ export default async function BlogIndexPage() {
           </Reveal>
         </section>
 
+        <div className="relative">
+          <ScrollThread />
         <section className="mx-auto max-w-3xl px-5 pb-24 pt-16 sm:pt-20">
           {posts.length === 0 ? (
             <p className="border-t border-white/[0.08] pt-10 text-[15px] text-muted">
@@ -131,6 +134,7 @@ export default async function BlogIndexPage() {
             </RevealGroup>
           )}
         </section>
+        </div>
       </main>
       <Footer />
     </>

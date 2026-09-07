@@ -5,6 +5,7 @@ import { Mail } from "lucide-react";
 import { Markdown } from "@/components/articles/Markdown";
 import { Footer } from "@/components/Footer";
 import { Navbar1 } from "@/components/ui/navbar-1";
+import { ScrollThread } from "@/components/ui/ScrollThread";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
@@ -266,9 +267,12 @@ export default function PrivacyPage() {
           </Reveal>
         </section>
 
-        <section className="mx-auto max-w-[46rem] px-5 pb-24 pt-10">
-          <Markdown>{POLICY}</Markdown>
-        </section>
+        <div className="relative">
+          <ScrollThread />
+          <section className="mx-auto max-w-[46rem] px-5 pb-24 pt-10">
+            <Markdown>{POLICY}</Markdown>
+          </section>
+        </div>
       </main>
       <Footer />
     </>

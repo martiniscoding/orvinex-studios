@@ -7,6 +7,7 @@ import { ProcessStrip } from "@/components/services/ProcessStrip";
 import { ServiceCatalogue } from "@/components/services/ServiceCatalogue";
 import { ServicesHero } from "@/components/services/ServicesHero";
 import { Navbar1 } from "@/components/ui/navbar-1";
+import { ScrollThread } from "@/components/ui/ScrollThread";
 import { listCatalogue } from "@/lib/service-catalogue";
 
 // Kept under 158 characters: past that Google truncates the snippet mid-word.
@@ -43,9 +44,13 @@ export default async function ServicesPage() {
       <Navbar1 />
       <main>
         <ServicesHero services={services} />
-        <ServiceCatalogue services={services} />
-        <ProcessStrip />
-        <ContactCTA />
+
+        <div className="relative">
+          <ScrollThread />
+          <ServiceCatalogue services={services} />
+          <ProcessStrip />
+          <ContactCTA />
+        </div>
       </main>
       <Footer />
       <FloatingActions />

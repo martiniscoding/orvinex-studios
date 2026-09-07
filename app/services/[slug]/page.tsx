@@ -8,6 +8,7 @@ import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { Navbar1 } from "@/components/ui/navbar-1";
+import { ScrollThread } from "@/components/ui/ScrollThread";
 import { Reveal } from "@/components/ui/Reveal";
 import { servicePageStructuredData } from "@/lib/article-schema";
 import {
@@ -137,6 +138,8 @@ export default async function ServiceDetailPage({ params }: Params) {
           </Reveal>
         </section>
 
+        <div className="relative">
+        <ScrollThread />
         <section className="mx-auto max-w-[46rem] px-5 pt-14">
           <hr className="border-white/[0.08]" />
           <div className="mt-8">
@@ -200,6 +203,7 @@ export default async function ServiceDetailPage({ params }: Params) {
 
         <div className="mt-16">
           <ContactCTA />
+        </div>
         </div>
       </main>
 

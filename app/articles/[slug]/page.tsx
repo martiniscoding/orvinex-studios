@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Markdown } from "@/components/articles/Markdown";
 import { Footer } from "@/components/Footer";
 import { Navbar1 } from "@/components/ui/navbar-1";
+import { ScrollThread } from "@/components/ui/ScrollThread";
 import { getPublishedPost, listPublishedPosts } from "@/lib/articles";
 import { postStructuredData } from "@/lib/article-schema";
 import { formatPostDate, readingTime } from "@/lib/post";
@@ -122,6 +123,8 @@ export default async function PostPage({ params }: Params) {
 
             <hr className="mt-8 border-white/[0.08]" />
 
+            <div className="relative">
+              <ScrollThread />
             <div className="mt-8 pb-4">
               <Markdown>{post.content}</Markdown>
             </div>
@@ -170,6 +173,7 @@ export default async function PostPage({ params }: Params) {
                 </ul>
               </nav>
             )}
+            </div>
           </div>
         </article>
       </main>
