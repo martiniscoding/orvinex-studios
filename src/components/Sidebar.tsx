@@ -124,25 +124,12 @@ function Rail({ onNavigate }: { onNavigate?: () => void }) {
         </a>
       </div>
 
-      {/* Where kree8 lists client logos, we have none to list honestly —
-          so this is the one number we can actually stand behind. */}
+      {/* Where kree8 lists client logos, we have none to list honestly — so
+          the rail ends on the one number we can actually stand behind. */}
       <div className="mt-auto px-4 pt-10">
         <p className="eyebrow">
           Shipped <span className="text-ink-2">11 products</span> since 2023
         </p>
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          {[
-            ["4", "raised a round after", "bg-coral/25"],
-            ["1", "designer, start to end", "bg-sun/35"],
-            ["0", "account managers", "bg-mint/25"],
-            ["48h", "to first screens", "bg-sky/25"],
-          ].map(([n, label, tint]) => (
-            <div key={label} className={`rounded-2xl px-3 py-2.5 ${tint}`}>
-              <p className="phudu text-lg leading-none text-ink">{n}</p>
-              <p className="mt-1 text-[0.6875rem] leading-tight text-ink-2">{label}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
