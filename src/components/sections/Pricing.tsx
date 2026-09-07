@@ -11,7 +11,7 @@ function Watermark() {
   return (
     <span
       aria-hidden="true"
-      className="pointer-events-none absolute -right-6 -bottom-8 scale-[6] opacity-[0.13]"
+      className="pointer-events-none absolute -right-6 -bottom-8 scale-[6] opacity-[0.18]"
     >
       <Mark size={40} />
     </span>
@@ -28,7 +28,7 @@ function Toggle({ on, onChange, label }: { on: boolean; onChange: () => void; la
       aria-checked={on}
       aria-label={label}
       onClick={onChange}
-      className={`relative h-8 w-14 shrink-0 rounded-full transition-colors duration-300 ${on ? "bg-lime-deep" : "bg-line"}`}
+      className={`relative h-8 w-14 shrink-0 rounded-full transition-colors duration-300 ${on ? "bg-mint-deep" : "bg-line"}`}
     >
       <span
         aria-hidden="true"
@@ -90,7 +90,7 @@ export default function Pricing() {
               }}
               className={`rounded-full px-6 py-3 text-[0.9375rem] transition-all duration-300 ${
                 i === active
-                  ? "bg-card font-medium text-ink shadow-[0_8px_20px_-12px_rgba(20,51,77,0.45)]"
+                  ? "bg-card font-medium text-ink shadow-[0_8px_20px_-12px_rgba(44,30,74,0.45)]"
                   : "text-muted hover:text-ink"
               }`}
             >
@@ -105,7 +105,7 @@ export default function Pricing() {
         role="tabpanel"
         id={`panel-${tab.id}`}
         aria-labelledby={`tab-${tab.id}`}
-        className="mt-10 rounded-[var(--radius-panel)] bg-card p-6 shadow-[0_28px_60px_-45px_rgba(20,51,77,0.6)] lg:p-10"
+        className="mt-10 rounded-[var(--radius-panel)] bg-card p-6 shadow-[0_28px_60px_-45px_rgba(44,30,74,0.6)] lg:p-10"
       >
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div>
@@ -124,7 +124,7 @@ export default function Pricing() {
                 return (
                   <div
                     key={key}
-                    className={`flex items-center justify-between gap-4 rounded-[18px] px-5 py-4 transition-colors duration-300 ${on ? "bg-lime/20" : "bg-hush/70"}`}
+                    className={`flex items-center justify-between gap-4 rounded-[18px] px-5 py-4 transition-colors duration-300 ${on ? "bg-mint/20" : "bg-hush/70"}`}
                   >
                     <div>
                       <p className="text-[0.9375rem] font-medium">{addon.label}</p>
@@ -152,14 +152,14 @@ export default function Pricing() {
           </div>
 
           <div>
-            <div className="relative overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br from-sky/70 to-sky-deep/60 p-7">
+            <div className={`relative overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br ${tab.hue} p-7`}>
               <Watermark />
-              <p className="phudu relative text-white/45">{site.name}</p>
+              <p className="phudu relative text-ink/35">{site.name}</p>
               <div className="relative mt-16">
-                <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-white/75">
+                <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-ink/70">
                   {tab.label}
                 </p>
-                <p className="phudu mt-1 text-[clamp(2.25rem,5vw,3.25rem)] leading-none text-white tabular-nums">
+                <p className="phudu mt-1 text-[clamp(2.25rem,5vw,3.25rem)] leading-none text-ink tabular-nums">
                   {fmt(total)}
                 </p>
               </div>
@@ -186,12 +186,12 @@ export default function Pricing() {
       </div>
 
       {/* Retainer */}
-      <div className="mt-6 rounded-[var(--radius-panel)] bg-card p-6 shadow-[0_28px_60px_-45px_rgba(20,51,77,0.6)] lg:p-10">
+      <div className="mt-6 rounded-[var(--radius-panel)] bg-card p-6 shadow-[0_28px_60px_-45px_rgba(44,30,74,0.6)] lg:p-10">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <h3 className="phudu text-[1.75rem] leading-none">{pricing.retainer.name}</h3>
             <div className="mt-7 flex items-center gap-4 rounded-[18px] bg-hush/70 px-5 py-4">
-              <div className="flex items-center gap-1 rounded-full bg-lime/40 p-1">
+              <div className="flex items-center gap-1 rounded-full bg-sun/50 p-1">
                 <button
                   type="button"
                   onClick={() => setTasks((t) => Math.max(1, t - 1))}
@@ -222,9 +222,9 @@ export default function Pricing() {
           </div>
 
           <div>
-            <div className="relative overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br from-lime/80 to-lime-deep/70 p-7">
+            <div className={`relative overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br ${pricing.retainer.hue} p-7`}>
               <Watermark />
-              <p className="phudu relative text-white/50">{site.name}</p>
+              <p className="phudu relative text-ink/35">{site.name}</p>
               <div className="relative mt-16">
                 <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-ink/60">
                   Retainer · {pricing.retainer.unit}

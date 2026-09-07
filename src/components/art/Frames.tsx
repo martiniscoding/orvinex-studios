@@ -8,8 +8,8 @@ import type { JSX } from "react";
 const S = {
   ink: "var(--color-ink)",
   slate: "var(--color-muted)",
-  brass: "var(--color-lime-deep)",
-  oxide: "var(--color-sky-deep)",
+  brass: "var(--color-coral)",
+  oxide: "var(--color-mint-deep)",
   chalk: "#ffffff",
   paper: "var(--color-hush)",
 };

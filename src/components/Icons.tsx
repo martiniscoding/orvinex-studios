@@ -64,18 +64,29 @@ export const ClockIcon = () => (
 );
 
 /** Call: a video tile. Message: a paper plane. Drawn, not brand marks. */
-export const CallIcon = () => (
+/* `mono` for use on an accent fill, where the colour icon goes muddy. */
+export const CallIcon = ({ mono = false }: { mono?: boolean }) => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-    <rect x="2" y="5" width="12.5" height="12" rx="3.2" fill="var(--color-sky-deep)" />
-    <path d="M14.5 9.6l4.2-2.6a.7.7 0 0 1 1.1.6v6.8a.7.7 0 0 1-1.1.6l-4.2-2.6z" fill="var(--color-lime-deep)" />
+    <rect
+      x="2"
+      y="5"
+      width="12.5"
+      height="12"
+      rx="3.2"
+      fill={mono ? "var(--color-ink)" : "var(--color-sky)"}
+    />
+    <path
+      d="M14.5 9.6l4.2-2.6a.7.7 0 0 1 1.1.6v6.8a.7.7 0 0 1-1.1.6l-4.2-2.6z"
+      fill={mono ? "var(--color-ink)" : "var(--color-mint)"}
+    />
   </svg>
 );
 
 export const MessageIcon = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-    <circle cx="11" cy="11" r="9" fill="var(--color-sky-deep)" />
+    <circle cx="11" cy="11" r="9" fill="var(--color-grape)" />
     <path d="M6 11.2 15.6 7l-2.1 9.2-3-2.6-1.6 2.1-.3-3.2z" fill="#fff" />
-    <path d="M8.6 12.5 15.6 7l-6.2 6.6z" fill="#dbeafe" />
+    <path d="M8.6 12.5 15.6 7l-6.2 6.6z" fill="#f3e8ff" />
   </svg>
 );
 
@@ -83,7 +94,8 @@ export const MessageIcon = () => (
 export const Mark = ({ size = 26 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M13 2v6.4" stroke="var(--color-ink)" strokeWidth="1.8" strokeLinecap="round" />
-    <path d="M13 7.6 19.4 13 13 24 6.6 13z" fill="var(--color-lime)" />
+    <path d="M13 7.6 19.4 13 13 24 6.6 13z" fill="var(--color-coral)" />
+    <path d="M13 7.6 19.4 13 13 15.5z" fill="var(--color-sun)" />
     <path d="M6.6 13h12.8" stroke="var(--color-ink)" strokeOpacity=".3" strokeWidth="1.2" />
   </svg>
 );

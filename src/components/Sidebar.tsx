@@ -22,6 +22,16 @@ const icons: Record<string, () => React.ReactElement> = {
   careers: CareerIcon,
 };
 
+/* Each destination keeps its own colour, active or not — the rail should feel
+   like a set of objects, not a list of grey rows. */
+const iconHues: Record<string, string> = {
+  home: "text-coral",
+  work: "text-sky-deep",
+  approach: "text-grape",
+  pricing: "text-mint-deep",
+  careers: "text-faint",
+};
+
 function Rail({ onNavigate }: { onNavigate?: () => void }) {
   const [active, setActive] = useState("home");
 
@@ -59,13 +69,13 @@ function Rail({ onNavigate }: { onNavigate?: () => void }) {
               aria-current={isActive ? "true" : undefined}
               className={`group flex items-center gap-3 rounded-full px-4 py-3 text-[0.9375rem] transition-all duration-300 ${
                 isActive
-                  ? "bg-card text-ink shadow-[0_6px_18px_-8px_rgba(20,51,77,0.28)]"
+                  ? "bg-card text-ink shadow-[0_6px_18px_-8px_rgba(44,30,74,0.28)]"
                   : item.soon
                     ? "cursor-default text-muted"
                     : "text-ink-2 hover:bg-hush"
               }`}
             >
-              <span className={isActive ? "text-ink" : "text-faint"}>
+              <span className={iconHues[item.id] ?? "text-faint"}>
                 <Icon />
               </span>
               <span className={isActive ? "font-medium" : ""}>{item.label}</span>
@@ -112,14 +122,14 @@ function Rail({ onNavigate }: { onNavigate?: () => void }) {
         </p>
         <div className="mt-4 grid grid-cols-2 gap-2">
           {[
-            ["4", "raised a round after"],
-            ["1", "designer, start to end"],
-            ["0", "account managers"],
-            ["48h", "to first screens"],
-          ].map(([n, label]) => (
-            <div key={label} className="rounded-2xl bg-card/70 px-3 py-2.5">
+            ["4", "raised a round after", "bg-coral/25"],
+            ["1", "designer, start to end", "bg-sun/35"],
+            ["0", "account managers", "bg-mint/25"],
+            ["48h", "to first screens", "bg-sky/25"],
+          ].map(([n, label, tint]) => (
+            <div key={label} className={`rounded-2xl px-3 py-2.5 ${tint}`}>
               <p className="phudu text-lg leading-none text-ink">{n}</p>
-              <p className="mt-1 text-[0.6875rem] leading-tight text-muted">{label}</p>
+              <p className="mt-1 text-[0.6875rem] leading-tight text-ink-2">{label}</p>
             </div>
           ))}
         </div>
@@ -174,7 +184,7 @@ export default function Sidebar() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="rail-menu"
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-card shadow-[0_4px_14px_-6px_rgba(20,51,77,0.3)]"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-card shadow-[0_4px_14px_-6px_rgba(44,30,74,0.3)]"
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <span aria-hidden="true" className="flex w-5 flex-col gap-[5px]">

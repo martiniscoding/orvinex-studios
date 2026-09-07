@@ -23,8 +23,8 @@ export default function FinalNote() {
           <p className="text-[0.8125rem] text-muted">{founder.role}</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Pill href={finalNote.cta.href} tone="ink">
-            <CallIcon />
+          <Pill href={finalNote.cta.href} tone="accent">
+            <CallIcon mono />
             {finalNote.cta.label}
           </Pill>
           <Pill href={`mailto:${site.email}`}>

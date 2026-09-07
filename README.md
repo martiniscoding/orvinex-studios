@@ -58,10 +58,22 @@ instanced to drop the optical-size axis it never varies (73KB → 49KB), and
 Caveat is `preload: false` — five captions below the fold must not compete with
 Inter for the critical path.
 
-**Colour.** Both greys are set to pass WCAG AA against the shell, which is the
-tightest ground: `--color-muted` carries small text at 4.68:1, `--color-faint`
-only large display type and icons at 3.10:1. The reference site's greys do not
-pass; these do, and the two-tone headline still reads the same.
+**Colour.** Warm sand grounds (`#F7EFE6` shell, `#FFFBF6` panel) under a deep
+violet ink, lit by a family of five accents — coral, sun, mint, sky, grape —
+rather than one. A fixed `.ambient` layer washes sun, coral and mint behind
+everything; it is its own composited layer rather than
+`background-attachment: fixed`, which repaints on every scroll frame.
+
+The rule that keeps it readable: **bright surfaces take ink text, never white.**
+Ink on coral is 5.4:1, on sun 9.6:1, on mint 7.0:1, on sky 4.7:1, and on grape
+4.7:1 once it is lightened to 85%. Every accent gradient is built from stops
+that hold at or above 4.5:1 with ink on top. The two greys pass AA on the shell,
+the tightest ground: `--color-muted` carries small text at 5.17:1,
+`--color-faint` only large display type and icons at 3.11:1.
+
+The accents are load-bearing, not decoration: each pricing tab has its own
+gradient, each nav icon its own hue, each key cap its own pastel, and the
+polaroid pins, divider dots and stat chips rotate through the same five.
 
 **Artwork.** No photography, no stock. Every polaroid, project cover, icon and
 the signature is original SVG in `src/components/art/` and

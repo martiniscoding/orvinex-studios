@@ -3,6 +3,12 @@ import { Pill } from "@/components/ui/Bits";
 import { ArrowIcon, CallIcon, WorkIcon } from "@/components/Icons";
 import { frameArt } from "@/components/art/Frames";
 
+const headlineTone: Record<string, string> = {
+  ink: "text-ink",
+  dim: "text-faint",
+  accent: "text-coral-deep",
+};
+
 export default function Hero() {
   return (
     <section id="home" className="pt-6 lg:pt-10">
@@ -15,7 +21,7 @@ export default function Hero() {
         className="hero-type mt-7 max-w-[15ch] text-[clamp(2.5rem,6.2vw,4.75rem)]"
       >
         {hero.headline.map((part) => (
-          <span key={part.text} className={part.dim ? "text-faint" : "text-ink"}>
+          <span key={part.text} className={headlineTone[part.tone]}>
             {part.text}{" "}
           </span>
         ))}
@@ -26,8 +32,8 @@ export default function Hero() {
       </p>
 
       <div data-hero-cta className="mt-9 flex flex-wrap gap-3">
-        <Pill href={hero.primary.href}>
-          <CallIcon />
+        <Pill href={hero.primary.href} tone="accent">
+          <CallIcon mono />
           {hero.primary.label}
         </Pill>
         <Pill href={hero.secondary.href}>
@@ -42,7 +48,7 @@ export default function Hero() {
           block is the studio's own work, not a poster frame for nothing. */}
       <div
         data-hero-card
-        className="mt-14 overflow-hidden rounded-[var(--radius-panel)] bg-gradient-to-br from-sky/30 via-panel to-lime/25 p-3 shadow-[0_30px_60px_-40px_rgba(20,51,77,0.5)]"
+        className="mt-14 overflow-hidden rounded-[var(--radius-panel)] bg-gradient-to-br from-sun/45 via-coral/25 to-mint/35 p-3 shadow-[0_30px_60px_-40px_rgba(44,30,74,0.45)]"
       >
         <div className="grid gap-3 sm:grid-cols-3">
           {["ui", "brand", "site"].map((id, i) => (

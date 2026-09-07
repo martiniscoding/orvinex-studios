@@ -35,7 +35,7 @@ export default function Work() {
               type="button"
               onClick={() => go(dir)}
               disabled={dir === -1 ? index === 0 : index === work.length - 1}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-card text-ink shadow-[0_8px_20px_-12px_rgba(20,51,77,0.5)] transition-opacity disabled:opacity-35"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-card text-ink shadow-[0_8px_20px_-12px_rgba(44,30,74,0.5)] transition-opacity disabled:opacity-35"
             >
               <span className="sr-only">{dir === -1 ? "Previous project" : "Next project"}</span>
               <span aria-hidden="true" className={dir === -1 ? "rotate-180" : ""}>
@@ -55,7 +55,7 @@ export default function Work() {
             key={project.id}
             className="w-[85%] shrink-0 snap-start sm:w-[70%] lg:w-[58%]"
           >
-            <article className="h-full overflow-hidden rounded-[var(--radius-panel)] bg-card shadow-[0_24px_50px_-38px_rgba(20,51,77,0.6)]">
+            <article className="h-full overflow-hidden rounded-[var(--radius-panel)] bg-card shadow-[0_24px_50px_-38px_rgba(44,30,74,0.6)]">
               <div className="bg-hush/60 p-3">{coverArt[project.id]}</div>
               <div className="p-7">
                 <div className="flex items-baseline gap-3">

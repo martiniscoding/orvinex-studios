@@ -25,10 +25,11 @@ export const hero = {
   credibility: "Shipped 11 products since 2023",
   /* `dim: true` renders in the light blue-grey, the rest in navy. */
   headline: [
-    { text: "The studio", dim: false },
-    { text: "for products", dim: true },
-    { text: "that are better", dim: false },
-    { text: "than they look", dim: true },
+    { text: "The studio", tone: "ink" },
+    { text: "for products", tone: "dim" },
+    { text: "that are", tone: "ink" },
+    { text: "better", tone: "accent" },
+    { text: "than they look", tone: "dim" },
   ],
   sub:
     "Product UI, brand systems and launch sites for dev tools and B2B " +
@@ -103,6 +104,7 @@ export const pricing = {
     {
       id: "site",
       label: "Launch site",
+      hue: "from-sun to-coral",
       name: "Launch site",
       price: 6400,
       timeline: "15–20 days",
@@ -122,6 +124,7 @@ export const pricing = {
     {
       id: "brand",
       label: "Branding",
+      hue: "from-grape/85 to-sky",
       name: "Brand system",
       price: 11500,
       timeline: "20–25 days",
@@ -140,6 +143,7 @@ export const pricing = {
     {
       id: "ui",
       label: "Product UI",
+      hue: "from-mint to-sky",
       name: "Interface project",
       price: 14000,
       timeline: "30–40 days",
@@ -158,6 +162,7 @@ export const pricing = {
   ],
   retainer: {
     name: "Plumbline retainer",
+    hue: "from-sun to-mint",
     price: 8900,
     unit: "per month",
     features: [

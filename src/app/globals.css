@@ -4,24 +4,32 @@
    Tokens — navy on light grey, white cards, lime accent.
 ------------------------------------------------------------------- */
 @theme {
-  --color-shell: #eaebed;
-  --color-panel: #f1f3f5;
+  /* Warm grounds — sand, not grey. */
+  --color-shell: #f7efe6;
+  --color-panel: #fffbf6;
   --color-card: #ffffff;
-  --color-hush: #e6e8eb;
+  --color-hush: #f3e9dd;
+  --color-line: #ead9c9;
 
-  --color-ink: #14334d;
-  --color-ink-2: #304f67;
-  /* Both greys are set to pass WCAG AA on the shell, which is the tightest
-     ground: muted carries small text (4.68:1), faint only large display type
-     and icons (3.10:1). */
-  --color-muted: #566a7e;
-  --color-faint: #74879a;
-  --color-line: #dfe3e7;
+  /* Deep violet ink, warm enough to sit on sand. */
+  --color-ink: #2c1e4a;
+  --color-ink-2: #4a3a70;
+  --color-muted: #6b5e85;
+  --color-faint: #8f82a8;
 
-  --color-lime: #9be45c;
-  --color-lime-deep: #6fc22f;
-  --color-sky: #6bb8f5;
-  --color-sky-deep: #2f8fe0;
+  /* A family of accents, not a single one. Every bright surface takes ink
+     text, never white — that is what keeps the vivid cards readable
+     (ink on coral 5.4:1, on sun 9.6:1, on mint 7.0:1, on sky 4.7:1). */
+  --color-coral: #ff6b4a;
+  --color-coral-deep: #e14e2e;
+  --color-sun: #ffc53d;
+  --color-sun-deep: #e9a013;
+  --color-mint: #2fc79a;
+  --color-mint-deep: #12a67c;
+  --color-sky: #5b8def;
+  --color-sky-deep: #3566d6;
+  --color-grape: #a855f7;
+  --color-grape-deep: #7c3aed;
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-phudu), system-ui, sans-serif;
@@ -60,7 +68,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-lime);
+  background-color: var(--color-sun);
   color: var(--color-ink);
 }
 
@@ -100,8 +108,8 @@ body {
   background-image: linear-gradient(
     104deg,
     transparent 0.2%,
-    color-mix(in srgb, var(--color-lime) 78%, transparent) 2.2%,
-    color-mix(in srgb, var(--color-lime) 78%, transparent) 97.5%,
+    color-mix(in srgb, var(--color-sun) 80%, transparent) 2.2%,
+    color-mix(in srgb, var(--color-sun) 80%, transparent) 97.5%,
     transparent 99.8%
   );
   background-repeat: no-repeat;
@@ -109,6 +117,19 @@ body {
   background-position: 0 76%;
   padding: 0 0.16em;
   margin: 0 -0.06em;
+}
+
+/* The warm wash behind everything. On its own fixed layer rather than
+   background-attachment: fixed, which repaints on every scroll frame. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(60rem 40rem at 12% -8%, color-mix(in srgb, var(--color-sun) 30%, transparent), transparent 65%),
+    radial-gradient(55rem 38rem at 92% 6%, color-mix(in srgb, var(--color-coral) 20%, transparent), transparent 62%),
+    radial-gradient(50rem 40rem at 80% 98%, color-mix(in srgb, var(--color-mint) 18%, transparent), transparent 60%);
 }
 
 [id] {
