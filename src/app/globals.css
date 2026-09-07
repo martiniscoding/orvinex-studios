@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Plumbline design tokens
+   Ground is a cool grey-green drafting stock; accent is brass, the
+   material of a plumb bob. One committed light palette — no dark mode.
+------------------------------------------------------------------- */
+@theme {
+  --color-paper: #dde0dc;
+  --color-chalk: #eff1ec;
+  --color-ink: #15191b;
+  --color-slate: #5a6360;
+  --color-brass: #b07d1e;
+  --color-oxide: #2c6154;
+
+  --color-paper-deep: #d2d6d1;
+  --color-ink-soft: #1d2224;
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-archivo), system-ui, "Helvetica Neue", sans-serif;
+
+  /* 1.333 scale, 17px base */
+  --text-micro: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-md: 1.375rem;
+  --text-lg: 1.875rem;
+  --text-xl: 2.5rem;
+  --text-2xl: 3.3125rem;
+  --text-3xl: 4.4375rem;
+  --text-4xl: 5.9375rem;
+
+  --ease-plumb: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* The plumb axis. Every heading sits on this x-position. */
+  --plumb-x: 24px;
+  --nav-h: 68px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (min-width: 768px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --plumb-x: 8%;
+    --nav-h: 76px;
   }
 }
 
+@media (min-width: 1280px) {
+  :root {
+    --plumb-x: 12%;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis-weight: none;
+  overflow-x: clip;
+}
+
+::selection {
+  background-color: var(--color-brass);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Display type: the hero leans entirely on this. */
+@utility display {
+  font-family: var(--font-display);
+  font-variation-settings: "WONK" 0;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+/* Drafting annotations: section numbers, frame labels, measurements. */
+@utility label {
+  font-family: var(--font-sans);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Content hangs to the right of the plumb axis. */
+@utility plumb-pad {
+  padding-left: var(--plumb-x);
+  padding-right: clamp(24px, 6vw, 96px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Motion start states.
+
+   These apply only when the inline boot script has added `.motion` to
+   <html>, which it does only when the visitor has not asked for reduced
+   motion. If the motion layer never initialises, the same script strips the
+   class after 2.5s and the page reverts to its static layout — nothing is
+   left permanently hidden.
+------------------------------------------------------------------- */
+/* The hero sequence is pure CSS on purpose: it must not wait for the deferred
+   GSAP chunk, or the headline — the LCP element — paints late. */
+@keyframes plumb-rise {
+  from {
+    transform: translateY(102%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes plumb-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes plumb-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.motion [data-hero-line] {
+  animation: plumb-rise 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.motion [data-hero-credibility] {
+  animation: plumb-fade 0.7s ease-out both;
+}
+
+.motion [data-hero-sub] {
+  animation: plumb-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+.motion [data-hero-cta] {
+  animation: plumb-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.62s both;
+}
+
+/* Beats are masked, not dimmed: low-opacity body text would fail contrast, and
+   a beat that has not landed yet should be absent rather than faint. */
+.motion [data-beat] {
+  transform: translateY(105%);
+}
+
+.motion [data-letter] {
+  transform: translateY(105%);
+}
+
+.motion [data-frame] {
+  opacity: 0;
+}
+
+/* The nav is only made solid by a ScrollTrigger. Reduced-motion visitors never
+   run it, and a transparent nav over the inverted band hides its own CTA — so
+   give them the solid nav from the start. */
+@media (prefers-reduced-motion: reduce) {
+  [data-nav] {
+    background-color: var(--color-paper);
+    border-bottom-color: color-mix(in srgb, var(--color-ink) 10%, transparent);
+  }
+}
+
+[data-nav].is-solid {
+  background-color: color-mix(in srgb, var(--color-paper) 82%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom-color: color-mix(in srgb, var(--color-ink) 10%, transparent);
+}
+
+[id] {
+  scroll-margin-top: calc(var(--nav-h) + 20px);
 }
