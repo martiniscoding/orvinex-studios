@@ -108,13 +108,15 @@ export function ScrollThread({ className = "" }: { className?: string }) {
       ref={hostRef}
       aria-hidden="true"
       /**
-       * Painted above the sections, not behind them. Every section below the
-       * hero has an opaque background, so a thread underneath is simply never
-       * seen. `screen` blending means it only ever adds light — it brightens
-       * the dark ground it crosses and leaves text legible instead of laying a
-       * grey wash over it.
+       * Painted above the sections, not behind them: everything below the hero
+       * has an opaque background, so a thread underneath is never seen.
+       *
+       * No `mix-blend-mode` here. Blending asked WebKit to re-composite a
+       * page-height layer against everything under it on every scroll frame,
+       * which cost more than the rest of the page put together. Low-opacity
+       * violet on a near-black ground reads the same without it.
        */
-      className={`pointer-events-none absolute inset-0 z-[1] overflow-hidden mix-blend-screen ${className}`}
+      className={`pointer-events-none absolute inset-0 z-[1] overflow-hidden ${className}`}
     >
       {d && (
         <svg
@@ -125,9 +127,6 @@ export function ScrollThread({ className = "" }: { className?: string }) {
           className="absolute inset-0"
         >
           <defs>
-            <filter id="thread-glow" x="-25%" y="-2%" width="150%" height="104%">
-              <feGaussianBlur stdDeviation="10" />
-            </filter>
             {/* Fades both ends so the thread appears and leaves rather than
                 being cut off by the edge of the section. */}
             <linearGradient id="thread-fade" x1="0" y1="0" x2="0" y2="1">
@@ -139,24 +138,39 @@ export function ScrollThread({ className = "" }: { className?: string }) {
             </linearGradient>
             <linearGradient id="thread-bloom" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#c4b5fd" stopOpacity="0" />
-              <stop offset="10%" stopColor="#c4b5fd" stopOpacity="0.62" />
-              <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.52" />
-              <stop offset="90%" stopColor="#8b5cf6" stopOpacity="0.45" />
+              <stop offset="10%" stopColor="#c4b5fd" stopOpacity="1" />
+              <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.9" />
+              <stop offset="90%" stopColor="#8b5cf6" stopOpacity="0.8" />
               <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
             </linearGradient>
           </defs>
 
-          {/* The violet bloom underneath, blurred, so the white core reads as
-              light rather than as a drawn line. */}
-          <motion.path
-            d={d}
-            stroke="url(#thread-bloom)"
-            strokeWidth={9}
-            strokeLinecap="round"
-            filter="url(#thread-glow)"
-            style={reduced ? undefined : { pathLength: drawn }}
-            pathLength={reduced ? undefined : 1}
-          />
+          {/*
+            The glow is four stacked strokes rather than one blurred one.
+
+            A feGaussianBlur has to be re-run every time the path changes, and
+            the path changes on every scroll frame because it is being drawn.
+            WebKit re-rasterised the blur across a page-height bounding box each
+            time, which is where the stutter came from. Plain strokes cost
+            almost nothing to raster, and four of them at falling widths and
+            rising opacities give the same soft falloff.
+          */}
+          {[
+            { w: 18, o: 0.07 },
+            { w: 9, o: 0.13 },
+            { w: 4, o: 0.2 },
+          ].map((layer) => (
+            <motion.path
+              key={layer.w}
+              d={d}
+              stroke="url(#thread-bloom)"
+              strokeWidth={layer.w}
+              strokeOpacity={layer.o}
+              strokeLinecap="round"
+              style={reduced ? undefined : { pathLength: drawn }}
+              pathLength={reduced ? undefined : 1}
+            />
+          ))}
 
           {/* The hairline core. */}
           <motion.path
