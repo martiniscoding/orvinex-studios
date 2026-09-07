@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { archivo, fraunces } from "@/lib/fonts";
+import { caveat, inter, phudu } from "@/lib/fonts";
 import ClientMotion from "@/components/ClientMotion";
 import "./globals.css";
 
@@ -20,17 +20,21 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${archivo.variable}`}>
+    <html lang="en" className={`${inter.variable} ${phudu.variable} ${caveat.variable}`}
+      data-motion="on"
+    >
       <head>
-        {/* Decides before first paint whether the page animates at all, so
-            motion start states never flash for reduced-motion visitors, and
-            never strand content if the motion layer fails to boot. */}
+        {/* data-motion is rendered on the server (so hydration matches) and
+            removed here, before first paint, for anyone who asked for reduced
+            motion — or after 2.5s if the motion layer never reports ready, so
+            a failed chunk can never strand hidden content. */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;" +
-              "var d=document.documentElement;d.classList.add('motion');" +
-              "setTimeout(function(){if(!d.hasAttribute('data-motion-ready'))d.classList.remove('motion');},2500);}catch(e){}})();",
+              "(function(){var d=document.documentElement;try{" +
+              "if(matchMedia('(prefers-reduced-motion: reduce)').matches){d.removeAttribute('data-motion');return;}" +
+              "setTimeout(function(){if(!d.hasAttribute('data-motion-ready'))d.removeAttribute('data-motion');},2500);" +
+              "}catch(e){d.removeAttribute('data-motion');}})();",
           }}
         />
       </head>

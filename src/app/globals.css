@@ -1,54 +1,46 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Plumbline design tokens
-   Ground is a cool grey-green drafting stock; accent is brass, the
-   material of a plumb bob. One committed light palette — no dark mode.
+   Tokens — navy on light grey, white cards, lime accent.
 ------------------------------------------------------------------- */
 @theme {
-  --color-paper: #dde0dc;
-  --color-chalk: #eff1ec;
-  --color-ink: #15191b;
-  --color-slate: #5a6360;
-  --color-brass: #b07d1e;
-  --color-oxide: #2c6154;
+  --color-shell: #eaebed;
+  --color-panel: #f1f3f5;
+  --color-card: #ffffff;
+  --color-hush: #e6e8eb;
 
-  --color-paper-deep: #d2d6d1;
-  --color-ink-soft: #1d2224;
+  --color-ink: #14334d;
+  --color-ink-2: #304f67;
+  /* Both greys are set to pass WCAG AA on the shell, which is the tightest
+     ground: muted carries small text (4.68:1), faint only large display type
+     and icons (3.10:1). */
+  --color-muted: #566a7e;
+  --color-faint: #74879a;
+  --color-line: #dfe3e7;
 
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-archivo), system-ui, "Helvetica Neue", sans-serif;
+  --color-lime: #9be45c;
+  --color-lime-deep: #6fc22f;
+  --color-sky: #6bb8f5;
+  --color-sky-deep: #2f8fe0;
 
-  /* 1.333 scale, 17px base */
-  --text-micro: 0.8125rem;
-  --text-sm: 0.9375rem;
-  --text-base: 1.0625rem;
-  --text-md: 1.375rem;
-  --text-lg: 1.875rem;
-  --text-xl: 2.5rem;
-  --text-2xl: 3.3125rem;
-  --text-3xl: 4.4375rem;
-  --text-4xl: 5.9375rem;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-phudu), system-ui, sans-serif;
+  --font-hand: var(--font-caveat), cursive;
 
-  --ease-plumb: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius-panel: 28px;
+  --radius-card: 24px;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
-  /* The plumb axis. Every heading sits on this x-position. */
-  --plumb-x: 24px;
-  --nav-h: 68px;
-}
-
-@media (min-width: 768px) {
-  :root {
-    --plumb-x: 8%;
-    --nav-h: 76px;
-  }
+  --rail: 300px;
+  --gutter: 20px;
 }
 
 @media (min-width: 1280px) {
   :root {
-    --plumb-x: 12%;
+    --rail: 340px;
   }
 }
 
@@ -57,52 +49,70 @@ html {
 }
 
 body {
-  background-color: var(--color-paper);
+  background-color: var(--color-shell);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: var(--text-base);
-  line-height: 1.55;
-  letter-spacing: -0.005em;
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
-  font-synthesis-weight: none;
   overflow-x: clip;
 }
 
 ::selection {
-  background-color: var(--color-brass);
-  color: var(--color-paper);
+  background-color: var(--color-lime);
+  color: var(--color-ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-brass);
+  outline: 2px solid var(--color-ink);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
-/* Display type: the hero leans entirely on this. */
-@utility display {
+/* Condensed uppercase headings on the cards. */
+@utility phudu {
   font-family: var(--font-display);
-  font-variation-settings: "WONK" 0;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 0.92;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+/* Small grey section labels. */
+@utility eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Big headline: tight, mixed-weight-colour treatment. */
+@utility hero-type {
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
   text-wrap: balance;
 }
 
-/* Drafting annotations: section numbers, frame labels, measurements. */
-@utility label {
-  font-family: var(--font-sans);
-  font-size: var(--text-micro);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
+/* The felt-tip highlight behind a phrase. */
+@utility marker {
+  background-image: linear-gradient(
+    104deg,
+    transparent 0.2%,
+    color-mix(in srgb, var(--color-lime) 78%, transparent) 2.2%,
+    color-mix(in srgb, var(--color-lime) 78%, transparent) 97.5%,
+    transparent 99.8%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 54%;
+  background-position: 0 76%;
+  padding: 0 0.16em;
+  margin: 0 -0.06em;
 }
 
-/* Content hangs to the right of the plumb axis. */
-@utility plumb-pad {
-  padding-left: var(--plumb-x);
-  padding-right: clamp(24px, 6vw, 96px);
+[id] {
+  scroll-margin-top: 32px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -119,27 +129,15 @@ body {
 /* ------------------------------------------------------------------
    Motion start states.
 
-   These apply only when the inline boot script has added `.motion` to
-   <html>, which it does only when the visitor has not asked for reduced
-   motion. If the motion layer never initialises, the same script strips the
-   class after 2.5s and the page reverts to its static layout — nothing is
-   left permanently hidden.
+   Applied only when the boot script has set data-motion on <html>, which
+   it does only when the visitor has not asked for reduced motion. The same
+   script strips the attribute after 2.5s if the motion layer never reports
+   ready, so nothing can be left permanently hidden.
 ------------------------------------------------------------------- */
-/* The hero sequence is pure CSS on purpose: it must not wait for the deferred
-   GSAP chunk, or the headline — the LCP element — paints late. */
-@keyframes plumb-rise {
-  from {
-    transform: translateY(102%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes plumb-fade-up {
+@keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -147,61 +145,33 @@ body {
   }
 }
 
-@keyframes plumb-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* The hero is CSS, not GSAP: it must not wait for the deferred motion chunk,
+   or the headline — the LCP element — paints late. */
+[data-motion] [data-hero-eyebrow],
+[data-motion] [data-hero-head],
+[data-motion] [data-hero-sub],
+[data-motion] [data-hero-cta],
+[data-motion] [data-hero-card] {
+  animation: rise-in 0.85s var(--ease-out-soft) both;
 }
 
-.motion [data-hero-line] {
-  animation: plumb-rise 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+[data-motion] [data-hero-head] {
+  animation-delay: 0.08s;
+}
+[data-motion] [data-hero-sub] {
+  animation-delay: 0.2s;
+}
+[data-motion] [data-hero-cta] {
+  animation-delay: 0.3s;
+}
+[data-motion] [data-hero-card] {
+  animation-delay: 0.4s;
 }
 
-.motion [data-hero-credibility] {
-  animation: plumb-fade 0.7s ease-out both;
-}
-
-.motion [data-hero-sub] {
-  animation: plumb-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-}
-
-.motion [data-hero-cta] {
-  animation: plumb-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.62s both;
-}
-
-/* Beats are masked, not dimmed: low-opacity body text would fail contrast, and
-   a beat that has not landed yet should be absent rather than faint. */
-.motion [data-beat] {
-  transform: translateY(105%);
-}
-
-.motion [data-letter] {
-  transform: translateY(105%);
-}
-
-.motion [data-frame] {
+[data-motion] [data-cap] {
   opacity: 0;
 }
 
-/* The nav is only made solid by a ScrollTrigger. Reduced-motion visitors never
-   run it, and a transparent nav over the inverted band hides its own CTA — so
-   give them the solid nav from the start. */
-@media (prefers-reduced-motion: reduce) {
-  [data-nav] {
-    background-color: var(--color-paper);
-    border-bottom-color: color-mix(in srgb, var(--color-ink) 10%, transparent);
-  }
-}
-
-[data-nav].is-solid {
-  background-color: color-mix(in srgb, var(--color-paper) 82%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom-color: color-mix(in srgb, var(--color-ink) 10%, transparent);
-}
-
-[id] {
-  scroll-margin-top: calc(var(--nav-h) + 20px);
+[data-motion] [data-polaroid] {
+  opacity: 0;
 }

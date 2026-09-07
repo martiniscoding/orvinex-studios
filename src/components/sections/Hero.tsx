@@ -1,41 +1,65 @@
 import { hero } from "@/content/site";
-import { Cta } from "@/components/ui/Cta";
+import { Pill } from "@/components/ui/Bits";
+import { ArrowIcon, CallIcon, WorkIcon } from "@/components/Icons";
+import { frameArt } from "@/components/art/Frames";
 
 export default function Hero() {
   return (
-    <section
-      id="top"
-      className="plumb-pad relative flex min-h-[100svh] flex-col justify-center pt-[var(--nav-h)] pb-16"
-    >
-      <p data-hero-credibility className="label flex items-center gap-3 text-slate">
-        <span aria-hidden="true" className="h-px w-8 bg-brass" />
+    <section id="home" className="pt-6 lg:pt-10">
+      <p data-hero-eyebrow className="eyebrow">
         {hero.credibility}
       </p>
 
-      <h1 className="display mt-6 text-[clamp(2.75rem,10vw,9.25rem)]">
-        {hero.headline.map((line, i) => (
-          <span key={line} className="block overflow-hidden">
-            <span
-              data-hero-line
-              className="block"
-              style={{ animationDelay: `${0.08 + i * 0.085}s` }}
-            >
-              {line}
-            </span>
+      <h1
+        data-hero-head
+        className="hero-type mt-7 max-w-[15ch] text-[clamp(2.5rem,6.2vw,4.75rem)]"
+      >
+        {hero.headline.map((part) => (
+          <span key={part.text} className={part.dim ? "text-faint" : "text-ink"}>
+            {part.text}{" "}
           </span>
         ))}
       </h1>
 
-      <p data-hero-sub className="mt-8 max-w-[56ch] text-base text-slate md:text-md md:mt-10">
+      <p data-hero-sub className="mt-7 max-w-[58ch] text-[1.0625rem] text-muted">
         {hero.sub}
       </p>
 
-      <div data-hero-cta className="mt-10 flex flex-wrap items-center gap-4">
-        <Cta href={hero.primary.href}>{hero.primary.label}</Cta>
-        <Cta href={hero.secondary.href} variant="ghost">
+      <div data-hero-cta className="mt-9 flex flex-wrap gap-3">
+        <Pill href={hero.primary.href}>
+          <CallIcon />
+          {hero.primary.label}
+        </Pill>
+        <Pill href={hero.secondary.href}>
+          <span className="text-faint">
+            <WorkIcon />
+          </span>
           {hero.secondary.label}
-          <span aria-hidden="true">→</span>
-        </Cta>
+        </Pill>
+      </div>
+
+      {/* Where kree8 runs a showreel, there is no video here — so the feature
+          block is the studio's own work, not a poster frame for nothing. */}
+      <div
+        data-hero-card
+        className="mt-14 overflow-hidden rounded-[var(--radius-panel)] bg-gradient-to-br from-sky/30 via-panel to-lime/25 p-3 shadow-[0_30px_60px_-40px_rgba(20,51,77,0.5)]"
+      >
+        <div className="grid gap-3 sm:grid-cols-3">
+          {["ui", "brand", "site"].map((id, i) => (
+            <div
+              key={id}
+              className={`overflow-hidden rounded-[18px] bg-card p-2 ${i === 0 ? "sm:col-span-2" : ""}`}
+            >
+              {frameArt[id]}
+            </div>
+          ))}
+        </div>
+        <p className="flex items-center justify-between px-3 py-4 text-sm text-ink-2">
+          Brand, interface and the page that sells it — from one person.
+          <span className="text-faint">
+            <ArrowIcon />
+          </span>
+        </p>
       </div>
     </section>
   );

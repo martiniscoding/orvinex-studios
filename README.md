@@ -2,32 +2,36 @@
 
 A single-page site for a design studio, built as a portfolio piece.
 
-**Live sections:** hero → proof line → type specimen → the gap (pinned) →
-UNDERSOLD (the naming moment) → what you get (pinned collage) → approach →
-services → work → pricing → testimonials → founder's note → footer.
+The layout follows **kree8.studio**: a fixed icon rail on the left, an inset
+rounded content panel on the right, navy on light grey, and the same section
+rhythm — hero → work → the problem, named in key caps → the polaroid board →
+approach → services → pricing → testimonials → a signed final note.
+
+**What was deliberately not copied:** their chameleon logo, their team photos,
+their client logos, their testimonials and their copy. All artwork, icons and
+words here are original. Their assets are theirs.
 
 ---
 
 ## ⚠ Everything here is demo content
 
-Plumbline is a **fictional studio**. It was invented for this build; there is no
-client behind it. Specifically invented, and unsafe to ship as-is:
+Plumbline is a **fictional studio**. There is no client behind it. Invented,
+and unsafe to ship as-is:
 
 | What | Where | Status |
 | --- | --- | --- |
 | Studio name, positioning, founder | `src/content/site.ts` | Invented |
-| Projects, scopes and outcomes | `work` in `site.ts` | Invented |
-| Testimonials and the people quoted | `testimonials` in `site.ts` | **Invented** |
-| Prices, timelines, "11 products shipped since 2023" | `pricing`, `hero` | Invented |
+| Projects, scopes and outcomes | `work` | Invented |
+| Testimonials and the people quoted | `testimonials` | **Invented** |
+| Prices, timelines, "11 products since 2023" | `pricing`, `hero` | Invented |
 
-`src/content/site.ts` exports `DEMO_CONTENT = true` as a marker. Before this
-goes anywhere near a real studio, replace every field with something checkable
-— and if a real client has no testimonials, **delete the section** rather than
-softening these. Fabricated praise on an agency's own site is a liability.
+`src/content/site.ts` exports `DEMO_CONTENT = true` as a marker. Replace every
+field with something checkable before this goes near a real studio — and if a
+real client has no testimonials, **delete the section** rather than softening
+these. Fabricated praise on an agency's own site is a liability.
 
-Two sections were already cut for exactly that reason: there is no client-logo
-marquee (no real logos) and no showreel (no video). The proof line and the type
-specimen stand in their place.
+Where kree8 lists 130+ client logos, the rail carries a stat block instead:
+there are no logos here that could be shown honestly.
 
 ## Stack
 
@@ -36,46 +40,49 @@ Lenis · self-hosted `next/font/local`.
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000
-npm run build   # never pipe this through `head` — SIGPIPE leaves .next inconsistent
+npm run dev
+npm run build   # never pipe through `head` — SIGPIPE leaves .next inconsistent
 npm start
 ```
 
 ## How it is put together
 
-**The plumb line.** A hairline brass rule at `--plumb-x` runs the whole page.
-Headings sit on it, content hangs to its right, and a brass bob rides it —
-scrubbed to page progress, swinging with scroll velocity. It is the layout
-spine, the progress indicator and the studio's own metaphor at once.
+**Shell.** `Sidebar` is `position: fixed` at `--rail` wide and collapses to a
+top bar with a full-screen menu below `lg`. The rail's active item is driven by
+an IntersectionObserver over the section ids, so it tracks what you are
+actually looking at.
 
-**Type.** Fraunces for display, Archivo for text, both self-hosted. Fraunces is
-instanced at `wght 900 / opsz 144 / SOFT 0`, keeping only the `WONK` axis
-variable — it is used on exactly one word. That took the file from 120KB to
-27KB and moved LCP by 0.4s.
+**Type.** Inter for UI and headlines, Phudu for the wordmark and the uppercase
+card headings, Caveat for the five polaroid captions. All self-hosted. Inter is
+instanced to drop the optical-size axis it never varies (73KB → 49KB), and
+Caveat is `preload: false` — five captions below the fold must not compete with
+Inter for the critical path.
 
-**Artwork.** There is no photography and no stock. Every frame in the collage,
-every project cover and the signature are original SVG drawn in
-`src/components/art/`. The page ships zero raster images, which is why there is
-no `next/image` anywhere.
+**Colour.** Both greys are set to pass WCAG AA against the shell, which is the
+tightest ground: `--color-muted` carries small text at 4.68:1, `--color-faint`
+only large display type and icons at 3.10:1. The reference site's greys do not
+pass; these do, and the two-tone headline still reads the same.
 
-**Motion.** Two categories only:
+**Artwork.** No photography, no stock. Every polaroid, project cover, icon and
+the signature is original SVG in `src/components/art/` and
+`src/components/Icons.tsx`. The page ships zero raster images, which is why
+there is no `next/image` anywhere.
 
-- *Scrubbed* — the narrative beats, the letter reveal, the collage frames.
-- *Triggered* — the marquee, the nav state, the mobile menu.
+**Motion.** The hero sequence is CSS, so it never waits on the deferred GSAP
+chunk — gating the LCP headline on it costs about 0.4s. Everything else is
+`MotionLayer`: the key caps popping in and the polaroids landing, both
+triggered once, both inside a single `gsap.matchMedia` so
+`prefers-reduced-motion` reverts the lot in one call.
 
-All of it lives in `src/components/MotionLayer.tsx` inside one
-`gsap.matchMedia`, so `prefers-reduced-motion` reverts every tween and kills
-every ScrollTrigger in one call. Pinning is native `position: sticky`, so the
-static fallback is the real layout, not a broken one. Lenis drives
-`gsap.ticker` and `ScrollTrigger.update`; nothing on the site listens to
-`scroll` directly.
+`data-motion` is rendered on `<html>` by the server so hydration matches, and
+the boot script removes it before first paint for reduced-motion visitors, or
+after 2.5s if the motion layer never reports ready — a failed chunk can never
+strand hidden content.
 
-The hero sequence is deliberately **CSS, not GSAP** — GSAP is loaded in a
-deferred chunk, and gating the headline on it cost 0.4s of LCP.
-
-A boot script in the layout adds `.motion` to `<html>` before first paint and
-removes it after 2.5s if the motion layer never reports ready, so a failed
-chunk can never leave content hidden.
+Two rules learned the hard way and worth keeping: no component may call
+`ScrollTrigger.getAll().kill()` (it wipes triggers it does not own — the reason
+the reveals silently failed), and nothing may add classes to `<html>` from a
+script, because React manages that attribute.
 
 ## Numbers
 
@@ -83,11 +90,11 @@ Lighthouse, mobile, production build:
 
 | | |
 | --- | --- |
-| Performance | 97 |
+| Performance | 94 |
 | Accessibility | 100 |
 | Best practices | 100 |
 | SEO | 100 |
-| FCP / LCP | 0.9s / 2.6s |
+| FCP / LCP | 1.4s / 3.0s |
 | CLS / TBT | 0 / 0ms |
 
 Checked at 375, 768 and 1440.

@@ -6,11 +6,11 @@ import type { JSX } from "react";
 
 const S = {
   ink: "var(--color-ink)",
-  slate: "var(--color-slate)",
-  brass: "var(--color-brass)",
-  oxide: "var(--color-oxide)",
-  chalk: "var(--color-chalk)",
-  paper: "var(--color-paper-deep)",
+  slate: "var(--color-muted)",
+  brass: "var(--color-lime-deep)",
+  oxide: "var(--color-sky-deep)",
+  chalk: "#ffffff",
+  paper: "var(--color-hush)",
 };
 
 function Plate({ children, bg = S.chalk }: { children: React.ReactNode; bg?: string }) {
@@ -133,7 +133,7 @@ export function Signature({ className }: { className?: string }) {
       <path
         d="M14 66 C 92 60, 186 62, 262 67"
         fill="none"
-        stroke="var(--color-brass)"
+        stroke="var(--color-lime-deep)"
         strokeWidth="1.4"
         strokeLinecap="round"
       />

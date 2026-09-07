@@ -1,37 +1,43 @@
 import { problem } from "@/content/site";
 
 /**
- * 5.5 — the pinned narrative. Pinning is native `position: sticky`, so with
- * JavaScript off or reduced motion on the beats simply read as one stacked
- * block. The stack is sized to fit a single viewport at every breakpoint;
- * step 5 dims the beats you have not reached yet.
+ * The naming moment: one word, each letter on its own key cap, tilted a
+ * little. Caps animate in on scrub; with reduced motion they are simply there.
  */
 export default function Problem() {
   return (
-    <section
-      id="problem"
-      aria-label="The gap"
-      data-problem
-      className="relative"
-      style={{ height: "240vh" }}
-    >
-      <div className="sticky top-0 flex h-[100svh] flex-col justify-center">
-        <div className="plumb-pad">
-          <h2 className="label text-slate">{problem.eyebrow}</h2>
-          <div className="mt-10 space-y-1.5 md:space-y-2.5">
-            {problem.beats.map((beat, i) => (
-              <div key={beat} className="overflow-hidden">
-                <p
-                  data-beat={i}
-                  className="display text-pretty text-[clamp(1.375rem,3.4vw,2.5rem)] leading-[1.14]"
-                >
-                  {beat}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <section data-problem className="py-4">
+      <p className="max-w-[60ch] text-[clamp(1.125rem,2.1vw,1.5rem)] leading-[1.5] text-ink-2">
+        {problem.lead}
+      </p>
+
+      <p className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-4 text-[clamp(1.25rem,2.4vw,1.75rem)] font-semibold">
+        <span className="mr-1">{problem.prefix}</span>
+        <span className="sr-only">{problem.word}</span>
+        {problem.word.split("").map((letter, i) => (
+          <span
+            key={`${letter}-${i}`}
+            data-cap={i}
+            aria-hidden="true"
+            className="inline-flex h-[clamp(2.25rem,4.4vw,3.25rem)] w-[clamp(2rem,3.9vw,2.9rem)] items-center justify-center rounded-[10px] bg-card text-ink shadow-[0_5px_0_0_var(--color-line),0_10px_18px_-10px_rgba(20,51,77,0.45)]"
+            style={{ transform: `rotate(${(i % 2 ? 1 : -1) * (3.5 + ((i * 2) % 4))}deg)` }}
+          >
+            {letter}
+          </span>
+        ))}
+      </p>
+
+      <ul className="mt-12 space-y-2 text-[clamp(1.125rem,2.1vw,1.5rem)] text-ink-2">
+        {problem.bullets.map((b) => (
+          <li key={b}>— {b}</li>
+        ))}
+      </ul>
+
+      <p className="mt-12 max-w-[46ch] text-[clamp(1.25rem,2.4vw,1.75rem)] font-medium leading-[1.4]">
+        {problem.close.before}
+        <span className="marker">{problem.close.marked}</span>
+        {problem.close.after}
+      </p>
     </section>
   );
 }

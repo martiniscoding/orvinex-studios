@@ -7,11 +7,11 @@ import type { JSX } from "react";
 
 const S = {
   ink: "var(--color-ink)",
-  slate: "var(--color-slate)",
-  brass: "var(--color-brass)",
-  oxide: "var(--color-oxide)",
-  chalk: "var(--color-chalk)",
-  paper: "var(--color-paper-deep)",
+  slate: "var(--color-muted)",
+  brass: "var(--color-lime-deep)",
+  oxide: "var(--color-sky-deep)",
+  chalk: "#ffffff",
+  paper: "var(--color-hush)",
 };
 
 function Sheet({ children }: { children: React.ReactNode }) {

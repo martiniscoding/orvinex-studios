@@ -47,7 +47,8 @@ export default function SmoothScroll() {
       gsap.ticker.remove(update);
       gsap.ticker.lagSmoothing(500, 33);
       lenis.destroy();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      // Deliberately not ScrollTrigger.getAll().kill(): triggers belong to
+      // whoever created them, and killing them here wipes the motion layer's.
     };
   }, []);
 

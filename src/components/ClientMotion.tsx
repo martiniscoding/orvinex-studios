@@ -9,14 +9,12 @@ import dynamic from "next/dynamic";
  * like this.
  */
 const SmoothScroll = dynamic(() => import("./SmoothScroll"), { ssr: false });
-const PlumbLine = dynamic(() => import("./PlumbLine"), { ssr: false });
 const MotionLayer = dynamic(() => import("./MotionLayer"), { ssr: false });
 
 export default function ClientMotion() {
   return (
     <>
       <SmoothScroll />
-      <PlumbLine />
       <MotionLayer />
     </>
   );

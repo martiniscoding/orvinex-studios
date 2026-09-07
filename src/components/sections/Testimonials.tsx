@@ -1,29 +1,35 @@
 import { testimonials } from "@/content/site";
 
 /**
- * 5.12 — DEMO_CONTENT. These are written for a fictional studio; there are no
- * photos, so no fake headshots either. For a real client with no real quotes,
- * delete this component and its entry in page.tsx rather than softening it.
+ * DEMO_CONTENT. Written for a fictional studio, and there are no photographs,
+ * so no stock headshots stand in for people who do not exist.
  */
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="plumb-pad border-t border-ink/10 py-20 md:py-24">
-      <h2 className="label text-slate">08 — What clients said</h2>
-
-      <ul className="mt-10 grid gap-px bg-ink/10 md:grid-cols-3">
+    <section>
+      <ul className="grid gap-4 lg:grid-cols-3">
         {testimonials.map((t) => (
-          <li key={t.name} className="flex flex-col justify-between bg-chalk p-7">
-            <blockquote className="text-base leading-snug md:text-md">
-              <span aria-hidden="true" className="text-brass">
-                “
-              </span>
+          <li
+            key={t.name}
+            className="flex flex-col justify-between rounded-[var(--radius-card)] bg-card p-7"
+          >
+            <blockquote className="text-[1.0625rem] leading-[1.55] text-ink-2">
               {t.quote}
             </blockquote>
-            <footer className="mt-8 border-t border-ink/10 pt-4">
-              <p className="text-sm font-medium">{t.name}</p>
-              <p className="label mt-1 text-slate">
-                {t.role}, {t.company}
-              </p>
+            <footer className="mt-7 flex items-center gap-3 border-t border-line pt-5">
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-hush text-sm font-semibold text-ink-2"
+              >
+                {t.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </span>
+              <span>
+                <span className="block text-sm font-medium">{t.name}</span>
+                <span className="block text-[0.8125rem] text-muted">{t.role}</span>
+              </span>
             </footer>
           </li>
         ))}
