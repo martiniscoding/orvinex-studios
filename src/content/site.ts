@@ -13,11 +13,18 @@ export const site = {
   booking: "https://cal.com/plumbline/intro",
 };
 
-export const nav: { id: string; label: string; soon?: boolean }[] = [
-  { id: "home", label: "Home" },
-  { id: "work", label: "Work" },
-  { id: "approach", label: "Approach" },
-  { id: "pricing", label: "Pricing" },
+export const nav: {
+  id: string;
+  label: string;
+  href?: string;
+  /** True when the item is a section of the home page, not its own route. */
+  section?: boolean;
+  soon?: boolean;
+}[] = [
+  { id: "home", label: "Home", href: "/#home", section: true },
+  { id: "work", label: "Work", href: "/#work", section: true },
+  { id: "approach", label: "Approach", href: "/#approach", section: true },
+  { id: "pricing", label: "Pricing", href: "/pricing" },
   { id: "careers", label: "Careers", soon: true },
 ];
 
@@ -173,6 +180,15 @@ export const pricing = {
     ],
     taskLabel: "Active tasks",
     perTask: 2600,
+    includes: [
+      "Product UI",
+      "Design systems",
+      "Brand systems",
+      "Launch sites",
+      "Icon sets",
+      "Pricing pages",
+      "Docs design",
+    ],
   },
 };
 
@@ -189,6 +205,15 @@ export const testimonials = [
 export const founder = {
   name: "Theo Ansell",
   role: "Designer, and the whole studio",
+};
+
+export const pricingTeaser = {
+  eyebrow: "Pricing",
+  title: "Fixed price, written down before we start.",
+  body:
+    "Three project shapes and one retainer, with the numbers on the page. " +
+    "No discovery call needed to find out what it costs.",
+  cta: { label: "See pricing", href: "/pricing" },
 };
 
 export const finalNote = {

@@ -2,10 +2,19 @@
 
 A single-page site for a design studio, built as a portfolio piece.
 
-The layout follows **kree8.studio**: a fixed icon rail on the left, an inset
-rounded content panel on the right, navy on light grey, and the same section
-rhythm — hero → work → the problem, named in key caps → the polaroid board →
-approach → services → pricing → testimonials → a signed final note.
+The layout follows **kree8.studio**: a fixed icon rail on the left and an inset
+rounded content panel on the right.
+
+- `/` — hero → work → the problem, named in key caps → the polaroid board →
+  approach → services → a pricing band → testimonials → a signed final note.
+- `/pricing` — its own route, after kree8's pricing page: tabs straight in, the
+  one-time project card, a rule, then the retainer in its own colour wash with
+  the service chips.
+
+Pricing is a separate page because that is where people go looking for it, and
+because it is the only interactive part of the site — moving it took the
+landing page from 52.5 kB of route JS to 2.8 kB. The landing page keeps a band
+carrying the lowest number and a link, so the story does not end without one.
 
 **What was deliberately not copied:** their chameleon logo, their team photos,
 their client logos, their testimonials and their copy. All artwork, icons and
@@ -47,10 +56,11 @@ npm start
 
 ## How it is put together
 
-**Shell.** `Sidebar` is `position: fixed` at `--rail` wide and collapses to a
-top bar with a full-screen menu below `lg`. The rail's active item is driven by
-an IntersectionObserver over the section ids, so it tracks what you are
-actually looking at.
+**Shell.** `Shell` wraps the rail and the panel; both routes render through it.
+`Sidebar` is `position: fixed` at `--rail` wide and collapses to a top bar with
+a full-screen menu below `lg`. On the home page the rail's active item is driven
+by an IntersectionObserver over the section ids, so it tracks what you are
+actually looking at; anywhere else it matches the route via `usePathname`.
 
 **Type.** Inter for UI and headlines, Phudu for the wordmark and the uppercase
 card headings, Caveat for the five polaroid captions. All self-hosted. Inter is
@@ -102,11 +112,13 @@ Lighthouse, mobile, production build:
 
 | | |
 | --- | --- |
-| Performance | 94 |
-| Accessibility | 100 |
-| Best practices | 100 |
-| SEO | 100 |
-| FCP / LCP | 1.4s / 3.0s |
-| CLS / TBT | 0 / 0ms |
+| | `/` | `/pricing` |
+| --- | --- | --- |
+| Performance | 96 | 98 |
+| Accessibility | 100 | 100 |
+| Best practices | 100 | 100 |
+| SEO | 100 | 100 |
+| FCP / LCP | 1.4s / 2.7s | 1.6s / 2.6s |
+| CLS / TBT | 0 / 0ms | 0 / 0ms |
 
 Checked at 375, 768 and 1440.

@@ -110,7 +110,7 @@ export default function Pricing() {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <h3 className="phudu text-[1.75rem] leading-none">{tab.name}</h3>
+              <h2 className="phudu text-[1.75rem] leading-none">{tab.name}</h2>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[0.8125rem] text-muted">
                 <ClockIcon />
                 {tab.timeline}
@@ -185,11 +185,19 @@ export default function Pricing() {
         </div>
       </div>
 
-      {/* Retainer */}
-      <div className="mt-6 rounded-[var(--radius-panel)] bg-card p-6 shadow-[0_28px_60px_-45px_rgba(44,30,74,0.6)] lg:p-10">
+      <div className="my-12 h-px bg-line lg:my-16" />
+
+      {/* The retainer sits in its own wash, the way the reference page bleeds
+          colour behind its ongoing plan. */}
+      <div className="relative -mx-5 rounded-[var(--radius-panel)] px-5 py-6 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10 lg:py-10">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 rounded-[var(--radius-panel)] bg-gradient-to-br from-sun/35 via-mint/25 to-sky/30"
+        />
+        <div className="relative rounded-[var(--radius-panel)] bg-card p-6 shadow-[0_28px_60px_-45px_rgba(44,30,74,0.6)] lg:p-10">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div>
-            <h3 className="phudu text-[1.75rem] leading-none">{pricing.retainer.name}</h3>
+            <h2 className="phudu text-[1.75rem] leading-none">{pricing.retainer.name}</h2>
             <div className="mt-7 flex items-center gap-4 rounded-[18px] bg-hush/70 px-5 py-4">
               <div className="flex items-center gap-1 rounded-full bg-sun/50 p-1">
                 <button
@@ -218,6 +226,18 @@ export default function Pricing() {
               {pricing.retainer.features.map((f) => (
                 <Tick key={f}>{f}</Tick>
               ))}
+              <Tick>Everything below, in whatever mix you need</Tick>
+            </ul>
+
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {pricing.retainer.includes.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full bg-hush px-4 py-2 text-[0.8125rem] text-ink-2"
+                >
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -243,6 +263,7 @@ export default function Pricing() {
                 Talk about a retainer
               </a>
             </div>
+          </div>
           </div>
         </div>
       </div>

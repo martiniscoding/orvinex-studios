@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { nav, site } from "@/content/site";
 import {
   ArrowIcon,
@@ -33,17 +35,25 @@ const iconHues: Record<string, string> = {
 };
 
 function Rail({ onNavigate }: { onNavigate?: () => void }) {
-  const [active, setActive] = useState("home");
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+  const [section, setSection] = useState("home");
 
-  /* The rail marks the section you are actually looking at. */
+  /* On the home page the rail marks the section you are actually looking at;
+     anywhere else it marks the route. */
+  const active = onHome
+    ? section
+    : (nav.find((n) => n.href === pathname)?.id ?? "");
+
   useEffect(() => {
-    const ids = nav.filter((n) => !n.soon).map((n) => n.id);
+    if (!onHome) return;
+    const ids = nav.filter((n) => n.section).map((n) => n.id);
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(visible.target.id);
+        if (visible) setSection(visible.target.id);
       },
       { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5] },
     );
@@ -52,7 +62,7 @@ function Rail({ onNavigate }: { onNavigate?: () => void }) {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [onHome]);
 
   return (
     <div className="flex h-full flex-col">
@@ -60,11 +70,11 @@ function Rail({ onNavigate }: { onNavigate?: () => void }) {
         {nav.map((item) => {
           const Icon = icons[item.id] ?? HomeIcon;
           const isActive = active === item.id && !item.soon;
-          const Tag = item.soon ? "span" : "a";
+          const Tag = item.soon ? "span" : Link;
           return (
             <Tag
               key={item.id}
-              href={item.soon ? undefined : `#${item.id}`}
+              href={item.href ?? "/"}
               onClick={item.soon ? undefined : onNavigate}
               aria-current={isActive ? "true" : undefined}
               className={`group flex items-center gap-3 rounded-full px-4 py-3 text-[0.9375rem] transition-all duration-300 ${
@@ -161,12 +171,12 @@ export default function Sidebar() {
         className="fixed inset-y-0 left-0 z-40 hidden w-[var(--rail)] flex-col px-5 py-6 lg:flex"
         aria-label="Site"
       >
-        <a href="#home" className="flex items-center gap-2.5 px-4">
+        <Link href="/" className="flex items-center gap-2.5 px-4">
           <Mark />
           <span className="phudu text-[1.375rem] leading-none tracking-[0.01em]">
             {site.name}
           </span>
-        </a>
+        </Link>
         <div className="mx-4 mt-6 border-t border-line" />
         <div className="min-h-0 flex-1">
           <Rail />
@@ -175,10 +185,10 @@ export default function Sidebar() {
 
       {/* Mobile bar */}
       <header className="sticky top-0 z-50 flex items-center justify-between bg-shell/85 px-5 py-4 backdrop-blur-md lg:hidden">
-        <a href="#home" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5">
           <Mark size={24} />
           <span className="phudu text-xl leading-none">{site.name}</span>
-        </a>
+        </Link>
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
