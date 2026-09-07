@@ -26,16 +26,12 @@ export function Pill({
 }: {
   href: string;
   children: ReactNode;
-  tone?: "white" | "ink" | "accent";
+  tone?: "white" | "ink";
 }) {
   const styles =
     tone === "ink"
       ? "bg-ink text-white hover:bg-ink-2"
-      : tone === "accent"
-        ? // ink on coral is 5.4:1 — the bright fill still takes dark text.
-          // Hover lifts rather than darkens: coral-deep would drop it to 3.8.
-          "bg-coral text-ink hover:-translate-y-0.5"
-        : "bg-card text-ink hover:-translate-y-0.5";
+      : "bg-card text-ink hover:-translate-y-0.5";
   return (
     <a
       href={href}

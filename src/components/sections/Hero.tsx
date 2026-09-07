@@ -32,8 +32,8 @@ export default function Hero() {
       </p>
 
       <div data-hero-cta className="mt-9 flex flex-wrap gap-3">
-        <Pill href={hero.primary.href} tone="accent">
-          <CallIcon mono />
+        <Pill href={hero.primary.href}>
+          <CallIcon />
           {hero.primary.label}
         </Pill>
         <Pill href={hero.secondary.href}>

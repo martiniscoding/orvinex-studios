@@ -64,21 +64,28 @@ export const ClockIcon = () => (
 );
 
 /** Call: a video tile. Message: a paper plane. Drawn, not brand marks. */
-/* `mono` for use on an accent fill, where the colour icon goes muddy. */
-export const CallIcon = ({ mono = false }: { mono?: boolean }) => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-    <rect
-      x="2"
-      y="5"
-      width="12.5"
-      height="12"
-      rx="3.2"
-      fill={mono ? "var(--color-ink)" : "var(--color-sky)"}
-    />
+/**
+ * The Google Meet mark. Used nominatively — it labels a link that opens a
+ * Meet call, the way a Slack or GitHub icon labels a link to those. If the
+ * booking flow ever stops creating Meet links, this icon has to go.
+ */
+export const CallIcon = ({ size = 20 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={(size * 72) / 87}
+    viewBox="0 0 87 72"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path fill="#00832d" d="M49.5 36l8.53 9.75 11.47 7.33 2-17.02-2-16.64-11.69 6.44z" />
+    <path fill="#0066da" d="M0 51.5V66c0 3.315 2.685 6 6 6h14.5l3-10.96-3-9.54-9.95-3z" />
+    <path fill="#e94235" d="M20.5 0L0 20.5l10.55 3 9.95-3 2.95-9.41z" />
+    <path fill="#2684fc" d="M20.5 20.5H0v31h20.5z" />
     <path
-      d="M14.5 9.6l4.2-2.6a.7.7 0 0 1 1.1.6v6.8a.7.7 0 0 1-1.1.6l-4.2-2.6z"
-      fill={mono ? "var(--color-ink)" : "var(--color-mint)"}
+      fill="#00ac47"
+      d="M82.6 8.68L69.5 19.42v33.66l13.16 10.79c1.97 1.54 4.85.13 4.85-2.37V11c0-2.53-2.95-3.92-4.91-2.32zM49.5 36v15.5h-29V72h43c3.315 0 6-2.685 6-6V53.08z"
     />
+    <path fill="#ffba00" d="M63.5 0h-43v20.5h29V36l20-16.57V6c0-3.315-2.685-6-6-6z" />
   </svg>
 );
 

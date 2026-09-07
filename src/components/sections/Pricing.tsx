@@ -175,7 +175,7 @@ export default function Pricing() {
               </a>
               <a
                 href={site.booking}
-                className="inline-flex items-center gap-2.5 rounded-full bg-hush px-6 py-3.5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-line"
+                className="inline-flex items-center gap-2.5 rounded-full bg-card px-6 py-3.5 text-[0.9375rem] font-medium text-ink shadow-[0_10px_24px_-14px_rgba(44,30,74,0.45)] transition-transform duration-300 hover:-translate-y-0.5"
               >
                 <CallIcon />
                 Book a call
