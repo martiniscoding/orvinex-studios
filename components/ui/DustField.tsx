@@ -5,17 +5,8 @@ import { useEffect, useRef } from "react";
 type Particle = {
   x: number;
   y: number;
-  /** current velocity, px per 60fps-frame */
-  vx: number;
-  vy: number;
-  /** the slow ambient drift it always settles back into */
-  dx: number;
-  dy: number;
   r: number;
   alpha: number;
-  /** twinkle phase + speed */
-  tw: number;
-  tws: number;
   /** 0 = white mote, 1 = violet mote */
   tint: number;
 };
@@ -24,15 +15,6 @@ type Particle = {
 const DENSITY = 1500;
 const MIN_COUNT = 350;
 const MAX_COUNT = 1600;
-
-/** How far the cursor reaches, in CSS px. */
-const CURSOR_RADIUS = 170;
-/** Strength of the push away from the cursor. */
-const PUSH = 1.9;
-/** How much the cursor's own speed drags motes along in its wake. */
-const WAKE = 0.1;
-/** How quickly a disturbed mote eases back into its ambient drift. */
-const SETTLE = 0.04;
 
 function makeSprite(color: string) {
   const size = 64;
@@ -58,6 +40,19 @@ function makeSprite(color: string) {
   return c;
 }
 
+/**
+ * The still starfield behind the hero.
+ *
+ * The motes used to drift, twinkle, and scatter away from the cursor. That is
+ * gone: the field is painted once and then left alone, so there is no
+ * requestAnimationFrame loop running for as long as the page is open. Nothing
+ * competes with the page for main-thread time, and a laptop does not spin up
+ * to render decoration.
+ *
+ * Canvas rather than a few hundred DOM nodes: at this count the browser is
+ * being asked to lay out and composite a thousand elements otherwise, which is
+ * expensive even when none of them move.
+ */
 export function DustField({ className = "" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -67,10 +62,6 @@ export function DustField({ className = "" }: { className?: string }) {
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
     const whiteSprite = makeSprite("rgba(226,232,255,ALPHA)");
     const violetSprite = makeSprite("rgba(139,92,246,ALPHA)");
 
@@ -78,27 +69,31 @@ export function DustField({ className = "" }: { className?: string }) {
     let height = 0;
     let particles: Particle[] = [];
 
-    // Cursor state, in CSS px relative to the canvas.
-    const pointer = { x: -9999, y: -9999, vx: 0, vy: 0, active: false };
-
-    const spawn = (p: Partial<Particle> = {}): Particle => {
+    const spawn = (): Particle => {
       const r = 0.45 + Math.pow(Math.random(), 1.7) * 1.6;
-      const drift = 0.018 + Math.random() * 0.055;
-      const angle = Math.random() * Math.PI * 2;
       return {
-        x: p.x ?? Math.random() * width,
-        y: p.y ?? Math.random() * height,
-        dx: Math.cos(angle) * drift,
-        dy: Math.sin(angle) * drift - 0.012, // a faint upward bias
-        vx: 0,
-        vy: 0,
+        x: Math.random() * width,
+        y: Math.random() * height,
         r,
-        // bigger motes read as closer, so they burn a little brighter
-        alpha: 0.3 + (r / 2.05) * 0.62,
-        tw: Math.random() * Math.PI * 2,
-        tws: 0.008 + Math.random() * 0.026,
+        // Bigger motes read as closer, so they burn a little brighter. The
+        // second factor is a fixed per-mote offset — what the twinkle used to
+        // cycle through — so the field keeps its uneven, scattered look
+        // instead of every dot sitting at the same brightness.
+        alpha:
+          (0.3 + (r / 2.05) * 0.62) * (0.45 + 0.55 * Math.random()),
         tint: Math.random() < 0.32 ? 1 : 0,
       };
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      for (const p of particles) {
+        const sprite = p.tint ? violetSprite : whiteSprite;
+        const size = p.r * 7;
+        ctx.globalAlpha = Math.min(1, p.alpha);
+        ctx.drawImage(sprite, p.x - size / 2, p.y - size / 2, size, size);
+      }
+      ctx.globalAlpha = 1;
     };
 
     const resize = () => {
@@ -120,7 +115,8 @@ export function DustField({ className = "" }: { className?: string }) {
       if (!particles.length) {
         particles = Array.from({ length: target }, () => spawn());
       } else {
-        // Keep the existing field, just rescale it into the new box.
+        // Rescale the existing field into the new box rather than respawning,
+        // so a window resize does not visibly rearrange the sky.
         const sx = prevW ? width / prevW : 1;
         const sy = prevH ? height / prevH : 1;
         for (const p of particles) {
@@ -130,158 +126,16 @@ export function DustField({ className = "" }: { className?: string }) {
         while (particles.length < target) particles.push(spawn());
         if (particles.length > target) particles.length = target;
       }
+
+      draw();
     };
 
+    // Repaint on resize only; there is nothing else to react to.
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
     resize();
 
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-      for (const p of particles) {
-        const speed = Math.hypot(p.vx, p.vy);
-        // Motes flare a touch while they're being shoved around.
-        const flare = Math.min(1, speed * 0.5);
-        const a =
-          p.alpha *
-          (0.45 + 0.55 * (0.5 + 0.5 * Math.sin(p.tw))) *
-          (1 + flare * 0.9);
-
-        const sprite = p.tint ? violetSprite : whiteSprite;
-        const size = p.r * 7 * (1 + flare * 0.25);
-        ctx.globalAlpha = Math.min(1, a);
-        ctx.drawImage(sprite, p.x - size / 2, p.y - size / 2, size, size);
-      }
-      ctx.globalAlpha = 1;
-    };
-
-    let raf = 0;
-    let last = performance.now();
-
-    const step = (now: number) => {
-      // Normalised to a 60fps frame, clamped so a backgrounded tab
-      // doesn't blow the field apart on return.
-      const k = Math.min(3, (now - last) / 16.667);
-      last = now;
-
-      const r2 = CURSOR_RADIUS * CURSOR_RADIUS;
-
-      for (const p of particles) {
-        if (pointer.active) {
-          const dx = p.x - pointer.x;
-          const dy = p.y - pointer.y;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < r2) {
-            const d = Math.sqrt(d2) || 0.0001;
-            const falloff = 1 - d / CURSOR_RADIUS;
-            const f = falloff * falloff;
-            // Push out of the way…
-            p.vx += (dx / d) * f * PUSH * k;
-            p.vy += (dy / d) * f * PUSH * k;
-            // …and get dragged along in the cursor's wake.
-            p.vx += pointer.vx * falloff * WAKE * k;
-            p.vy += pointer.vy * falloff * WAKE * k;
-          }
-        }
-
-        // Ease back toward the ambient drift.
-        p.vx += (p.dx - p.vx) * SETTLE * k;
-        p.vy += (p.dy - p.vy) * SETTLE * k;
-
-        p.x += p.vx * k;
-        p.y += p.vy * k;
-        p.tw += p.tws * k;
-
-        // Wrap around the edges so the field never empties out.
-        const m = 24;
-        if (p.x < -m) p.x = width + m;
-        else if (p.x > width + m) p.x = -m;
-        if (p.y < -m) p.y = height + m;
-        else if (p.y > height + m) p.y = -m;
-      }
-
-      // Bleed off the pointer's velocity so a parked cursor stops stirring.
-      pointer.vx *= 0.86;
-      pointer.vy *= 0.86;
-
-      draw();
-      raf = requestAnimationFrame(step);
-    };
-
-    const start = () => {
-      if (raf) return;
-      last = performance.now();
-      raf = requestAnimationFrame(step);
-    };
-    const stop = () => {
-      if (!raf) return;
-      cancelAnimationFrame(raf);
-      raf = 0;
-    };
-
-    const onPointerMove = (e: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      if (pointer.active) {
-        pointer.vx = x - pointer.x;
-        pointer.vy = y - pointer.y;
-      }
-      pointer.x = x;
-      pointer.y = y;
-      // Only stir while the cursor is actually over the hero.
-      pointer.active =
-        x >= -CURSOR_RADIUS &&
-        y >= -CURSOR_RADIUS &&
-        x <= rect.width + CURSOR_RADIUS &&
-        y <= rect.height + CURSOR_RADIUS;
-    };
-
-    const onPointerLeave = () => {
-      pointer.active = false;
-      pointer.vx = 0;
-      pointer.vy = 0;
-    };
-
-    const onVisibility = () => {
-      if (document.hidden) stop();
-      else if (!reduced) start();
-    };
-
-    const ro = new ResizeObserver(() => {
-      resize();
-      if (reduced) draw();
-    });
-    ro.observe(canvas);
-
-    // Don't burn frames while the hero is scrolled out of view.
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (reduced) return;
-        if (entry.isIntersecting && !document.hidden) start();
-        else stop();
-      },
-      { threshold: 0 }
-    );
-    io.observe(canvas);
-
-    if (reduced) {
-      draw();
-    } else {
-      window.addEventListener("pointermove", onPointerMove, { passive: true });
-      window.addEventListener("pointerdown", onPointerMove, { passive: true });
-      document.addEventListener("pointerleave", onPointerLeave);
-      document.addEventListener("visibilitychange", onVisibility);
-      start();
-    }
-
-    return () => {
-      stop();
-      ro.disconnect();
-      io.disconnect();
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerdown", onPointerMove);
-      document.removeEventListener("pointerleave", onPointerLeave);
-      document.removeEventListener("visibilitychange", onVisibility);
-    };
+    return () => ro.disconnect();
   }, []);
 
   return (
