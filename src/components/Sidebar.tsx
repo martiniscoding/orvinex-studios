@@ -7,7 +7,6 @@ import { nav, site } from "@/content/site";
 import {
   ArrowIcon,
   CallIcon,
-  CareerIcon,
   HomeIcon,
   Mark,
   MessageIcon,
@@ -21,7 +20,6 @@ const icons: Record<string, () => React.ReactElement> = {
   work: WorkIcon,
   approach: SparkIcon,
   pricing: PriceIcon,
-  careers: CareerIcon,
 };
 
 /* Each destination keeps its own colour, active or not — the rail should feel
@@ -31,7 +29,6 @@ const iconHues: Record<string, string> = {
   work: "text-sky-deep",
   approach: "text-grape",
   pricing: "text-mint-deep",
-  careers: "text-faint",
 };
 
 function Rail({ onNavigate }: { onNavigate?: () => void }) {
@@ -69,37 +66,29 @@ function Rail({ onNavigate }: { onNavigate?: () => void }) {
       <nav aria-label="Sections" className="mt-2 space-y-0.5">
         {nav.map((item) => {
           const Icon = icons[item.id] ?? HomeIcon;
-          const isActive = active === item.id && !item.soon;
-          const Tag = item.soon ? "span" : Link;
+          const isActive = active === item.id;
           return (
-            <Tag
+            <Link
               key={item.id}
-              href={item.href ?? "/"}
-              onClick={item.soon ? undefined : onNavigate}
+              href={item.href}
+              onClick={onNavigate}
               aria-current={isActive ? "true" : undefined}
               className={`group flex items-center gap-3 rounded-full px-4 py-3 text-[0.9375rem] transition-all duration-300 ${
                 isActive
                   ? "bg-card text-ink shadow-[0_6px_18px_-8px_rgba(44,30,74,0.28)]"
-                  : item.soon
-                    ? "cursor-default text-muted"
-                    : "text-ink-2 hover:bg-hush"
+                  : "text-ink-2 hover:bg-hush"
               }`}
             >
               <span className={iconHues[item.id] ?? "text-faint"}>
                 <Icon />
               </span>
               <span className={isActive ? "font-medium" : ""}>{item.label}</span>
-              {item.soon && (
-                <span className="ml-auto rounded-full bg-hush px-2.5 py-1 text-[0.6875rem] text-muted">
-                  Coming soon
-                </span>
-              )}
               {isActive && (
                 <span className="ml-auto text-faint transition-transform duration-300 group-hover:translate-x-0.5">
                   <ArrowIcon />
                 </span>
               )}
-            </Tag>
+            </Link>
           );
         })}
       </nav>

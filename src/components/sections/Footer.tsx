@@ -10,17 +10,11 @@ export default function Footer() {
         <span className="phudu text-lg leading-none">{site.name}</span>
       </Link>
       <nav aria-label="Footer" className="flex flex-wrap gap-6 text-sm text-muted">
-        {nav
-          .filter((n) => !n.soon)
-          .map((item) => (
-            <Link
-              key={item.id}
-              href={item.href ?? "/"}
-              className="transition-colors hover:text-ink"
-            >
-              {item.label}
-            </Link>
-          ))}
+        {nav.map((item) => (
+          <Link key={item.id} href={item.href} className="transition-colors hover:text-ink">
+            {item.label}
+          </Link>
+        ))}
         <a href={`mailto:${site.email}`} className="transition-colors hover:text-ink">
           Email
         </a>

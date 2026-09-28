@@ -16,16 +16,14 @@ export const site = {
 export const nav: {
   id: string;
   label: string;
-  href?: string;
+  href: string;
   /** True when the item is a section of the home page, not its own route. */
   section?: boolean;
-  soon?: boolean;
 }[] = [
   { id: "home", label: "Home", href: "/#home", section: true },
   { id: "work", label: "Work", href: "/#work", section: true },
   { id: "approach", label: "Approach", href: "/#approach", section: true },
   { id: "pricing", label: "Pricing", href: "/pricing" },
-  { id: "careers", label: "Careers", soon: true },
 ];
 
 export const hero = {

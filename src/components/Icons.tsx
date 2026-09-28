@@ -37,13 +37,6 @@ export const PriceIcon = () => (
   </svg>
 );
 
-export const CareerIcon = () => (
-  <svg {...base}>
-    <rect x="2.6" y="6" width="14.8" height="10" rx="2" />
-    <path d="M7.4 6V4.8A1.8 1.8 0 0 1 9.2 3h1.6a1.8 1.8 0 0 1 1.8 1.8V6M2.6 10.4h14.8" />
-  </svg>
-);
-
 export const ArrowIcon = () => (
   <svg {...base} width="18" height="18" viewBox="0 0 18 18">
     <path d="M3.5 9h11M10 4.5 14.5 9 10 13.5" />
