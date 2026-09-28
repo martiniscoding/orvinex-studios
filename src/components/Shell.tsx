@@ -1,18 +1,34 @@
 import type { ReactNode } from "react";
-import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
 
-/** The rail plus the inset rounded panel every page sits inside. */
-export default function Shell({ children }: { children: ReactNode }) {
+/**
+ * Page chrome. `hero` means the first child bleeds to the edges and sits under
+ * a translucent nav; without it the nav is solid and the content is padded
+ * clear of it.
+ */
+export default function Shell({
+  children,
+  hero = false,
+}: {
+  children: ReactNode;
+  hero?: boolean;
+}) {
   return (
     <>
-      <Sidebar />
-      <main className="lg:pl-[var(--rail)]">
-        <div className="px-3 pb-4 lg:py-5 lg:pr-5 lg:pl-0">
-          <div className="relative overflow-hidden rounded-[var(--radius-panel)] bg-panel px-5 py-10 sm:px-8 lg:px-14 lg:py-16">
-            {children}
-          </div>
-        </div>
-      </main>
+      <Navbar overHero={hero} />
+      <main className={hero ? "" : "pt-28 lg:pt-32"}>{children}</main>
     </>
+  );
+}
+
+export function Container({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`mx-auto w-full max-w-6xl px-6 lg:px-10 ${className}`}>{children}</div>
   );
 }

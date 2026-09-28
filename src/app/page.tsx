@@ -1,4 +1,4 @@
-import Shell from "@/components/Shell";
+import Shell, { Container } from "@/components/Shell";
 import Hero from "@/components/sections/Hero";
 import Work from "@/components/sections/Work";
 import Problem from "@/components/sections/Problem";
@@ -14,25 +14,27 @@ import { problem, solution, finalNote } from "@/content/site";
 
 export default function Page() {
   return (
-    <Shell>
+    <Shell hero>
       <Hero />
-      <Divider label="The work" />
-      <Work />
-      <Divider label={problem.eyebrow} />
-      <Problem />
-      <Divider label={solution.eyebrow} />
-      <Solution />
-      <Divider label="How it works" />
-      <Approach />
-      <Divider label="Services" />
-      <Services />
-      <Divider label="Pricing" />
-      <PricingTeaser />
-      <Divider label="What clients said" />
-      <Testimonials />
-      <Divider label={finalNote.eyebrow} />
-      <FinalNote />
-      <Footer />
+      <Container className="pb-4">
+        <Divider label="The work" />
+        <Work />
+        <Divider label={problem.eyebrow} />
+        <Problem />
+        <Divider label={solution.eyebrow} />
+        <Solution />
+        <Divider label="How it works" />
+        <Approach />
+        <Divider label="Services" />
+        <Services />
+        <Divider label="Pricing" />
+        <PricingTeaser />
+        <Divider label="What clients said" />
+        <Testimonials />
+        <Divider label={finalNote.eyebrow} />
+        <FinalNote />
+        <Footer />
+      </Container>
     </Shell>
   );
 }

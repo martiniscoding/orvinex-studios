@@ -34,23 +34,12 @@
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-:root {
-  --rail: 300px;
-  --gutter: 20px;
-}
-
-@media (min-width: 1280px) {
-  :root {
-    --rail: 340px;
-  }
-}
-
 html {
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: var(--color-shell);
+  background-color: var(--color-panel);
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -113,7 +102,7 @@ body {
 }
 
 [id] {
-  scroll-margin-top: 32px;
+  scroll-margin-top: 104px;
 }
 
 @media (prefers-reduced-motion: reduce) {

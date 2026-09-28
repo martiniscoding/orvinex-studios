@@ -91,10 +91,20 @@ export const MessageIcon = () => (
 );
 
 /** The studio mark: a plumb bob. */
-export const Mark = ({ size = 26 }: { size?: number }) => (
+export const Mark = ({ size = 26, light = false }: { size?: number; light?: boolean }) => (
   <svg width={size} height={size} viewBox="0 0 26 26" fill="none" aria-hidden="true">
-    <path d="M13 2v6.4" stroke="var(--color-ink)" strokeWidth="1.8" strokeLinecap="round" />
-    <path d="M13 7.6 19.4 13 13 24 6.6 13z" fill="var(--color-accent)" />
-    <path d="M6.6 13h12.8" stroke="var(--color-ink)" strokeOpacity=".3" strokeWidth="1.2" />
+    <path
+      d="M13 2v6.4"
+      stroke={light ? "#ffffff" : "var(--color-ink)"}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
+    <path d="M13 7.6 19.4 13 13 24 6.6 13z" fill={light ? "#ffffff" : "var(--color-accent)"} />
+    <path
+      d="M6.6 13h12.8"
+      stroke={light ? "var(--color-ink)" : "var(--color-ink)"}
+      strokeOpacity={light ? ".25" : ".3"}
+      strokeWidth="1.2"
+    />
   </svg>
 );

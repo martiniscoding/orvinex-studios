@@ -56,11 +56,19 @@ npm start
 
 ## How it is put together
 
-**Shell.** `Shell` wraps the rail and the panel; both routes render through it.
-`Sidebar` is `position: fixed` at `--rail` wide and collapses to a top bar with
-a full-screen menu below `lg`. On the home page the rail's active item is driven
-by an IntersectionObserver over the section ids, so it tracks what you are
-actually looking at; anywhere else it matches the route via `usePathname`.
+**Shell.** `Shell` renders the nav and a centred container; both routes go
+through it. `Navbar` is a floating pill: translucent with white type over the
+hero image, solid once the hero has scrolled past. That switch is an
+IntersectionObserver on a sentinel the hero renders, not a scroll listener, so
+it costs nothing per frame. The active link is driven the same way over the
+section ids on the home page, and by `usePathname` elsewhere.
+
+**The hero image.** `public/hero.jpg` is the supplied painting rotated upright
+— it arrived as a landscape scene saved 90° on its side. Two scrims sit over
+it: a vertical one to seat the type and a horizontal one so the protection
+stays on the left and the painting keeps its colour on the right. AVIF is
+enabled in `next.config.ts` and the image is served at `quality={62}`, which
+takes the LCP asset from 105KB to 41KB.
 
 **Type.** Inter for UI and headlines, Phudu for the wordmark and the uppercase
 card headings, Caveat for the five polaroid captions. All self-hosted. Inter is
@@ -79,10 +87,9 @@ small text at 5.69:1 and `--color-faint` only large display type and icons at
 why the retainer card uses the deeper accent — at the lighter one the label
 fell under 4.5:1.
 
-**Artwork.** No photography, no stock. Every polaroid, project cover, icon and
-the signature is original SVG in `src/components/art/` and
-`src/components/Icons.tsx`. The page ships zero raster images, which is why
-there is no `next/image` anywhere.
+**Artwork.** Beyond the hero painting there is no photography and no stock:
+every polaroid, project cover, icon and the signature is original SVG in
+`src/components/art/` and `src/components/Icons.tsx`.
 
 **Motion.** The hero sequence is CSS — the eyebrow, headline, sub, buttons and
 feature card rise in on a stagger. It is CSS rather than GSAP so it never waits
@@ -109,11 +116,11 @@ Lighthouse, mobile, production build:
 | --- | --- |
 | | `/` | `/pricing` |
 | --- | --- | --- |
-| Performance | 96 | 98 |
+| Performance | 95 | 96 |
 | Accessibility | 100 | 100 |
 | Best practices | 100 | 100 |
 | SEO | 100 | 100 |
-| FCP / LCP | 1.4s / 2.7s | 1.6s / 2.6s |
+| FCP / LCP | 1.4s / 2.9s | 1.2s / 2.7s |
 | CLS / TBT | 0 / 0ms | 0 / 0ms |
 
 Checked at 375, 768 and 1440.
