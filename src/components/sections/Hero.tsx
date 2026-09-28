@@ -1,7 +1,6 @@
 import { hero } from "@/content/site";
 import { Pill } from "@/components/ui/Bits";
-import { ArrowIcon, CallIcon, WorkIcon } from "@/components/Icons";
-import { frameArt } from "@/components/art/Frames";
+import { CallIcon, WorkIcon } from "@/components/Icons";
 
 const headlineTone: Record<string, string> = {
   ink: "text-ink",
@@ -43,29 +42,6 @@ export default function Hero() {
         </Pill>
       </div>
 
-      {/* Where kree8 runs a showreel, there is no video here — so the feature
-          block is the studio's own work, not a poster frame for nothing. */}
-      <div
-        data-hero-card
-        className="mt-14 overflow-hidden rounded-[var(--radius-panel)] bg-hush p-3 shadow-[0_24px_50px_-40px_rgba(30,36,48,0.4)]"
-      >
-        <div className="grid gap-3 sm:grid-cols-3">
-          {["ui", "brand", "site"].map((id, i) => (
-            <div
-              key={id}
-              className={`overflow-hidden rounded-[18px] bg-card p-2 ${i === 0 ? "sm:col-span-2" : ""}`}
-            >
-              {frameArt[id]}
-            </div>
-          ))}
-        </div>
-        <p className="flex items-center justify-between px-3 py-4 text-sm text-ink-2">
-          Brand, interface and the page that sells it — from one person.
-          <span className="text-faint">
-            <ArrowIcon />
-          </span>
-        </p>
-      </div>
     </section>
   );
 }

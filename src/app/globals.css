@@ -151,8 +151,7 @@ body {
 [data-motion] [data-hero-eyebrow],
 [data-motion] [data-hero-head],
 [data-motion] [data-hero-sub],
-[data-motion] [data-hero-cta],
-[data-motion] [data-hero-card] {
+[data-motion] [data-hero-cta] {
   animation: rise-in 0.85s var(--ease-out-soft) both;
 }
 
@@ -165,10 +164,6 @@ body {
 [data-motion] [data-hero-cta] {
   animation-delay: 0.3s;
 }
-[data-motion] [data-hero-card] {
-  animation-delay: 0.4s;
-}
-
 [data-motion] [data-cap] {
   opacity: 0;
 }
