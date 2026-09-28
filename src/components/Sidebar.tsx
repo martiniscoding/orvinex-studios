@@ -22,15 +22,6 @@ const icons: Record<string, () => React.ReactElement> = {
   pricing: PriceIcon,
 };
 
-/* Each destination keeps its own colour, active or not — the rail should feel
-   like a set of objects, not a list of grey rows. */
-const iconHues: Record<string, string> = {
-  home: "text-coral",
-  work: "text-sky-deep",
-  approach: "text-grape",
-  pricing: "text-mint-deep",
-};
-
 function Rail({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
   const onHome = pathname === "/";
@@ -79,7 +70,7 @@ function Rail({ onNavigate }: { onNavigate?: () => void }) {
                   : "text-ink-2 hover:bg-hush"
               }`}
             >
-              <span className={iconHues[item.id] ?? "text-faint"}>
+              <span className={isActive ? "text-ink" : "text-faint"}>
                 <Icon />
               </span>
               <span className={isActive ? "font-medium" : ""}>{item.label}</span>

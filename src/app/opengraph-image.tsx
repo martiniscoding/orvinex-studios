@@ -20,7 +20,7 @@ export default async function Image() {
           height: "100%",
           display: "flex",
           padding: 28,
-          backgroundColor: "#f7efe6",
+          backgroundColor: "#f2f1ed",
           fontFamily: "Inter",
         }}
       >
@@ -31,7 +31,7 @@ export default async function Image() {
             justifyContent: "space-between",
             width: "100%",
             borderRadius: 28,
-            backgroundColor: "#fffbf6",
+            backgroundColor: "#fbfaf8",
             padding: "56px 60px",
           }}
         >
@@ -40,11 +40,11 @@ export default async function Image() {
               style={{
                 width: 22,
                 height: 22,
-                backgroundColor: "#ff6b4a",
+                backgroundColor: "#2e6e5b",
                 clipPath: "polygon(50% 0%, 100% 34%, 50% 100%, 0% 34%)",
               }}
             />
-            <span style={{ fontFamily: "Phudu", fontSize: 30, color: "#2c1e4a", letterSpacing: 1 }}>
+            <span style={{ fontFamily: "Phudu", fontSize: 30, color: "#1e2430", letterSpacing: 1 }}>
               PLUMBLINE
             </span>
           </div>
@@ -60,14 +60,13 @@ export default async function Image() {
               maxWidth: 940,
             }}
           >
-            <span style={{ color: "#2c1e4a" }}>The studio&nbsp;</span>
-            <span style={{ color: "#8f82a8" }}>for products&nbsp;</span>
-            <span style={{ color: "#2c1e4a" }}>that are&nbsp;</span>
-            <span style={{ color: "#e14e2e" }}>better&nbsp;</span>
-            <span style={{ color: "#8f82a8" }}>than they look</span>
+            <span style={{ color: "#1e2430" }}>The studio&nbsp;</span>
+            <span style={{ color: "#838b98" }}>for products&nbsp;</span>
+            <span style={{ color: "#1e2430" }}>that are better&nbsp;</span>
+            <span style={{ color: "#838b98" }}>than they look</span>
           </div>
 
-          <div style={{ display: "flex", fontSize: 26, color: "#6b5e85" }}>
+          <div style={{ display: "flex", fontSize: 26, color: "#575f6d" }}>
             Design for dev tools and B2B software
           </div>
         </div>

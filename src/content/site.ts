@@ -33,7 +33,7 @@ export const hero = {
     { text: "The studio", tone: "ink" },
     { text: "for products", tone: "dim" },
     { text: "that are", tone: "ink" },
-    { text: "better", tone: "accent" },
+    { text: "better", tone: "ink" },
     { text: "than they look", tone: "dim" },
   ],
   sub:
@@ -109,7 +109,6 @@ export const pricing = {
     {
       id: "site",
       label: "Launch site",
-      hue: "from-sun to-coral",
       name: "Launch site",
       price: 6400,
       timeline: "15–20 days",
@@ -129,7 +128,6 @@ export const pricing = {
     {
       id: "brand",
       label: "Branding",
-      hue: "from-grape/85 to-sky",
       name: "Brand system",
       price: 11500,
       timeline: "20–25 days",
@@ -148,7 +146,6 @@ export const pricing = {
     {
       id: "ui",
       label: "Product UI",
-      hue: "from-mint to-sky",
       name: "Interface project",
       price: 14000,
       timeline: "30–40 days",
@@ -167,7 +164,6 @@ export const pricing = {
   ],
   retainer: {
     name: "Plumbline retainer",
-    hue: "from-sun to-mint",
     price: 8900,
     unit: "per month",
     features: [

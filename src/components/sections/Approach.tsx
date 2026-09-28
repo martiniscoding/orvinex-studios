@@ -35,7 +35,7 @@ export default function Approach() {
             aria-checked={plumb}
             aria-labelledby={`${id}-label`}
             onClick={() => setPlumb((v) => !v)}
-            className={`relative h-8 w-14 rounded-full transition-colors duration-300 ${plumb ? "bg-mint-deep" : "bg-line"}`}
+            className={`relative h-8 w-14 rounded-full transition-colors duration-300 ${plumb ? "bg-accent" : "bg-line"}`}
           >
             <span
               aria-hidden="true"
@@ -53,7 +53,7 @@ export default function Approach() {
               <ul className="mt-6 space-y-2.5 border-t border-line pt-5 text-[0.9375rem] text-ink-2">
                 {["Unlimited projects", "SSO and audit log", "Priority support"].map((f) => (
                   <li key={f} className="flex items-start gap-3">
-                    <span className="mt-0.5 text-mint-deep">
+                    <span className="mt-0.5 text-accent">
                       <CheckIcon />
                     </span>
                     {f}

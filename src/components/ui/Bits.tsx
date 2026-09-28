@@ -2,18 +2,11 @@ import type { ReactNode } from "react";
 import { ArrowIcon, CheckIcon } from "../Icons";
 
 /** The recurring device: a hairline rule with a small grey label centred in it. */
-const dotHues = ["bg-coral", "bg-sun", "bg-mint", "bg-sky", "bg-grape"];
-
 export function Divider({ label }: { label: string }) {
-  const hash = [...label].reduce((n, ch) => n + ch.charCodeAt(0), 0);
-  const dot = dotHues[hash % dotHues.length];
   return (
-    <div className="my-16 flex items-center gap-5 lg:my-24">
+    <div className="my-16 flex items-center gap-6 lg:my-24">
       <span className="h-px flex-1 bg-line" />
-      <span className="eyebrow flex items-center gap-2.5 whitespace-nowrap">
-        <span aria-hidden="true" className={`h-2 w-2 rounded-full ${dot}`} />
-        {label}
-      </span>
+      <span className="eyebrow whitespace-nowrap">{label}</span>
       <span className="h-px flex-1 bg-line" />
     </div>
   );
@@ -45,7 +38,7 @@ export function Pill({
 export function Tick({ children }: { children: ReactNode }) {
   return (
     <li className="flex items-start gap-3 text-[0.9375rem] text-ink-2">
-      <span className="mt-0.5 shrink-0 text-mint-deep">
+      <span className="mt-0.5 shrink-0 text-accent">
         <CheckIcon />
       </span>
       {children}

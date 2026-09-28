@@ -39,7 +39,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <div className="ambient" aria-hidden="true" />
         <ClientMotion />
         {children}
       </body>

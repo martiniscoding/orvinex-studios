@@ -7,7 +7,7 @@ function Pin({ kind }: { kind: string }) {
     return (
       <span
         aria-hidden="true"
-        className="absolute -top-3.5 left-1/2 h-7 w-24 -translate-x-1/2 -rotate-2 rounded-[2px] bg-sun/55 shadow-[inset_0_0_0_1px_rgba(44,30,74,0.08)]"
+        className="absolute -top-3.5 left-1/2 h-7 w-24 -translate-x-1/2 -rotate-2 rounded-[2px] bg-mark/80 shadow-[inset_0_0_0_1px_rgba(30,36,48,0.07)]"
       />
     );
   }
@@ -26,7 +26,7 @@ function Pin({ kind }: { kind: string }) {
       </span>
     );
   }
-  const colour = kind === "green" ? "var(--color-mint-deep)" : "var(--color-coral)";
+  const colour = kind === "green" ? "var(--color-accent)" : "var(--color-ink-2)";
   return (
     <span aria-hidden="true" className="absolute -top-3 left-1/2 -translate-x-1/2">
       <svg width="26" height="26" viewBox="0 0 26 26" fill="none">

@@ -3,18 +3,10 @@ import { Pill } from "@/components/ui/Bits";
 import { ArrowIcon, CallIcon, WorkIcon } from "@/components/Icons";
 import { frameArt } from "@/components/art/Frames";
 
-/* On the marker, faint (2.44:1) and coral-deep (2.71:1) both fall under the
-   3:1 needed for large text, so the dim tone steps up to muted and the accent
-   to the deeper coral. */
 const headlineTone: Record<string, string> = {
   ink: "text-ink",
-  dim: "text-muted",
-  accent: "text-coral-ink",
+  dim: "text-faint",
 };
-
-/* The headline lands first, then the marker goes over it. */
-const SWEEP_START = 1.05;
-const SWEEP_STEP = 0.16;
 
 export default function Hero() {
   return (
@@ -27,12 +19,8 @@ export default function Hero() {
         data-hero-head
         className="hero-type mt-7 max-w-[15ch] text-[clamp(2.5rem,6.2vw,4.75rem)]"
       >
-        {hero.headline.map((part, i) => (
-          <span
-            key={part.text}
-            className={`hero-mark ${headlineTone[part.tone]}`}
-            style={{ animationDelay: `${SWEEP_START + i * SWEEP_STEP}s` }}
-          >
+        {hero.headline.map((part) => (
+          <span key={part.text} className={headlineTone[part.tone]}>
             {part.text}{" "}
           </span>
         ))}
@@ -59,7 +47,7 @@ export default function Hero() {
           block is the studio's own work, not a poster frame for nothing. */}
       <div
         data-hero-card
-        className="mt-14 overflow-hidden rounded-[var(--radius-panel)] bg-gradient-to-br from-sun/45 via-coral/25 to-mint/35 p-3 shadow-[0_30px_60px_-40px_rgba(44,30,74,0.45)]"
+        className="mt-14 overflow-hidden rounded-[var(--radius-panel)] bg-hush p-3 shadow-[0_24px_50px_-40px_rgba(30,36,48,0.4)]"
       >
         <div className="grid gap-3 sm:grid-cols-3">
           {["ui", "brand", "site"].map((id, i) => (

@@ -4,13 +4,11 @@ import { testimonials } from "@/content/site";
  * DEMO_CONTENT. Written for a fictional studio, and there are no photographs,
  * so no stock headshots stand in for people who do not exist.
  */
-const avatarHues = ["bg-coral/30", "bg-mint/30", "bg-grape/25"];
-
 export default function Testimonials() {
   return (
     <section>
       <ul className="grid gap-4 lg:grid-cols-3">
-        {testimonials.map((t, i) => (
+        {testimonials.map((t) => (
           <li
             key={t.name}
             className="flex flex-col justify-between rounded-[var(--radius-card)] bg-card p-7"
@@ -21,7 +19,7 @@ export default function Testimonials() {
             <footer className="mt-7 flex items-center gap-3 border-t border-line pt-5">
               <span
                 aria-hidden="true"
-                className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold text-ink ${avatarHues[i % avatarHues.length]}`}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-hush text-sm font-semibold text-ink-2"
               >
                 {t.name
                   .split(" ")

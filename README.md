@@ -68,31 +68,25 @@ instanced to drop the optical-size axis it never varies (73KB → 49KB), and
 Caveat is `preload: false` — five captions below the fold must not compete with
 Inter for the critical path.
 
-**Colour.** Warm sand grounds (`#F7EFE6` shell, `#FFFBF6` panel) under a deep
-violet ink, lit by a family of five accents — coral, sun, mint, sky, grape —
-rather than one. A fixed `.ambient` layer washes sun, coral and mint behind
-everything; it is its own composited layer rather than
-`background-attachment: fixed`, which repaints on every scroll frame.
+**Colour.** Quiet warm neutrals — `#F2F1ED` shell, `#FBFAF8` panel, white
+cards — under a deep slate ink, with one accent (`#2E6E5B`) used sparingly:
+ticks, active states, the logo mark and the retainer card. Nothing else is
+coloured.
 
-The rule that keeps it readable: **bright surfaces take ink text, never white.**
-Ink on coral is 5.4:1, on sun 9.6:1, on mint 7.0:1, on sky 4.7:1, and on grape
-4.7:1 once it is lightened to 85%. Every accent gradient is built from stops
-that hold at or above 4.5:1 with ink on top. The two greys pass AA on the shell,
-the tightest ground: `--color-muted` carries small text at 5.17:1,
-`--color-faint` only large display type and icons at 3.11:1.
-
-The accents are load-bearing, not decoration: each pricing tab has its own
-gradient, each nav icon its own hue, each key cap its own pastel, and the
-polaroid pins, divider dots and stat chips rotate through the same five.
+Contrast is set against the shell, the tightest ground: `--color-muted` carries
+small text at 5.69:1 and `--color-faint` only large display type and icons at
+3.04:1. The two dark price cards take white text at 60–75% opacity, which is
+why the retainer card uses the deeper accent — at the lighter one the label
+fell under 4.5:1.
 
 **Artwork.** No photography, no stock. Every polaroid, project cover, icon and
 the signature is original SVG in `src/components/art/` and
 `src/components/Icons.tsx`. The page ships zero raster images, which is why
 there is no `next/image` anywhere.
 
-**Motion.** The hero sequence is CSS — the headline rises in, then a yellow
-marker sweeps across it phrase by phrase, one band per phrase and cloned across
-line breaks. It is CSS rather than GSAP so it never waits on the deferred chunk — gating the LCP headline on it costs about 0.4s. Everything else is
+**Motion.** The hero sequence is CSS — the eyebrow, headline, sub, buttons and
+feature card rise in on a stagger. It is CSS rather than GSAP so it never waits
+on the deferred chunk — gating the LCP headline on it costs about 0.4s. Everything else is
 `MotionLayer`: the key caps popping in and the polaroids landing, both
 triggered once, both inside a single `gsap.matchMedia` so
 `prefers-reduced-motion` reverts the lot in one call.

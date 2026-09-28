@@ -4,14 +4,6 @@ import { problem } from "@/content/site";
  * The naming moment: one word, each letter on its own key cap, tilted a
  * little. Caps animate in on scrub; with reduced motion they are simply there.
  */
-const capHues = [
-  "bg-coral/25",
-  "bg-sun/35",
-  "bg-mint/25",
-  "bg-sky/25",
-  "bg-grape/20",
-];
-
 export default function Problem() {
   return (
     <section data-problem className="py-4">
@@ -27,7 +19,7 @@ export default function Problem() {
             key={`${letter}-${i}`}
             data-cap={i}
             aria-hidden="true"
-            className={`inline-flex h-[clamp(2.25rem,4.4vw,3.25rem)] w-[clamp(2rem,3.9vw,2.9rem)] items-center justify-center rounded-[12px] text-ink shadow-[0_5px_0_0_rgba(44,30,74,0.12),0_10px_18px_-10px_rgba(44,30,74,0.45)] ${capHues[i % capHues.length]}`}
+            className={`inline-flex h-[clamp(2.25rem,4.4vw,3.25rem)] w-[clamp(2rem,3.9vw,2.9rem)] items-center justify-center rounded-[12px] text-ink shadow-[0_4px_0_0_var(--color-line),0_10px_18px_-12px_rgba(30,36,48,0.4)] bg-card`}
             style={{ transform: `rotate(${(i % 2 ? 1 : -1) * (3.5 + ((i * 2) % 4))}deg)` }}
           >
             {letter}

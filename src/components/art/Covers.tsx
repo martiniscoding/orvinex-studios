@@ -7,8 +7,8 @@ import type { JSX } from "react";
 const S = {
   ink: "var(--color-ink)",
   slate: "var(--color-muted)",
-  brass: "var(--color-coral)",
-  oxide: "var(--color-mint-deep)",
+  brass: "var(--color-accent)",
+  oxide: "var(--color-ink-2)",
   chalk: "#ffffff",
   paper: "var(--color-hush)",
 };
@@ -133,7 +133,7 @@ export function Signature({ className }: { className?: string }) {
       <path
         d="M14 66 C 92 60, 186 62, 262 67"
         fill="none"
-        stroke="var(--color-coral)"
+        stroke="var(--color-accent)"
         strokeWidth="1.4"
         strokeLinecap="round"
       />

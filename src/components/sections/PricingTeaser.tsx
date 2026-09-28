@@ -13,10 +13,7 @@ export default function PricingTeaser() {
 
   return (
     <section id="pricing" className="relative overflow-hidden rounded-[var(--radius-panel)]">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sun/40 via-coral/25 to-grape/25"
-      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-hush" />
       <div className="relative grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:p-12">
         <div>
           <h2 className="hero-type max-w-[16ch] text-[clamp(1.75rem,3.6vw,2.75rem)]">
@@ -28,7 +25,7 @@ export default function PricingTeaser() {
         </div>
 
         <div className="lg:justify-self-end lg:text-right">
-          <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-ink/70">
+          <p className="eyebrow">
             Projects from
           </p>
           <p className="phudu mt-1 text-[clamp(2.5rem,6vw,3.75rem)] leading-none tabular-nums">
