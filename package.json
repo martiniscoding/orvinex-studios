@@ -9,6 +9,7 @@
     "lint": "eslint",
     "db:setup": "tsx --env-file=.env.local scripts/db-setup.ts",
     "admin:create": "tsx --env-file=.env.local scripts/create-admin.ts",
+    "admin:password": "tsx --env-file=.env.local scripts/set-admin-password.ts",
     "admin:reset-password": "tsx --env-file=.env.local scripts/reset-admin-password.ts",
     "seo:check": "tsx scripts/seo-check.ts",
     "new:post": "tsx scripts/new-post.ts",
