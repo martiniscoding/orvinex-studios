@@ -1,8 +1,19 @@
 import { NextResponse } from "next/server";
+import { UTApi, UTFile } from "uploadthing/server";
 import { auth } from "@/lib/auth";
-import { saveMedia } from "@/lib/article-store";
 
 const MAX_BYTES = 4 * 1024 * 1024;
+
+/* Reads UPLOADTHING_TOKEN from the environment. */
+const utapi = new UTApi();
+
+const EXT: Record<string, string> = {
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/webp": "webp",
+  "image/gif": "gif",
+  "image/avif": "avif",
+};
 
 /** Image types, told apart by their first bytes rather than the browser's claim. */
 function sniff(b: Buffer): string | null {
@@ -14,7 +25,11 @@ function sniff(b: Buffer): string | null {
   return null;
 }
 
-/** Uploads an article image; responds with its public URL. */
+/**
+ * Uploads an article image to UploadThing; responds with its public URL.
+ * Images uploaded before the switch still live in the database and are
+ * served by /media/[id].
+ */
 export async function POST(req: Request) {
   if (!(await auth.api.getSession({ headers: req.headers }))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -30,6 +45,11 @@ export async function POST(req: Request) {
   const type = sniff(data);
   if (!type) return NextResponse.json({ error: "Use a JPEG, PNG, WebP, AVIF or GIF image." }, { status: 415 });
 
-  const id = await saveMedia(type, data);
-  return NextResponse.json({ url: `/media/${id}` });
+  const base = file.name.replace(/\.[^.]*$/, "").replace(/[^a-z0-9-]+/gi, "-").slice(0, 60) || "image";
+  const upload = await utapi.uploadFiles(new UTFile([new Uint8Array(data)], `${base}.${EXT[type]}`, { type }));
+  if (upload.error) {
+    console.error("UploadThing upload failed:", upload.error);
+    return NextResponse.json({ error: "Upload failed. Try again in a moment." }, { status: 502 });
+  }
+  return NextResponse.json({ url: upload.data.ufsUrl });
 }
