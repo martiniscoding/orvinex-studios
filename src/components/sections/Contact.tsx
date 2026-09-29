@@ -138,7 +138,7 @@ export default function Contact() {
           </h2>
           <p className="mt-5 max-w-[42ch] text-[1.0625rem] text-muted">
             Tell us what you&rsquo;re building and where it&rsquo;s stuck. You&rsquo;ll get a
-            straight answer on whether we can help — usually the same day.
+            straight answer on whether we can help, usually the same day.
           </p>
 
           <ul className="mt-10 space-y-3">
@@ -197,7 +197,7 @@ export default function Contact() {
                 </span>
                 <h3 className="hero-type mt-6 text-2xl">Brief received</h3>
                 <p className="mt-3 max-w-[36ch] text-muted">
-                  Thanks — we&rsquo;ll read it properly and reply within one working day.
+                  Thanks. We&rsquo;ll read it properly and reply within one working day.
                 </p>
                 <button
                   type="button"

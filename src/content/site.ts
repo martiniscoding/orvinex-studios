@@ -196,8 +196,9 @@ export const pricing = {
 };
 
 /**
- * Real client reviews, verbatim from orvinex.store. Quotes are unedited —
- * keep them that way. `highlight` must be an exact substring of `quote`;
+ * Real client reviews from orvinex.store. The wording is the clients' own;
+ * only em dashes were swapped for other punctuation (site-wide style: no em
+ * dashes). Don't reword them. `highlight` must be an exact substring of `quote`;
  * `work` is the slug in works.ts of the project the review is about.
  */
 export const testimonials = [
@@ -210,7 +211,7 @@ export const testimonials = [
     work: "jee-society",
   },
   {
-    quote: "Orvinex built us a portal that runs the whole institute — students join live classes, teachers take them, and assignments go out and come back in the same place. A complete ecosystem, and everyone here loves working in it.",
+    quote: "Orvinex built us a portal that runs the whole institute: students join live classes, teachers take them, and assignments go out and come back in the same place. A complete ecosystem, and everyone here loves working in it.",
     highlight: "A complete ecosystem",
     name: "A Star Teaching",
     role: "Coaching institute",
@@ -218,7 +219,7 @@ export const testimonials = [
     work: "a-star-coaching",
   },
   {
-    quote: "Orvinex gave us a storefront that is clean and genuinely professional — the UI and UX are exactly what we asked for. They stayed with us long after launch, too, and the support never dropped off.",
+    quote: "Orvinex gave us a storefront that is clean and genuinely professional. The UI and UX are exactly what we asked for. They stayed with us long after launch, too, and the support never dropped off.",
     highlight: "the support never dropped off",
     name: "Maa Kamakhya Hardware",
     role: "Architectural hardware store",
@@ -238,7 +239,7 @@ export const workflow = {
   lead: "Engineering the future of enterprise software.",
   intro:
     "We are a specialized technology agency that eliminates the friction of building software. " +
-    "We don't just write code—we engineer scalable, bank-grade architectures that allow your " +
+    "We don't just write code. We engineer scalable, bank-grade architectures that allow your " +
     "business to grow infinitely without technical debt.",
   stats: [
     { value: "50+", label: "Enterprise Projects" },
