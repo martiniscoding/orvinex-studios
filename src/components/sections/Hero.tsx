@@ -10,8 +10,10 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate flex h-[calc(100svh-72px)] min-h-[560px] items-center justify-center overflow-hidden"
+      className="relative isolate flex h-[calc(100svh-72px)] min-h-[560px] items-center justify-center overflow-hidden bg-ink"
     >
+      {/* Faded into the ink behind it so the painting sets the mood and the
+          copy carries the page. */}
       <Image
         src="/hero.jpg"
         alt=""
@@ -19,7 +21,7 @@ export default function Hero() {
         priority
         quality={70}
         sizes="100vw"
-        className="-z-20 object-cover"
+        className="-z-20 object-cover opacity-60"
       />
       {/* A box with the photo's own aspect ratio, covering the section the
           same way object-cover does, so the headlight stays pinned to the
