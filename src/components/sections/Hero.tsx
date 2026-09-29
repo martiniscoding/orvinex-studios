@@ -21,7 +21,7 @@ export default function Hero() {
         priority
         quality={70}
         sizes="100vw"
-        className="-z-20 object-cover opacity-60"
+        className="-z-20 object-cover opacity-50"
       />
       {/* A box with the photo's own aspect ratio, covering the section the
           same way object-cover does, so the headlight stays pinned to the
