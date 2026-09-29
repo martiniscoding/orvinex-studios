@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { site } from "@/content/site";
+import { OTHER, countries, countryByCode } from "@/content/countries";
 import { ArrowIcon, CallIcon, CheckIcon, ClockIcon, MessageIcon } from "@/components/Icons";
 
 const projectTypes = ["Website", "Web app", "Mobile app", "Custom software", "Brand system", "Something else"];
@@ -50,6 +51,18 @@ function Chips({
   );
 }
 
+/**
+ * The number as one international string. A number typed with its own
+ * +code is kept as it is; otherwise the chosen country's code goes in front
+ * and a leading trunk 0 is dropped (0 98765… → +91 98765…).
+ */
+function fullPhone(typed: string, dial: string) {
+  const n = typed.trim();
+  if (!n) return "";
+  if (n.startsWith("+") || !dial) return n;
+  return `${dial} ${n.replace(/^0+/, "")}`;
+}
+
 const field =
   "mt-2 w-full rounded-2xl border border-line bg-card px-4 py-3.5 text-[0.9375rem] text-ink placeholder:text-faint transition-colors duration-300 outline-none focus:border-ink";
 
@@ -59,10 +72,25 @@ const field =
  */
 export default function Contact() {
   const [type, setType] = useState(projectTypes[0]);
+  const [countryCode, setCountryCode] = useState("IN");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+
+  // Default the country to the visitor's own, read from their browser's
+  // language list (en-GB → GB). Runs after mount so the server render matches.
+  useEffect(() => {
+    for (const lang of navigator.languages ?? [navigator.language]) {
+      const region = lang.split("-")[1]?.toUpperCase();
+      if (region && countries.some((c) => c.code === region)) {
+        setCountryCode(region);
+        return;
+      }
+    }
+  }, []);
+
+  const country = countryByCode(countryCode) ?? OTHER;
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -78,6 +106,8 @@ export default function Contact() {
           name: data.get("name"),
           email: data.get("email"),
           company: data.get("company"),
+          country: country.name,
+          phone: fullPhone(String(data.get("phone") ?? ""), country.dial),
           projectType: type,
           message: data.get("message"),
           website: data.get("website"),
@@ -221,6 +251,52 @@ export default function Contact() {
                       placeholder="ada@company.com"
                       className={field}
                     />
+                  </label>
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+                  <label className="block text-sm font-medium text-ink-2">
+                    Country
+                    <select
+                      name="country"
+                      value={countryCode}
+                      onChange={(e) => setCountryCode(e.target.value)}
+                      autoComplete="country"
+                      className={`${field} cursor-pointer appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22 fill=%22none%22 stroke=%22%23838b98%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M3 4.5 6 7.5 9 4.5%22/></svg>')] bg-[length:12px] bg-[right_1rem_center] bg-no-repeat pr-10`}
+                    >
+                      {countries.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.name} ({c.dial})
+                        </option>
+                      ))}
+                      <option value={OTHER.code}>{OTHER.name}</option>
+                    </select>
+                  </label>
+                  <label className="block text-sm font-medium text-ink-2">
+                    Phone
+                    <span className="relative mt-2 block">
+                      {country.dial && (
+                        <span
+                          aria-hidden="true"
+                          className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-[0.9375rem] text-muted"
+                        >
+                          {country.dial}
+                        </span>
+                      )}
+                      <input
+                        name="phone"
+                        type="tel"
+                        required
+                        inputMode="tel"
+                        autoComplete="tel-national"
+                        pattern="[+0-9 ()\-]{6,20}"
+                        title="Digits only, e.g. 98765 43210"
+                        placeholder={country.dial ? "98765 43210" : "+00 1234 5678"}
+                        aria-description={country.dial ? `Dialling code ${country.dial} is added for you` : undefined}
+                        className={`${field} !mt-0`}
+                        style={country.dial ? { paddingLeft: `${1.5 + country.dial.length * 0.6}rem` } : undefined}
+                      />
+                    </span>
                   </label>
                 </div>
 

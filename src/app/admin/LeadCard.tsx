@@ -65,6 +65,17 @@ export default function LeadCard({ lead }: { lead: Lead }) {
       <ul className="mt-4 flex flex-wrap gap-2 text-sm">
         {lead.project_type && <li className="rounded-full bg-hush px-3 py-1 font-medium text-ink-2">{lead.project_type}</li>}
         {lead.budget && <li className="rounded-full bg-hush px-3 py-1 font-medium text-ink-2">{lead.budget}</li>}
+        {lead.country && <li className="rounded-full bg-hush px-3 py-1 font-medium text-ink-2">{lead.country}</li>}
+        {lead.phone && (
+          <li>
+            <a
+              href={`tel:${lead.phone.replace(/[^+0-9]/g, "")}`}
+              className="inline-block rounded-full bg-hush px-3 py-1 font-medium text-ink-2 tabular-nums underline-offset-4 hover:underline"
+            >
+              {lead.phone}
+            </a>
+          </li>
+        )}
         <li className="px-1 py-1 text-faint">
           <When date={new Date(lead.created_at)} />
         </li>

@@ -10,6 +10,8 @@ export type Lead = {
   company: string | null;
   project_type: string | null;
   budget: string | null;
+  phone: string | null;
+  country: string | null;
   message: string;
   status: LeadStatus;
   notes: string | null;

@@ -1,7 +1,16 @@
 import { NextResponse } from "next/server";
-import { pool } from "@/lib/db";
+import { leadsColumnsSql, pool } from "@/lib/db";
 
-const limits = { name: 120, email: 200, company: 160, projectType: 60, message: 5000 };
+const limits = { name: 120, email: 200, company: 160, phone: 32, country: 60, projectType: 60, message: 5000 };
+
+/* Adds the phone and country columns if this database predates them, once
+   per server instance, so the form keeps working before db:setup is re-run. */
+let columnsReady: Promise<unknown> | null = null;
+const ensureColumns = () =>
+  (columnsReady ??= pool.query(leadsColumnsSql).catch((err) => {
+    columnsReady = null;
+    throw err;
+  }));
 
 function text(v: unknown, max: number) {
   return typeof v === "string" ? v.trim().slice(0, max) : "";
@@ -22,18 +31,24 @@ export async function POST(req: Request) {
   const name = text(body.name, limits.name);
   const email = text(body.email, limits.email);
   const company = text(body.company, limits.company) || null;
+  const phone = text(body.phone, limits.phone) || null;
+  const country = text(body.country, limits.country) || null;
   const projectType = text(body.projectType, limits.projectType) || null;
   const message = text(body.message, limits.message);
 
-  if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return NextResponse.json({ error: "Please fill in your name, a valid email and the project details." }, { status: 400 });
+  if (!name || !message || !phone || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return NextResponse.json({ error: "Please fill in your name, a valid email, a phone number and the project details." }, { status: 400 });
+  }
+  if (!/^\+?[0-9 ()-]{6,24}$/.test(phone)) {
+    return NextResponse.json({ error: "That phone number doesn't look right. Use digits only, e.g. 98765 43210." }, { status: 400 });
   }
 
   try {
+    await ensureColumns();
     await pool.query(
-      `insert into leads (name, email, company, project_type, message)
-       values ($1, $2, $3, $4, $5)`,
-      [name, email, company, projectType, message],
+      `insert into leads (name, email, company, phone, country, project_type, message)
+       values ($1, $2, $3, $4, $5, $6, $7)`,
+      [name, email, company, phone, country, projectType, message],
     );
   } catch (err) {
     console.error("Failed to save lead", err);
