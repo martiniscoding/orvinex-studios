@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 
-const limits = { name: 120, email: 200, company: 160, projectType: 60, budget: 60, message: 5000 };
+const limits = { name: 120, email: 200, company: 160, projectType: 60, message: 5000 };
 
 function text(v: unknown, max: number) {
   return typeof v === "string" ? v.trim().slice(0, max) : "";
@@ -23,7 +23,6 @@ export async function POST(req: Request) {
   const email = text(body.email, limits.email);
   const company = text(body.company, limits.company) || null;
   const projectType = text(body.projectType, limits.projectType) || null;
-  const budget = text(body.budget, limits.budget) || null;
   const message = text(body.message, limits.message);
 
   if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -32,9 +31,9 @@ export async function POST(req: Request) {
 
   try {
     await pool.query(
-      `insert into leads (name, email, company, project_type, budget, message)
-       values ($1, $2, $3, $4, $5, $6)`,
-      [name, email, company, projectType, budget, message],
+      `insert into leads (name, email, company, project_type, message)
+       values ($1, $2, $3, $4, $5)`,
+      [name, email, company, projectType, message],
     );
   } catch (err) {
     console.error("Failed to save lead", err);

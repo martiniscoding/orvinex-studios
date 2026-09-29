@@ -59,7 +59,7 @@ export default function Showcase() {
       {/* Floats over the seam between the two rows. */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-4">
         <p className="flex items-baseline gap-3 rounded-full border border-line bg-card/95 px-7 py-4 shadow-[0_24px_50px_-24px_rgba(30,36,48,0.55)] backdrop-blur-md sm:px-9 sm:py-5">
-          <span className="display-serif text-[clamp(2rem,4vw,3rem)] leading-none text-ink">60+</span>
+          <span className="display-serif text-[clamp(2rem,4vw,3rem)] leading-none text-ink">50+</span>
           <span className="text-[clamp(0.9375rem,1.4vw,1.125rem)] font-medium text-muted">
             products delivered
           </span>

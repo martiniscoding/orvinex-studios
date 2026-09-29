@@ -5,7 +5,6 @@ import { site } from "@/content/site";
 import { ArrowIcon, CallIcon, CheckIcon, ClockIcon, MessageIcon } from "@/components/Icons";
 
 const projectTypes = ["Website", "Web app", "Mobile app", "Custom software", "Brand system", "Something else"];
-const budgets = ["Under $5k", "$5k–15k", "$15k–40k", "$40k+"];
 
 /** Single-select chip row, rendered as a radio group so it works with a keyboard. */
 function Chips({
@@ -60,7 +59,6 @@ const field =
  */
 export default function Contact() {
   const [type, setType] = useState(projectTypes[0]);
-  const [budget, setBudget] = useState(budgets[1]);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -81,7 +79,6 @@ export default function Contact() {
           email: data.get("email"),
           company: data.get("company"),
           projectType: type,
-          budget,
           message: data.get("message"),
           website: data.get("website"),
         }),
@@ -233,7 +230,6 @@ export default function Contact() {
                 </label>
 
                 <Chips label="What do you need?" options={projectTypes} value={type} onChange={setType} />
-                <Chips label="Rough budget" options={budgets} value={budget} onChange={setBudget} />
 
                 <label className="block text-sm font-medium text-ink-2">
                   About the project
