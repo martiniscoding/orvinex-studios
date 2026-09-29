@@ -231,6 +231,9 @@ export const testimonials = [
 export const testimonialsIntro = {
   eyebrow: "Client Reviews",
   title: "The people we built for.",
+  /** The on-page heading: `accent` is set in the hand font, underlined. */
+  heading: { before: "What our", accent: "customers", after: "say" },
+  note: "unedited, promise",
 };
 
 export const workflow = {
