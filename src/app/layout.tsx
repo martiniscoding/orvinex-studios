@@ -6,6 +6,8 @@ import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { site } from "@/content/site";
 import "./globals.css";
 
+const ICON_VERSION = 2;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: "Orvinex | Custom Software, Mobile & AI Development Agency",
@@ -16,6 +18,17 @@ export const metadata: Metadata = {
     description: "Design and development for products that dominate their market.",
     type: "website",
     locale: "en_GB",
+  },
+  /* Served from /public with a version query, not from src/app, so a changed
+     logo gets a new URL. Browsers cache tab icons by URL and ignore reloads;
+     bump ICON_VERSION whenever the icon files change. */
+  icons: {
+    icon: [
+      { url: `/favicon.ico?v=${ICON_VERSION}`, sizes: "any" },
+      { url: `/icon.png?v=${ICON_VERSION}`, type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: `/favicon.ico?v=${ICON_VERSION}`,
+    apple: { url: `/apple-icon.png?v=${ICON_VERSION}`, sizes: "180x180" },
   },
 };
 
