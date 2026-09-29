@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Tokens — navy on light grey, white cards, lime accent.
+   Tokens — navy on light grey, white cards, red accent.
 ------------------------------------------------------------------- */
 @theme {
   /* Quiet warm neutrals. */
@@ -18,14 +18,22 @@
 
   /* One accent, used sparingly: ticks, active states, the retainer card.
      5.31:1 on the shell, and white on it is 6.0:1. */
-  --color-accent: #2e6e5b;
-  --color-accent-deep: #1f4d3f;
+  --color-accent: #b8321f;
+  --color-accent-deep: #86231a;
 
   /* The highlight behind an emphasised phrase — soft straw, not a marker. */
   --color-mark: #ece4c9;
 
+  /* shadcn-style aliases, used by components in components/ui. */
+  --color-background: #fbfaf8;
+  --color-foreground: #1e2430;
+  --color-primary: #b8321f;
+  --color-border: #e2e0da;
+
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-phudu), system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-hero: var(--font-hero-face), Georgia, "Times New Roman", serif;
   --font-hand: var(--font-caveat), cursive;
 
   --radius-panel: 28px;
@@ -77,11 +85,21 @@ body {
   color: var(--color-muted);
 }
 
-/* Big headline: tight, mixed-weight-colour treatment. */
+/* Section headlines: the grotesque, set tight. */
 @utility hero-type {
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.06;
+  text-wrap: balance;
+}
+
+/* The hero headline only: a high-contrast display serif. Serifs need far less
+   negative tracking than the grotesque does. */
+@utility display-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.04;
   text-wrap: balance;
 }
 
@@ -116,6 +134,170 @@ body {
   }
 }
 
+/* The work showcase under the hero: each track holds its row twice, so
+   sliding by half its width loops without a seam. Reduced motion is caught
+   by the rule above, which leaves the rows still. */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* The hero's stars: a slow breathe between faint and lit. Duration and delay
+   are set per star inline, so the sky never pulses in unison. */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+[data-twinkle] {
+  opacity: 0.55;
+  animation: twinkle 5s ease-in-out infinite;
+}
+
+/* The hero's dot field. Two layers: a faint grid that drifts diagonally by
+   exactly one cell per loop (so it never seams), and the same grid in the
+   accent, seen only through a soft spotlight that wanders across it — dots
+   light up as it passes and fade after. Pure CSS, no per-frame JS. */
+.hero-dots {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-dots::before,
+.hero-dots::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: 22px 22px;
+  animation: dots-drift 8s linear infinite;
+}
+
+.hero-dots::before {
+  background-image: radial-gradient(
+    color-mix(in srgb, #b8997a 35%, transparent) 1.1px,
+    transparent 1.4px
+  );
+}
+
+.hero-dots::after {
+  background-image: radial-gradient(
+    color-mix(in srgb, #b8997a 75%, transparent) 1.5px,
+    transparent 1.8px
+  );
+  -webkit-mask-image: radial-gradient(closest-side, #000 15%, transparent);
+  mask-image: radial-gradient(closest-side, #000 15%, transparent);
+  -webkit-mask-size: 55% 75%;
+  mask-size: 55% 75%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation:
+    dots-drift 8s linear infinite,
+    dots-spotlight 18s ease-in-out infinite;
+}
+
+@keyframes dots-drift {
+  to {
+    background-position: 22px 22px;
+  }
+}
+
+@keyframes dots-spotlight {
+  0%,
+  100% {
+    -webkit-mask-position: 0% 100%;
+    mask-position: 0% 100%;
+  }
+  25% {
+    -webkit-mask-position: 100% 70%;
+    mask-position: 100% 70%;
+  }
+  50% {
+    -webkit-mask-position: 60% 0%;
+    mask-position: 60% 0%;
+  }
+  75% {
+    -webkit-mask-position: 10% 30%;
+    mask-position: 10% 30%;
+  }
+}
+
+/* Process illustrations: a fixed 440×330 drawing, centred in its frame and
+   scaled down in steps as the frame narrows. */
+.art-frame {
+  container-type: inline-size;
+}
+
+.art-canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 440px;
+  height: 330px;
+  translate: -50% -50%;
+  scale: 1;
+}
+
+/* Each step uses its range's narrowest width ÷ 440, so it never overflows. */
+@container (max-width: 440px) { .art-canvas { scale: 0.95; } }
+@container (max-width: 420px) { .art-canvas { scale: 0.86; } }
+@container (max-width: 380px) { .art-canvas { scale: 0.77; } }
+@container (max-width: 340px) { .art-canvas { scale: 0.68; } }
+@container (max-width: 300px) { .art-canvas { scale: 0.61; } }
+@container (max-width: 270px) { .art-canvas { scale: 0.55; } }
+
+[data-marquee="left"] {
+  animation: marquee-left 90s linear infinite;
+}
+
+[data-marquee="right"] {
+  animation: marquee-right 90s linear infinite;
+}
+
+/* /work: each bento block rises in, staggered by an inline delay, and again
+   whenever the filter re-packs the grid. */
+@keyframes work-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.work-in {
+  animation: work-in 0.6s var(--ease-out-soft) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-in {
+    animation: none;
+  }
+}
+
 /* ------------------------------------------------------------------
    Motion start states.
 
@@ -137,7 +319,6 @@ body {
 
 /* The hero is CSS, not GSAP: it must not wait for the deferred motion chunk,
    or the headline — the LCP element — paints late. */
-[data-motion] [data-hero-eyebrow],
 [data-motion] [data-hero-head],
 [data-motion] [data-hero-sub],
 [data-motion] [data-hero-cta] {
@@ -153,10 +334,228 @@ body {
 [data-motion] [data-hero-cta] {
   animation-delay: 0.3s;
 }
-[data-motion] [data-cap] {
-  opacity: 0;
+
+/* ------------------------------------------------------------------
+   Card textures (pricing). Drop `<span class="tex tex-…">` in as the
+   first child of a positioned card; content after it paints on top.
+   Each variant is a colour glow, a fine pattern that fades out through
+   a mask, and film grain in ::after.
+------------------------------------------------------------------- */
+.tex {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
 }
 
-[data-motion] [data-polaroid] {
+.tex::before,
+.tex::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.tex::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  mix-blend-mode: overlay;
+  opacity: 0.45;
+}
+
+/* Navy: drafting grid under a red glow, champagne rising from below. */
+.tex-ink {
+  background:
+    radial-gradient(120% 95% at 100% 0%, rgb(184 50 31 / 0.85), transparent 58%),
+    radial-gradient(90% 85% at 0% 100%, rgb(220 203 159 / 0.26), transparent 62%);
+}
+.tex-ink::before {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.11) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 100% 90% at 85% 5%, black, transparent 80%);
+}
+
+/* Rust: diagonal hairlines under a champagne glow. */
+.tex-moss {
+  background:
+    radial-gradient(110% 90% at 100% 0%, rgb(236 228 201 / 0.34), transparent 58%),
+    radial-gradient(100% 90% at 0% 100%, rgb(214 96 78 / 0.6), transparent 62%);
+}
+.tex-moss::before {
+  background-image: repeating-linear-gradient(135deg, rgb(255 255 255 / 0.12) 0 1px, transparent 1px 10px);
+  mask-image: radial-gradient(ellipse 100% 95% at 90% 5%, black, transparent 78%);
+}
+
+/* Paper: warm wash, a dot grid out of one corner, and a fine tooth. */
+.tex-paper {
+  background:
+    radial-gradient(70% 80% at 0% 0%, rgb(236 228 201 / 0.85), transparent 70%),
+    radial-gradient(60% 70% at 100% 100%, rgb(184 50 31 / 0.12), transparent 70%);
+}
+.tex-paper::before {
+  background-image: radial-gradient(rgb(30 36 48 / 0.2) 1.1px, transparent 1.6px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(ellipse 70% 85% at 100% 0%, black, transparent 78%);
+}
+.tex-paper::after {
+  mix-blend-mode: multiply;
+  opacity: 0.14;
+}
+
+/* The train's lamps in the hero painting: the white lamps and the red one all
+   blink together. */
+.train-lamp {
+  translate: -50% -50%;
+  border-radius: 35%;
+  background: radial-gradient(ellipse, #ffffff 30%, #fff8e6 70%, #f3e6c4 100%);
+  box-shadow:
+    0 0 5px 2px rgba(255, 255, 255, 0.95),
+    0 0 18px 7px rgba(255, 250, 230, 0.55);
+  animation: lamp-blink 1s steps(1, end) infinite;
+}
+
+@keyframes lamp-blink {
+  50% {
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+.train-headlight {
+  width: 0.9%;
+  aspect-ratio: 1.3;
+  translate: -50% -50%;
+  border-radius: 40%;
+  background: radial-gradient(circle, #fff1ee 0%, #ff3b2f 45%, #e0100a 100%);
+  animation: headlight-blink 1s steps(1, end) infinite;
+}
+
+@keyframes headlight-blink {
+  0% {
+    opacity: 1;
+    box-shadow:
+      0 0 6px 2px rgba(255, 40, 30, 0.95),
+      0 0 22px 8px rgba(255, 30, 20, 0.55);
+  }
+  50% {
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .train-lamp {
+    animation: none;
+  }
+
+  .train-headlight {
+    animation: none;
+    box-shadow: 0 0 6px 2px rgba(255, 40, 30, 0.95);
+  }
+}
+
+/* The hero's revenue figure: a warm gradient with a slow glint passing over
+   it, and a soft glow behind the card, so the eye lands there first. */
+.proof-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(255, 214, 150, 0.28), transparent);
+  animation: proof-glow 4s ease-in-out infinite;
+}
+
+.proof-figure {
+  background: linear-gradient(
+    100deg,
+    #fff 0%,
+    #ffe3b0 35%,
+    #fff 50%,
+    #ffe3b0 65%,
+    #fff 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 8px rgba(255, 220, 160, 0.5));
+  animation: proof-shine 5s ease-in-out infinite;
+}
+
+@keyframes proof-shine {
+  0%,
+  20% {
+    background-position: 100% 0;
+  }
+  60%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@keyframes proof-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-card::before,
+  .proof-figure {
+    animation: none;
+  }
+}
+
+/* A glowing head sliding along one of the painted sky streaks. The element
+   spans the streak, rotated from its start point; the head is ::after. */
+.sky-streak {
+  position: absolute;
+  height: 0;
+  transform-origin: 0 50%;
+  overflow: visible;
+}
+
+.sky-streak::after {
+  content: "";
+  position: absolute;
+  top: -1.5px;
+  left: 0;
+  width: 22%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
   opacity: 0;
+  animation: sky-streak-run 5.5s cubic-bezier(0.45, 0, 0.7, 1) infinite;
+  animation-delay: inherit;
+}
+
+@keyframes sky-streak-run {
+  0% {
+    left: -22%;
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  38% {
+    opacity: 1;
+  }
+  45%,
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-streak::after {
+    animation: none;
+  }
 }

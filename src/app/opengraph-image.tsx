@@ -2,15 +2,17 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-export const alt = "Plumbline — design for products that are better than they look";
+export const alt = "Orvinex — design and development for ambitious products";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const [phudu, inter] = await Promise.all([
+  const [phudu, inter, logo] = await Promise.all([
     readFile(path.join(process.cwd(), "src/fonts/Phudu-OG.ttf")),
     readFile(path.join(process.cwd(), "src/fonts/Inter-OG.ttf")),
+    readFile(path.join(process.cwd(), "public/work/logo.png")),
   ]);
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -36,16 +38,10 @@ export default async function Image() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <div
-              style={{
-                width: 22,
-                height: 22,
-                backgroundColor: "#2e6e5b",
-                clipPath: "polygon(50% 0%, 100% 34%, 50% 100%, 0% 34%)",
-              }}
-            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={logoSrc} width={44} height={44} alt="" />
             <span style={{ fontFamily: "Phudu", fontSize: 30, color: "#1e2430", letterSpacing: 1 }}>
-              PLUMBLINE
+              ORVINEX
             </span>
           </div>
 
@@ -60,14 +56,14 @@ export default async function Image() {
               maxWidth: 940,
             }}
           >
-            <span style={{ color: "#1e2430" }}>The studio&nbsp;</span>
+            <span style={{ color: "#1e2430" }}>Design and build&nbsp;</span>
             <span style={{ color: "#838b98" }}>for products&nbsp;</span>
-            <span style={{ color: "#1e2430" }}>that are better&nbsp;</span>
-            <span style={{ color: "#838b98" }}>than they look</span>
+            <span style={{ color: "#1e2430" }}>that dominate&nbsp;</span>
+            <span style={{ color: "#838b98" }}>their market</span>
           </div>
 
           <div style={{ display: "flex", fontSize: 26, color: "#575f6d" }}>
-            Design for dev tools and B2B software
+            Websites, web apps, mobile apps and custom software
           </div>
         </div>
       </div>

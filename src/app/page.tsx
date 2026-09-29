@@ -1,38 +1,31 @@
+import type { Metadata } from "next";
 import Shell, { Container } from "@/components/Shell";
 import Hero from "@/components/sections/Hero";
-import Work from "@/components/sections/Work";
-import Problem from "@/components/sections/Problem";
-import Solution from "@/components/sections/Solution";
-import Approach from "@/components/sections/Approach";
-import Services from "@/components/sections/Services";
-import PricingTeaser from "@/components/sections/PricingTeaser";
+import Showcase from "@/components/sections/Showcase";
+import Founder from "@/components/sections/Founder";
 import Testimonials from "@/components/sections/Testimonials";
-import FinalNote from "@/components/sections/FinalNote";
+import Process from "@/components/sections/Process";
+import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import { Divider } from "@/components/ui/Bits";
-import { problem, solution, finalNote } from "@/content/site";
+import { testimonialsIntro, workflow } from "@/content/site";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Page() {
   return (
     <Shell hero>
       <Hero />
+      <Showcase />
       <Container className="pb-4">
-        <Divider label="The work" />
-        <Work />
-        <Divider label={problem.eyebrow} />
-        <Problem />
-        <Divider label={solution.eyebrow} />
-        <Solution />
-        <Divider label="How it works" />
-        <Approach />
-        <Divider label="Services" />
-        <Services />
-        <Divider label="Pricing" />
-        <PricingTeaser />
-        <Divider label="What clients said" />
+        <Divider label="Founder" />
+        <Founder />
+        <Divider label={testimonialsIntro.eyebrow} />
         <Testimonials />
-        <Divider label={finalNote.eyebrow} />
-        <FinalNote />
+        <Divider label={workflow.eyebrow} />
+        <Process />
+        <Divider label="Contact" />
+        <Contact />
         <Footer />
       </Container>
     </Shell>

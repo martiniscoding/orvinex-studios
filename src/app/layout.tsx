@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
-import { caveat, inter, phudu } from "@/lib/fonts";
+import { caveat, heroSerif, inter, phudu, playfair } from "@/lib/fonts";
 import ClientMotion from "@/components/ClientMotion";
+import JsonLd from "@/components/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { site } from "@/content/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://plumbline.studio"),
-  title: "Plumbline — design for products that are better than they look",
+  metadataBase: new URL(site.url),
+  title: "Orvinex | Custom Software, Mobile & AI Development Agency",
   description:
-    "A design studio for technical founders. Product UI, brand systems and launch sites for dev tools and B2B software.",
+    "Orvinex builds custom software, web and mobile apps, and AI products for companies worldwide. One senior team from first line of code to launch.",
   openGraph: {
-    title: "Plumbline",
-    description: "Design for products that are better than they look.",
+    title: "Orvinex",
+    description: "Design and development for products that dominate their market.",
     type: "website",
     locale: "en_GB",
   },
@@ -20,7 +23,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${phudu.variable} ${caveat.variable}`}
+    <html lang="en" className={`${inter.variable} ${phudu.variable} ${playfair.variable} ${heroSerif.variable} ${caveat.variable}`}
       data-motion="on"
     >
       <head>
@@ -39,6 +42,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <ClientMotion />
         {children}
       </body>

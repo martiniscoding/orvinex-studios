@@ -56,6 +56,26 @@ export const ClockIcon = () => (
   </svg>
 );
 
+export const LayersIcon = () => (
+  <svg {...base}>
+    <path d="M10 2.8 17.2 6.6 10 10.4 2.8 6.6z" />
+    <path d="M2.8 10 10 13.8 17.2 10M2.8 13.4 10 17.2l7.2-3.8" />
+  </svg>
+);
+
+export const ShieldIcon = () => (
+  <svg {...base}>
+    <path d="M10 2.6 16 5v4.6c0 3.7-2.5 6.5-6 7.8-3.5-1.3-6-4.1-6-7.8V5z" />
+    <path d="M7.4 10.1 9.3 12l3.4-3.8" />
+  </svg>
+);
+
+export const BoltIcon = () => (
+  <svg {...base}>
+    <path d="M11.2 2.6 4.6 11.2h5l-1 6.2 6.8-8.8h-5z" />
+  </svg>
+);
+
 /** Call: a video tile. Message: a paper plane. Drawn, not brand marks. */
 /**
  * The Google Meet mark. Used nominatively — it labels a link that opens a
@@ -90,21 +110,17 @@ export const MessageIcon = () => (
   </svg>
 );
 
-/** The studio mark: a plumb bob. */
+/** The Orvinex mark. On dark panels it sits on a white tile so the dark
+    strokes stay visible. */
 export const Mark = ({ size = 26, light = false }: { size?: number; light?: boolean }) => (
-  <svg width={size} height={size} viewBox="0 0 26 26" fill="none" aria-hidden="true">
-    <path
-      d="M13 2v6.4"
-      stroke={light ? "#ffffff" : "var(--color-ink)"}
-      strokeWidth="1.8"
-      strokeLinecap="round"
-    />
-    <path d="M13 7.6 19.4 13 13 24 6.6 13z" fill={light ? "#ffffff" : "var(--color-accent)"} />
-    <path
-      d="M6.6 13h12.8"
-      stroke={light ? "var(--color-ink)" : "var(--color-ink)"}
-      strokeOpacity={light ? ".25" : ".3"}
-      strokeWidth="1.2"
-    />
-  </svg>
+  // eslint-disable-next-line @next/next/no-img-element
+  <img
+    src="/work/logo.png"
+    alt=""
+    aria-hidden="true"
+    width={size}
+    height={size}
+    className={`shrink-0 ${light ? "rounded-md bg-white p-0.5" : ""}`}
+    style={{ width: size, height: size }}
+  />
 );

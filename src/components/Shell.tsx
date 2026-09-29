@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
-import Navbar from "@/components/Navbar";
+import SiteNav from "@/components/SiteNav";
 
 /**
- * Page chrome. `hero` means the first child bleeds to the edges and sits under
- * a translucent nav; without it the nav is solid and the content is padded
- * clear of it.
+ * Page chrome. The nav sits in the flow, so pages only need breathing room
+ * under it; `hero` pages bring their own.
  */
 export default function Shell({
   children,
@@ -15,8 +14,8 @@ export default function Shell({
 }) {
   return (
     <>
-      <Navbar overHero={hero} />
-      <main className={hero ? "" : "pt-28 lg:pt-32"}>{children}</main>
+      <SiteNav />
+      <main className={hero ? "" : "pt-10 lg:pt-14"}>{children}</main>
     </>
   );
 }
