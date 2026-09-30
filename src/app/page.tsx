@@ -5,16 +5,29 @@ import Showcase from "@/components/sections/Showcase";
 import Founder from "@/components/sections/Founder";
 import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
+import Faq from "@/components/sections/Faq";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import { Divider } from "@/components/ui/Bits";
-import { testimonialsIntro, workflow } from "@/content/site";
+import JsonLd from "@/components/JsonLd";
+import { faq, testimonialsIntro, workflow } from "@/content/site";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Page() {
   return (
     <Shell hero>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faq.items.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }}
+      />
       <Hero />
       <Showcase />
       <Container className="pb-4">
@@ -24,6 +37,8 @@ export default function Page() {
         <Testimonials />
         <Divider label={workflow.eyebrow} />
         <Process />
+        <Divider label={faq.eyebrow} />
+        <Faq />
         <Divider label="Contact" />
         <Contact />
         <Footer />

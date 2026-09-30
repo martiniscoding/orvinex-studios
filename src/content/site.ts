@@ -224,6 +224,52 @@ export const testimonialsIntro = {
   note: "unedited, promise",
 };
 
+/** Answers only restate what the site already commits to elsewhere. */
+export const faq: {
+  eyebrow: string;
+  title: string[];
+  primary: { label: string; href: string };
+  secondary: { label: string; href: string };
+  items: { q: string; a: string; link?: { label: string; href: string } }[];
+} = {
+  eyebrow: "FAQ",
+  title: ["Frequently Asked", "Questions"],
+  primary: { label: "Start a project", href: "/#contact" },
+  secondary: { label: "See the work", href: "/work" },
+  items: [
+    {
+      q: "What is Orvinex?",
+      a: "Orvinex is a software and AI development studio founded by Rohan Kumar Singh, an IIT Madras alumnus. We work as your dedicated design and engineering team, from the first sketch to launch and beyond.",
+    },
+    {
+      q: "What services do you offer?",
+      a: "Custom software, web applications, mobile apps for iOS and Android, AI chatbots and RAG assistants, and personalised AI tools. Most projects need more than one of these, and the same team handles all of it.",
+      link: { label: "See all services", href: "/services" },
+    },
+    {
+      q: "How do we get started?",
+      a: "Book a call or send the contact form. We begin with discovery: a questionnaire and a competitive audit, so we understand your business and your users before anything is designed.",
+    },
+    {
+      q: "How will we collaborate?",
+      a: "You get a preview link that is updated every 48 hours, so you always see real progress instead of status reports. The team that designs your product also builds it, so nothing is lost in handoff.",
+    },
+    {
+      q: "How long does a project typically take?",
+      a: "A website takes 15 to 20 days, a brand system 20 to 25 days, and a web or mobile app 30 to 40 days. Larger custom software is scoped on the first call.",
+    },
+    {
+      q: "How much does it cost?",
+      a: "Prices are fixed and published, so you know the number before we start. There is also a monthly retainer if you need ongoing design and engineering.",
+      link: { label: "See pricing", href: "/pricing" },
+    },
+    {
+      q: "Who owns the code and design files?",
+      a: "You do. The code lives in your repo and the Figma file is yours to keep. Two weeks of fixes after launch are included.",
+    },
+  ],
+};
+
 export const workflow = {
   eyebrow: "Process",
   title: ["Six steps that", "remove guesswork"],

@@ -22,6 +22,14 @@ const surfaces: Record<string, { tile: string; label: string; body: string; arro
 const tileBase =
   "work-in group relative flex h-full min-h-[10.5rem] flex-col overflow-hidden rounded-[var(--radius-card)] border p-6 outline-none lg:[@media(max-height:820px)]:!p-5 transition-[translate,box-shadow,border-color] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel lg:min-h-0 lg:p-7";
 
+/* Beside one another the tiles reserve two lines for the title and three for
+   the body, whatever the copy's length, so every title and every body starts
+   at the same height across a row. */
+const titleBox =
+  "display-serif block text-[clamp(1.375rem,min(2.1vw,3.5vh),1.875rem)] leading-[1.08] sm:flex sm:min-h-[2.16em] sm:items-end";
+const bodyBox =
+  "mt-2.5 block max-w-[38ch] text-[0.9375rem] leading-[1.55] sm:min-h-[4.65em] lg:[@media(max-height:820px)]:mt-2 lg:[@media(max-height:820px)]:text-sm lg:[@media(max-height:820px)]:leading-[1.5] lg:[@media(max-height:820px)]:min-h-[4.5em]";
+
 /**
  * Every service on one board: a 3×2 grid that fills whatever height its
  * parent gives it, so on a laptop the whole offer is visible without
@@ -60,10 +68,10 @@ export default function ServiceList() {
                 </span>
               </span>
               <span className="relative mt-auto block pt-6 lg:[@media(max-height:820px)]:pt-3">
-                <span className="display-serif block text-[clamp(1.375rem,min(2.1vw,3.5vh),1.875rem)] leading-[1.08]">
+                <span className={titleBox}>
                   {service.title}
                 </span>
-                <span className={`mt-2.5 block max-w-[38ch] text-[0.9375rem] leading-[1.55] lg:[@media(max-height:820px)]:mt-2 lg:[@media(max-height:820px)]:text-sm lg:[@media(max-height:820px)]:leading-[1.5] ${s.body}`}>
+                <span className={`${bodyBox} ${s.body}`}>
                   {service.body}
                 </span>
               </span>
@@ -85,10 +93,10 @@ export default function ServiceList() {
             </span>
           </span>
           <span className="mt-auto block pt-6 lg:[@media(max-height:820px)]:pt-3">
-            <span className="display-serif block text-[clamp(1.375rem,min(2.1vw,3.5vh),1.875rem)] leading-[1.08]">
+            <span className={titleBox}>
               Tell us what you are building
             </span>
-            <span className="mt-2.5 block max-w-[38ch] text-[0.9375rem] leading-[1.55] lg:[@media(max-height:820px)]:mt-2 lg:[@media(max-height:820px)]:text-sm lg:[@media(max-height:820px)]:leading-[1.5] text-white/80">
+            <span className={`${bodyBox} text-white/80`}>
               Most projects need more than one of these. We will tell you which, and what it takes.
             </span>
           </span>
