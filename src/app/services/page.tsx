@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Shell, { Container } from "@/components/Shell";
 import ServiceList from "@/components/sections/ServiceList";
 import Footer from "@/components/sections/Footer";
-import { serviceGroups, servicesIntro } from "@/content/site";
+import { servicesIntro } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Software, AI and Growth Services | Orvinex",
+  title: "Software and AI Development Services | Orvinex",
   description:
-    "Custom software, web and mobile apps, e-commerce systems, RAG chatbots, AI tools, marketplace research, SEO and growth — one team, one roadmap.",
+    "Custom software, web and mobile apps, RAG chatbots and AI tools. One team, one roadmap.",
   alternates: { canonical: "/services" },
 };
 
@@ -15,25 +15,19 @@ export default function ServicesPage() {
   return (
     <Shell>
       <Container className="pb-4">
-        <div className="mb-12 lg:mb-16">
-          <p className="eyebrow">{servicesIntro.eyebrow}</p>
-          <h1 className="display-serif mt-4 max-w-[20ch] text-[clamp(2.25rem,5vw,3.75rem)]">
-            {servicesIntro.title}
-          </h1>
-          <p className="mt-5 max-w-[60ch] text-[1.0625rem] text-muted">{servicesIntro.body}</p>
-          <nav aria-label="Service groups" className="mt-8 flex flex-wrap gap-2">
-            {serviceGroups.map((g) => (
-              <a
-                key={g.id}
-                href={`#${g.id}`}
-                className="rounded-full border border-line px-4 py-2 text-[0.9375rem] font-medium text-ink-2 transition-colors hover:border-ink hover:text-ink"
-              >
-                {g.label}
-              </a>
-            ))}
-          </nav>
+        {/* On a laptop the heading and the board together are exactly one
+            screen under the nav (72px) and the shell's top padding (3.5rem),
+            so every service is visible without scrolling. It is a minimum,
+            not a fixed height, so nothing clips if the copy ever grows. */}
+        <div className="flex flex-col gap-7 lg:min-h-[min(calc(100svh-72px-3.5rem),880px)] lg:gap-8 lg:pb-8 lg:[@media(max-height:820px)]:gap-6 lg:[@media(max-height:820px)]:pb-6">
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:items-end lg:gap-14">
+            <h1 className="display-serif text-[clamp(2rem,min(3.5vw,5.4vh),3rem)]">{servicesIntro.title}</h1>
+            <p className="max-w-[52ch] text-[0.9375rem] leading-[1.6] text-muted lg:pb-1">{servicesIntro.body}</p>
+          </div>
+          <div className="min-h-0 flex-1">
+            <ServiceList />
+          </div>
         </div>
-        <ServiceList />
         <Footer />
       </Container>
     </Shell>

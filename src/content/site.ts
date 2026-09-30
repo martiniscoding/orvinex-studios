@@ -67,10 +67,9 @@ export const servicesIntro = {
   eyebrow: "Services",
   title: "Everything at one place, one team, and nobody to translate between.",
   body:
-    "Most companies hire one agency to build the product, another to add the AI, " +
-    "and a third to bring the traffic — then spend every week relaying messages " +
-    "between them. Orvinex runs all three from a single team on a single roadmap, " +
-    "measured against the same number.",
+    "Most companies hire one agency to build the product and another to add the AI, " +
+    "then spend every week relaying messages between them. Orvinex runs both from " +
+    "a single team on a single roadmap, measured against the same number.",
 };
 
 export const serviceGroups = [
@@ -79,9 +78,8 @@ export const serviceGroups = [
     label: "Build",
     services: [
       { id: "custom-software", code: "B·01", title: "Custom Software Development", body: "The system your business actually runs on, built to fit rather than forced from a template.", tags: ["ERP", "Internal tools", "Automation"] },
-      { id: "web-applications", code: "B·02", title: "Web Application Development", body: "Fast, secure, scalable platforms — SaaS products, dashboards, customer portals.", tags: ["SaaS", "Dashboards", "Portals", "APIs"] },
+      { id: "web-applications", code: "B·02", title: "Web Application Development", body: "Fast, secure, scalable platforms: SaaS products, dashboards, customer portals.", tags: ["SaaS", "Dashboards", "Portals", "APIs"] },
       { id: "mobile-apps", code: "B·03", title: "Mobile App Development", body: "Native iOS and Android builds, or a single cross-platform codebase that serves both.", tags: ["iOS", "Android", "React Native", "Flutter"] },
-      { id: "ecommerce-management", code: "B·04", title: "E-commerce Management Software", body: "One place to run the storefront. Stock that stays accurate across every channel you sell on.", tags: ["Inventory", "Order ops", "Marketplace sync"] },
     ],
   },
   {
@@ -90,16 +88,6 @@ export const serviceGroups = [
     services: [
       { id: "rag-chatbots", code: "I·01", title: "AI Chatbots & RAG Assistants", body: "Assistants that answer from your documentation rather than from guesswork.", tags: ["Retrieval", "Vector search", "Evaluation sets"] },
       { id: "personalised-ai-tools", code: "I·02", title: "Personalised AI Tools", body: "Internal tools shaped around how your team already works.", tags: ["Copilots", "Agents", "Workflow automation"] },
-      { id: "marketplace-research", code: "I·03", title: "Marketplace Research", body: "The numbers before the commitment. We size real demand, map who already owns it.", tags: ["Demand sizing", "Competitor teardowns", "Pricing"] },
-    ],
-  },
-  {
-    id: "grow",
-    label: "Grow",
-    services: [
-      { id: "seo", code: "G·01", title: "SEO Optimisation", body: "Rankings that compound instead of spike. Technical foundations fixed first.", tags: ["Technical SEO", "Content", "Digital PR"] },
-      { id: "digital-marketing", code: "G·02", title: "Digital Marketing", body: "Campaigns measured in revenue, not impressions.", tags: ["Paid search", "Paid social", "Lifecycle"] },
-      { id: "growth-marketing", code: "G·03", title: "Growth Marketing", body: "Experiment-led growth for teams past product-market fit.", tags: ["Analytics", "A/B testing", "Retention"] },
     ],
   },
 ];

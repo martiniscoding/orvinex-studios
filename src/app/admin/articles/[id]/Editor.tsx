@@ -510,7 +510,7 @@ export default function Editor(props: Props) {
             </div>
             <p className="mt-2 text-xs text-faint">
               Markdown: <code>## Heading</code>, <code>**bold**</code>, <code>- list</code>,{" "}
-              <code>[link text](/services/seo)</code>. Paste or drop images straight in. Cmd/Ctrl+S saves.
+              <code>[link text](/services/custom-software)</code>. Paste or drop images straight in. Cmd/Ctrl+S saves.
             </p>
 
             {/* FAQs */}

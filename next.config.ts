@@ -8,6 +8,18 @@ const nextConfig: NextConfig = {
     // 70 for the hero painting, 75 is the default for everything else.
     qualities: [70, 75],
   },
+  // Retired pages, sent somewhere useful instead of a 404.
+  async redirects() {
+    return [
+      // E-commerce work is now part of custom software.
+      { source: "/services/ecommerce-management", destination: "/services/custom-software", permanent: true },
+      ...["marketplace-research", "growth-marketing", "digital-marketing", "seo"].map((slug) => ({
+        source: `/services/${slug}`,
+        destination: "/services",
+        permanent: true,
+      })),
+    ];
+  },
 };
 
 export default nextConfig;

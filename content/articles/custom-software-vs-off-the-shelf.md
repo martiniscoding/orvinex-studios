@@ -13,7 +13,6 @@ date: 2026-09-29
 services:
   - custom-software
   - web-applications
-  - ecommerce-management
 faqs:
   - q: "Is custom software more expensive than off-the-shelf software?"
     a: "Up front, almost always. Over three to five years it can cost less, because you stop paying per-seat fees, stop paying for workarounds, and own the result. Compare total cost over the period you'll actually use it, not the first invoice."
@@ -92,7 +91,7 @@ The **custom software development cost** depends on scope far more than technolo
 
 Two things keep the bill under control. First, launch the smallest version that removes the biggest bottleneck, then extend it. Second, insist on owning the code and the repository from day one, so you're never locked in to the people who built it.
 
-If what you need is a customer-facing platform rather than an internal tool, [web application development](/services/web-applications) covers that side. If you sell online and your stock, orders and channels have drifted apart, see [e-commerce management software](/services/ecommerce-management).
+If what you need is a customer-facing platform rather than an internal tool, [web application development](/services/web-applications) covers that side. If you sell online and your stock, orders and channels have drifted apart, that is [custom software development](/services/custom-software) too.
 
 ## The hidden costs of off-the-shelf software
 

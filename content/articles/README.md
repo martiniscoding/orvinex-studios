@@ -77,9 +77,7 @@ Build **topic clusters** around the services, since those are the pages that tur
 | `/services/custom-software` | custom software vs off-the-shelf software · custom software development cost · how to write a software requirements document |
 | `/services/web-applications` | how to build a customer portal · SaaS MVP development timeline · web app vs website |
 | `/services/mobile-apps` | React Native vs Flutter · app development cost in India · how to publish an app on the App Store |
-| `/services/ecommerce-management` | multichannel inventory management · Shopify vs custom e-commerce |
 | `/services/rag-chatbots` | what is a RAG chatbot · AI chatbot for customer support · chatbot vs live chat |
-| `/services/seo` | technical SEO checklist · Next.js SEO · how long SEO takes to work |
 | (edtech, from `/work`) | how to build a student portal · online coaching platform features · LMS vs custom learning platform |
 
 **Choosing a keyword:** prefer specific, lower-competition phrases (*"how to build a student portal"*) over broad ones (*"software development"*) while the site is young. Check demand with Google's autocomplete, "People also ask", related searches, [Google Keyword Planner](https://ads.google.com/home/tools/keyword-planner/) or Search Console. Search Console becomes the best source once articles start ranking: look for queries where you're on page 2, and write or improve the article that answers them.

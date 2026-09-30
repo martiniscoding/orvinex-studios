@@ -9,9 +9,9 @@ import { getPosts } from "@/lib/posts";
 import { absolute, breadcrumbSchema } from "@/lib/schema";
 import { site } from "@/content/site";
 
-const title = "Articles on Software, AI and Growth | Orvinex";
+const title = "Articles on Software and AI | Orvinex";
 const description =
-  "Practical writing on custom software, AI products and growth — from the team doing the building, not the marketing department.";
+  "Practical writing on custom software and AI products, from the team doing the building, not the marketing department.";
 
 export const metadata: Metadata = {
   title,

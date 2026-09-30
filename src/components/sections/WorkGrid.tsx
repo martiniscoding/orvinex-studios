@@ -7,15 +7,17 @@ import { works, type Work } from "@/content/works";
 import { PhoneGroup } from "@/components/ui/IPhone";
 
 /* ------------------------------------------------------------------
-   Bento layout. The grid is a stack of blocks; each block is its own
-   12-column grid that always fills edge to edge, so tiles of different
-   sizes still line up. Sites get the wide, 16:10-friendly slots; apps
-   get the squarer ones where two phones sit comfortably. A filter just
-   re-packs the list, so no view ever ends with a hole.
+   The grid is a stack of blocks; each block is its own 12-column grid
+   that always fills edge to edge. Sites go two to a row at the shape of
+   their screenshots (about 7:4), so the whole page is visible rather than
+   a strip of it; apps get squarer slots where two phones sit comfortably.
+   A filter just re-packs the list, so no view ever ends with a hole.
 ------------------------------------------------------------------- */
-type BlockType = "left" | "right" | "pair" | "pairR" | "trio" | "single";
+type BlockType = "duo" | "left" | "right" | "pair" | "pairR" | "trio" | "single";
 
 const blocks: Record<BlockType, { aspect: number; rows: string; slots: string[] }> = {
+  // Two equal tiles. 3.5 across the pair leaves each one close to 7:4.
+  duo: { aspect: 3.5, rows: "md:grid-rows-1", slots: ["md:col-[1/7] md:row-1", "md:col-[7/13] md:row-1"] },
   // Big tile on the right, two stacked on the left.
   left: {
     aspect: 2.75,
@@ -31,10 +33,10 @@ const blocks: Record<BlockType, { aspect: number; rows: string; slots: string[] 
   pair: { aspect: 3.3, rows: "md:grid-rows-1", slots: ["md:col-[1/8] md:row-1", "md:col-[8/13] md:row-1"] },
   pairR: { aspect: 3.3, rows: "md:grid-rows-1", slots: ["md:col-[6/13] md:row-1", "md:col-[1/6] md:row-1"] },
   trio: { aspect: 3.4, rows: "md:grid-rows-1", slots: ["md:col-[1/5] md:row-1", "md:col-[5/9] md:row-1", "md:col-[9/13] md:row-1"] },
-  single: { aspect: 2.6, rows: "md:grid-rows-1", slots: ["md:col-[1/13] md:row-1"] },
+  single: { aspect: 1.9, rows: "md:grid-rows-1", slots: ["md:col-[1/13] md:row-1"] },
 };
 
-const siteCycle: BlockType[] = ["left", "pair", "right", "pairR"];
+const siteCycle: BlockType[] = ["duo"];
 const fallback = (n: number): BlockType => (n >= 3 ? "trio" : n === 2 ? "pair" : "single");
 
 /** Alternates a block of sites with a row of apps until both run out. */
@@ -48,7 +50,7 @@ function pack(list: Work[]) {
   while (sites.length || apps.length) {
     if ((turn === "site" && sites.length) || !apps.length) {
       let type = siteCycle[cycle++ % siteCycle.length];
-      if (sites.length < blocks[type].slots.length) type = fallback(sites.length);
+      if (sites.length < blocks[type].slots.length) type = "single";
       out.push({ type, items: sites.splice(0, blocks[type].slots.length) });
     } else {
       const type = fallback(apps.length);
@@ -75,7 +77,7 @@ function Tile({ work, slot }: { work: Work; slot: string }) {
         src={work.src}
         alt={`${work.name} website`}
         fill
-        sizes="(min-width: 768px) 60vw, 100vw"
+        sizes="(min-width: 768px) 50vw, 100vw"
         className="object-cover object-top transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-[1.03]"
       />
     );
