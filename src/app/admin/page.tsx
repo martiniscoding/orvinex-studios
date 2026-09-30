@@ -23,7 +23,7 @@ export default async function AdminPage({ searchParams }: Props) {
   }
   if (q) {
     args.push(`%${q}%`);
-    where.push(`(name ilike $${args.length} or email ilike $${args.length} or company ilike $${args.length} or message ilike $${args.length})`);
+    where.push(`(name ilike $${args.length} or email ilike $${args.length} or message ilike $${args.length})`);
   }
 
   const [{ rows: leads }, { rows: counts }, { rows: [week] }] = await Promise.all([
@@ -102,7 +102,7 @@ export default async function AdminPage({ searchParams }: Props) {
             type="search"
             name="q"
             defaultValue={q}
-            placeholder="Search name, email, company…"
+            placeholder="Search name, email, message…"
             className="w-full rounded-full border border-line bg-card px-4 py-2 text-sm outline-none placeholder:text-faint focus:border-ink lg:w-72"
           />
         </form>

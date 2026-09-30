@@ -24,7 +24,6 @@ export const leadsTableSql = `
     created_at timestamptz not null default now(),
     name text not null,
     email text not null,
-    company text,
     project_type text,
     budget text,
     phone text,

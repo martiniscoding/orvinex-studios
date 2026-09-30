@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { pool } from "@/lib/db";
 import type { Lead } from "@/lib/leads";
 
-const columns = ["id", "created_at", "status", "name", "email", "company", "phone", "country", "project_type", "budget", "message", "notes"] as const;
+const columns = ["id", "created_at", "status", "name", "email", "phone", "country", "project_type", "budget", "message", "notes"] as const;
 
 function cell(v: unknown) {
   const s = v instanceof Date ? v.toISOString() : String(v ?? "");

@@ -34,7 +34,6 @@ export default function LeadCard({ lead }: { lead: Lead }) {
         <div className="min-w-0">
           <h2 className="text-lg font-semibold tracking-[-0.01em]">
             {lead.name}
-            {lead.company && <span className="font-normal text-muted"> · {lead.company}</span>}
           </h2>
           <a
             href={`mailto:${lead.email}`}

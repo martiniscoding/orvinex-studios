@@ -3,21 +3,13 @@
 import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { workflow } from "@/content/site";
-import { BoltIcon, CheckIcon, LayersIcon, ShieldIcon, SparkIcon } from "@/components/Icons";
+import { CheckIcon, SparkIcon } from "@/components/Icons";
 
 type StepId = (typeof workflow.steps)[number]["id"];
-type PillarId = (typeof workflow.pillars)[number]["id"];
-
-const pillarIcons: Record<PillarId, ReactNode> = {
-  scale: <LayersIcon />,
-  security: <ShieldIcon />,
-  speed: <BoltIcon />,
-};
 
 /**
  * How a project runs, as tabs, framed by who runs it: the agency pitch and
- * numbers above, the three engineering principles below. Each step gets a
- * small drawn interface instead of a stock image — built from divs, so it
+ * numbers above. Each step gets a small drawn interface instead of a stock image — built from divs, so it
  * stays sharp and on-palette.
  */
 export default function Process() {
@@ -43,7 +35,7 @@ export default function Process() {
   return (
     <section id="process">
       <div className="grid gap-6 lg:grid-cols-[auto_1fr] lg:items-end lg:gap-16">
-        <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] font-extralight tracking-[-0.045em] text-balance">
+        <h2 className="display-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.04]">
           {workflow.title[0]}
           <br />
           <span className="text-faint">{workflow.title[1]}</span>
@@ -58,7 +50,7 @@ export default function Process() {
         {workflow.stats.map((s) => (
           <div key={s.label} className="flex flex-col gap-1 bg-card px-5 py-5 sm:px-6 sm:py-6">
             <dt className="order-2 text-[0.875rem] font-medium text-muted">{s.label}</dt>
-            <dd className="order-1 text-[clamp(1.75rem,3.4vw,2.5rem)] leading-none font-light tracking-[-0.04em] text-ink">
+            <dd className="order-1 text-[clamp(1.75rem,3.4vw,2.5rem)] leading-none font-bold tracking-[-0.04em] text-ink">
               {s.value}
             </dd>
           </div>
@@ -156,20 +148,6 @@ export default function Process() {
           </AnimatePresence>
         </div>
       </div>
-
-      <ul className="mt-5 grid gap-5 md:grid-cols-3">
-        {workflow.pillars.map((p) => (
-          <li key={p.id} className="rounded-[var(--radius-panel)] bg-hush p-2">
-            <div className="h-full rounded-[calc(var(--radius-panel)-6px)] bg-card p-6 sm:p-7">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                {pillarIcons[p.id]}
-              </span>
-              <h3 className="mt-5 text-[1.1875rem] font-semibold tracking-[-0.02em]">{p.title}</h3>
-              <p className="mt-2.5 text-[0.9375rem] leading-[1.6] text-muted">{p.body}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }
@@ -314,7 +292,7 @@ const art: Record<StepId, ReactNode> = {
   design: (
     <>
       <Card className="left-[8%] top-[12%] w-[44%] p-4">
-        <p className="font-serif text-5xl font-semibold leading-none text-ink">Aa</p>
+        <p className="text-5xl font-bold leading-none tracking-[-0.04em] text-ink">Aa</p>
         <Bar w="70%" className="mt-4" />
         <Bar w="45%" className="mt-2" />
         <div className="mt-4 flex gap-2 text-[10px] text-faint">

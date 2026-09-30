@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { leadsColumnsSql, pool } from "@/lib/db";
 
-const limits = { name: 120, email: 200, company: 160, phone: 32, country: 60, projectType: 60, message: 5000 };
+const limits = { name: 120, email: 200, phone: 32, country: 60, projectType: 60, message: 5000 };
 
 /* Adds the phone and country columns if this database predates them, once
    per server instance, so the form keeps working before db:setup is re-run. */
@@ -30,7 +30,6 @@ export async function POST(req: Request) {
 
   const name = text(body.name, limits.name);
   const email = text(body.email, limits.email);
-  const company = text(body.company, limits.company) || null;
   const phone = text(body.phone, limits.phone) || null;
   const country = text(body.country, limits.country) || null;
   const projectType = text(body.projectType, limits.projectType) || null;
@@ -46,9 +45,9 @@ export async function POST(req: Request) {
   try {
     await ensureColumns();
     await pool.query(
-      `insert into leads (name, email, company, phone, country, project_type, message)
-       values ($1, $2, $3, $4, $5, $6, $7)`,
-      [name, email, company, phone, country, projectType, message],
+      `insert into leads (name, email, phone, country, project_type, message)
+       values ($1, $2, $3, $4, $5, $6)`,
+      [name, email, phone, country, projectType, message],
     );
   } catch (err) {
     console.error("Failed to save lead", err);

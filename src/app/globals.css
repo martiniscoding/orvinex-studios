@@ -31,9 +31,11 @@
   --color-border: #e2e0da;
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-phudu), system-ui, sans-serif;
-  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-hand: var(--font-caveat), cursive;
+  /* One typeface across the site: the hero's Inter. The other roles alias it,
+     so older class names keep working without pulling in another font. */
+  --font-display: var(--font-sans);
+  --font-serif: var(--font-sans);
+  --font-hand: var(--font-sans);
 
   --radius-panel: 28px;
   --radius-card: 24px;
@@ -67,7 +69,7 @@ body {
   border-radius: 6px;
 }
 
-/* Condensed uppercase headings on the cards. */
+/* Small uppercase headings on the cards. */
 @utility phudu {
   font-family: var(--font-display);
   font-weight: 700;
@@ -92,13 +94,13 @@ body {
   text-wrap: balance;
 }
 
-/* The hero headline only: a high-contrast display serif. Serifs need far less
-   negative tracking than the grotesque does. */
+/* Every page and section headline, set like the hero: Inter, bold, tight.
+   (The name is historical; it no longer means a serif.) */
 @utility display-serif {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.005em;
-  line-height: 1.04;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.06;
   text-wrap: balance;
 }
 

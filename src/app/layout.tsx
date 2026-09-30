@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { caveat, inter, phudu, playfair } from "@/lib/fonts";
+import { inter } from "@/lib/fonts";
 import ClientMotion from "@/components/ClientMotion";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
@@ -36,7 +36,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${phudu.variable} ${playfair.variable} ${caveat.variable}`}
+    <html lang="en" className={inter.variable}
       data-motion="on"
     >
       <head>

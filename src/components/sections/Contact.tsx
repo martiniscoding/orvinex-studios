@@ -105,7 +105,6 @@ export default function Contact() {
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email"),
-          company: data.get("company"),
           country: country.name,
           phone: fullPhone(String(data.get("phone") ?? ""), country.dial),
           projectType: type,
@@ -161,7 +160,7 @@ export default function Contact() {
           <h2 className="display-serif mt-6 text-[clamp(2.25rem,4.4vw,3.5rem)] leading-[1]">
             Stop delaying
             <br />
-            <span className="text-muted italic font-normal">your growth.</span>
+            <span className="text-muted">your growth.</span>
           </h2>
           <p className="mt-5 max-w-[42ch] text-[1.0625rem] text-muted">
             Tell us what you&rsquo;re building and where it&rsquo;s stuck. You&rsquo;ll get a
@@ -299,11 +298,6 @@ export default function Contact() {
                     </span>
                   </label>
                 </div>
-
-                <label className="block text-sm font-medium text-ink-2">
-                  Company <span className="font-normal text-faint">(optional)</span>
-                  <input name="company" autoComplete="organization" placeholder="Analytical Engines Ltd." className={field} />
-                </label>
 
                 <Chips label="What do you need?" options={projectTypes} value={type} onChange={setType} />
 

@@ -54,7 +54,7 @@ export default async function ArticlesPage() {
         <div className="mb-12 lg:mb-16">
           <p className="eyebrow">Articles</p>
           <h1 className="display-serif mt-4 max-w-[18ch] text-[clamp(2.25rem,5.4vw,4rem)]">
-            Guides for building <span className="text-accent italic">software that sells</span>
+            Guides for building <span className="text-accent">software that sells</span>
           </h1>
           <p className="mt-5 max-w-[56ch] text-[1.0625rem] text-muted">{description}</p>
         </div>

@@ -337,23 +337,6 @@ export const workflow = {
     { value: "2Yrs", label: "Proven Excellence" },
     { value: "100%", label: "In-House Engineering" },
   ],
-  pillars: [
-    {
-      id: "scale",
-      title: "Scalable Architecture",
-      body: "We don't build temporary fixes. Every line of code is structured to handle millions of queries, ensuring your software grows flawlessly with your user base.",
-    },
-    {
-      id: "security",
-      title: "Bank-Grade Security",
-      body: "From strict data encryption to WAF implementation and CSRF protection, we treat your business data with the highest level of cryptographic security available.",
-    },
-    {
-      id: "speed",
-      title: "Rapid Deployment",
-      body: "We utilize agile methodologies and modern CI/CD pipelines to drastically reduce development time without compromising on code quality or testing.",
-    },
-  ],
   steps: [
     {
       id: "discovery",

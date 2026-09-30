@@ -79,7 +79,7 @@ export default function Hero() {
         >
           <a
             href={hero.primary.href}
-            className="group inline-flex items-center gap-3 rounded-[10px] bg-ink px-6 py-3.5 text-[0.9375rem] font-medium text-white transition-colors duration-300 hover:bg-ink-2"
+            className="group inline-flex items-center gap-3 rounded-[10px] bg-accent px-6 py-3.5 text-[0.9375rem] font-medium text-white transition-colors duration-300 hover:bg-accent-deep"
           >
             {hero.primary.label}
             <svg

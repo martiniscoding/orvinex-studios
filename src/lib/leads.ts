@@ -7,7 +7,6 @@ export type Lead = {
   created_at: Date;
   name: string;
   email: string;
-  company: string | null;
   project_type: string | null;
   budget: string | null;
   phone: string | null;
