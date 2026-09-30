@@ -41,9 +41,9 @@ export const hero = {
   /** A word in the headline set in the accent red. */
   accent: "dominate",
   sub:
-    "One senior team designs, builds and launches your product. The people " +
-    "on your first call are the people writing the code, from the first " +
-    "sketch to long after launch.",
+    "We build web and mobile apps, custom software and AI tools like " +
+    "chatbots and assistants. One senior team takes your product from the " +
+    "first sketch to launch, and stays with you after.",
   primary: { label: "Start your project", href: "/#contact" },
   secondary: { label: "See the work", href: "/work" },
   contact: { label: "Contact us", href: "#contact" },

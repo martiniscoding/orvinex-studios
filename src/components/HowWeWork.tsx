@@ -795,8 +795,8 @@ function Updates() {
 
 /* ===========================================================================
    4. Ongoing & Dependable Support
-   Hover: the badges turn full colour, the lines go accent, and dashes run
-   back down them toward the pill.
+   Hover: the badges turn full colour together, the lines go accent, and
+   dashes run back down them toward the pill.
    ======================================================================== */
 
 function Support() {
@@ -805,15 +805,16 @@ function Support() {
       <g className="hww-swap-stroke" stroke={LINE} strokeWidth="1.6" fill="none">
         <path d="M68 46l46 26M68 112l46-26M272 46l-46 26M272 112l-46-26" />
       </g>
+      {/* No stagger here: all four light up together. */}
       <Wire d="M114 72L68 46" />
-      <Wire d="M114 86L68 112" delay={110} />
-      <Wire d="M226 72L272 46" delay={220} />
-      <Wire d="M226 86L272 112" delay={330} />
+      <Wire d="M114 86L68 112" />
+      <Wire d="M226 72L272 46" />
+      <Wire d="M226 86L272 112" />
 
       <Chip x={44} y={32} name="camera" />
-      <Chip x={44} y={124} name="slack" delay={110} />
-      <Chip x={296} y={32} name="google" delay={220} />
-      <Chip x={296} y={124} name="figma" delay={330} />
+      <Chip x={44} y={124} name="slack" />
+      <Chip x={296} y={32} name="google" />
+      <Chip x={296} y={124} name="figma" />
       <Node x={170} y={78} w={88} label="Support" halo={1} />
     </svg>
   );
