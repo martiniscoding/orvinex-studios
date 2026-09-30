@@ -42,8 +42,8 @@ export default function SiteNav() {
       }`}
     >
       <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-6 px-6 lg:px-10">
-        <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <Mark size={20} />
+        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+          <Mark size={34} />
           <span className="font-serif text-[1.375rem] leading-none tracking-[-0.02em] text-ink">
             {site.wordmark}
           </span>

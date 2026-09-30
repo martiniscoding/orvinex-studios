@@ -22,7 +22,7 @@ export default function Footer() {
     <footer className="mt-16 border-t border-line pt-8 pb-10 sm:mt-24">
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <Mark size={20} />
+          <Mark size={30} />
           <span className="font-serif text-[1.375rem] leading-none tracking-[-0.02em] text-ink">
             {site.wordmark}
           </span>
