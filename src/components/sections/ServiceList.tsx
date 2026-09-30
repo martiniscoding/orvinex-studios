@@ -24,9 +24,10 @@ const tileBase =
 
 /* Beside one another the tiles reserve two lines for the title and three for
    the body, whatever the copy's length, so every title and every body starts
-   at the same height across a row. */
+   at the same height across a row. A one-line title sits at the top of its
+   two lines, level with the first line of its neighbours. */
 const titleBox =
-  "display-serif block text-[clamp(1.375rem,min(2.1vw,3.5vh),1.875rem)] leading-[1.08] sm:flex sm:min-h-[2.16em] sm:items-end";
+  "display-serif block text-[clamp(1.375rem,min(2.1vw,3.5vh),1.875rem)] leading-[1.08] sm:min-h-[2.16em]";
 const bodyBox =
   "mt-2.5 block max-w-[38ch] text-[0.9375rem] leading-[1.55] sm:min-h-[4.65em] lg:[@media(max-height:820px)]:mt-2 lg:[@media(max-height:820px)]:text-sm lg:[@media(max-height:820px)]:leading-[1.5] lg:[@media(max-height:820px)]:min-h-[4.5em]";
 

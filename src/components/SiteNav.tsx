@@ -3,23 +3,22 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
 import { nav, site } from "@/content/site";
 import { Mark } from "@/components/Icons";
 
 /**
- * A quiet editorial top bar: wordmark left, links and the ask grouped on the
- * right. It sticks, and only picks up a frosted fill and hairline once the
- * page has scrolled, so at rest it sits flat on the page.
+ * A minimal top bar: wordmark left, a row of plain text links right, with the
+ * ask as the last and darkest of them. It sticks, and only picks up a frosted
+ * fill and hairline once the page has scrolled, so at rest it sits flat on
+ * the page.
  */
 export default function SiteNav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // The logo already goes home; Contact lives on the right as a text link.
-  const links = nav.filter((n) => n.id !== "home" && n.id !== "contact");
-  const contact = nav.find((n) => n.id === "contact");
+  // The logo already goes home.
+  const links = nav.filter((n) => n.id !== "home");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -44,22 +43,20 @@ export default function SiteNav() {
     >
       <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-6 px-6 lg:px-10">
         <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <Mark size={24} />
-          <span className="font-serif text-[1.625rem] leading-none tracking-[-0.02em] text-ink">
+          <Mark size={20} />
+          <span className="font-serif text-[1.375rem] leading-none tracking-[-0.02em] text-ink">
             {site.wordmark}
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="ml-auto hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary" className="ml-auto hidden items-center gap-7 md:flex">
           {links.map((item) => (
             <Link
               key={item.id}
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
-              className={`relative text-[0.9375rem] font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-ink after:transition-all after:duration-300 hover:text-ink ${
-                pathname === item.href
-                  ? "text-ink after:w-full"
-                  : "text-ink-2 after:w-0 hover:after:w-full"
+              className={`text-sm transition-colors hover:text-ink ${
+                pathname === item.href ? "text-ink" : "text-muted"
               }`}
             >
               {item.label}
@@ -68,19 +65,11 @@ export default function SiteNav() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {contact && (
-            <Link
-              href={contact.href}
-              className="hidden pr-4 pl-2 text-[0.9375rem] font-medium text-ink-2 transition-colors hover:text-ink md:inline"
-            >
-              {contact.label}
-            </Link>
-          )}
           <a
             href={site.booking}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center rounded-full bg-ink px-6 py-3 text-[0.9375rem] font-medium text-white transition-colors hover:bg-ink-2 sm:inline-flex"
+            className="hidden text-sm font-medium text-ink underline-offset-4 hover:underline sm:inline md:ml-1"
           >
             Book a call
           </a>
@@ -109,16 +98,15 @@ export default function SiteNav() {
         }`}
       >
         <div className="min-h-0">
-          <nav aria-label="Mobile" className="flex flex-col px-6 pt-2 pb-6">
+          <nav aria-label="Mobile" className="flex flex-col px-6 pt-1 pb-5">
             {nav.map((item) => (
               <Link
                 key={item.id}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-between border-b border-line py-4 font-serif text-[1.5rem] text-ink"
+                className="py-2.5 text-[1.0625rem] text-ink-2"
               >
                 {item.label}
-                <ArrowUpRight size={18} className="text-faint" />
               </Link>
             ))}
             <a
@@ -126,7 +114,7 @@ export default function SiteNav() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-ink px-6 py-3.5 text-[0.9375rem] font-medium text-white"
+              className="py-2.5 text-[1.0625rem] font-medium text-ink"
             >
               Book a call
             </a>

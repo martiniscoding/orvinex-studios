@@ -15,21 +15,39 @@ export default function Hero() {
       <div aria-hidden="true" className="hero-dots" />
 
       <Container className="flex flex-col items-center py-[clamp(2.5rem,8vh,5rem)] text-center">
-        <p className="proof-card relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-line bg-card/80 py-1.5 pr-3.5 pl-2.5 text-[0.8125rem] font-medium text-ink-2 shadow-[0_8px_24px_-16px_rgba(30,36,48,0.35)] backdrop-blur-md">
-          <span aria-hidden="true" className="relative flex h-2 w-2">
-            <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-70" />
-            <span className="relative h-2 w-2 rounded-full bg-accent" />
-          </span>
-          <span>
-            {hero.proof.before}{" "}
-            <strong className="proof-figure font-semibold">{hero.proof.figure}</strong>{" "}
-            {hero.proof.after}
+        {/* The proof, as if marked up by hand: plain type, with the figure
+            ringed in a pen stroke that draws itself. */}
+        <p className="text-[clamp(0.9375rem,2.1vh,1.125rem)] leading-[2.1] font-medium text-ink-2 sm:leading-normal">
+          <span className="block sm:inline">{hero.proof.before}</span>{" "}
+          {/* Kept on one line so the ring never splits from its sentence. */}
+          <span className="whitespace-nowrap">
+          <strong className="relative mx-[0.55em] inline-block text-[1.5em] leading-none font-bold tracking-[-0.03em] text-ink">
+            {hero.proof.figure}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 120 60"
+              preserveAspectRatio="none"
+              className="pointer-events-none absolute top-[-38%] left-[-22%] h-[176%] w-[144%] -rotate-2 overflow-visible text-accent"
+            >
+              <path
+                className="proof-ring"
+                pathLength={1}
+                d="M14 34C10 14 44 5 70 6c28 1 44 12 40 27-4 17-40 23-66 20C20 50 6 40 12 26 16 16 34 9 54 8"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.25"
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
+          </strong>{" "}
+          {hero.proof.after}
           </span>
         </p>
 
         <h1
           data-hero-head
-          className="mt-[clamp(1.75rem,4.5vh,2.75rem)] font-hero text-[clamp(2.5rem,min(6.6vw,8.5vh),5.5rem)] font-normal leading-[1.12] tracking-[-0.01em] text-balance text-ink"
+          className="mt-[clamp(1.75rem,4.5vh,2.75rem)] font-sans text-[clamp(2.5rem,min(7.2vw,10vh),6.25rem)] font-bold leading-[1.04] tracking-[-0.04em] text-balance text-ink"
         >
           {hero.headline.map((line, i) => (
             <span key={line} className="block sm:whitespace-nowrap">
@@ -50,7 +68,7 @@ export default function Hero() {
 
         <p
           data-hero-sub
-          className="mt-[clamp(1.5rem,3.5vh,2.25rem)] max-w-[44ch] text-[clamp(0.9375rem,2vh,1.125rem)] font-medium leading-[1.75] text-ink-2"
+          className="mt-[clamp(1.5rem,3.5vh,2.25rem)] max-w-[46ch] text-[clamp(1rem,2.3vh,1.3125rem)] font-medium leading-[1.75] text-ink-2"
         >
           {hero.sub}
         </p>

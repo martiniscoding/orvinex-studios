@@ -1,5 +1,4 @@
 import localFont from "next/font/local";
-import { Instrument_Serif } from "next/font/google";
 
 /** UI and body. */
 export const inter = localFont({
@@ -31,20 +30,6 @@ export const playfair = localFont({
     { path: "../fonts/PlayfairDisplay-Italic-Variable.woff2", weight: "400", style: "italic" },
   ],
   variable: "--font-playfair",
-  display: "swap",
-  fallback: ["Georgia", "Times New Roman", "serif"],
-});
-
-/**
- * The home hero headline: a narrow editorial serif that only comes in one
- * weight. next/font downloads and self-hosts it at build time, so nothing is
- * fetched from Google at runtime.
- */
-export const heroSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal"],
-  variable: "--font-hero-face",
   display: "swap",
   fallback: ["Georgia", "Times New Roman", "serif"],
 });

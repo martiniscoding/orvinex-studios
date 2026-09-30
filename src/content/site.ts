@@ -3,6 +3,8 @@
  *
  * Orvinex (orvinex.store). Pricing figures are still placeholders.
  */
+import type { HowWeWorkContent } from "@/components/HowWeWork";
+
 export const DEMO_CONTENT = true;
 
 export const site = {
@@ -194,7 +196,7 @@ export const testimonials = [
     quote: "Rohan built our student portal end to end. It is the first real tech product my company has shipped, and the students took to it straight away.",
     highlight: "the students took to it straight away",
     name: "Sreyash Gupta",
-    role: "JEE Society",
+    role: "JEE Society · 100K+ subscribers on YouTube",
     logo: "/reviews/jee-society.png",
     work: "jee-society",
   },
@@ -222,6 +224,57 @@ export const testimonialsIntro = {
   /** The on-page heading: `accent` is set in the hand font, underlined. */
   heading: { before: "What our", accent: "customers", after: "say" },
   note: "unedited, promise",
+};
+
+/**
+ * Copy for the HowWeWork bento. The card ids are fixed by the component (each
+ * has its own illustration); only the words are ours.
+ */
+export const howWeWork: HowWeWorkContent = {
+  headingLead: "Engineering Decisions Grounded In",
+  headingAccent: "Business",
+  headingTail: "Impact",
+  intro:
+    "A transparent process, one senior team and direct collaboration, so ideas move smoothly from concept to shipped product.",
+  projects: "50+",
+  cards: [
+    {
+      id: "collab",
+      title: "Work Directly with the Builders",
+      body: "The people on your first call are the people writing the code. No handoffs, no middle layers, no delays.",
+    },
+    {
+      id: "updates",
+      title: "Real-Time Project Updates",
+      body: "A preview link updated every 48 hours, so you see real progress instead of status reports.",
+    },
+    {
+      id: "handoff",
+      title: "Built for Seamless Execution",
+      body: "The team that designs your product also builds it, so every screen is structured, documented and nothing is lost in handoff.",
+      featured: true,
+    },
+    {
+      id: "tools",
+      title: "Industry-Leading Tools",
+      body: "We work in the modern tools high-performing teams already trust, from Figma to Slack and Google Meet.",
+    },
+    {
+      id: "support",
+      title: "Ongoing & Dependable Support",
+      body: "Two weeks of fixes after launch are included, and we stay involved for iterations and future needs.",
+    },
+    {
+      id: "proven",
+      title: "Proven Experience",
+      body: "We have delivered 50+ projects for startups and growing companies across industries.",
+    },
+    {
+      id: "nocode",
+      title: "Modular by Design",
+      body: "Products are assembled from tested, reusable building blocks, so they ship faster without sacrificing scalability.",
+    },
+  ],
 };
 
 /** Answers only restate what the site already commits to elsewhere. */
@@ -272,7 +325,7 @@ export const faq: {
 
 export const workflow = {
   eyebrow: "Process",
-  title: ["Six steps that", "remove guesswork"],
+  title: ["From idea to launch,", "in six clear steps"],
   lead: "Engineering the future of enterprise software.",
   intro:
     "We are a specialized technology agency that eliminates the friction of building software. " +

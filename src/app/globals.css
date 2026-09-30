@@ -33,7 +33,6 @@
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-phudu), system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-hero: var(--font-hero-face), Georgia, "Times New Roman", serif;
   --font-hand: var(--font-caveat), cursive;
 
   --radius-panel: 28px;
@@ -394,57 +393,34 @@ body {
   opacity: 0.14;
 }
 
-/* The hero's revenue figure: a warm gradient with a slow glint passing over
-   it, and a soft glow behind the card, so the eye lands there first. */
-.proof-card::before {
-  content: "";
-  position: absolute;
-  inset: -40%;
-  z-index: -1;
-  background: radial-gradient(closest-side, rgba(184, 50, 31, 0.1), transparent);
-  animation: proof-glow 4s ease-in-out infinite;
+/* The pen ring around the hero's revenue figure. It draws itself shortly
+   after load, holds, lifts off and draws again, so the eye keeps returning. */
+.proof-ring {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: proof-ring 7s var(--ease-out-soft) 0.5s infinite;
 }
 
-.proof-figure {
-  background: linear-gradient(
-    100deg,
-    var(--color-accent) 0%,
-    #e2633f 35%,
-    var(--color-accent) 50%,
-    #e2633f 65%,
-    var(--color-accent) 100%
-  );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: proof-shine 5s ease-in-out infinite;
-}
-
-@keyframes proof-shine {
-  0%,
-  20% {
-    background-position: 100% 0;
-  }
-  60%,
-  100% {
-    background-position: 0% 0;
-  }
-}
-
-@keyframes proof-glow {
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-  50% {
+@keyframes proof-ring {
+  0% {
+    stroke-dashoffset: 1;
     opacity: 1;
+  }
+  14%,
+  88% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  96%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .proof-card::before,
-  .proof-figure {
+  .proof-ring {
+    stroke-dashoffset: 0;
     animation: none;
   }
 }
