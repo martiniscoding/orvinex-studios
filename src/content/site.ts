@@ -49,7 +49,7 @@ export const hero = {
   secondary: { label: "See the work", href: "/work" },
   contact: { label: "Contact us", href: "#contact" },
   /* The badge on the hero image. `figure` is set bold. */
-  proof: { before: "Helped founders generate", figure: "$10M+", after: "in revenue" },
+  proof: { before: "Helped founders generate", figure: "$5M+", after: "in revenue" },
   /** The small line under the proof, with a flag for each country listed. */
   reach: { before: "Worked with clients in", figure: "12+ countries", countries: ["de", "fi", "cn", "in"] as const },
 };
