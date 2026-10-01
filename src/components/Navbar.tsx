@@ -10,7 +10,7 @@ import { ArrowIcon, Mark } from "./Icons";
  * A compact floating glass pill. Over the hero image it is a clear tint with
  * white type; once the hero has scrolled past it frosts over the page. The
  * switch is driven by an IntersectionObserver on a sentinel the hero renders,
- * not a scroll listener — it costs nothing per frame.
+ * not a scroll listener, it costs nothing per frame.
  *
  * The desktop links share one highlight that slides to whichever link is
  * hovered, and rests on the active one. The logo already links home, so the

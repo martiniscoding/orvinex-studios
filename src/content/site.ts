@@ -54,7 +54,7 @@ export const hero = {
 export const problem = {
   eyebrow: "Where it goes wrong",
   lead: "You shipped something genuinely hard. Then you sent the link to an investor, they looked at it for about nine seconds, and priced it like a side project.",
-  prefix: "There's a word for it —",
+  prefix: "There's a word for it:",
   word: "UNDERSOLD",
   bullets: ["Not the engineering", "Not the pricing", "The nine seconds"],
   close: {
@@ -326,6 +326,8 @@ export const faq: {
 export const workflow = {
   eyebrow: "Process",
   title: ["From idea to launch,", "in six clear steps"],
+  /** The phrase in the second line set in the accent red, as in the hero. */
+  accent: "six clear steps",
   lead: "Engineering the future of enterprise software.",
   intro:
     "We are a specialized technology agency that eliminates the friction of building software. " +

@@ -3,7 +3,7 @@ import LegalPage from "@/components/LegalPage";
 import { html, summary } from "@/content/legal/terms";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions — Orvinex Software Solutions | Orvinex",
+  title: "Terms & Conditions: Orvinex Software Solutions | Orvinex",
   description:
     "Terms and Conditions governing software development, payments, delivery, testing, deployment, intellectual property and client engagements with Orvinex Software Solutions.",
   alternates: { canonical: "/termsandconditions" },

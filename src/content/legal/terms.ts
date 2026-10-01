@@ -28,21 +28,21 @@ export const html = `<h2>1. About these terms</h2>
 <hr/>
 <h2>3. Project payment structure</h2>
 <p>Our standard software development payment structure is divided into four stages.</p>
-<h3>Stage 1 — Initial payment: 15%</h3>
+<h3>Stage 1: Initial payment: 15%</h3>
 <p>A <strong>15% initial payment</strong> is required before development work begins.</p>
 <p>This payment confirms the project and allows us to allocate development resources and begin work.</p>
 <hr/>
-<h3>Stage 2 — MVP completion: 40%</h3>
+<h3>Stage 2: MVP completion: 40%</h3>
 <p>After the agreed <strong>MVP (Minimum Viable Product)</strong> has been developed and the first project review meeting has taken place, <strong>40% of the total project fee</strong> becomes payable.</p>
 <p>The MVP is intended to demonstrate the core functionality and direction of the product.</p>
 <p>Payment at this stage is not dependent on every final feature being completed. The remaining development work will continue according to the agreed project scope and milestones.</p>
 <hr/>
-<h3>Stage 3 — Pre-deployment: 20%</h3>
+<h3>Stage 3: Pre-deployment: 20%</h3>
 <p>Once the product has been substantially built and is ready for deployment, the next <strong>20% of the total project fee</strong> becomes payable.</p>
 <p>This payment is due <strong>before production deployment</strong>.</p>
 <p>Deployment may be scheduled once this payment has been received.</p>
 <hr/>
-<h3>Stage 4 — Deployment, delivery &amp; testing: 25%</h3>
+<h3>Stage 4: Deployment, delivery &amp; testing: 25%</h3>
 <p>The final <strong>25% of the total project fee</strong> becomes payable after:</p>
 <ul>
 <li>Production deployment</li>

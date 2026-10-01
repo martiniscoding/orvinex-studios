@@ -42,7 +42,7 @@ export default function RootLayout({
       <head>
         {/* data-motion is rendered on the server (so hydration matches) and
             removed here, before first paint, for anyone who asked for reduced
-            motion — or after 2.5s if the motion layer never reports ready, so
+            motion, or after 2.5s if the motion layer never reports ready, so
             a failed chunk can never strand hidden content. */}
         <script
           dangerouslySetInnerHTML={{

@@ -1,5 +1,5 @@
 /**
- * HowWeWork — a self-contained "how we work" bento section.
+ * HowWeWork, a self-contained "how we work" bento section.
  * ---------------------------------------------------------------------------
  * Drop this one file into any React 18+ project. It needs nothing else:
  * no Tailwind, no design tokens, no CSS import, no other components. Every
@@ -16,7 +16,7 @@
  *   Set any of the --hww-* custom properties on the section or a parent:
  *   <HowWeWork style={{ "--hww-accent": "#f4511e" }} />
  *   The brand colours of the tool marks (Slack, Figma, Google…) are left
- *   alone on purpose — those are other people's logos.
+ *   alone on purpose, those are other people's logos.
  *
  * LAYOUT
  *   Three columns that split their height differently, so the tiles vary in
@@ -28,7 +28,7 @@
  *   Each card is a small hover scene. It is gated behind `@media (hover:hover)`
  *   so nothing is left half-played on a touch screen, and the whole thing is
  *   switched off for `prefers-reduced-motion`. The resting state is the
- *   finished composition — the motion only ever adds.
+ *   finished composition, the motion only ever adds.
  *
  * SWAPPING THE TOOL TILES
  *   Edit the `tools` array. `col`/`row` is the resting cell, `to` is the cell
@@ -58,7 +58,7 @@ export type HowWeWorkContent = {
   intro: string;
   /** Shown in the Proven Experience card as "<projects> Projects". */
   projects: string;
-  /** One entry per card. The ids are fixed — each has its own illustration. */
+  /** One entry per card. The ids are fixed, each has its own illustration. */
   cards: { id: CardId; title: string; body: string; featured?: boolean }[];
 };
 
@@ -67,7 +67,7 @@ export const defaultContent: HowWeWorkContent = {
   headingAccent: "Business",
   headingTail: "Impact",
   intro:
-    "A transparent process, developer-ready systems, and direct collaboration — so ideas move smoothly from concept to shipped product.",
+    "A transparent process, developer-ready systems, and direct collaboration, so ideas move smoothly from concept to shipped product.",
   projects: "50+",
   cards: [
     {
@@ -110,7 +110,7 @@ export const defaultContent: HowWeWorkContent = {
 };
 
 /* ===========================================================================
-   Styles — everything the section needs, scoped behind `.hww`
+   Styles, everything the section needs, scoped behind `.hww`
    ======================================================================== */
 
 const CSS = `
@@ -274,7 +274,7 @@ const ACCENT = "var(--hww-accent)";
 const vars = (o: Record<string, string | number>) => o as CSSProperties;
 
 /* ===========================================================================
-   Glyphs — each drawn in a 24×24 box
+   Glyphs, each drawn in a 24×24 box
    ======================================================================== */
 
 const glyphs = {
@@ -315,7 +315,7 @@ const glyphs = {
       <path d="M4 20a4 4 0 014-4h4v4a4 4 0 11-8 0z" />
     </>
   ),
-  /* A cube in isometric — the "component" mark in the updates graph. */
+  /* A cube in isometric, the "component" mark in the updates graph. */
   cube: (
     <>
       <path
@@ -466,7 +466,7 @@ function Glyph({
   );
 }
 
-/** A white disc with a third-party glyph inside — a node of a diagram. */
+/** A white disc with a third-party glyph inside, a node of a diagram. */
 function Chip({
   x,
   y,
@@ -769,8 +769,8 @@ function Tools() {
 function Updates() {
   return (
     <svg viewBox="0 0 340 162" role="presentation">
-      {/* Two long runs pass through the node — in at the top left, out at the
-          bottom right — with the tools floating free around them. */}
+      {/* Two long runs pass through the node, in at the top left, out at the
+          bottom right, with the tools floating free around them. */}
       <g fill="none" stroke={LINE} strokeWidth="1.6">
         <path d="M30 4v70q0 8 8 8h34" />
         <path d="M268 82h30q8 0 8 8v68" />

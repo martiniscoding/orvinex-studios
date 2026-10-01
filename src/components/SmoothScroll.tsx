@@ -8,7 +8,7 @@ import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
 /**
  * Single source of scroll truth: Lenis drives gsap.ticker, Lenis drives
  * ScrollTrigger.update. Nothing on this site listens to `scroll` directly.
- * With reduced motion requested we never instantiate Lenis at all — the page
+ * With reduced motion requested we never instantiate Lenis at all, the page
  * falls back to the browser's own scrolling and every ScrollTrigger effect
  * degrades to its static end state.
  */

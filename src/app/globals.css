@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Tokens — navy on light grey, white cards, red accent.
+   Tokens, navy on light grey, white cards, red accent.
 ------------------------------------------------------------------- */
 @theme {
   /* Quiet warm neutrals. */
@@ -22,7 +22,7 @@
   --color-accent: #ff3131;
   --color-accent-deep: #d91c1c;
 
-  /* The highlight behind an emphasised phrase — soft straw, not a marker. */
+  /* The highlight behind an emphasised phrase, soft straw, not a marker. */
   --color-mark: #ece4c9;
 
   /* shadcn-style aliases, used by components in components/ui. */
@@ -161,7 +161,7 @@ body {
    are set per star inline, so the sky never pulses in unison. */
 /* The hero's dot field. Two layers: a faint grid that drifts diagonally by
    exactly one cell per loop (so it never seams), and the same grid in the
-   accent, seen only through a soft spotlight that wanders across it — dots
+   accent, seen only through a soft spotlight that wanders across it, dots
    light up as it passes and fade after. Pure CSS, no per-frame JS. */
 .hero-dots {
   position: absolute;
@@ -310,7 +310,7 @@ body {
 }
 
 /* The hero is CSS, not GSAP: it must not wait for the deferred motion chunk,
-   or the headline — the LCP element — paints late. */
+   or the headline, the LCP element, paints late. */
 [data-motion] [data-hero-head],
 [data-motion] [data-hero-sub],
 [data-motion] [data-hero-cta] {

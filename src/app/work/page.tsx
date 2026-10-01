@@ -4,7 +4,7 @@ import WorkGrid from "@/components/sections/WorkGrid";
 import Footer from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "Work — Orvinex",
+  title: "Work | Orvinex",
   description: "Products we have designed, built and shipped.",
   alternates: { canonical: "/work" },
 };

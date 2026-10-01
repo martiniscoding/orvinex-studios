@@ -13,18 +13,18 @@ contract. That is governed by the agreement we sign with that client.</p>
 <h3>Information you give us</h3>
 <p>The contact form on this site asks for:</p>
 <ul>
-<li><strong>Your name</strong> — so we know who we are replying to</li>
-<li><strong>Your email address</strong> — so we can reply</li>
-<li><strong>Your phone number</strong> — so we can reach you if email stalls</li>
-<li><strong>Your country</strong> — optional; it tells us your time zone before we propose a call</li>
-<li><strong>Your project details</strong> — whatever you choose to write</li>
+<li><strong>Your name</strong>, so we know who we are replying to</li>
+<li><strong>Your email address</strong>, so we can reply</li>
+<li><strong>Your phone number</strong>, so we can reach you if email stalls</li>
+<li><strong>Your country</strong>, optional; it tells us your time zone before we propose a call</li>
+<li><strong>Your project details</strong>: whatever you choose to write</li>
 </ul>
 <p>That is the entire form. There are no hidden fields, and nothing else about you
 is attached to your submission.</p>
 <p>If you book a call through the scheduling link, that booking is handled by
 Google Calendar under Google&#x27;s own privacy policy, not ours.</p>
 <h3>Information collected automatically</h3>
-<p><strong>Your IP address</strong> is used to rate limit the contact form — to stop automated
+<p><strong>Your IP address</strong> is used to rate limit the contact form, to stop automated
 submissions flooding it. It is stored as part of a counter, kept for a short
 window, and deleted automatically. It is not linked to your enquiry and is not
 used to identify you.</p>
@@ -59,9 +59,9 @@ not an oversight.</p>
 <h2>5. Who else touches it</h2>
 <p>We keep the list of third parties as short as we can. Currently:</p>
 <ul>
-<li><strong>Vercel Inc.</strong> — hosting and content delivery. Processes requests to this
+<li><strong>Vercel Inc.</strong>: hosting and content delivery. Processes requests to this
 site, including IP addresses.</li>
-<li><strong>Neon Inc.</strong> — the managed PostgreSQL database where enquiries are stored.</li>
+<li><strong>Neon Inc.</strong>: the managed PostgreSQL database where enquiries are stored.</li>
 </ul>
 <p>Both act as processors on our instructions. We share your information with
 nobody else, except where the law requires it of us.</p>
@@ -114,8 +114,8 @@ knowingly collect information from anyone under 18. If you believe a child has
 sent us something, tell us and we will delete it.</p>
 <h2>11. Changes</h2>
 <p>If we change this policy we will update the date at the top of the page. If a
-change is significant — new categories of data, a new third party, a new purpose
-— we will say so plainly here rather than quietly editing a sentence.</p>
+change is significant (new categories of data, a new third party, a new purpose),
+we will say so plainly here rather than quietly editing a sentence.</p>
 <h2>12. Contact us</h2>
 <p>For anything in this policy, including any request above:</p>
 <p><strong><a href="mailto:orvinexsoftwaresolution@gmail.com">orvinexsoftwaresolution@gmail.com</a></strong></p>

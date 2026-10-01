@@ -1,4 +1,4 @@
-/** Original line icons, 20px grid, 1.6 stroke — drawn, not imported. */
+/** Original line icons, 20px grid, 1.6 stroke, drawn, not imported. */
 const base = {
   width: 20,
   height: 20,
@@ -78,7 +78,7 @@ export const BoltIcon = () => (
 
 /** Call: a video tile. Message: a paper plane. Drawn, not brand marks. */
 /**
- * The Google Meet mark. Used nominatively — it labels a link that opens a
+ * The Google Meet mark. Used nominatively, it labels a link that opens a
  * Meet call, the way a Slack or GitHub icon labels a link to those. If the
  * booking flow ever stops creating Meet links, this icon has to go.
  */

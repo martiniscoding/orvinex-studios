@@ -5,7 +5,7 @@ import Footer from "@/components/sections/Footer";
 import { pricingTeaser } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Pricing — Orvinex",
+  title: "Pricing | Orvinex",
   description:
     "Fixed prices for websites, brand systems and web and mobile apps, designed and built, plus a monthly retainer. The numbers are on the page.",
   alternates: { canonical: "/pricing" },

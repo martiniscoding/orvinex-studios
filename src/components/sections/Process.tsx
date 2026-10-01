@@ -9,7 +9,7 @@ type StepId = (typeof workflow.steps)[number]["id"];
 
 /**
  * How a project runs, as tabs, framed by who runs it: the agency pitch and
- * numbers above. Each step gets a small drawn interface instead of a stock image — built from divs, so it
+ * numbers above. Each step gets a small drawn interface instead of a stock image, built from divs, so it
  * stays sharp and on-palette.
  */
 export default function Process() {
@@ -38,7 +38,16 @@ export default function Process() {
         <h2 className="display-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.04]">
           {workflow.title[0]}
           <br />
-          <span className="text-faint">{workflow.title[1]}</span>
+          {/* Set like the hero: ink, with the accent phrase and the full stop in red. */}
+          {workflow.title[1].split(workflow.accent).map((part, i) =>
+            i === 0 ? part : (
+              <span key={i}>
+                <span className="text-accent">{workflow.accent}</span>
+                {part}
+              </span>
+            ),
+          )}
+          <span className="text-accent">.</span>
         </h2>
         <div className="max-w-[52ch] lg:justify-self-end lg:border-l lg:border-line lg:pl-10">
           <p className="text-[1.0625rem] font-semibold tracking-[-0.01em] text-ink">{workflow.lead}</p>

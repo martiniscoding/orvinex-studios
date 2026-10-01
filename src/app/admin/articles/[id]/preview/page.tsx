@@ -22,7 +22,7 @@ export default async function PreviewArticlePage({ params }: { params: Promise<{
         <div className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-mark/60 px-5 py-3 text-sm">
           <span>
             <strong className="font-semibold">Preview</strong> of the last saved version
-            {post.draft ? " — not published yet." : "."}
+            {post.draft ? ", not published yet." : "."}
           </span>
           <Link href={`/admin/articles/${id}`} className="font-medium underline underline-offset-4">
             Back to the editor

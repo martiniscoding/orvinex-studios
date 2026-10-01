@@ -29,9 +29,9 @@ export const serviceDetails: ServiceDetail[] = [
     id: "custom-software",
     metaTitle: "Custom Software Development Company | Orvinex",
     metaDescription:
-      "Custom software built around how your business already works — ERP, internal tools, integrations and automation, delivered in two-week cycles.",
+      "Custom software built around how your business already works: ERP, internal tools, integrations and automation, delivered in two-week cycles.",
     h1: "Software built around your business, not the other way round",
-    lead: "Off-the-shelf tools make you adapt to their assumptions. Custom software adapts to yours — and pays for itself the moment it removes the manual work your team has quietly absorbed for years.",
+    lead: "Off-the-shelf tools make you adapt to their assumptions. Custom software adapts to yours, and pays for itself the moment it removes the manual work your team has quietly absorbed for years.",
     tags: ["ERP", "Internal tools", "Automation"],
     body: [
       {
@@ -99,7 +99,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         type: "p",
         content: [
-          "We write the assumptions down at the start — expected volumes, the systems we must integrate with, who signs off. When one turns out to be wrong, the conversation is about the assumption rather than about blame.",
+          "We write the assumptions down at the start: expected volumes, the systems we must integrate with, who signs off. When one turns out to be wrong, the conversation is about the assumption rather than about blame.",
         ],
       },
       {
@@ -143,7 +143,7 @@ export const serviceDetails: ServiceDetail[] = [
       },
       {
         q: "What happens after launch?",
-        a: "We stay on through the first weeks of real use, which is when the problems worth catching appear. After that you can retain us for ongoing work or take it in-house — the handover is written so either is possible.",
+        a: "We stay on through the first weeks of real use, which is when the problems worth catching appear. After that you can retain us for ongoing work or take it in-house. The handover is written so either is possible.",
       },
     ],
   },
@@ -151,7 +151,7 @@ export const serviceDetails: ServiceDetail[] = [
     id: "web-applications",
     metaTitle: "Web Application Development Services | Orvinex",
     metaDescription:
-      "SaaS products, dashboards and customer portals on modern stacks — documented, load-tested before launch, handed over as code you own.",
+      "SaaS products, dashboards and customer portals on modern stacks: documented, load-tested before launch, handed over as code you own.",
     h1: "Web applications that hold up when they get busy",
     lead: "Most web apps are fine at ten users and painful at ten thousand. We build for the second number from the start, without over-engineering the first.",
     tags: ["SaaS", "Dashboards", "Portals", "APIs"],
@@ -216,7 +216,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         type: "p",
         content: [
-          "Modern, boring and well supported — React and Next.js on the front, TypeScript throughout, Postgres underneath, deployed on infrastructure you can move off. We pick tools with large communities and long support horizons, because your application will outlive the framework's current fashion cycle.",
+          "Modern, boring and well supported: React and Next.js on the front, TypeScript throughout, Postgres underneath, deployed on infrastructure you can move off. We pick tools with large communities and long support horizons, because your application will outlive the framework's current fashion cycle.",
         ],
       },
       {
@@ -269,9 +269,9 @@ export const serviceDetails: ServiceDetail[] = [
     id: "mobile-apps",
     metaTitle: "Mobile App Development Company | iOS & Android | Orvinex",
     metaDescription:
-      "Native iOS and Android builds or a single cross-platform codebase — architecture, interface, store submission and the release cadence after launch.",
+      "Native iOS and Android builds or a single cross-platform codebase: architecture, interface, store submission and the release cadence after launch.",
     h1: "Apps people keep on their home screen",
-    lead: "Most apps are installed once and deleted within a week. The ones that survive earn a place by being fast, obvious and worth opening again — which is a design and engineering problem long before it is a marketing one.",
+    lead: "Most apps are installed once and deleted within a week. The ones that survive earn a place by being fast, obvious and worth opening again, which is a design and engineering problem long before it is a marketing one.",
     tags: ["iOS", "Android", "React Native", "Flutter"],
     body: [
       {
@@ -291,7 +291,7 @@ export const serviceDetails: ServiceDetail[] = [
             text: "Cross-platform",
             strong: true,
           },
-          " — React Native or Flutter — makes sense for most business applications. One codebase, both stores, meaningfully lower cost to build and maintain.",
+          " (React Native or Flutter) makes sense for most business applications. One codebase, both stores, meaningfully lower cost to build and maintain.",
         ],
       },
       {
@@ -321,7 +321,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         type: "p",
         content: [
-          "Phones lose signal in lifts, basements and on trains. We decide early what the app does with no connection — queue writes, serve cached reads, or block with a clear message — rather than discovering the answer through crash reports.",
+          "Phones lose signal in lifts, basements and on trains. We decide early what the app does with no connection (queue writes, serve cached reads, or block with a clear message) rather than discovering the answer through crash reports.",
         ],
       },
       {
@@ -371,7 +371,7 @@ export const serviceDetails: ServiceDetail[] = [
     metaDescription:
       "Assistants that answer from your own documentation with the source attached, tested against a graded answer set before they ever reach a customer.",
     h1: "Assistants that answer from your documents, not from guesswork",
-    lead: "A general chatbot bolted onto your website will confidently invent your refund policy. Retrieval-augmented generation fixes that by making the model answer only from documents you control — and show its source.",
+    lead: "A general chatbot bolted onto your website will confidently invent your refund policy. Retrieval-augmented generation fixes that by making the model answer only from documents you control, and show its source.",
     tags: ["Retrieval", "Vector search", "Evaluation sets"],
     body: [
       {
@@ -414,7 +414,7 @@ export const serviceDetails: ServiceDetail[] = [
               text: "The evaluation set",
               strong: true,
             },
-            " — a graded list of real questions with correct answers, run against every change.",
+            ": a graded list of real questions with correct answers, run against every change.",
           ],
           [
             {
@@ -464,7 +464,7 @@ export const serviceDetails: ServiceDetail[] = [
             text: "personalised AI tools",
             href: "/services/personalised-ai-tools",
           },
-          " is the better shape. Either way it needs somewhere to live — usually ",
+          " is the better shape. Either way it needs somewhere to live, usually ",
           {
             text: "a web application",
             href: "/services/web-applications",
@@ -480,7 +480,7 @@ export const serviceDetails: ServiceDetail[] = [
       },
       {
         q: "What documents can it use?",
-        a: "Anything with text — PDFs, help centres, ticket histories, product catalogues, internal wikis. The quality ceiling is your documentation; if it is contradictory, the assistant will be too.",
+        a: "Anything with text: PDFs, help centres, ticket histories, product catalogues, internal wikis. The quality ceiling is your documentation; if it is contradictory, the assistant will be too.",
       },
       {
         q: "Is our data used to train someone's model?",
@@ -496,7 +496,7 @@ export const serviceDetails: ServiceDetail[] = [
     id: "personalised-ai-tools",
     metaTitle: "Custom AI Tools & Internal Copilots | Orvinex",
     metaDescription:
-      "Narrow internal AI tools that do one job dependably — built around the tasks quietly eating hours from your team each week.",
+      "Narrow internal AI tools that do one job dependably, built around the tasks quietly eating hours from your team each week.",
     h1: "Narrow AI tools that do one job properly",
     lead: "General assistants get opened twice and forgotten. The tools that stick are unglamorous and specific: they take one task somebody does forty times a week and make it take a minute.",
     tags: ["Copilots", "Agents", "Workflow automation"],
@@ -508,7 +508,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         type: "p",
         content: [
-          "Before any model is chosen, we sit with your team and find where the hours actually go. It is usually somewhere unremarkable — reformatting supplier quotes, triaging inbound email, summarising call notes into the CRM, checking documents against a checklist.",
+          "Before any model is chosen, we sit with your team and find where the hours actually go. It is usually somewhere unremarkable: reformatting supplier quotes, triaging inbound email, summarising call notes into the CRM, checking documents against a checklist.",
         ],
       },
       {
@@ -530,7 +530,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         type: "p",
         content: [
-          "The interface is usually a small web tool or an addition to software you already open — not another login.",
+          "The interface is usually a small web tool or an addition to software you already open, not another login.",
         ],
       },
       {
@@ -581,7 +581,7 @@ export const serviceDetails: ServiceDetail[] = [
       },
       {
         q: "Will our team actually use it?",
-        a: "They use it when it is faster than what they do now and lives where they already work. Adoption failures are almost always design failures — an extra login, or a tool that is right eighty percent of the time with no way to correct the rest.",
+        a: "They use it when it is faster than what they do now and lives where they already work. Adoption failures are almost always design failures: an extra login, or a tool that is right eighty percent of the time with no way to correct the rest.",
       },
       {
         q: "Which models do you use?",

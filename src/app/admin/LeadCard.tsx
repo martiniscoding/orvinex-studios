@@ -89,7 +89,7 @@ export default function LeadCard({ lead }: { lead: Lead }) {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={2}
-            placeholder="Private notes — calls, quotes, next steps"
+            placeholder="Private notes: calls, quotes, next steps"
             className="mt-2 w-full resize-y rounded-xl border border-line bg-panel px-3.5 py-2.5 text-[0.9375rem] font-normal tracking-normal text-ink normal-case outline-none placeholder:text-faint focus:border-ink"
           />
         </label>
