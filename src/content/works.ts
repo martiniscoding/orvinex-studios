@@ -27,6 +27,7 @@ export const works: Work[] = [
   site("maa-kamakhya", "Maa Kamakhya Hardware", "Architectural hardware storefront"),
   site("panini8", "Panini8", "Olympiad practice and mastery platform"),
   site("syamabala", "Syamabala", "Learning software for gifted students"),
+  site("buildlabs", "Build Labs", "Portfolio site for a product design studio"),
 ];
 
 export const workBySlug = (slug: string) => {

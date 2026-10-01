@@ -3,7 +3,7 @@ import { workBySlug, type Work } from "@/content/works";
 import { PhoneGroup } from "@/components/ui/IPhone";
 
 const rows: Work[][] = [
-  ["jee-society", "calendia", "panini8", "maa-kamakhya"],
+  ["jee-society", "calendia", "panini8", "maa-kamakhya", "buildlabs"],
   ["dexter", "a-star-coaching", "syamabala", "jee-society-careers"],
 ].map((row) => row.map(workBySlug));
 
