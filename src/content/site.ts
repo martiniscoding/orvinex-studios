@@ -193,8 +193,8 @@ export const pricing = {
  */
 export const testimonials = [
   {
-    quote: "Rohan built our student portal end to end. It is the first real tech product my company has shipped, and the students took to it straight away.",
-    highlight: "the students took to it straight away",
+    quote: "Rohan built our student portal end to end. It is the first real tech product my company has shipped, and our students loved it. He also supported us for six months after launch.",
+    highlight: "our students loved it",
     name: "Sreyash Gupta",
     role: "JEE Society · 100K+ subscribers on YouTube",
     logo: "/reviews/jee-society.png",
