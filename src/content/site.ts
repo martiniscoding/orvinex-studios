@@ -30,6 +30,7 @@ export const nav: {
   { id: "home", label: "Home", href: "/#home", section: true },
   { id: "services", label: "Services", href: "/services" },
   { id: "work", label: "Work", href: "/work" },
+  { id: "pricing", label: "Pricing", href: "/pricing" },
   { id: "articles", label: "Articles", href: "/articles" },
   { id: "contact", label: "Contact", href: "/#contact", section: true },
 ];
@@ -49,6 +50,8 @@ export const hero = {
   contact: { label: "Contact us", href: "#contact" },
   /* The badge on the hero image. `figure` is set bold. */
   proof: { before: "Helped founders generate", figure: "$10M+", after: "in revenue" },
+  /** The small line under the proof, with a flag for each country listed. */
+  reach: { before: "Worked with clients in", figure: "12+ countries", countries: ["de", "fi", "cn", "in"] as const },
 };
 
 export const problem = {
@@ -104,85 +107,62 @@ export const work = [
 ];
 
 export const pricing = {
-  tabs: [
+  /* Three fixed tiers. The copy is the client's own, keep it verbatim. */
+  plans: [
     {
-      id: "site",
-      label: "Website",
-      name: "Website, designed and built",
-      price: 6400,
-      timeline: "15–20 days",
-      addons: [
-        { id: "seo", label: "SEO foundations", note: "Technical SEO, set up", price: 4200 },
-        { id: "extra", label: "Extra pages", price: 800, unit: "/page" },
-        { id: "motion", label: "Motion pass", price: 1400 },
-      ],
+      id: "mvp",
+      name: "MVP Launch",
+      tagline: "Perfect for founders who want to validate fast",
+      price: 400,
       features: [
-        "Messaging and copy drafted with you",
-        "Designed and built in Next.js, deployed",
-        "Desktop, tablet, mobile responsive",
-        "Your repo, your code, Figma file included",
-        "Preview link updated every 48 hours",
+        "Mobile app or Web app",
+        "Core features only",
+        "App Store submission or Website deployment",
+        "30 days post launch support",
+        "Complete source code ownership",
+        "Unlimited revisions within scope",
+        "Weekly progress updates",
       ],
     },
     {
-      id: "brand",
-      label: "Branding",
-      name: "Brand system",
-      price: 11500,
-      timeline: "20–25 days",
-      addons: [
-        { id: "site", label: "Add launch site", price: 5400 },
-        { id: "deck", label: "Pitch deck", price: 3000, unit: "/15 slides" },
-      ],
+      id: "full",
+      name: "Full Product",
+      tagline: "For founders ready to launch and scale",
+      price: 800,
+      featured: true,
       features: [
-        "Positioning session and naming review",
-        "Primary mark plus two lockups",
-        "Palette, type scale and usage rules",
-        "Social, deck and doc templates",
-        "One-page guidelines, not a 60-page PDF",
+        "Mobile app + Web app",
+        "Full feature set",
+        "Custom UI/UX design",
+        "App Store submission + Website deployment",
+        "60 days post launch support",
+        "Complete source code ownership",
+        "Unlimited revisions within scope",
+        "Weekly progress updates",
       ],
     },
     {
-      id: "ui",
-      label: "Web & mobile app",
-      name: "App, designed and built",
-      price: 14000,
-      timeline: "30–40 days",
-      addons: [
-        { id: "system", label: "Design system in code", price: 4500 },
-        { id: "icons", label: "Icon set", price: 2200, unit: "/40 icons" },
-      ],
+      id: "scale",
+      name: "Scale Ready",
+      tagline: "For startups building serious products",
+      price: 1200,
       features: [
-        "Architecture and product plan, written up",
-        "Up to 20 screens, designed and built",
-        "Web app, iOS and Android, or all three",
-        "Load-tested and documented before launch",
-        "Store submission and release support",
+        "Everything in Full Product",
+        "AI integration",
+        "SaaS platform",
+        "Admin dashboard",
+        "Payment integration",
+        "Dedicated project manager",
+        "90 days post launch support",
+        "Complete source code ownership",
+        "Unlimited revisions within scope",
+        "Weekly progress updates",
       ],
     },
   ],
-  retainer: {
-    name: "Orvinex retainer",
-    price: 8900,
-    unit: "per month",
-    features: [
-      "Design and engineering in one team",
-      "Shipped to production, not just to Figma",
-      "Weekly call, daily replies in your Slack",
-      "Pause once for up to a month, no charge",
-    ],
-    taskLabel: "Active tasks",
-    perTask: 2600,
-    includes: [
-      "Web development",
-      "Mobile apps",
-      "Custom software",
-      "Product UI & UX",
-      "Design systems",
-      "Brand systems",
-      "Launch sites",
-    ],
-  },
+  startsAt: "Starts at",
+  cta: "Book a Call",
+  includedLabel: "What's Included",
 };
 
 /**
@@ -407,10 +387,14 @@ export const founder = {
 
 export const pricingTeaser = {
   eyebrow: "Pricing",
+  /* Set like the other page titles: ink, with the key phrase and the closing
+     full stop in the accent red. */
+  titleAccent: "Fixed price",
+  titleRest: ", written down before we start",
   title: "Fixed price, written down before we start.",
   body:
-    "Design and development in every project, plus one retainer, with the " +
-    "numbers on the page. No discovery call needed to find out what it costs.",
+    "Three ways to start, with the numbers on the page. No discovery call " +
+    "needed to find out what it costs.",
   cta: { label: "See pricing", href: "/pricing" },
 };
 
