@@ -43,7 +43,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
               <img src={logoSrc} width={44} height={44} alt="" />
               <span style={{ fontFamily: "Phudu", fontSize: 30, color: "#1e2430", letterSpacing: 1 }}>ORVINEX</span>
             </div>
-            {post && <span style={{ fontSize: 24, color: "#b8321f" }}>{post.category}</span>}
+            {post && <span style={{ fontSize: 24, color: "#ff3131" }}>{post.category}</span>}
           </div>
 
           <div

@@ -110,12 +110,13 @@ export const MessageIcon = () => (
   </svg>
 );
 
-/** The Orvinex mark. On dark panels it sits on a white tile so the dark
-    strokes stay visible. */
+/** The Orvinex mark, on a transparent background so it sits straight on any
+    light surface. On dark panels it sits on a white tile so the dark strokes
+    stay visible. */
 export const Mark = ({ size = 26, light = false }: { size?: number; light?: boolean }) => (
   // eslint-disable-next-line @next/next/no-img-element
   <img
-    src="/work/logo.png"
+    src="/logo.png"
     alt=""
     aria-hidden="true"
     width={size}

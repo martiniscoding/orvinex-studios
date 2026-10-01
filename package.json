@@ -13,7 +13,8 @@
     "admin:reset-password": "tsx --env-file=.env.local scripts/reset-admin-password.ts",
     "seo:check": "tsx scripts/seo-check.ts",
     "new:post": "tsx scripts/new-post.ts",
-    "prebuild": "tsx scripts/seo-check.ts --published"
+    "prebuild": "tsx scripts/seo-check.ts --published",
+    "db:drop-company": "tsx --env-file=.env.local scripts/drop-leads-company.ts"
   },
   "dependencies": {
     "better-auth": "^1.7.6",

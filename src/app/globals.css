@@ -17,9 +17,10 @@
   --color-faint: #838b98;
 
   /* One accent, used sparingly: ticks, active states, the retainer card.
-     5.31:1 on the shell, and white on it is 6.0:1. */
-  --color-accent: #b8321f;
-  --color-accent-deep: #86231a;
+     The bright red of the logo mark. It is 3.5:1 on the panel, so it suits
+     large or bold type, fills and marks better than small body text. */
+  --color-accent: #ff3131;
+  --color-accent-deep: #d91c1c;
 
   /* The highlight behind an emphasised phrase — soft straw, not a marker. */
   --color-mark: #ece4c9;
@@ -27,7 +28,7 @@
   /* shadcn-style aliases, used by components in components/ui. */
   --color-background: #fbfaf8;
   --color-foreground: #1e2430;
-  --color-primary: #b8321f;
+  --color-primary: #ff3131;
   --color-border: #e2e0da;
 
   --font-sans: var(--font-inter), system-ui, sans-serif;

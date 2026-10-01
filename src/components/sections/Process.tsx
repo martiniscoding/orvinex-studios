@@ -331,8 +331,8 @@ const art: Record<StepId, ReactNode> = {
       </div>
       <Card className="bottom-[10%] right-[10%] flex items-center gap-2.5 px-3 py-2.5">
         <span className="relative flex h-2 w-2">
-          <span className="absolute inset-0 animate-ping rounded-full bg-red-500 opacity-60" />
-          <span className="relative h-2 w-2 rounded-full bg-red-500" />
+          <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-60" />
+          <span className="relative h-2 w-2 rounded-full bg-accent" />
         </span>
         <span className="text-[11px] font-medium">Preview ready</span>
         <span className="text-[11px] text-faint">· 48s</span>

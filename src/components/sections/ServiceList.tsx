@@ -85,7 +85,7 @@ export default function ServiceList() {
         <Link
           href="/#contact"
           style={{ animationDelay: `${tiles.length * 60}ms` }}
-          className={`${tileBase} border-accent bg-accent text-white hover:shadow-[0_26px_50px_-28px_rgba(184,50,31,0.8)]`}
+          className={`${tileBase} border-accent bg-accent text-white hover:shadow-[0_26px_50px_-28px_rgba(255,49,49,0.8)]`}
         >
           <span className="flex items-center justify-between">
             <span className="text-sm font-semibold text-white/80">Not sure which one fits?</span>
