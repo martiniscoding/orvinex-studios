@@ -192,7 +192,7 @@ export const testimonials = [
     quote: "Orvinex gave us a storefront that is clean and genuinely professional. The UI and UX are exactly what we asked for. They stayed with us long after launch, too, and the support never dropped off.",
     highlight: "the support never dropped off",
     name: "Maa Kamakhya Hardware",
-    role: "Architectural hardware store · ₹500M revenue · 100K users",
+    role: "Architectural hardware store · $5.5M+ revenue · 100K users",
     logo: "/reviews/maa-kamakhya.png",
     work: "maa-kamakhya",
   },
