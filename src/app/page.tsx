@@ -9,9 +9,8 @@ import Process from "@/components/sections/Process";
 import Faq from "@/components/sections/Faq";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
-import { Divider } from "@/components/ui/Bits";
 import JsonLd from "@/components/JsonLd";
-import { faq, howWeWork, testimonialsIntro, workflow } from "@/content/site";
+import { faq, howWeWork } from "@/content/site";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -32,18 +31,14 @@ export default function Page() {
       <Hero />
       <Showcase />
       <Container className="pb-4">
-        <Divider label="Founder" />
-        <Founder />
-        <Divider label={testimonialsIntro.eyebrow} />
-        <Testimonials />
-        <Divider label="How we work" />
-        <HowWeWork content={howWeWork} />
-        <Divider label={workflow.eyebrow} />
-        <Process />
-        <Divider label={faq.eyebrow} />
-        <Faq />
-        <Divider label="Contact" />
-        <Contact />
+        <div className="mt-16 space-y-16 lg:mt-24 lg:space-y-24">
+          <Founder />
+          <Testimonials />
+          <HowWeWork content={howWeWork} />
+          <Process />
+          <Faq />
+          <Contact />
+        </div>
         <Footer />
       </Container>
     </Shell>

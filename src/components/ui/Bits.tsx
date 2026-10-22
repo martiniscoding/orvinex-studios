@@ -1,17 +1,6 @@
 import type { ReactNode } from "react";
 import { ArrowIcon, CheckIcon } from "../Icons";
 
-/** The recurring device: a hairline rule with a small grey label centred in it. */
-export function Divider({ label }: { label: string }) {
-  return (
-    <div className="my-16 flex items-center gap-6 lg:my-24">
-      <span className="h-px flex-1 bg-line" />
-      <span className="eyebrow whitespace-nowrap">{label}</span>
-      <span className="h-px flex-1 bg-line" />
-    </div>
-  );
-}
-
 export function Pill({
   href,
   children,
