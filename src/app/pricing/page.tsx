@@ -7,7 +7,7 @@ import { pricingTeaser } from "@/content/site";
 export const metadata: Metadata = {
   title: "Pricing | Orvinex",
   description:
-    "Fixed prices for web and mobile apps, designed and built: MVP Launch from $400, Full Product from $800, Scale Ready from $1,200.",
+    "Fixed prices for web and mobile apps, designed and built: MVP Launch from $800, Full Product from $1,600, Scale Ready from $2,400.",
   alternates: { canonical: "/pricing" },
 };
 

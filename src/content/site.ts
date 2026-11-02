@@ -113,7 +113,7 @@ export const pricing = {
       id: "mvp",
       name: "MVP Launch",
       tagline: "Perfect for founders who want to validate fast",
-      price: 400,
+      price: 800,
       features: [
         "Mobile app or Web app",
         "Core features only",
@@ -128,7 +128,7 @@ export const pricing = {
       id: "full",
       name: "Full Product",
       tagline: "For founders ready to launch and scale",
-      price: 800,
+      price: 1600,
       featured: true,
       features: [
         "Mobile app + Web app",
@@ -145,7 +145,7 @@ export const pricing = {
       id: "scale",
       name: "Scale Ready",
       tagline: "For startups building serious products",
-      price: 1200,
+      price: 2400,
       features: [
         "Everything in Full Product",
         "AI integration",
