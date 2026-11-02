@@ -21,7 +21,7 @@ const site = (slug: string, name: string, what: string, url?: string, file = `${
 
 export const works: Work[] = [
   site("jee-society", "JEE Society", "Student portal for JEE aspirants"),
-  site("dexter", "Dexter", "AI architecture review platform"),
+  site("aidp", "AIDP", "Architecture review and decision platform"),
   site("a-star-coaching", "A Star Teaching", "Live classes and coaching portal"),
   site("calendia", "Calendia", "Booking platform and website builder"),
   site("jee-society-careers", "JEE Society Careers", "Hiring site for an edtech startup"),

@@ -4,7 +4,7 @@ import { PhoneGroup } from "@/components/ui/IPhone";
 
 const rows: Work[][] = [
   ["jee-society", "calendia", "panini8", "maa-kamakhya", "buildlabs"],
-  ["dexter", "a-star-coaching", "syamabala", "jee-society-careers"],
+  ["aidp", "a-star-coaching", "syamabala", "jee-society-careers"],
 ].map((row) => row.map(workBySlug));
 
 function Tile({ work, hidden }: { work: Work; hidden?: boolean }) {
