@@ -115,7 +115,7 @@ export const defaultContent: HowWeWorkContent = {
 
 const CSS = `
 .hww {
-  --hww-accent: var(--color-accent, #ff3131);
+  --hww-accent: var(--color-accent, #0166e3);
   --hww-ink: #1e2430;
   --hww-muted: #575f6d;
   --hww-card: #ffffff;

@@ -39,7 +39,7 @@ export const hero = {
   /* One entry per line. The full stop after the last line is set in the
      accent by the component. */
   headline: ["Build products that", "dominate your market"],
-  /** A word in the headline set in the accent red. */
+  /** A word in the headline set in the accent blue. */
   accent: "dominate",
   sub:
     "We build web and mobile apps, custom software and AI tools like " +
@@ -306,7 +306,7 @@ export const faq: {
 export const workflow = {
   eyebrow: "Process",
   title: ["From idea to launch,", "in six clear steps"],
-  /** The phrase in the second line set in the accent red, as in the hero. */
+  /** The phrase in the second line set in the accent blue, as in the hero. */
   accent: "six clear steps",
   lead: "Engineering the future of enterprise software.",
   intro:
@@ -388,7 +388,7 @@ export const founder = {
 export const pricingTeaser = {
   eyebrow: "Pricing",
   /* Set like the other page titles: ink, with the key phrase and the closing
-     full stop in the accent red. */
+     full stop in the accent blue. */
   titleAccent: "Fixed price",
   titleRest: ", written down before we start",
   title: "Fixed price, written down before we start.",

@@ -6,7 +6,7 @@ import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const ICON_VERSION = 2;
+const ICON_VERSION = 3;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

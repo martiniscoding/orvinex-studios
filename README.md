@@ -77,7 +77,7 @@ Caveat is `preload: false` — five captions below the fold must not compete wit
 Inter for the critical path.
 
 **Colour.** Quiet warm neutrals — `#F2F1ED` shell, `#FBFAF8` panel, white
-cards — under a deep slate ink, with one accent (`#2E6E5B`) used sparingly:
+cards — under a deep slate ink, with one accent (`#0166E3`) used sparingly:
 ticks, active states, the logo mark and the retainer card. Nothing else is
 coloured.
 

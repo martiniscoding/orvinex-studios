@@ -38,7 +38,7 @@ export default function Process() {
         <h2 className="display-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.04]">
           {workflow.title[0]}
           <br />
-          {/* Set like the hero: ink, with the accent phrase and the full stop in red. */}
+          {/* Set like the hero: ink, with the accent phrase and the full stop in blue. */}
           {workflow.title[1].split(workflow.accent).map((part, i) =>
             i === 0 ? part : (
               <span key={i}>

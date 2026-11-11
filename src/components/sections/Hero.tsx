@@ -47,7 +47,7 @@ export default function Hero() {
         </p>
 
         {/* Reach: a badge of overlapping round flags and the count. The flags
-            show at once; a red shimmer runs through the text on the ring's
+            show at once; a blue shimmer runs through the text on the ring's
             cycle (see .reach-text in globals.css). */}
         <p className="mt-4 inline-flex items-center gap-2.5 rounded-full border border-line bg-card py-1 pr-3.5 pl-1 text-[0.8125rem] font-medium text-ink-2 shadow-[0_10px_24px_-14px_rgba(30,36,48,0.4)]">
           <span className="flex -space-x-1">

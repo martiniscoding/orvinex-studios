@@ -7,7 +7,7 @@ const fmt = (n: number) => `$${n.toLocaleString("en-US")}`;
  * Three fixed tiers, side by side. Each card is one column split in two: the
  * ask on top (name, tagline, price, button), the list below it on the quieter
  * fill, so the three buttons line up across the row however long the lists run.
- * The middle card is filled with the flat accent red to mark it as the one
+ * The middle card is filled with the flat accent blue to mark it as the one
  * most founders pick.
  */
 export default function Pricing() {
@@ -20,7 +20,7 @@ export default function Pricing() {
             key={plan.id}
             className={`relative isolate flex flex-col overflow-hidden rounded-[var(--radius-panel)] bg-card ${
               on
-                ? "shadow-[0_34px_70px_-40px_rgba(217,28,28,0.45)] lg:-my-3"
+                ? "shadow-[0_34px_70px_-40px_rgba(11,79,174,0.45)] lg:-my-3"
                 : "shadow-[0_28px_60px_-45px_rgba(30,36,48,0.5)]"
             }`}
           >
