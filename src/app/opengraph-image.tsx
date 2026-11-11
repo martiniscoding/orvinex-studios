@@ -10,7 +10,7 @@ export default async function Image() {
   const [phudu, inter, logo] = await Promise.all([
     readFile(path.join(process.cwd(), "src/fonts/Phudu-OG.ttf")),
     readFile(path.join(process.cwd(), "src/fonts/Inter-OG.ttf")),
-    readFile(path.join(process.cwd(), "public/work/logo.png")),
+    readFile(path.join(process.cwd(), "public/icon.png")),
   ]);
   const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
 

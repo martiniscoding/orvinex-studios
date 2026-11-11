@@ -19,7 +19,7 @@ export function organizationSchema() {
     "@id": ORG,
     name: site.name,
     url: site.url,
-    logo: absolute("/work/logo.png"),
+    logo: absolute("/icon.png"),
     email: site.email,
     founder: { "@id": FOUNDER },
   };

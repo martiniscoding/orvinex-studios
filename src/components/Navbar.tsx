@@ -99,7 +99,7 @@ export default function Navbar({ overHero = false }: { overHero?: boolean }) {
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3 lg:px-10">
         <Link href="/" aria-label={`${site.name}, home`} className="relative flex items-center gap-2.5">
-          <Mark size={20} light={light} src="/icon.png" />
+          <Mark size={20} light={light} />
           <span
             className={`phudu text-[1.0625rem] leading-none transition-colors duration-500 ${light ? "text-white" : "text-ink"}`}
           >

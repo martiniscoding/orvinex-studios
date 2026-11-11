@@ -110,14 +110,14 @@ export const MessageIcon = () => (
   </svg>
 );
 
-/** The Orvinex mark, on a transparent background so it sits straight on any
-    light surface. On dark panels it sits on a white tile so the dark strokes
-    stay visible. `src` takes another file: the navbar uses /icon.png, which
-    carries its own white ground, so the corners are rounded either way. */
+/** The Orvinex mark. One file across the site, /icon.png, which carries its
+    own white ground, so the corners are rounded everywhere. On dark panels
+    `light` widens that ground into a tile, to keep the mark clear of the
+    translucent bar behind it. */
 export const Mark = ({
   size = 26,
   light = false,
-  src = "/logo.png",
+  src = "/icon.png",
 }: {
   size?: number;
   light?: boolean;

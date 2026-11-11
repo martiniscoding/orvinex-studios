@@ -19,7 +19,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
     // Full Latin set: article titles can contain any letter, unlike the home
     // card, whose Inter-OG.ttf holds only the glyphs of its fixed text.
     readFile(path.join(process.cwd(), "src/fonts/Inter-SemiBold-Latin.ttf")),
-    readFile(path.join(process.cwd(), "public/work/logo.png")),
+    readFile(path.join(process.cwd(), "public/icon.png")),
   ]);
   const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
   const title = post?.title ?? "Orvinex articles";
