@@ -112,16 +112,25 @@ export const MessageIcon = () => (
 
 /** The Orvinex mark, on a transparent background so it sits straight on any
     light surface. On dark panels it sits on a white tile so the dark strokes
-    stay visible. */
-export const Mark = ({ size = 26, light = false }: { size?: number; light?: boolean }) => (
+    stay visible. `src` takes another file: the navbar uses /icon.png, which
+    carries its own white ground, so the corners are rounded either way. */
+export const Mark = ({
+  size = 26,
+  light = false,
+  src = "/logo.png",
+}: {
+  size?: number;
+  light?: boolean;
+  src?: string;
+}) => (
   // eslint-disable-next-line @next/next/no-img-element
   <img
-    src="/logo.png"
+    src={src}
     alt=""
     aria-hidden="true"
     width={size}
     height={size}
-    className={`shrink-0 ${light ? "rounded-md bg-white p-0.5" : ""}`}
+    className={`shrink-0 rounded-md ${light ? "bg-white p-0.5" : ""}`}
     style={{ width: size, height: size }}
   />
 );
